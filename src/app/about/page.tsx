@@ -1,4 +1,6 @@
 import { Metadata } from "next";
+import { getAllArticles } from "@/lib/mdx";
+import ArticleList from "@/components/ArticleList";
 
 export const metadata: Metadata = {
     title: "About Odiapedia",
@@ -6,6 +8,8 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
+    const articles = getAllArticles("about");
+
     return (
         <div className="min-h-screen bg-black">
             {/* Hero Section */}
@@ -31,6 +35,11 @@ export default function AboutPage() {
                     </p>
                 </div>
             </section>
+
+            {/* Articles Section */}
+            {articles.length > 0 && (
+                <ArticleList articles={articles} title="About Articles" />
+            )}
 
             {/* Mission Section */}
             <section className="py-16 bg-black relative">
@@ -74,37 +83,7 @@ export default function AboutPage() {
                         </ul>
                     </div>
 
-                    <h2 className="text-3xl font-bold text-amber-100 mb-8 mt-16 font-display">
-                        Why Odiapedia?
-                    </h2>
-                    <p className="text-amber-100/70 mb-6 text-lg leading-relaxed">
-                        While there are many resources about Odisha scattered across the internet,
-                        Odiapedia aims to be a single, comprehensive, and reliable source of
-                        information about everything Odia.
-                    </p>
-                    <p className="text-amber-100/70 mb-6 text-lg leading-relaxed">
-                        Our goal is to make this knowledge accessible to:
-                    </p>
-                    <ul className="list-none text-amber-100/70 space-y-3 mb-10 text-lg">
-                        <li className="flex items-center gap-3">
-                            <span className="text-amber-500">✦</span>
-                            Odias living away from home who want to stay connected to their roots
-                        </li>
-                        <li className="flex items-center gap-3">
-                            <span className="text-amber-500">✦</span>
-                            Researchers and students studying Odia culture and history
-                        </li>
-                        <li className="flex items-center gap-3">
-                            <span className="text-amber-500">✦</span>
-                            Tourists planning to visit Odisha
-                        </li>
-                        <li className="flex items-center gap-3">
-                            <span className="text-amber-500">✦</span>
-                            Anyone curious about the rich heritage of this ancient land
-                        </li>
-                    </ul>
-
-                    <div className="bg-gradient-to-br from-slate-900/50 to-zinc-900/50 rounded-2xl p-10 text-center border border-slate-700/30">
+                    <div className="bg-gradient-to-br from-slate-900/50 to-zinc-900/50 rounded-2xl p-10 text-center border border-slate-700/30 mt-10">
                         <p className="text-amber-100/80 text-lg mb-6">
                             Odiapedia is an open project. We welcome contributions, corrections,
                             and suggestions from the community.

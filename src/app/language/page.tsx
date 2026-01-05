@@ -1,4 +1,6 @@
 import { Metadata } from "next";
+import { getAllArticles } from "@/lib/mdx";
+import ArticleList from "@/components/ArticleList";
 
 export const metadata: Metadata = {
     title: "Odia Language",
@@ -6,6 +8,8 @@ export const metadata: Metadata = {
 };
 
 export default function LanguagePage() {
+    const articles = getAllArticles("language");
+
     return (
         <div className="min-h-screen bg-black">
             {/* Hero Section */}
@@ -32,6 +36,11 @@ export default function LanguagePage() {
                     </p>
                 </div>
             </section>
+
+            {/* Articles Section */}
+            {articles.length > 0 && (
+                <ArticleList articles={articles} title="Language Articles" />
+            )}
 
             {/* Content Section */}
             <section className="py-16 bg-black relative">
@@ -71,23 +80,7 @@ export default function LanguagePage() {
                                 </li>
                             </ul>
                         </div>
-
-                        <p className="text-amber-100/70 text-lg leading-relaxed">
-                            The Odia script is known for its distinctive rounded appearance, which evolved
-                            to write on palm leaves without tearing them. This unique characteristic makes
-                            it one of the most beautiful scripts in the world.
-                        </p>
                     </div>
-                </div>
-            </section>
-
-            {/* Coming Soon Section */}
-            <section className="py-16 bg-gradient-to-b from-black to-neutral-950 border-t border-amber-900/20">
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <p className="text-amber-100/50 text-lg">
-                        More detailed content about Odia language, grammar, literature, and learning resources
-                        coming soon...
-                    </p>
                 </div>
             </section>
         </div>

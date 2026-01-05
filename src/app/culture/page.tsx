@@ -1,4 +1,6 @@
 import { Metadata } from "next";
+import { getAllArticles } from "@/lib/mdx";
+import ArticleList from "@/components/ArticleList";
 
 export const metadata: Metadata = {
     title: "Odia Culture",
@@ -6,6 +8,8 @@ export const metadata: Metadata = {
 };
 
 export default function CulturePage() {
+    const articles = getAllArticles("culture");
+
     return (
         <div className="min-h-screen bg-black">
             {/* Hero Section */}
@@ -33,11 +37,17 @@ export default function CulturePage() {
                 </div>
             </section>
 
+            {/* Articles Section */}
+            {articles.length > 0 && (
+                <ArticleList articles={articles} title="Culture Articles" />
+            )}
+
             {/* Content Section */}
             <section className="py-16 bg-black relative">
                 <div className="absolute inset-0 pattern-overlay opacity-10"></div>
 
                 <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2 className="text-2xl font-bold text-amber-100 mb-8 font-display">Highlights</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         {/* Odissi Dance */}
                         <div className="bg-gradient-to-br from-purple-950/50 to-fuchsia-950/50 rounded-2xl p-8 border border-purple-800/30 card-hover">
@@ -75,16 +85,6 @@ export default function CulturePage() {
                             </p>
                         </div>
                     </div>
-                </div>
-            </section>
-
-            {/* Coming Soon Section */}
-            <section className="py-16 bg-gradient-to-b from-black to-neutral-950 border-t border-amber-900/20">
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <p className="text-amber-100/50 text-lg">
-                        More detailed content about Odia culture, festivals, arts, and traditions
-                        coming soon...
-                    </p>
                 </div>
             </section>
         </div>

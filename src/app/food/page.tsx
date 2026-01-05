@@ -1,4 +1,6 @@
 import { Metadata } from "next";
+import { getAllArticles } from "@/lib/mdx";
+import ArticleList from "@/components/ArticleList";
 
 export const metadata: Metadata = {
     title: "Odia Food",
@@ -6,6 +8,8 @@ export const metadata: Metadata = {
 };
 
 export default function FoodPage() {
+    const articles = getAllArticles("food");
+
     return (
         <div className="min-h-screen bg-black">
             {/* Hero Section */}
@@ -33,98 +37,47 @@ export default function FoodPage() {
                 </div>
             </section>
 
+            {/* Articles Section */}
+            {articles.length > 0 && (
+                <ArticleList articles={articles} title="Food Articles" />
+            )}
+
             {/* Food Categories */}
             <section className="py-16 bg-black relative">
                 <div className="absolute inset-0 pattern-overlay opacity-10"></div>
 
                 <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2 className="text-2xl font-bold text-amber-100 mb-8 font-display">Cuisine Highlights</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        {/* Temple Food */}
                         <div className="bg-gradient-to-br from-orange-950/50 to-amber-950/50 rounded-2xl p-8 border border-orange-800/30 card-hover">
                             <h3 className="text-2xl font-bold text-amber-100 mb-4 font-display">🛕 Mahaprasad</h3>
-                            <p className="text-amber-100/70 mb-6">
+                            <p className="text-amber-100/70">
                                 The sacred food of Lord Jagannath Temple in Puri, cooked without onion and garlic,
                                 served on banana leaves.
                             </p>
-                            <ul className="text-amber-100/60 space-y-2">
-                                <li className="flex items-center gap-2">
-                                    <span className="text-amber-500">•</span> Dalma (lentils with vegetables)
-                                </li>
-                                <li className="flex items-center gap-2">
-                                    <span className="text-amber-500">•</span> Khechudi (rice and lentil dish)
-                                </li>
-                                <li className="flex items-center gap-2">
-                                    <span className="text-amber-500">•</span> Kheer (rice pudding)
-                                </li>
-                            </ul>
                         </div>
 
-                        {/* Rice Dishes */}
                         <div className="bg-gradient-to-br from-yellow-950/50 to-lime-950/50 rounded-2xl p-8 border border-yellow-800/30 card-hover">
-                            <h3 className="text-2xl font-bold text-amber-100 mb-4 font-display">🍚 Rice Varieties</h3>
-                            <p className="text-amber-100/70 mb-6">
-                                Rice is the staple of Odia cuisine, prepared in numerous delicious ways.
+                            <h3 className="text-2xl font-bold text-amber-100 mb-4 font-display">🍚 Pakhala Bhata</h3>
+                            <p className="text-amber-100/70">
+                                Fermented rice soaked in water, a summer staple served with fried fish and vegetables.
                             </p>
-                            <ul className="text-amber-100/60 space-y-2">
-                                <li className="flex items-center gap-2">
-                                    <span className="text-amber-500">•</span> Pakhala (fermented rice)
-                                </li>
-                                <li className="flex items-center gap-2">
-                                    <span className="text-amber-500">•</span> Meetha Pulao
-                                </li>
-                                <li className="flex items-center gap-2">
-                                    <span className="text-amber-500">•</span> Vegetable Khichdi
-                                </li>
-                            </ul>
                         </div>
 
-                        {/* Sweets */}
                         <div className="bg-gradient-to-br from-pink-950/50 to-rose-950/50 rounded-2xl p-8 border border-pink-800/30 card-hover">
-                            <h3 className="text-2xl font-bold text-amber-100 mb-4 font-display">🍮 Traditional Sweets</h3>
-                            <p className="text-amber-100/70 mb-6">
-                                Odia sweets are made with chhena (cottage cheese), coconut, and jaggery.
+                            <h3 className="text-2xl font-bold text-amber-100 mb-4 font-display">🍮 Rasagola</h3>
+                            <p className="text-amber-100/70">
+                                The legendary sweet that originated in Odisha, made with cottage cheese balls in sugar syrup.
                             </p>
-                            <ul className="text-amber-100/60 space-y-2">
-                                <li className="flex items-center gap-2">
-                                    <span className="text-amber-500">•</span> Rasagola (origin of this sweet)
-                                </li>
-                                <li className="flex items-center gap-2">
-                                    <span className="text-amber-500">•</span> Chhena Poda
-                                </li>
-                                <li className="flex items-center gap-2">
-                                    <span className="text-amber-500">•</span> Khira Mohana
-                                </li>
-                            </ul>
                         </div>
 
-                        {/* Coastal Food */}
                         <div className="bg-gradient-to-br from-blue-950/50 to-cyan-950/50 rounded-2xl p-8 border border-blue-800/30 card-hover">
-                            <h3 className="text-2xl font-bold text-amber-100 mb-4 font-display">🦐 Coastal Delicacies</h3>
-                            <p className="text-amber-100/70 mb-6">
-                                Fresh seafood from the Bay of Bengal prepared with traditional spices.
+                            <h3 className="text-2xl font-bold text-amber-100 mb-4 font-display">🦐 Coastal Seafood</h3>
+                            <p className="text-amber-100/70">
+                                Fresh seafood from the Bay of Bengal prepared with traditional mustard-based curries.
                             </p>
-                            <ul className="text-amber-100/60 space-y-2">
-                                <li className="flex items-center gap-2">
-                                    <span className="text-amber-500">•</span> Macha Besara (fish in mustard)
-                                </li>
-                                <li className="flex items-center gap-2">
-                                    <span className="text-amber-500">•</span> Crab Curry
-                                </li>
-                                <li className="flex items-center gap-2">
-                                    <span className="text-amber-500">•</span> Prawn Malai Curry
-                                </li>
-                            </ul>
                         </div>
                     </div>
-                </div>
-            </section>
-
-            {/* Coming Soon Section */}
-            <section className="py-16 bg-gradient-to-b from-black to-neutral-950 border-t border-amber-900/20">
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <p className="text-amber-100/50 text-lg">
-                        More recipes, food history, and regional specialties coming soon...
-                    </p>
                 </div>
             </section>
         </div>
