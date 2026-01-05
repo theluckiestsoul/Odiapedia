@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { getAllArticlesMetadata } from "@/lib/mdx";
 
 const sections = [
   {
@@ -51,6 +52,15 @@ const sections = [
     gradient: "from-slate-800 to-zinc-950",
   },
 ];
+
+const categoryIcons: Record<string, string> = {
+  language: "📚",
+  culture: "🎭",
+  history: "🏛️",
+  food: "🍛",
+  people: "👥",
+  about: "ℹ️",
+};
 
 export default function Home() {
   return (
@@ -196,97 +206,43 @@ export default function Home() {
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-amber-100 mb-4 font-display">
-              Featured Articles
+              Latest Articles
             </h2>
             <p className="text-amber-100/60 text-lg">
-              Start exploring with our most popular content
+              Start exploring with our newest content
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Featured Article 1 */}
-            <Link
-              href="/culture/rath-yatra"
-              className="group bg-gradient-to-br from-purple-950/40 to-fuchsia-950/40 rounded-2xl p-6 border border-purple-800/30 hover:border-amber-600/50 transition-all duration-300"
-            >
-              <div className="flex items-start gap-4">
-                <span className="text-4xl">🛕</span>
-                <div className="flex-1">
-                  <h3 className="text-xl font-semibold text-amber-100 group-hover:text-amber-300 transition-colors mb-2">
-                    Rath Yatra - The Grand Chariot Festival
-                  </h3>
-                  <p className="text-amber-100/60 text-sm line-clamp-2">
-                    Discover the world-famous chariot festival where millions gather to pull Lord Jagannath&apos;s massive chariot.
-                  </p>
-                  <span className="inline-block mt-3 text-amber-500 text-sm group-hover:text-amber-400">
-                    Read article →
-                  </span>
-                </div>
-              </div>
-            </Link>
-
-            {/* Featured Article 2 */}
-            <Link
-              href="/history/konark-sun-temple"
-              className="group bg-gradient-to-br from-amber-950/40 to-orange-950/40 rounded-2xl p-6 border border-orange-800/30 hover:border-amber-600/50 transition-all duration-300"
-            >
-              <div className="flex items-start gap-4">
-                <span className="text-4xl">☀️</span>
-                <div className="flex-1">
-                  <h3 className="text-xl font-semibold text-amber-100 group-hover:text-amber-300 transition-colors mb-2">
-                    Konark Sun Temple - Architectural Marvel
-                  </h3>
-                  <p className="text-amber-100/60 text-sm line-clamp-2">
-                    Explore the UNESCO World Heritage Site designed as a giant chariot of the Sun God.
-                  </p>
-                  <span className="inline-block mt-3 text-amber-500 text-sm group-hover:text-amber-400">
-                    Read article →
-                  </span>
-                </div>
-              </div>
-            </Link>
-
-            {/* Featured Article 3 */}
-            <Link
-              href="/food/famous-foods"
-              className="group bg-gradient-to-br from-red-950/40 to-rose-950/40 rounded-2xl p-6 border border-red-800/30 hover:border-amber-600/50 transition-all duration-300"
-            >
-              <div className="flex items-start gap-4">
-                <span className="text-4xl">🍛</span>
-                <div className="flex-1">
-                  <h3 className="text-xl font-semibold text-amber-100 group-hover:text-amber-300 transition-colors mb-2">
-                    Famous Foods of Odisha
-                  </h3>
-                  <p className="text-amber-100/60 text-sm line-clamp-2">
-                    From sacred Mahaprasad to legendary Rasagola - discover the unique flavors of Odia cuisine.
-                  </p>
-                  <span className="inline-block mt-3 text-amber-500 text-sm group-hover:text-amber-400">
-                    Read article →
-                  </span>
-                </div>
-              </div>
-            </Link>
-
-            {/* Featured Article 4 */}
-            <Link
-              href="/people/biju-patnaik"
-              className="group bg-gradient-to-br from-emerald-950/40 to-teal-950/40 rounded-2xl p-6 border border-emerald-800/30 hover:border-amber-600/50 transition-all duration-300"
-            >
-              <div className="flex items-start gap-4">
-                <span className="text-4xl">✈️</span>
-                <div className="flex-1">
-                  <h3 className="text-xl font-semibold text-amber-100 group-hover:text-amber-300 transition-colors mb-2">
-                    Biju Patnaik - The Legendary Leader
-                  </h3>
-                  <p className="text-amber-100/60 text-sm line-clamp-2">
-                    The daredevil pilot, freedom fighter, and visionary who shaped modern Odisha.
-                  </p>
-                  <span className="inline-block mt-3 text-amber-500 text-sm group-hover:text-amber-400">
-                    Read article →
-                  </span>
-                </div>
-              </div>
-            </Link>
+            {getAllArticlesMetadata()
+              .slice(0, 6)
+              .map((article) => (
+                <Link
+                  key={`${article.category}/${article.slug}`}
+                  href={`/${article.category}/${article.slug}`}
+                  className="group bg-gradient-to-br from-amber-950/30 to-orange-950/30 rounded-2xl p-6 border border-amber-900/30 hover:border-amber-600/50 transition-all duration-300"
+                >
+                  <div className="flex items-start gap-4">
+                    <span className="text-3xl">
+                      {categoryIcons[article.category] || "📄"}
+                    </span>
+                    <div className="flex-1">
+                      <span className="text-xs text-amber-500/60 uppercase tracking-wider">
+                        {article.category}
+                      </span>
+                      <h3 className="text-lg font-semibold text-amber-100 group-hover:text-amber-300 transition-colors mb-2 mt-1">
+                        {article.title}
+                      </h3>
+                      <p className="text-amber-100/60 text-sm line-clamp-2">
+                        {article.description}
+                      </p>
+                      <span className="inline-block mt-3 text-amber-500 text-sm group-hover:text-amber-400">
+                        Read article →
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+              ))}
           </div>
         </div>
       </section>
