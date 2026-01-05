@@ -1,4 +1,6 @@
 import { Metadata } from "next";
+import { getAllArticles } from "@/lib/mdx";
+import ArticleList from "@/components/ArticleList";
 
 export const metadata: Metadata = {
     title: "Notable People",
@@ -6,6 +8,8 @@ export const metadata: Metadata = {
 };
 
 export default function PeoplePage() {
+    const articles = getAllArticles("people");
+
     return (
         <div className="min-h-screen bg-black">
             {/* Hero Section */}
@@ -33,97 +37,46 @@ export default function PeoplePage() {
                 </div>
             </section>
 
+            {/* Articles Section */}
+            {articles.length > 0 && (
+                <ArticleList articles={articles} title="People Articles" />
+            )}
+
             {/* People Grid */}
             <section className="py-16 bg-black relative">
                 <div className="absolute inset-0 pattern-overlay opacity-10"></div>
 
                 <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2 className="text-2xl font-bold text-amber-100 mb-8 font-display">Categories</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        {/* Poets & Writers */}
                         <div className="bg-gradient-to-br from-indigo-950/50 to-purple-950/50 rounded-2xl p-8 border border-indigo-800/30 card-hover">
-                            <h3 className="text-2xl font-bold text-amber-100 mb-6 font-display">✍️ Poets & Writers</h3>
-                            <ul className="space-y-5">
-                                <li>
-                                    <p className="font-semibold text-amber-300">Sarala Das</p>
-                                    <p className="text-amber-100/60 text-sm">15th century poet, author of Odia Mahabharata</p>
-                                </li>
-                                <li>
-                                    <p className="font-semibold text-amber-300">Fakir Mohan Senapati</p>
-                                    <p className="text-amber-100/60 text-sm">Father of modern Odia literature</p>
-                                </li>
-                                <li>
-                                    <p className="font-semibold text-amber-300">Gopabandhu Das</p>
-                                    <p className="text-amber-100/60 text-sm">Poet, freedom fighter, social reformer</p>
-                                </li>
-                            </ul>
+                            <h3 className="text-2xl font-bold text-amber-100 mb-6 font-display">✍️ Writers & Poets</h3>
+                            <p className="text-amber-100/70">
+                                Literary giants who shaped Odia language and literature, from Sarala Das to Fakir Mohan Senapati.
+                            </p>
                         </div>
 
-                        {/* Freedom Fighters */}
                         <div className="bg-gradient-to-br from-orange-950/50 to-red-950/50 rounded-2xl p-8 border border-orange-800/30 card-hover">
                             <h3 className="text-2xl font-bold text-amber-100 mb-6 font-display">🇮🇳 Freedom Fighters</h3>
-                            <ul className="space-y-5">
-                                <li>
-                                    <p className="font-semibold text-amber-300">Jayee Rajguru</p>
-                                    <p className="text-amber-100/60 text-sm">First martyr of Odisha</p>
-                                </li>
-                                <li>
-                                    <p className="font-semibold text-amber-300">Veer Surendra Sai</p>
-                                    <p className="text-amber-100/60 text-sm">Legendary freedom fighter</p>
-                                </li>
-                                <li>
-                                    <p className="font-semibold text-amber-300">Biju Patnaik</p>
-                                    <p className="text-amber-100/60 text-sm">Freedom fighter and Chief Minister</p>
-                                </li>
-                            </ul>
+                            <p className="text-amber-100/70">
+                                Heroes who fought for India&apos;s independence, including Jayee Rajguru and Veer Surendra Sai.
+                            </p>
                         </div>
 
-                        {/* Artists */}
                         <div className="bg-gradient-to-br from-pink-950/50 to-rose-950/50 rounded-2xl p-8 border border-pink-800/30 card-hover">
                             <h3 className="text-2xl font-bold text-amber-100 mb-6 font-display">🎨 Artists & Performers</h3>
-                            <ul className="space-y-5">
-                                <li>
-                                    <p className="font-semibold text-amber-300">Kelucharan Mohapatra</p>
-                                    <p className="text-amber-100/60 text-sm">Legendary Odissi dancer and guru</p>
-                                </li>
-                                <li>
-                                    <p className="font-semibold text-amber-300">Sanjukta Panigrahi</p>
-                                    <p className="text-amber-100/60 text-sm">Renowned Odissi exponent</p>
-                                </li>
-                                <li>
-                                    <p className="font-semibold text-amber-300">Akshaya Mohanty</p>
-                                    <p className="text-amber-100/60 text-sm">Legendary playback singer</p>
-                                </li>
-                            </ul>
+                            <p className="text-amber-100/70">
+                                Masters of Odissi dance, Pattachitra art, and classical music who preserve cultural traditions.
+                            </p>
                         </div>
 
-                        {/* Modern Leaders */}
                         <div className="bg-gradient-to-br from-blue-950/50 to-cyan-950/50 rounded-2xl p-8 border border-blue-800/30 card-hover">
-                            <h3 className="text-2xl font-bold text-amber-100 mb-6 font-display">🌟 Modern Icons</h3>
-                            <ul className="space-y-5">
-                                <li>
-                                    <p className="font-semibold text-amber-300">Sam Pitroda</p>
-                                    <p className="text-amber-100/60 text-sm">Telecom pioneer</p>
-                                </li>
-                                <li>
-                                    <p className="font-semibold text-amber-300">Dutee Chand</p>
-                                    <p className="text-amber-100/60 text-sm">Olympic sprinter</p>
-                                </li>
-                                <li>
-                                    <p className="font-semibold text-amber-300">Pradipta Kumar Mohapatra</p>
-                                    <p className="text-amber-100/60 text-sm">Distinguished civil servant</p>
-                                </li>
-                            </ul>
+                            <h3 className="text-2xl font-bold text-amber-100 mb-6 font-display">🌟 Modern Leaders</h3>
+                            <p className="text-amber-100/70">
+                                Contemporary figures in politics, sports, science, and industry who carry Odisha&apos;s legacy forward.
+                            </p>
                         </div>
                     </div>
-                </div>
-            </section>
-
-            {/* Coming Soon Section */}
-            <section className="py-16 bg-gradient-to-b from-black to-neutral-950 border-t border-amber-900/20">
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <p className="text-amber-100/50 text-lg">
-                        More detailed biographies and stories coming soon...
-                    </p>
                 </div>
             </section>
         </div>
