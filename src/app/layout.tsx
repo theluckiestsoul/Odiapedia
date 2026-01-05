@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     template: "%s | Odiapedia"
   },
   description: "Explore the rich heritage of Odisha - its classical language, vibrant culture, ancient history, delicious cuisine, and remarkable people.",
-  keywords: ["Odia", "Odisha", "Orissa", "Odia culture", "Odia language", "Odia food", "Odia history"],
+  keywords: ["Odia", "Odisha", "Orissa", "Odia culture", "Odia language", "Odia food", "Odia history", "Jagannath", "Puri", "Konark"],
   authors: [{ name: "Odiapedia Team" }],
   openGraph: {
     title: "Odiapedia - Discover Odia Culture, Language & Heritage",
@@ -36,8 +36,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className="min-h-screen flex flex-col antialiased">
+    <html lang="en" className="dark">
+      <body className="min-h-screen flex flex-col antialiased bg-black text-white">
         <Navbar />
         <main className="flex-1">
           {children}

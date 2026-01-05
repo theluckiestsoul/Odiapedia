@@ -7,18 +7,26 @@ export const metadata: Metadata = {
 
 export default function CulturePage() {
     return (
-        <div className="min-h-screen">
+        <div className="min-h-screen bg-black">
             {/* Hero Section */}
-            <section className="bg-gradient-to-br from-purple-50 via-white to-pink-50 py-20">
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <span className="text-6xl mb-6 block">🎭</span>
-                    <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            <section className="relative py-24 overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-b from-purple-950/30 via-black to-black"></div>
+                <div className="absolute inset-0 pattern-overlay opacity-20"></div>
+
+                <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <span className="text-7xl mb-6 block">🎭</span>
+                    <h1 className="text-5xl md:text-6xl font-bold text-amber-100 mb-4 font-display">
                         Odia Culture
                     </h1>
-                    <p className="text-3xl text-gray-600 odia-text mb-6">
+                    <p className="text-3xl text-amber-500/80 odia-text mb-8">
                         ଓଡ଼ିଶା ସଂସ୍କୃତି
                     </p>
-                    <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+                    <div className="flex items-center justify-center gap-4 mb-8">
+                        <div className="h-px w-16 bg-gradient-to-r from-transparent to-amber-600"></div>
+                        <div className="w-3 h-3 rotate-45 bg-amber-500"></div>
+                        <div className="h-px w-16 bg-gradient-to-l from-transparent to-amber-600"></div>
+                    </div>
+                    <p className="text-xl text-amber-100/70 max-w-2xl mx-auto leading-relaxed">
                         A vibrant tapestry of classical dance, music, art, festivals, and traditions
                         that have flourished for millennia.
                     </p>
@@ -26,40 +34,42 @@ export default function CulturePage() {
             </section>
 
             {/* Content Section */}
-            <section className="py-16 bg-white">
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <section className="py-16 bg-black relative">
+                <div className="absolute inset-0 pattern-overlay opacity-10"></div>
+
+                <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         {/* Odissi Dance */}
-                        <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-8">
-                            <h3 className="text-xl font-bold text-gray-900 mb-4">🩰 Odissi Dance</h3>
-                            <p className="text-gray-600">
+                        <div className="bg-gradient-to-br from-purple-950/50 to-fuchsia-950/50 rounded-2xl p-8 border border-purple-800/30 card-hover">
+                            <h3 className="text-2xl font-bold text-amber-100 mb-4 font-display">🩰 Odissi Dance</h3>
+                            <p className="text-amber-100/70">
                                 One of the eight classical dance forms of India, Odissi originated in the temples
                                 of Odisha and is known for its sculptural poses and fluid movements.
                             </p>
                         </div>
 
                         {/* Pattachitra */}
-                        <div className="bg-gradient-to-br from-orange-50 to-yellow-50 rounded-2xl p-8">
-                            <h3 className="text-xl font-bold text-gray-900 mb-4">🎨 Pattachitra Art</h3>
-                            <p className="text-gray-600">
+                        <div className="bg-gradient-to-br from-orange-950/50 to-amber-950/50 rounded-2xl p-8 border border-orange-800/30 card-hover">
+                            <h3 className="text-2xl font-bold text-amber-100 mb-4 font-display">🎨 Pattachitra Art</h3>
+                            <p className="text-amber-100/70">
                                 Traditional cloth-based scroll painting known for its intricate details,
                                 mythological narratives, and vibrant natural colors.
                             </p>
                         </div>
 
                         {/* Festivals */}
-                        <div className="bg-gradient-to-br from-red-50 to-orange-50 rounded-2xl p-8">
-                            <h3 className="text-xl font-bold text-gray-900 mb-4">🎉 Rath Yatra</h3>
-                            <p className="text-gray-600">
+                        <div className="bg-gradient-to-br from-red-950/50 to-rose-950/50 rounded-2xl p-8 border border-red-800/30 card-hover">
+                            <h3 className="text-2xl font-bold text-amber-100 mb-4 font-display">🎉 Rath Yatra</h3>
+                            <p className="text-amber-100/70">
                                 The world-famous Chariot Festival of Lord Jagannath in Puri,
                                 attracting millions of devotees from around the globe.
                             </p>
                         </div>
 
                         {/* Music */}
-                        <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-8">
-                            <h3 className="text-xl font-bold text-gray-900 mb-4">🎵 Classical Music</h3>
-                            <p className="text-gray-600">
+                        <div className="bg-gradient-to-br from-blue-950/50 to-indigo-950/50 rounded-2xl p-8 border border-blue-800/30 card-hover">
+                            <h3 className="text-2xl font-bold text-amber-100 mb-4 font-display">🎵 Classical Music</h3>
+                            <p className="text-amber-100/70">
                                 Odissi music with its unique ragas and talas forms the melodic
                                 foundation for the classical dance and temple traditions.
                             </p>
@@ -69,9 +79,9 @@ export default function CulturePage() {
             </section>
 
             {/* Coming Soon Section */}
-            <section className="py-16 bg-gray-50">
+            <section className="py-16 bg-gradient-to-b from-black to-neutral-950 border-t border-amber-900/20">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <p className="text-gray-500 text-lg">
+                    <p className="text-amber-100/50 text-lg">
                         More detailed content about Odia culture, festivals, arts, and traditions
                         coming soon...
                     </p>

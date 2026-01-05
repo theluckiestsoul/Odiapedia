@@ -1,27 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700&family=Noto+Sans+Oriya:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700&family=Noto+Sans+Oriya:wght@400;500;600;700&display=swap');
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --accent: #ea580c;
-  --accent-light: #fff7ed;
+  --background: #0f0f0f;
+  --foreground: #f5f5f5;
+  --accent: #d97706;
+  --accent-light: #fbbf24;
+  --gold: #c9a227;
+  --deep-orange: #c2410c;
+  --maroon: #7f1d1d;
+  --cream: #fef3c7;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-accent: var(--accent);
-  --color-accent-light: var(--accent-light);
+  --color-gold: var(--gold);
   --font-sans: 'Noto Sans', 'Noto Sans Oriya', system-ui, sans-serif;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-    --accent-light: #1a1a1a;
-  }
+  --font-display: 'Playfair Display', serif;
 }
 
 * {
@@ -44,33 +41,110 @@ body {
   font-family: 'Noto Sans Oriya', 'Noto Sans', sans-serif;
 }
 
+/* Display font for headings */
+.font-display {
+  font-family: 'Playfair Display', serif;
+}
+
+/* Rich gradient backgrounds */
+.bg-rich-gradient {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d1810 25%, #1f1f1f 50%, #2d1810 75%, #1a0a0a 100%);
+}
+
+.bg-gold-gradient {
+  background: linear-gradient(135deg, #c9a227 0%, #d4a842 50%, #b8941f 100%);
+}
+
+.bg-temple-gradient {
+  background: linear-gradient(180deg, #1a0a0a 0%, #2d1810 50%, #1a0a0a 100%);
+}
+
+/* Golden border effect */
+.golden-border {
+  border: 2px solid transparent;
+  background: linear-gradient(var(--background), var(--background)) padding-box,
+    linear-gradient(135deg, #c9a227, #d4a842, #b8941f, #c9a227) border-box;
+}
+
+/* Decorative patterns */
+.pattern-overlay {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9a227' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Temple-style decorative elements */
+.temple-border-top {
+  border-top: 4px solid;
+  border-image: linear-gradient(90deg, transparent, #c9a227, #d4a842, #c9a227, transparent) 1;
+}
+
+.temple-border-bottom {
+  border-bottom: 4px solid;
+  border-image: linear-gradient(90deg, transparent, #c9a227, #d4a842, #c9a227, transparent) 1;
+}
+
+/* Glowing text effect */
+.text-glow {
+  text-shadow: 0 0 20px rgba(201, 162, 39, 0.5), 0 0 40px rgba(201, 162, 39, 0.3);
+}
+
+/* Card hover effects */
+.card-hover {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(201, 162, 39, 0.2);
+}
+
 /* Smooth transitions for interactive elements */
-a, button {
-  transition: all 0.2s ease-in-out;
+a,
+button {
+  transition: all 0.3s ease-in-out;
 }
 
 /* Focus styles for accessibility */
 a:focus-visible,
 button:focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--gold);
   outline-offset: 2px;
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar - dark theme */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #1a1a1a;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #c1c1c1;
+  background: linear-gradient(135deg, #c9a227, #d4a842);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #a8a8a8;
+  background: linear-gradient(135deg, #d4a842, #c9a227);
+}
+
+/* Animated underline */
+.animated-underline {
+  position: relative;
+}
+
+.animated-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #c9a227, #d4a842);
+  transition: width 0.3s ease;
+}
+
+.animated-underline:hover::after {
+  width: 100%;
 }

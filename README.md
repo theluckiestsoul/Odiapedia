@@ -1,36 +1,89 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Odiapedia
 
-## Getting Started
+> Discover the rich heritage of Odisha — its classical language, vibrant culture, ancient history, delicious cuisine, and remarkable people.
 
-First, run the development server:
+## 🌐 Overview
+
+Odiapedia is a comprehensive digital encyclopedia dedicated to documenting and sharing the rich cultural heritage of Odisha (India) with the world.
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18+ 
+- npm or yarn
+
+### Installation
 
 ```bash
+# Install dependencies
+npm install
+
+# Run development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Build for Production
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+## 📁 Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+src/
+├── app/
+│   ├── layout.tsx          # Root layout with Navbar/Footer
+│   ├── page.tsx            # Homepage
+│   ├── globals.css         # Global styles
+│   ├── language/           # Odia Language section
+│   ├── culture/            # Culture & Traditions
+│   ├── history/            # Historical content
+│   ├── food/               # Odia cuisine
+│   ├── people/             # Notable personalities
+│   └── about/              # About Odiapedia
+└── components/
+    ├── Navbar.tsx          # Navigation component
+    └── Footer.tsx          # Footer component
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🎨 Features
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Modern Design**: Clean, responsive UI with mobile-first approach
+- **Odia Typography**: Proper rendering of Odia script using Noto Sans Oriya
+- **SEO Optimized**: Meta tags, Open Graph, and semantic HTML
+- **Fast Performance**: Built with Next.js 16 and optimized for speed
 
-## Deploy on Vercel
+## 📚 Content Sections
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+| Section | Description |
+|---------|-------------|
+| **Language** | Odia language, script, and literature |
+| **Culture** | Festivals, dance, music, and art |
+| **History** | Ancient kingdoms and historical events |
+| **Food** | Traditional cuisine and recipes |
+| **People** | Notable personalities from Odisha |
+| **About** | About the Odiapedia project |
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🛠️ Tech Stack
+
+- [Next.js 16](https://nextjs.org/) - React framework
+- [TypeScript](https://www.typescriptlang.org/) - Type safety
+- [Tailwind CSS](https://tailwindcss.com/) - Styling
+- [Noto Sans Oriya](https://fonts.google.com/noto/specimen/Noto+Sans+Oriya) - Odia font
+
+## 📄 License
+
+This project is open source and available under the MIT License.
+
+## 🙏 Contributing
+
+Contributions are welcome! Feel free to submit issues and pull requests.
+
+---
+
+Made with ❤️ for Odisha | ଓଡ଼ିଶାକୁ ଭଲ ପାଇବା ସହିତ ତିଆରି
