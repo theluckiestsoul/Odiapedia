@@ -37,6 +37,7 @@ const navLinks = [
     { href: "/language", label: "Language", odia: "ଭାଷା" },
     { href: "/culture", label: "Culture", odia: "ସଂସ୍କୃତି" },
     { href: "/history", label: "History", odia: "ଇତିହାସ" },
+    { href: "/history/timeline", label: "Timeline", odia: "ସମୟରେଖା" },
     { href: "/food", label: "Food", odia: "ଖାଦ୍ୟ" },
     { href: "/people", label: "People", odia: "ଲୋକ" },
     { href: "/about", label: "About", odia: "ବିଷୟରେ" },

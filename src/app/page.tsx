@@ -28,6 +28,14 @@ const sections = [
     gradient: "from-amber-900 to-orange-950",
   },
   {
+    href: "/history/timeline",
+    title: "Timeline",
+    odia: "ସମୟରେଖା",
+    description: "65+ events from prehistoric caves to modern Odisha — explore a million years of history.",
+    icon: "📜",
+    gradient: "from-stone-800 to-neutral-950",
+  },
+  {
     href: "/food",
     title: "Food",
     odia: "ଖାଦ୍ୟ",
