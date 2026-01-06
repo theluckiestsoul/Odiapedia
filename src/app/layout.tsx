@@ -1,7 +1,14 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+
+export const viewport: Viewport = {
+  themeColor: "#f59e0b",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+};
 
 export const metadata: Metadata = {
   title: {
@@ -11,6 +18,12 @@ export const metadata: Metadata = {
   description: "Explore the rich heritage of Odisha - its classical language, vibrant culture, ancient history, delicious cuisine, and remarkable people.",
   keywords: ["Odia", "Odisha", "Orissa", "Odia culture", "Odia language", "Odia food", "Odia history", "Jagannath", "Puri", "Konark"],
   authors: [{ name: "Odiapedia Team" }],
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "Odiapedia",
+  },
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "32x32" },
@@ -47,6 +60,26 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
+      <head>
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        {/* Google Analytics - Replace GA_MEASUREMENT_ID with your actual ID */}
+        {process.env.NEXT_PUBLIC_GA_ID && (
+          <>
+            <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`} />
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                  gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');
+                `,
+              }}
+            />
+          </>
+        )}
+      </head>
       <body className="min-h-screen flex flex-col antialiased bg-black text-white">
         <Navbar />
         <main className="flex-1">
@@ -57,3 +90,4 @@ export default function RootLayout({
     </html>
   );
 }
+

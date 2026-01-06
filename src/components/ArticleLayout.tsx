@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArticleMeta, getAllArticles } from "@/lib/mdx";
+import ShareButtons from "./ShareButtons";
 
 interface ArticleLayoutProps {
     meta: ArticleMeta;
@@ -89,6 +90,11 @@ export default function ArticleLayout({ meta, children }: ArticleLayoutProps) {
                     {/* Decorative divider */}
                     <div className="flex items-center gap-4 mt-10">
                         <div className="h-px flex-1 bg-gradient-to-r from-transparent via-amber-600/50 to-transparent"></div>
+                    </div>
+
+                    {/* Share Buttons */}
+                    <div className="mt-6">
+                        <ShareButtons title={`${meta.title} - Odiapedia`} />
                     </div>
                 </div>
             </section>
