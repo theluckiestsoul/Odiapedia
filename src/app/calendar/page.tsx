@@ -198,22 +198,33 @@ export default function CalendarPage() {
             {/* Panjika References */}
             <section className="py-8 bg-black">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2 className="text-xl font-bold text-amber-100 mb-6 text-center font-display">
+                        Traditional Panjikas of Odisha
+                    </h2>
                     <div className="grid md:grid-cols-2 gap-6">
-                        <div className="bg-gradient-to-br from-orange-900/30 to-red-900/30 rounded-xl p-6 border border-orange-700/30">
-                            <h3 className="text-xl font-bold text-amber-100 mb-2">🛕 Jagannath Panjika</h3>
+                        <Link
+                            href="/culture/jagannath-panjika"
+                            className="bg-gradient-to-br from-orange-900/30 to-red-900/30 rounded-xl p-6 border border-orange-700/30 hover:border-orange-500 transition-colors group"
+                        >
+                            <h3 className="text-xl font-bold text-amber-100 mb-2 group-hover:text-amber-300 transition-colors">🛕 Jagannath Panjika</h3>
                             <p className="text-amber-100/70 text-sm mb-3">
                                 Official almanac of Shree Jagannath Temple, Puri. Followed for all temple rituals and coastal Odisha.
                             </p>
                             <p className="text-amber-500/60 text-xs">Shree Jagannath Temple Administration, Puri</p>
-                        </div>
+                            <p className="text-amber-400 text-sm mt-3 group-hover:underline">Learn more →</p>
+                        </Link>
 
-                        <div className="bg-gradient-to-br from-purple-900/30 to-fuchsia-900/30 rounded-xl p-6 border border-purple-700/30">
-                            <h3 className="text-xl font-bold text-amber-100 mb-2">🔱 Biraja Panjika</h3>
+                        <Link
+                            href="/culture/biraja-panjika"
+                            className="bg-gradient-to-br from-purple-900/30 to-fuchsia-900/30 rounded-xl p-6 border border-purple-700/30 hover:border-purple-500 transition-colors group"
+                        >
+                            <h3 className="text-xl font-bold text-amber-100 mb-2 group-hover:text-amber-300 transition-colors">🔱 Biraja Panjika</h3>
                             <p className="text-amber-100/70 text-sm mb-3">
                                 Traditional almanac from Jajpur (Biraja Kshetra). Popular in central and western Odisha.
                             </p>
                             <p className="text-amber-500/60 text-xs">Published by Biraja Temple, Jajpur</p>
-                        </div>
+                            <p className="text-amber-400 text-sm mt-3 group-hover:underline">Learn more →</p>
+                        </Link>
                     </div>
                 </div>
             </section>
@@ -273,8 +284,8 @@ export default function CalendarPage() {
                             <div
                                 key={i}
                                 className={`rounded-lg p-2 text-center border ${i === panchanga.nakshatraIndex
-                                        ? 'bg-amber-600/30 border-amber-500'
-                                        : 'bg-amber-900/10 border-amber-800/20'
+                                    ? 'bg-amber-600/30 border-amber-500'
+                                    : 'bg-amber-900/10 border-amber-800/20'
                                     }`}
                             >
                                 <span className="text-amber-400 text-xs font-mono">{i + 1}</span>
@@ -297,8 +308,8 @@ export default function CalendarPage() {
                             <div
                                 key={i}
                                 className={`rounded-lg p-3 text-center ${i === new Date().getDay()
-                                        ? 'bg-amber-600/30 border border-amber-500'
-                                        : 'bg-amber-900/10'
+                                    ? 'bg-amber-600/30 border border-amber-500'
+                                    : 'bg-amber-900/10'
                                     }`}
                             >
                                 <p className="text-amber-100 text-sm odia-text">{vara.odia}</p>
