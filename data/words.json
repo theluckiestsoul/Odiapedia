@@ -1,0 +1,272 @@
+[
+  {
+    "word": "ନମସ୍କାର",
+    "transliteration": "Namaskāra",
+    "meaning": "Hello / Greetings",
+    "meaningOdia": "ସ୍ୱାଗତ ଅଭିବାଦନ",
+    "example": "ନମସ୍କାର, ଆପଣ କେମିତି ଅଛନ୍ତି?",
+    "exampleTranslation": "Hello, how are you?",
+    "category": "greetings"
+  },
+  {
+    "word": "ଧନ୍ୟବାଦ",
+    "transliteration": "Dhanyabāda",
+    "meaning": "Thank you",
+    "meaningOdia": "କୃତଜ୍ଞତା ଜଣାଇବା",
+    "example": "ଆପଣଙ୍କ ସାହାଯ୍ୟ ପାଇଁ ଧନ୍ୟବାଦ।",
+    "exampleTranslation": "Thank you for your help.",
+    "category": "greetings"
+  },
+  {
+    "word": "ପ୍ରେମ",
+    "transliteration": "Prema",
+    "meaning": "Love",
+    "meaningOdia": "ଭଲପାଇବା",
+    "example": "ମୁଁ ତୁମକୁ ପ୍ରେମ କରେ।",
+    "exampleTranslation": "I love you.",
+    "category": "emotions"
+  },
+  {
+    "word": "ଖୁସି",
+    "transliteration": "Khusi",
+    "meaning": "Happiness / Joy",
+    "meaningOdia": "ଆନନ୍ଦ",
+    "example": "ମୁଁ ବହୁତ ଖୁସି।",
+    "exampleTranslation": "I am very happy.",
+    "category": "emotions"
+  },
+  {
+    "word": "ପରିବାର",
+    "transliteration": "Paribāra",
+    "meaning": "Family",
+    "meaningOdia": "ଘର ପରିଜନ",
+    "example": "ମୋର ପରିବାର ବଡ଼।",
+    "exampleTranslation": "My family is big.",
+    "category": "family"
+  },
+  {
+    "word": "ମା",
+    "transliteration": "Mā",
+    "meaning": "Mother",
+    "meaningOdia": "ଜନନୀ",
+    "example": "ମୋ ମା ବହୁତ ଭଲ।",
+    "exampleTranslation": "My mother is very good.",
+    "category": "family"
+  },
+  {
+    "word": "ବାପା",
+    "transliteration": "Bāpā",
+    "meaning": "Father",
+    "meaningOdia": "ପିତା",
+    "example": "ମୋ ବାପା କାମ କରନ୍ତି।",
+    "exampleTranslation": "My father works.",
+    "category": "family"
+  },
+  {
+    "word": "ପାଣି",
+    "transliteration": "Pāṇi",
+    "meaning": "Water",
+    "meaningOdia": "ଜଳ",
+    "example": "ମୋତେ ପାଣି ଦିଅ।",
+    "exampleTranslation": "Give me water.",
+    "category": "daily"
+  },
+  {
+    "word": "ଭାତ",
+    "transliteration": "Bhāta",
+    "meaning": "Rice (cooked)",
+    "meaningOdia": "ଅନ୍ନ",
+    "example": "ମୁଁ ଭାତ ଖାଉଛି।",
+    "exampleTranslation": "I am eating rice.",
+    "category": "food"
+  },
+  {
+    "word": "ଘର",
+    "transliteration": "Ghara",
+    "meaning": "Home / House",
+    "meaningOdia": "ବାସସ୍ଥାନ",
+    "example": "ମୁଁ ଘରକୁ ଯାଉଛି।",
+    "exampleTranslation": "I am going home.",
+    "category": "daily"
+  },
+  {
+    "word": "ସୁନ୍ଦର",
+    "transliteration": "Sundara",
+    "meaning": "Beautiful",
+    "meaningOdia": "ରମଣୀୟ",
+    "example": "ଏହି ଫୁଲ ବହୁତ ସୁନ୍ଦର।",
+    "exampleTranslation": "This flower is very beautiful.",
+    "category": "adjectives"
+  },
+  {
+    "word": "ଭଲ",
+    "transliteration": "Bhala",
+    "meaning": "Good",
+    "meaningOdia": "ଉତ୍ତମ",
+    "example": "ତୁମେ ଭଲ ଅଛ।",
+    "exampleTranslation": "You are good.",
+    "category": "adjectives"
+  },
+  {
+    "word": "ନୂଆ",
+    "transliteration": "Nuā",
+    "meaning": "New",
+    "meaningOdia": "ନବୀନ",
+    "example": "ଏହା ମୋର ନୂଆ ବହି।",
+    "exampleTranslation": "This is my new book.",
+    "category": "adjectives"
+  },
+  {
+    "word": "ଆଜି",
+    "transliteration": "Āji",
+    "meaning": "Today",
+    "meaningOdia": "ଏହି ଦିନ",
+    "example": "ଆଜି ମୁଁ ବୁଲିବାକୁ ଯିବି।",
+    "exampleTranslation": "Today I will go for a walk.",
+    "category": "time"
+  },
+  {
+    "word": "କାଲି",
+    "transliteration": "Kāli",
+    "meaning": "Yesterday / Tomorrow",
+    "meaningOdia": "ପୂର୍ବ ବା ପର ଦିନ",
+    "example": "କାଲି ମୁଁ ସ୍କୁଲ ଯାଇଥିଲି।",
+    "exampleTranslation": "Yesterday I went to school.",
+    "category": "time"
+  },
+  {
+    "word": "ମିଠା",
+    "transliteration": "Miṭhā",
+    "meaning": "Sweet",
+    "meaningOdia": "ମଧୁର",
+    "example": "ରସଗୋଲା ବହୁତ ମିଠା।",
+    "exampleTranslation": "Rasagola is very sweet.",
+    "category": "taste"
+  },
+  {
+    "word": "ବୃଷ୍ଟି",
+    "transliteration": "Bruṣṭi",
+    "meaning": "Rain",
+    "meaningOdia": "ବର୍ଷା",
+    "example": "ଆଜି ବୃଷ୍ଟି ହେଉଛି।",
+    "exampleTranslation": "It is raining today.",
+    "category": "nature"
+  },
+  {
+    "word": "ସୂର୍ଯ୍ୟ",
+    "transliteration": "Sūrya",
+    "meaning": "Sun",
+    "meaningOdia": "ରବି",
+    "example": "ସୂର୍ଯ୍ୟ ପୂର୍ବରୁ ଉଦୟ ହୁଏ।",
+    "exampleTranslation": "The sun rises from the east.",
+    "category": "nature"
+  },
+  {
+    "word": "ଚନ୍ଦ୍ର",
+    "transliteration": "Chandra",
+    "meaning": "Moon",
+    "meaningOdia": "ଶଶି",
+    "example": "ଆଜି ଚନ୍ଦ୍ର ବହୁତ ସୁନ୍ଦର।",
+    "exampleTranslation": "The moon is very beautiful today.",
+    "category": "nature"
+  },
+  {
+    "word": "ସାଗର",
+    "transliteration": "Sāgara",
+    "meaning": "Ocean / Sea",
+    "meaningOdia": "ସମୁଦ୍ର",
+    "example": "ପୁରୀରେ ସାଗର ଅଛି।",
+    "exampleTranslation": "There is an ocean in Puri.",
+    "category": "nature"
+  },
+  {
+    "word": "ପର୍ବତ",
+    "transliteration": "Parbata",
+    "meaning": "Mountain",
+    "meaningOdia": "ଗିରି",
+    "example": "ହିମାଳୟ ବଡ଼ ପର୍ବତ।",
+    "exampleTranslation": "Himalaya is a big mountain.",
+    "category": "nature"
+  },
+  {
+    "word": "ବନ୍ଧୁ",
+    "transliteration": "Bandhu",
+    "meaning": "Friend",
+    "meaningOdia": "ସାଥୀ",
+    "example": "ସେ ମୋର ଭଲ ବନ୍ଧୁ।",
+    "exampleTranslation": "He/She is my good friend.",
+    "category": "relationships"
+  },
+  {
+    "word": "ଶିକ୍ଷା",
+    "transliteration": "Śikṣā",
+    "meaning": "Education",
+    "meaningOdia": "ବିଦ୍ୟା",
+    "example": "ଶିକ୍ଷା ସବୁଠାରୁ ମୂଲ୍ୟବାନ।",
+    "exampleTranslation": "Education is most valuable.",
+    "category": "concepts"
+  },
+  {
+    "word": "ସ୍ୱାଧୀନତା",
+    "transliteration": "Swādhīnatā",
+    "meaning": "Freedom / Independence",
+    "meaningOdia": "ମୁକ୍ତି",
+    "example": "ଭାରତ ସ୍ୱାଧୀନତା ପାଇଲା।",
+    "exampleTranslation": "India got independence.",
+    "category": "concepts"
+  },
+  {
+    "word": "ଶାନ୍ତି",
+    "transliteration": "Śānti",
+    "meaning": "Peace",
+    "meaningOdia": "ସ୍ଥିରତା",
+    "example": "ଶାନ୍ତି ସବୁଠାରୁ ଭଲ।",
+    "exampleTranslation": "Peace is the best.",
+    "category": "concepts"
+  },
+  {
+    "word": "ଆକାଶ",
+    "transliteration": "Ākāśa",
+    "meaning": "Sky",
+    "meaningOdia": "ଗଗନ",
+    "example": "ଆକାଶ ନୀଳ ଅଛି।",
+    "exampleTranslation": "The sky is blue.",
+    "category": "nature"
+  },
+  {
+    "word": "ତାରା",
+    "transliteration": "Tārā",
+    "meaning": "Star",
+    "meaningOdia": "ନକ୍ଷତ୍ର",
+    "example": "ରାତିରେ ତାରା ଦେଖାଯାଏ।",
+    "exampleTranslation": "Stars are seen at night.",
+    "category": "nature"
+  },
+  {
+    "word": "ଫୁଲ",
+    "transliteration": "Phula",
+    "meaning": "Flower",
+    "meaningOdia": "ପୁଷ୍ପ",
+    "example": "ଗୋଲାପ ଫୁଲ ସୁନ୍ଦର।",
+    "exampleTranslation": "Rose flower is beautiful.",
+    "category": "nature"
+  },
+  {
+    "word": "ଜୀବନ",
+    "transliteration": "Jībana",
+    "meaning": "Life",
+    "meaningOdia": "ପ୍ରାଣ",
+    "example": "ଜୀବନ ବହୁମୂଲ୍ୟ।",
+    "exampleTranslation": "Life is precious.",
+    "category": "concepts"
+  },
+  {
+    "word": "ସମୟ",
+    "transliteration": "Samaya",
+    "meaning": "Time",
+    "meaningOdia": "କାଳ",
+    "example": "ସମୟ ବହୁ ମୂଲ୍ୟବାନ।",
+    "exampleTranslation": "Time is very valuable.",
+    "category": "concepts"
+  }
+]

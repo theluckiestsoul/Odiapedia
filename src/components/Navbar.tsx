@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useState } from "react";
 
 const navLinks = [
+    { href: "/learn", label: "Learn", odia: "ଶିଖନ୍ତୁ" },
     { href: "/language", label: "Language", odia: "ଭାଷା" },
     { href: "/culture", label: "Culture", odia: "ସଂସ୍କୃତି" },
     { href: "/history", label: "History", odia: "ଇତିହାସ" },
