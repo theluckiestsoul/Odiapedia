@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import SearchModal from "./SearchModal";
 import LanguageToggle from "./LanguageToggle";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -34,22 +34,122 @@ const searchArticles = [
     { title: "What is Odiapedia", description: "Learn about our mission to preserve Odia heritage", category: "about", slug: "what-is-odiapedia" },
 ];
 
-const navLinks = [
-    { href: "/learn", label: "Learn", odia: "ଶିଖନ୍ତୁ" },
-    { href: "/language", label: "Language", odia: "ଭାଷା" },
-    { href: "/culture", label: "Culture", odia: "ସଂସ୍କୃତି" },
-    { href: "/history", label: "History", odia: "ଇତିହାସ" },
-    { href: "/history/timeline", label: "Timeline", odia: "ସମୟରେଖା" },
-    { href: "/calendar", label: "Calendar", odia: "ପଞ୍ଜିକା" },
-    { href: "/map", label: "Map", odia: "ମାନଚିତ୍ର" },
-    { href: "/food", label: "Food", odia: "ଖାଦ୍ୟ" },
-    { href: "/people", label: "People", odia: "ଲୋକ" },
-    { href: "/about", label: "About", odia: "ବିଷୟରେ" },
+// Organized menu structure with submenus
+interface MenuItem {
+    href?: string;
+    label: string;
+    odia: string;
+    children?: { href: string; label: string; odia: string; icon?: string }[];
+}
+
+const menuItems: MenuItem[] = [
+    {
+        label: "Learn",
+        odia: "ଶିଖନ୍ତୁ",
+        children: [
+            { href: "/learn", label: "Lessons", odia: "ପାଠ", icon: "📚" },
+            { href: "/language", label: "Language", odia: "ଭାଷା", icon: "🗣️" },
+        ]
+    },
+    {
+        label: "Explore",
+        odia: "ଅନୁସନ୍ଧାନ",
+        children: [
+            { href: "/culture", label: "Culture", odia: "ସଂସ୍କୃତି", icon: "🎭" },
+            { href: "/history", label: "History", odia: "ଇତିହାସ", icon: "📜" },
+            { href: "/history/timeline", label: "Timeline", odia: "ସମୟରେଖା", icon: "⏳" },
+            { href: "/people", label: "People", odia: "ଲୋକ", icon: "👥" },
+        ]
+    },
+    {
+        label: "Discover",
+        odia: "ଆବିଷ୍କାର",
+        children: [
+            { href: "/map", label: "Map", odia: "ମାନଚିତ୍ର", icon: "🗺️" },
+            { href: "/food", label: "Food", odia: "ଖାଦ୍ୟ", icon: "🍛" },
+            { href: "/calendar", label: "Calendar", odia: "ପଞ୍ଜିକା", icon: "📅" },
+        ]
+    },
+    {
+        href: "/about",
+        label: "About",
+        odia: "ବିଷୟରେ"
+    }
 ];
+
+// Dropdown component
+function DropdownMenu({ item, language, onClose }: { item: MenuItem; language: string; onClose: () => void }) {
+    const [isOpen, setIsOpen] = useState(false);
+    const dropdownRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        function handleClickOutside(event: MouseEvent) {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+                setIsOpen(false);
+            }
+        }
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, []);
+
+    if (!item.children) {
+        return (
+            <Link
+                href={item.href || "/"}
+                className="px-4 py-2 text-amber-100/80 hover:text-amber-300 transition-all duration-300 font-medium animated-underline"
+            >
+                {language === 'od' ? item.odia : item.label}
+            </Link>
+        );
+    }
+
+    return (
+        <div className="relative" ref={dropdownRef}>
+            <button
+                onClick={() => setIsOpen(!isOpen)}
+                onMouseEnter={() => setIsOpen(true)}
+                className="px-4 py-2 text-amber-100/80 hover:text-amber-300 transition-all duration-300 font-medium flex items-center gap-1"
+            >
+                {language === 'od' ? item.odia : item.label}
+                <svg
+                    className={`w-4 h-4 transition-transform ${isOpen ? 'rotate-180' : ''}`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+            </button>
+
+            {isOpen && (
+                <div
+                    className="absolute top-full left-0 mt-1 w-48 bg-neutral-900/95 backdrop-blur-md border border-amber-800/30 rounded-lg shadow-xl py-2 z-50"
+                    onMouseLeave={() => setIsOpen(false)}
+                >
+                    {item.children.map((child) => (
+                        <Link
+                            key={child.href}
+                            href={child.href}
+                            onClick={() => { setIsOpen(false); onClose(); }}
+                            className="flex items-center gap-3 px-4 py-2.5 text-amber-100/80 hover:text-amber-300 hover:bg-amber-900/30 transition-colors"
+                        >
+                            {child.icon && <span className="text-lg">{child.icon}</span>}
+                            <div className="flex flex-col">
+                                <span className="font-medium">{language === 'od' ? child.odia : child.label}</span>
+                                <span className="text-xs text-amber-500/60">{language === 'od' ? child.label : child.odia}</span>
+                            </div>
+                        </Link>
+                    ))}
+                </div>
+            )}
+        </div>
+    );
+}
 
 export default function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
+    const [expandedMobile, setExpandedMobile] = useState<string | null>(null);
     const { language } = useLanguage();
 
     return (
@@ -80,14 +180,13 @@ export default function Navbar() {
 
                         {/* Desktop Navigation */}
                         <div className="hidden md:flex items-center gap-1">
-                            {navLinks.map((link) => (
-                                <Link
-                                    key={link.href}
-                                    href={link.href}
-                                    className="px-4 py-2 text-amber-100/80 hover:text-amber-300 transition-all duration-300 font-medium animated-underline"
-                                >
-                                    {language === 'od' ? link.odia : link.label}
-                                </Link>
+                            {menuItems.map((item) => (
+                                <DropdownMenu
+                                    key={item.label}
+                                    item={item}
+                                    language={language}
+                                    onClose={() => { }}
+                                />
                             ))}
 
                             {/* Language Toggle */}
@@ -172,20 +271,58 @@ export default function Navbar() {
                     {isMenuOpen && (
                         <div className="md:hidden py-4 border-t border-amber-900/30">
                             <div className="flex flex-col gap-1">
-                                {navLinks.map((link) => (
-                                    <Link
-                                        key={link.href}
-                                        href={link.href}
-                                        onClick={() => setIsMenuOpen(false)}
-                                        className="px-4 py-3 rounded-lg text-amber-100/80 hover:text-amber-300 hover:bg-amber-900/20 transition-all duration-200 font-medium flex justify-between items-center"
-                                    >
-                                        <span>{language === 'od' ? link.odia : link.label}</span>
-                                        <span className="text-amber-600/60 text-sm odia-text">{language === 'od' ? link.label : link.odia}</span>
-                                    </Link>
+                                {menuItems.map((item) => (
+                                    <div key={item.label}>
+                                        {item.children ? (
+                                            <>
+                                                <button
+                                                    onClick={() => setExpandedMobile(expandedMobile === item.label ? null : item.label)}
+                                                    className="w-full px-4 py-3 rounded-lg text-amber-100/80 hover:text-amber-300 hover:bg-amber-900/20 transition-all duration-200 font-medium flex justify-between items-center"
+                                                >
+                                                    <span>{language === 'od' ? item.odia : item.label}</span>
+                                                    <svg
+                                                        className={`w-4 h-4 transition-transform ${expandedMobile === item.label ? 'rotate-180' : ''}`}
+                                                        fill="none"
+                                                        stroke="currentColor"
+                                                        viewBox="0 0 24 24"
+                                                    >
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                                    </svg>
+                                                </button>
+                                                {expandedMobile === item.label && (
+                                                    <div className="ml-4 border-l border-amber-800/30 pl-4 py-2 space-y-1">
+                                                        {item.children.map((child) => (
+                                                            <Link
+                                                                key={child.href}
+                                                                href={child.href}
+                                                                onClick={() => setIsMenuOpen(false)}
+                                                                className="flex items-center gap-3 px-3 py-2 rounded-lg text-amber-100/70 hover:text-amber-300 hover:bg-amber-900/20 transition-all"
+                                                            >
+                                                                {child.icon && <span>{child.icon}</span>}
+                                                                <div>
+                                                                    <span className="font-medium">{language === 'od' ? child.odia : child.label}</span>
+                                                                    <span className="text-amber-600/60 text-sm ml-2">{language === 'od' ? child.label : child.odia}</span>
+                                                                </div>
+                                                            </Link>
+                                                        ))}
+                                                    </div>
+                                                )}
+                                            </>
+                                        ) : (
+                                            <Link
+                                                href={item.href || "/"}
+                                                onClick={() => setIsMenuOpen(false)}
+                                                className="px-4 py-3 rounded-lg text-amber-100/80 hover:text-amber-300 hover:bg-amber-900/20 transition-all duration-200 font-medium flex justify-between items-center"
+                                            >
+                                                <span>{language === 'od' ? item.odia : item.label}</span>
+                                                <span className="text-amber-600/60 text-sm odia-text">{language === 'od' ? item.label : item.odia}</span>
+                                            </Link>
+                                        )}
+                                    </div>
                                 ))}
 
                                 {/* Language Toggle for Mobile */}
-                                <div className="px-4 py-3 flex items-center justify-between">
+                                <div className="px-4 py-3 flex items-center justify-between border-t border-amber-800/30 mt-2">
                                     <span className="text-amber-100/60">{language === 'od' ? 'ଭାଷା ପରିବର୍ତ୍ତନ' : 'Switch Language'}</span>
                                     <LanguageToggle />
                                 </div>
