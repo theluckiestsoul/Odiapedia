@@ -199,7 +199,7 @@ export default function OdishaMap({
                     if (onDistrictClick) {
                         onDistrictClick(district);
                     } else {
-                        router.push(`/map/district/${props.id}`);
+                        router.push(`/district/${props.id}`);
                     }
                 }
             },
@@ -399,7 +399,7 @@ export function DistrictListPanel({
                 {filteredDistricts.map((district) => (
                     <Link
                         key={district.id}
-                        href={`/map/district/${district.id}`}
+                        href={`/district/${district.id}`}
                         className={`block p-3 rounded-lg transition-all ${selectedDistrict === district.id
                             ? 'bg-amber-600/30 border border-amber-500'
                             : 'bg-black/30 hover:bg-amber-900/20 border border-transparent hover:border-amber-800/30'
