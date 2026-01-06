@@ -199,31 +199,40 @@ export default function CalendarPage() {
             <section className="py-8 bg-black">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                     <h2 className="text-xl font-bold text-amber-100 mb-6 text-center font-display">
-                        Traditional Panjikas of Odisha
+                        📖 Browse Traditional Panjikas
                     </h2>
+                    <p className="text-amber-100/60 text-center mb-6 text-sm">
+                        Click to open like a traditional printed book
+                    </p>
                     <div className="grid md:grid-cols-2 gap-6">
                         <Link
-                            href="/culture/jagannath-panjika"
-                            className="bg-gradient-to-br from-orange-900/30 to-red-900/30 rounded-xl p-6 border border-orange-700/30 hover:border-orange-500 transition-colors group"
+                            href="/panjika/jagannath"
+                            className="bg-gradient-to-br from-orange-900/30 to-red-900/30 rounded-xl p-6 border border-orange-700/30 hover:border-orange-500 hover:scale-105 transition-all group"
                         >
-                            <h3 className="text-xl font-bold text-amber-100 mb-2 group-hover:text-amber-300 transition-colors">🛕 Jagannath Panjika</h3>
-                            <p className="text-amber-100/70 text-sm mb-3">
-                                Official almanac of Shree Jagannath Temple, Puri. Followed for all temple rituals and coastal Odisha.
-                            </p>
-                            <p className="text-amber-500/60 text-xs">Shree Jagannath Temple Administration, Puri</p>
-                            <p className="text-amber-400 text-sm mt-3 group-hover:underline">Learn more →</p>
+                            <div className="text-center">
+                                <span className="text-5xl mb-4 block">🛕</span>
+                                <h3 className="text-2xl font-bold text-amber-100 mb-2 odia-text group-hover:text-amber-300 transition-colors">ଜଗନ୍ନାଥ ପଞ୍ଜିକା</h3>
+                                <p className="text-amber-400">Jagannath Panjika</p>
+                                <p className="text-amber-100/50 text-sm mt-3">
+                                    Coastal Odisha • Temple Rituals
+                                </p>
+                                <p className="text-amber-500 text-sm mt-4 group-hover:underline">📖 Open Book →</p>
+                            </div>
                         </Link>
 
                         <Link
-                            href="/culture/biraja-panjika"
-                            className="bg-gradient-to-br from-purple-900/30 to-fuchsia-900/30 rounded-xl p-6 border border-purple-700/30 hover:border-purple-500 transition-colors group"
+                            href="/panjika/biraja"
+                            className="bg-gradient-to-br from-purple-900/30 to-fuchsia-900/30 rounded-xl p-6 border border-purple-700/30 hover:border-purple-500 hover:scale-105 transition-all group"
                         >
-                            <h3 className="text-xl font-bold text-amber-100 mb-2 group-hover:text-amber-300 transition-colors">🔱 Biraja Panjika</h3>
-                            <p className="text-amber-100/70 text-sm mb-3">
-                                Traditional almanac from Jajpur (Biraja Kshetra). Popular in central and western Odisha.
-                            </p>
-                            <p className="text-amber-500/60 text-xs">Published by Biraja Temple, Jajpur</p>
-                            <p className="text-amber-400 text-sm mt-3 group-hover:underline">Learn more →</p>
+                            <div className="text-center">
+                                <span className="text-5xl mb-4 block">🔱</span>
+                                <h3 className="text-2xl font-bold text-amber-100 mb-2 odia-text group-hover:text-amber-300 transition-colors">ବିରଜା ପଞ୍ଜିକା</h3>
+                                <p className="text-amber-400">Biraja Panjika</p>
+                                <p className="text-amber-100/50 text-sm mt-3">
+                                    Western Odisha • Agricultural
+                                </p>
+                                <p className="text-amber-500 text-sm mt-4 group-hover:underline">📖 Open Book →</p>
+                            </div>
                         </Link>
                     </div>
                 </div>
