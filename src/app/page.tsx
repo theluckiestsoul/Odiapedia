@@ -36,6 +36,14 @@ const sections = [
     gradient: "from-stone-800 to-neutral-950",
   },
   {
+    href: "/calendar",
+    title: "Calendar",
+    odia: "ପଞ୍ଜିକା",
+    description: "Odia Panjika with 12 months, festivals, tithi, nakshatra, and Odia year.",
+    icon: "🗓️",
+    gradient: "from-cyan-900 to-teal-950",
+  },
+  {
     href: "/food",
     title: "Food",
     odia: "ଖାଦ୍ୟ",
