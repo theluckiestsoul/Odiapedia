@@ -1,10 +1,48 @@
 "use client";
 
 import { useEffect, useState } from 'react';
-import { MapContainer, TileLayer, CircleMarker, Tooltip, useMap } from 'react-leaflet';
+import { MapContainer, TileLayer, CircleMarker, Tooltip, useMap, Polygon } from 'react-leaflet';
 import { District, odishaDistricts, odishaCentroid, regionColors } from '@/data/districts';
 import Link from 'next/link';
 import 'leaflet/dist/leaflet.css';
+
+// Simplified Odisha state boundary coordinates (approximate)
+const odishaBoundaryCoords: [number, number][] = [
+    [22.57, 86.74], // North-east (Mayurbhanj)
+    [22.34, 87.12],
+    [21.93, 87.45],
+    [21.53, 87.42],
+    [21.13, 87.03], // Balasore coast
+    [20.75, 86.82],
+    [20.46, 86.92],
+    [20.26, 86.78],
+    [19.82, 86.43], // Puri coast
+    [19.27, 85.08],
+    [18.88, 84.62],
+    [18.35, 84.18], // Ganjam coast
+    [18.03, 83.42],
+    [17.95, 82.35], // Malkangiri (South)
+    [18.26, 81.74],
+    [18.72, 81.52],
+    [19.15, 82.02],
+    [19.51, 82.03],
+    [19.92, 82.15],
+    [20.18, 82.42],
+    [20.53, 82.31],
+    [20.82, 82.47], // Nuapada
+    [21.05, 82.73],
+    [21.32, 83.12],
+    [21.53, 83.36],
+    [21.82, 83.43],
+    [22.02, 83.72], // Jharsuguda
+    [22.18, 84.02],
+    [22.35, 84.32],
+    [22.45, 84.62],
+    [22.52, 85.12],
+    [22.62, 85.62],
+    [22.68, 86.08],
+    [22.57, 86.74], // Back to start
+];
 
 interface OdishaMapProps {
     onDistrictClick?: (district: District) => void;
@@ -60,6 +98,18 @@ export default function OdishaMap({
                 <TileLayer
                     attribution='&copy; <a href="https://carto.com/">CARTO</a>'
                     url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+                />
+
+                {/* Odisha State Boundary - Highlight */}
+                <Polygon
+                    positions={odishaBoundaryCoords}
+                    pathOptions={{
+                        color: '#f59e0b',
+                        weight: 3,
+                        fillColor: '#f59e0b',
+                        fillOpacity: 0.08,
+                        dashArray: '5, 10',
+                    }}
                 />
 
                 {/* District markers */}
@@ -178,8 +228,8 @@ export function DistrictListPanel({
                         key={region}
                         onClick={() => setRegionFilter(region)}
                         className={`px-3 py-1 rounded-full text-xs transition-all ${regionFilter === region
-                                ? 'bg-amber-600 text-black'
-                                : 'bg-amber-900/30 text-amber-300 hover:bg-amber-800/50'
+                            ? 'bg-amber-600 text-black'
+                            : 'bg-amber-900/30 text-amber-300 hover:bg-amber-800/50'
                             }`}
                     >
                         {region.charAt(0).toUpperCase() + region.slice(1)}
@@ -194,8 +244,8 @@ export function DistrictListPanel({
                         key={district.id}
                         href={`/map/district/${district.id}`}
                         className={`block p-3 rounded-lg transition-all ${selectedDistrict === district.id
-                                ? 'bg-amber-600/30 border border-amber-500'
-                                : 'bg-black/30 hover:bg-amber-900/20 border border-transparent hover:border-amber-800/30'
+                            ? 'bg-amber-600/30 border border-amber-500'
+                            : 'bg-black/30 hover:bg-amber-900/20 border border-transparent hover:border-amber-800/30'
                             }`}
                         onClick={() => onDistrictSelect?.(district)}
                     >
