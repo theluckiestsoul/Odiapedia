@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Link from "next/link";
 
 interface PanjikaPageProps {
@@ -382,39 +382,52 @@ const birajaPages = [
 export default function PanjikaBook({ panjikaType }: PanjikaPageProps) {
     const [currentPage, setCurrentPage] = useState(0);
     const [isFlipping, setIsFlipping] = useState(false);
+    const [flipDirection, setFlipDirection] = useState<'next' | 'prev'>('next');
+    const bookRef = useRef<HTMLDivElement>(null);
 
     const pages = panjikaType === "jagannath" ? jagannathPages : birajaPages;
     const totalPages = pages.length;
 
     const nextPage = () => {
         if (currentPage < totalPages - 1 && !isFlipping) {
+            setFlipDirection('next');
             setIsFlipping(true);
             setTimeout(() => {
                 setCurrentPage(prev => prev + 1);
                 setIsFlipping(false);
-            }, 300);
+            }, 600);
         }
     };
 
     const prevPage = () => {
         if (currentPage > 0 && !isFlipping) {
+            setFlipDirection('prev');
             setIsFlipping(true);
             setTimeout(() => {
                 setCurrentPage(prev => prev - 1);
                 setIsFlipping(false);
-            }, 300);
+            }, 600);
+        }
+    };
+
+    const goToPage = (pageNum: number) => {
+        if (!isFlipping && pageNum !== currentPage) {
+            setFlipDirection(pageNum > currentPage ? 'next' : 'prev');
+            setIsFlipping(true);
+            setTimeout(() => {
+                setCurrentPage(pageNum);
+                setIsFlipping(false);
+            }, 400);
         }
     };
 
     const page = pages[currentPage];
-    const bgColor = panjikaType === "jagannath"
-        ? "from-orange-950 to-amber-950"
-        : "from-purple-950 to-fuchsia-950";
+    const primaryColor = panjikaType === "jagannath" ? "orange" : "purple";
 
     return (
-        <div className="min-h-screen bg-black py-8">
+        <div className="min-h-screen bg-gradient-to-b from-neutral-900 via-amber-950/20 to-neutral-900 py-8">
             {/* Header */}
-            <div className="max-w-3xl mx-auto px-4 mb-6">
+            <div className="max-w-4xl mx-auto px-4 mb-6">
                 <Link
                     href="/calendar"
                     className="text-amber-400 hover:text-amber-300 transition-colors inline-flex items-center gap-2"
@@ -424,153 +437,297 @@ export default function PanjikaBook({ panjikaType }: PanjikaPageProps) {
             </div>
 
             {/* Book Container */}
-            <div className="max-w-3xl mx-auto px-4">
+            <div className="max-w-4xl mx-auto px-4 perspective-1000">
                 <div
-                    className={`bg-gradient-to-br ${bgColor} rounded-lg shadow-2xl overflow-hidden border-4 border-amber-900/50`}
+                    ref={bookRef}
+                    className="relative mx-auto"
                     style={{
-                        backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h100v100H0z' fill='none'/%3E%3Cpath d='M0 0h50v50H0zM50 50h50v50H50z' fill='rgba(139,69,19,0.05)'/%3E%3C/svg%3E")`,
+                        maxWidth: '700px',
+                        transformStyle: 'preserve-3d',
                     }}
                 >
-                    {/* Book Spine Effect */}
-                    <div className="absolute left-0 top-0 bottom-0 w-4 bg-gradient-to-r from-amber-900/80 to-transparent"></div>
+                    {/* Book Shadow */}
+                    <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-[90%] h-8 bg-black/40 blur-xl rounded-full"></div>
 
-                    {/* Page Content */}
+                    {/* Book Binding (Left Side) */}
                     <div
-                        className={`relative min-h-[600px] p-8 transition-all duration-300 ${isFlipping ? 'opacity-0 transform scale-95' : 'opacity-100'
-                            }`}
+                        className="absolute left-0 top-0 bottom-0 w-8 z-20"
+                        style={{
+                            background: `linear-gradient(to right, 
+                ${panjikaType === 'jagannath' ? '#7c2d12' : '#581c87'} 0%, 
+                ${panjikaType === 'jagannath' ? '#9a3412' : '#7e22ce'} 30%, 
+                ${panjikaType === 'jagannath' ? '#78350f' : '#581c87'} 60%,
+                transparent 100%)`,
+                            borderRadius: '4px 0 0 4px',
+                        }}
                     >
-                        {/* Aged Paper Overlay */}
+                        {/* Spine Lines */}
+                        <div className="absolute inset-0 flex flex-col justify-evenly py-4">
+                            {[...Array(6)].map((_, i) => (
+                                <div key={i} className="h-px w-full bg-amber-900/30"></div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Main Page */}
+                    <div
+                        className={`relative ml-6 rounded-r-lg overflow-hidden transition-all duration-500
+              ${isFlipping ? (flipDirection === 'next'
+                                ? 'animate-flip-next'
+                                : 'animate-flip-prev') : ''}`}
+                        style={{
+                            minHeight: '650px',
+                            transformOrigin: 'left center',
+                            boxShadow: '4px 4px 20px rgba(0,0,0,0.4), -2px 0 5px rgba(0,0,0,0.1) inset',
+                        }}
+                    >
+                        {/* Paper Texture - Old Oil Printed Look */}
                         <div
-                            className="absolute inset-0 pointer-events-none opacity-20"
+                            className="absolute inset-0"
                             style={{
-                                backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23d4a574' fill-opacity='0.4' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E")`,
+                                background: `
+                  linear-gradient(135deg, 
+                    #f5e6c8 0%, 
+                    #ebd5a7 25%, 
+                    #f0ddb3 50%, 
+                    #e8d4a0 75%, 
+                    #f2e0bb 100%)`,
                             }}
                         ></div>
 
-                        {/* Page Number */}
-                        <div className="absolute top-4 right-8 text-amber-700/60 font-mono text-sm">
-                            {currentPage + 1} / {totalPages}
-                        </div>
+                        {/* Aged Paper Stains and Texture */}
+                        <div
+                            className="absolute inset-0 opacity-30 pointer-events-none"
+                            style={{
+                                backgroundImage: `
+                  radial-gradient(ellipse at 20% 30%, rgba(139,69,19,0.15) 0%, transparent 50%),
+                  radial-gradient(ellipse at 80% 70%, rgba(139,69,19,0.1) 0%, transparent 40%),
+                  radial-gradient(ellipse at 50% 90%, rgba(139,69,19,0.12) 0%, transparent 35%),
+                  radial-gradient(ellipse at 10% 80%, rgba(139,69,19,0.08) 0%, transparent 30%)
+                `,
+                            }}
+                        ></div>
 
-                        {/* Content Area */}
-                        <div className="relative z-10 text-center pt-8">
+                        {/* Paper Grain Texture */}
+                        <div
+                            className="absolute inset-0 opacity-40 pointer-events-none"
+                            style={{
+                                backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+                            }}
+                        ></div>
+
+                        {/* Page Edge Lines */}
+                        <div className="absolute right-0 top-4 bottom-4 w-px bg-gradient-to-b from-amber-900/20 via-amber-800/30 to-amber-900/20"></div>
+                        <div className="absolute right-1 top-4 bottom-4 w-px bg-amber-900/10"></div>
+
+                        {/* Content */}
+                        <div className="relative z-10 p-8 md:p-12">
+                            {/* Page Number */}
+                            <div className="absolute top-4 right-6 font-serif text-amber-800/50 text-sm italic">
+                                Page {currentPage + 1} of {totalPages}
+                            </div>
+
+                            {/* Decorative Top Border */}
+                            <div className="flex items-center justify-center gap-2 mb-8">
+                                <div className="h-px flex-1 bg-gradient-to-r from-transparent via-amber-800/40 to-transparent"></div>
+                                <span className="text-amber-800/60 text-xl">❧</span>
+                                <div className="h-px flex-1 bg-gradient-to-r from-transparent via-amber-800/40 to-transparent"></div>
+                            </div>
+
                             {/* Title */}
-                            <h1 className={`text-4xl font-bold odia-text mb-3 ${page.isTitle ? 'text-amber-300' : 'text-amber-200'
-                                }`}>
-                                {page.title}
+                            <h1
+                                className={`text-center font-serif mb-2 ${page.isTitle ? 'text-5xl md:text-6xl' : 'text-4xl md:text-5xl'
+                                    }`}
+                                style={{
+                                    color: '#4a3728',
+                                    textShadow: '1px 1px 0 rgba(255,255,255,0.3)',
+                                    fontFamily: 'serif',
+                                }}
+                            >
+                                <span className="odia-text">{page.title}</span>
                             </h1>
-                            <p className="text-amber-400/80 text-lg mb-2">{page.subtitle}</p>
+
+                            <p className="text-center text-amber-900/70 text-lg mb-2 font-serif italic">
+                                {page.subtitle}
+                            </p>
 
                             {page.year && (
-                                <p className="text-amber-500/60 text-2xl odia-text mb-8">{page.year}</p>
+                                <p className="text-center text-3xl odia-text mb-8" style={{ color: '#6b4423' }}>
+                                    {page.year}
+                                </p>
                             )}
 
                             {/* Decorative Divider */}
-                            <div className="flex items-center justify-center gap-4 my-6">
-                                <div className="h-px w-20 bg-gradient-to-r from-transparent to-amber-600/50"></div>
-                                <div className="text-amber-600">❈</div>
-                                <div className="h-px w-20 bg-gradient-to-l from-transparent to-amber-600/50"></div>
+                            <div className="flex items-center justify-center gap-4 my-8">
+                                <div className="h-px w-16 bg-gradient-to-r from-transparent to-amber-800/40"></div>
+                                <span className="text-amber-800/50">✦</span>
+                                <div className="h-px w-16 bg-gradient-to-l from-transparent to-amber-800/40"></div>
                             </div>
 
                             {/* Page Content */}
-                            <div className="text-left max-w-md mx-auto space-y-1">
+                            <div className="max-w-lg mx-auto space-y-1 text-left">
                                 {page.content.map((line, i) => (
                                     <p
                                         key={i}
-                                        className={`font-serif leading-relaxed ${line.startsWith('◆')
-                                                ? 'text-amber-200 text-lg odia-text'
-                                                : line.startsWith('★')
-                                                    ? 'text-yellow-300 text-xl font-bold odia-text'
+                                        className="font-serif leading-relaxed"
+                                        style={{
+                                            color: line.startsWith('★')
+                                                ? '#8b4513'
+                                                : line.startsWith('◆')
+                                                    ? '#5d4037'
                                                     : line.startsWith('   ')
-                                                        ? 'text-amber-400/70 text-sm pl-4'
-                                                        : line === ''
-                                                            ? 'h-4'
-                                                            : 'text-amber-300/90 odia-text'
-                                            }`}
+                                                        ? '#7c6a59'
+                                                        : '#4a3728',
+                                            fontSize: line.startsWith('★')
+                                                ? '1.25rem'
+                                                : line.startsWith('◆')
+                                                    ? '1.1rem'
+                                                    : line.startsWith('   ')
+                                                        ? '0.9rem'
+                                                        : '1rem',
+                                            fontWeight: line.startsWith('★') ? 600 : 400,
+                                        }}
                                     >
-                                        {line}
+                                        {line || '\u00A0'}
                                     </p>
                                 ))}
                             </div>
 
-                            {/* Decorative Footer */}
+                            {/* Title Page Decoration */}
                             {page.isTitle && (
-                                <div className="mt-12">
-                                    <div className="text-6xl opacity-30">
-                                        {panjikaType === "jagannath" ? "🛕" : "🔱"}
+                                <div className="mt-12 text-center">
+                                    <div className="inline-block p-6 rounded-full opacity-20">
+                                        <span className="text-8xl">
+                                            {panjikaType === "jagannath" ? "🛕" : "🔱"}
+                                        </span>
                                     </div>
                                 </div>
                             )}
+
+                            {/* Decorative Bottom Border */}
+                            <div className="flex items-center justify-center gap-2 mt-12">
+                                <div className="h-px flex-1 bg-gradient-to-r from-transparent via-amber-800/40 to-transparent"></div>
+                                <span className="text-amber-800/60 text-xl">❧</span>
+                                <div className="h-px flex-1 bg-gradient-to-r from-transparent via-amber-800/40 to-transparent"></div>
+                            </div>
                         </div>
 
-                        {/* Page Corner Fold Effect */}
+                        {/* Page Curl Effect (Bottom Right) */}
                         <div
-                            className="absolute bottom-0 right-0 w-12 h-12"
+                            className="absolute bottom-0 right-0 w-16 h-16 cursor-pointer"
+                            onClick={nextPage}
                             style={{
-                                background: 'linear-gradient(135deg, transparent 50%, rgba(139,69,19,0.3) 50%)',
+                                background: 'linear-gradient(135deg, transparent 50%, #d4b896 50%, #c9a882 100%)',
+                                boxShadow: '-2px -2px 5px rgba(0,0,0,0.1)',
                             }}
                         ></div>
                     </div>
                 </div>
 
-                {/* Navigation */}
-                <div className="flex items-center justify-between mt-6 px-4">
+                {/* Navigation Controls */}
+                <div className="flex items-center justify-between mt-8 px-4">
                     <button
                         onClick={prevPage}
-                        disabled={currentPage === 0}
-                        className={`px-6 py-3 rounded-xl font-medium transition-all ${currentPage === 0
+                        disabled={currentPage === 0 || isFlipping}
+                        className={`px-6 py-3 rounded-xl font-medium transition-all flex items-center gap-2 ${currentPage === 0 || isFlipping
                                 ? 'bg-neutral-800 text-neutral-500 cursor-not-allowed'
-                                : 'bg-amber-900/50 text-amber-100 hover:bg-amber-800/50'
+                                : 'bg-amber-900/50 text-amber-100 hover:bg-amber-800/50 hover:scale-105'
                             }`}
                     >
-                        ← Previous Page
+                        <span className="text-xl">📖</span>
+                        Previous
                     </button>
 
-                    {/* Page Dots */}
-                    <div className="flex gap-1 overflow-x-auto max-w-[200px] py-2">
-                        {pages.map((_, i) => (
-                            <button
-                                key={i}
-                                onClick={() => setCurrentPage(i)}
-                                className={`w-2 h-2 rounded-full transition-all flex-shrink-0 ${i === currentPage
-                                        ? 'bg-amber-400 w-4'
-                                        : 'bg-amber-800 hover:bg-amber-600'
-                                    }`}
-                            />
-                        ))}
+                    {/* Page Indicator */}
+                    <div className="flex items-center gap-2">
+                        <span className="text-amber-500/60 text-sm hidden md:inline">Flip pages:</span>
+                        <div className="flex gap-1 overflow-x-auto max-w-[200px] py-2">
+                            {pages.map((_, i) => (
+                                <button
+                                    key={i}
+                                    onClick={() => goToPage(i)}
+                                    disabled={isFlipping}
+                                    className={`w-2.5 h-2.5 rounded-full transition-all flex-shrink-0 ${i === currentPage
+                                            ? `${primaryColor === 'orange' ? 'bg-orange-400' : 'bg-purple-400'} w-5`
+                                            : 'bg-amber-800/50 hover:bg-amber-600/50'
+                                        }`}
+                                />
+                            ))}
+                        </div>
                     </div>
 
                     <button
                         onClick={nextPage}
-                        disabled={currentPage === totalPages - 1}
-                        className={`px-6 py-3 rounded-xl font-medium transition-all ${currentPage === totalPages - 1
+                        disabled={currentPage === totalPages - 1 || isFlipping}
+                        className={`px-6 py-3 rounded-xl font-medium transition-all flex items-center gap-2 ${currentPage === totalPages - 1 || isFlipping
                                 ? 'bg-neutral-800 text-neutral-500 cursor-not-allowed'
-                                : 'bg-amber-900/50 text-amber-100 hover:bg-amber-800/50'
+                                : 'bg-amber-900/50 text-amber-100 hover:bg-amber-800/50 hover:scale-105'
                             }`}
                     >
-                        Next Page →
+                        Next
+                        <span className="text-xl">📖</span>
                     </button>
                 </div>
 
-                {/* Quick Jump */}
+                {/* Quick Month Navigation */}
                 <div className="text-center mt-8">
-                    <p className="text-amber-500/60 text-sm mb-3">Jump to month:</p>
-                    <div className="flex flex-wrap justify-center gap-2">
-                        {pages.slice(1).map((p, i) => (
+                    <p className="text-amber-500/60 text-sm mb-4">Jump to month:</p>
+                    <div className="flex flex-wrap justify-center gap-2 max-w-2xl mx-auto">
+                        {pages.map((p, i) => (
                             <button
                                 key={i}
-                                onClick={() => setCurrentPage(i + 1)}
-                                className={`px-3 py-1 rounded-lg text-xs transition-all ${i + 1 === currentPage
-                                        ? 'bg-amber-600 text-black'
-                                        : 'bg-amber-900/30 text-amber-300 hover:bg-amber-800/50'
+                                onClick={() => goToPage(i)}
+                                disabled={isFlipping}
+                                className={`px-3 py-1.5 rounded-lg text-sm transition-all ${i === currentPage
+                                        ? `${primaryColor === 'orange' ? 'bg-orange-600' : 'bg-purple-600'} text-white`
+                                        : 'bg-amber-900/20 text-amber-300 hover:bg-amber-800/40 border border-amber-800/30'
                                     }`}
                             >
-                                {p.title}
+                                <span className="odia-text">{p.title}</span>
                             </button>
                         ))}
                     </div>
                 </div>
             </div>
+
+            {/* CSS for flip animation */}
+            <style jsx global>{`
+        .perspective-1000 {
+          perspective: 2000px;
+        }
+        
+        @keyframes flipNext {
+          0% {
+            transform: rotateY(0deg);
+          }
+          50% {
+            transform: rotateY(-15deg);
+          }
+          100% {
+            transform: rotateY(0deg);
+          }
+        }
+        
+        @keyframes flipPrev {
+          0% {
+            transform: rotateY(0deg);
+          }
+          50% {
+            transform: rotateY(15deg);
+          }
+          100% {
+            transform: rotateY(0deg);
+          }
+        }
+        
+        .animate-flip-next {
+          animation: flipNext 0.6s ease-in-out;
+        }
+        
+        .animate-flip-prev {
+          animation: flipPrev 0.6s ease-in-out;
+        }
+      `}</style>
         </div>
     );
 }
