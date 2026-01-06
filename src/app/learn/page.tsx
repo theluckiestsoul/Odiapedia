@@ -19,6 +19,37 @@ function getWordOfTheDay() {
     return words[wordIndex];
 }
 
+const lessons = [
+    {
+        slug: "alphabet",
+        number: 1,
+        title: "The Odia Alphabet",
+        description: "Learn vowels and consonants",
+        icon: "🔤",
+    },
+    {
+        slug: "numbers",
+        number: 2,
+        title: "Odia Numbers",
+        description: "Count from 1 to 20",
+        icon: "🔢",
+    },
+    {
+        slug: "greetings",
+        number: 3,
+        title: "Essential Greetings",
+        description: "Say hello and be polite",
+        icon: "👋",
+    },
+    {
+        slug: "phrases",
+        number: 4,
+        title: "Everyday Phrases",
+        description: "Practical daily expressions",
+        icon: "💬",
+    },
+];
+
 export default function LearnPage() {
     const wordOfTheDay = getWordOfTheDay();
 
@@ -43,8 +74,8 @@ export default function LearnPage() {
                         <div className="h-px w-16 bg-gradient-to-l from-transparent to-amber-600"></div>
                     </div>
                     <p className="text-xl text-amber-100/70 max-w-2xl mx-auto leading-relaxed">
-                        Start your journey into the beautiful Odia language with our word of the day
-                        and essential learning resources.
+                        Start your journey into the beautiful Odia language with our structured lessons
+                        and daily word feature.
                     </p>
                 </div>
             </section>
@@ -89,25 +120,66 @@ export default function LearnPage() {
                 </div>
             </section>
 
-            {/* Learning Resources */}
+            {/* Lessons Section */}
             <section className="py-16 bg-black">
+                <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2 className="text-3xl font-bold text-amber-100 mb-3 font-display flex items-center gap-3">
+                        <span className="text-amber-500">🎓</span>
+                        Learn Odia Basics
+                    </h2>
+                    <p className="text-amber-100/60 mb-8">Complete these 4 lessons to master the fundamentals</p>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {lessons.map((lesson) => (
+                            <Link
+                                key={lesson.slug}
+                                href={`/learn/${lesson.slug}`}
+                                className="group bg-gradient-to-br from-blue-950/40 to-indigo-950/40 rounded-2xl p-6 border border-blue-800/30 hover:border-amber-600/50 transition-all duration-300"
+                            >
+                                <div className="flex items-start gap-4">
+                                    <div className="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-amber-500 to-amber-700 flex items-center justify-center text-black font-bold text-lg">
+                                        {lesson.number}
+                                    </div>
+                                    <div className="flex-1">
+                                        <div className="flex items-center gap-2 mb-2">
+                                            <span className="text-2xl">{lesson.icon}</span>
+                                            <h3 className="text-xl font-semibold text-amber-100 group-hover:text-amber-300 transition-colors">
+                                                {lesson.title}
+                                            </h3>
+                                        </div>
+                                        <p className="text-amber-100/60 text-sm">
+                                            {lesson.description}
+                                        </p>
+                                        <span className="inline-block mt-3 text-amber-500 text-sm group-hover:text-amber-400">
+                                            Start lesson →
+                                        </span>
+                                    </div>
+                                </div>
+                            </Link>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* More Resources */}
+            <section className="py-16 bg-gradient-to-b from-black to-neutral-950 border-t border-amber-900/20">
                 <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
                     <h2 className="text-2xl font-bold text-amber-100 mb-8 font-display flex items-center gap-3">
                         <span className="text-amber-500">📚</span>
-                        Learning Resources
+                        More Reading
                     </h2>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                         <Link
                             href="/language/odia-alphabet"
-                            className="group bg-gradient-to-br from-blue-950/40 to-indigo-950/40 rounded-2xl p-6 border border-blue-800/30 hover:border-amber-600/50 transition-all duration-300"
+                            className="group bg-gradient-to-br from-purple-950/40 to-fuchsia-950/40 rounded-2xl p-6 border border-purple-800/30 hover:border-amber-600/50 transition-all duration-300"
                         >
-                            <span className="text-4xl mb-4 block">🔤</span>
-                            <h3 className="text-xl font-semibold text-amber-100 group-hover:text-amber-300 transition-colors mb-2">
-                                Odia Alphabet & Script
+                            <span className="text-3xl mb-3 block">�</span>
+                            <h3 className="text-lg font-semibold text-amber-100 group-hover:text-amber-300 transition-colors mb-2">
+                                Full Alphabet Guide
                             </h3>
                             <p className="text-amber-100/60 text-sm">
-                                Learn the beautiful curvilinear Odia script with vowels, consonants, and numbers.
+                                Complete reference with all vowels and consonants.
                             </p>
                         </Link>
 
@@ -115,43 +187,33 @@ export default function LearnPage() {
                             href="/language/common-greetings"
                             className="group bg-gradient-to-br from-green-950/40 to-emerald-950/40 rounded-2xl p-6 border border-green-800/30 hover:border-amber-600/50 transition-all duration-300"
                         >
-                            <span className="text-4xl mb-4 block">👋</span>
-                            <h3 className="text-xl font-semibold text-amber-100 group-hover:text-amber-300 transition-colors mb-2">
-                                Common Greetings
+                            <span className="text-3xl mb-3 block">�</span>
+                            <h3 className="text-lg font-semibold text-amber-100 group-hover:text-amber-300 transition-colors mb-2">
+                                Greetings Article
                             </h3>
                             <p className="text-amber-100/60 text-sm">
-                                Essential Odia greetings and phrases for everyday conversations.
+                                In-depth guide to Odia greetings.
                             </p>
                         </Link>
 
                         <Link
                             href="/language"
-                            className="group bg-gradient-to-br from-purple-950/40 to-fuchsia-950/40 rounded-2xl p-6 border border-purple-800/30 hover:border-amber-600/50 transition-all duration-300"
+                            className="group bg-gradient-to-br from-orange-950/40 to-amber-950/40 rounded-2xl p-6 border border-orange-800/30 hover:border-amber-600/50 transition-all duration-300"
                         >
-                            <span className="text-4xl mb-4 block">📚</span>
-                            <h3 className="text-xl font-semibold text-amber-100 group-hover:text-amber-300 transition-colors mb-2">
-                                Language Overview
+                            <span className="text-3xl mb-3 block">📚</span>
+                            <h3 className="text-lg font-semibold text-amber-100 group-hover:text-amber-300 transition-colors mb-2">
+                                All Language Articles
                             </h3>
                             <p className="text-amber-100/60 text-sm">
-                                Explore the Odia language section with all language-related articles.
+                                Explore the full language section.
                             </p>
                         </Link>
-
-                        <div className="bg-gradient-to-br from-slate-900/40 to-zinc-900/40 rounded-2xl p-6 border border-slate-700/30 opacity-60">
-                            <span className="text-4xl mb-4 block">🎓</span>
-                            <h3 className="text-xl font-semibold text-amber-100/70 mb-2">
-                                Structured Lessons
-                            </h3>
-                            <p className="text-amber-100/40 text-sm">
-                                Coming soon — step-by-step Odia lessons for beginners.
-                            </p>
-                        </div>
                     </div>
                 </div>
             </section>
 
             {/* Quick Words */}
-            <section className="py-16 bg-gradient-to-b from-black to-neutral-950 border-t border-amber-900/20">
+            <section className="py-16 bg-neutral-950 border-t border-amber-900/10">
                 <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
                     <h2 className="text-2xl font-bold text-amber-100 mb-8 font-display flex items-center gap-3">
                         <span className="text-amber-500">✨</span>
