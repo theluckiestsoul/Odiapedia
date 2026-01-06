@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useState, useCallback } from 'react';
-import { MapContainer, TileLayer, useMap, GeoJSON, Tooltip } from 'react-leaflet';
+import { MapContainer, TileLayer, useMap, GeoJSON, Popup } from 'react-leaflet';
 import { District, odishaDistricts, odishaCentroid, regionColors } from '@/data/districts';
-import { getDistrictGeoJSON, districtPolygons } from '@/data/districtPolygons';
+import { getDistrictGeoJSON } from '@/data/districtPolygons';
+import { getBlocksByDistrictId } from '@/data/blocks';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import 'leaflet/dist/leaflet.css';
@@ -16,11 +17,52 @@ interface OdishaMapProps {
     showLabels?: boolean;
 }
 
+// Unique colors for each district (vibrant palette)
+const districtColors: Record<string, string> = {
+    // Coastal - Blues & Teals
+    balasore: '#0ea5e9',
+    bhadrak: '#06b6d4',
+    cuttack: '#0891b2',
+    jagatsinghpur: '#22d3d1',
+    jajpur: '#14b8a6',
+    kendrapara: '#2dd4bf',
+    khurda: '#0d9488',
+    puri: '#0f766e',
+
+    // Central - Greens
+    angul: '#22c55e',
+    bolangir: '#16a34a',
+    boudh: '#15803d',
+    deogarh: '#84cc16',
+    dhenkanal: '#65a30d',
+    nayagarh: '#4ade80',
+    sonepur: '#86efac',
+
+    // Northern - Ambers & Oranges
+    bargarh: '#f59e0b',
+    jharsuguda: '#d97706',
+    keonjhar: '#ea580c',
+    mayurbhanj: '#f97316',
+    sambalpur: '#fb923c',
+    sundargarh: '#fbbf24',
+
+    // Southern - Pinks & Purples
+    gajapati: '#ec4899',
+    ganjam: '#db2777',
+    kalahandi: '#c026d3',
+    kandhamal: '#a855f7',
+    koraput: '#9333ea',
+    malkangiri: '#7c3aed',
+    nabarangpur: '#8b5cf6',
+    nuapada: '#d946ef',
+    rayagada: '#f472b6',
+};
+
 // Component to handle map bounds
 function MapBounds({ bounds }: { bounds: [[number, number], [number, number]] }) {
     const map = useMap();
     useEffect(() => {
-        map.fitBounds(bounds);
+        map.fitBounds(bounds, { padding: [20, 20] });
     }, [map, bounds]);
     return null;
 }
@@ -37,6 +79,53 @@ interface DistrictProperties {
     color: string;
 }
 
+// Info Card Component for hovered district
+function DistrictInfoCard({ district, blocks }: { district: District; blocks: number }) {
+    return (
+        <div className="min-w-[220px] p-0 overflow-hidden">
+            {/* Header with gradient */}
+            <div
+                className="p-3 text-white"
+                style={{
+                    background: `linear-gradient(135deg, ${districtColors[district.id] || '#f59e0b'}, ${districtColors[district.id] || '#f59e0b'}dd)`
+                }}
+            >
+                <h3 className="text-lg font-bold">{district.name_en}</h3>
+                <p className="text-sm opacity-90 odia-text">{district.name_od}</p>
+            </div>
+
+            {/* Stats */}
+            <div className="bg-neutral-900 p-3 space-y-2">
+                <div className="flex justify-between text-sm">
+                    <span className="text-neutral-400">Population</span>
+                    <span className="text-white font-medium">{(district.population / 100000).toFixed(1)}L</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                    <span className="text-neutral-400">Area</span>
+                    <span className="text-white font-medium">{district.area_sq_km.toLocaleString()} km²</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                    <span className="text-neutral-400">Headquarters</span>
+                    <span className="text-white font-medium">{district.headquarters}</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                    <span className="text-neutral-400">Blocks</span>
+                    <span className="text-white font-medium">{blocks}</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                    <span className="text-neutral-400">Literacy</span>
+                    <span className="text-white font-medium">{district.literacy}%</span>
+                </div>
+            </div>
+
+            {/* Footer */}
+            <div className="bg-neutral-950 px-3 py-2 text-center">
+                <span className="text-xs text-amber-400">Click to explore →</span>
+            </div>
+        </div>
+    );
+}
+
 export default function OdishaMap({
     onDistrictClick,
     selectedDistrict,
@@ -44,25 +133,31 @@ export default function OdishaMap({
 }: OdishaMapProps) {
     const [mounted, setMounted] = useState(false);
     const [hoveredDistrict, setHoveredDistrict] = useState<string | null>(null);
+    const [hoveredDistrictData, setHoveredDistrictData] = useState<District | null>(null);
+    const [hoveredBlocks, setHoveredBlocks] = useState<number>(0);
     const router = useRouter();
 
     useEffect(() => {
         setMounted(true);
     }, []);
 
-    // Style function for GeoJSON features
+    // Style function for GeoJSON features with unique colors
     const getStyle = useCallback((feature: Feature<Geometry, DistrictProperties> | undefined) => {
         if (!feature?.properties) return {};
 
-        const isHovered = hoveredDistrict === feature.properties.id;
-        const isSelected = selectedDistrict === feature.properties.id;
+        const districtId = feature.properties.id;
+        const isHovered = hoveredDistrict === districtId;
+        const isSelected = selectedDistrict === districtId;
+        const color = districtColors[districtId] || feature.properties.color;
 
         return {
-            fillColor: feature.properties.color,
-            weight: isHovered || isSelected ? 3 : 1.5,
+            fillColor: color,
+            weight: isHovered || isSelected ? 4 : 2,
             opacity: 1,
-            color: isHovered || isSelected ? '#fbbf24' : '#ffffff',
-            fillOpacity: isHovered ? 0.8 : isSelected ? 0.9 : 0.6,
+            color: isHovered || isSelected ? '#ffffff' : '#000000',
+            fillOpacity: isHovered ? 0.9 : isSelected ? 0.85 : 0.7,
+            // Simulate 3D effect with shadow
+            className: isHovered ? 'district-hovered' : '',
         };
     }, [hoveredDistrict, selectedDistrict]);
 
@@ -75,10 +170,28 @@ export default function OdishaMap({
         layer.on({
             mouseover: (e: LeafletMouseEvent) => {
                 setHoveredDistrict(props.id);
+                const district = odishaDistricts.find(d => d.id === props.id);
+                if (district) {
+                    setHoveredDistrictData(district);
+                    setHoveredBlocks(getBlocksByDistrictId(props.id).length);
+                }
                 e.target.bringToFront();
+                e.target.setStyle({
+                    weight: 4,
+                    color: '#ffffff',
+                    fillOpacity: 0.9,
+                });
             },
-            mouseout: () => {
+            mouseout: (e: LeafletMouseEvent) => {
                 setHoveredDistrict(null);
+                setHoveredDistrictData(null);
+                const color = districtColors[props.id] || props.color;
+                e.target.setStyle({
+                    weight: 2,
+                    color: '#000000',
+                    fillOpacity: 0.7,
+                    fillColor: color,
+                });
             },
             click: () => {
                 const district = odishaDistricts.find(d => d.id === props.id);
@@ -91,23 +204,7 @@ export default function OdishaMap({
                 }
             },
         });
-
-        // Bind tooltip
-        if (showLabels) {
-            layer.bindTooltip(
-                `<div class="text-center">
-                    <div class="font-bold">${props.name_en}</div>
-                    <div class="text-xs">${props.name_od}</div>
-                    <div class="text-xs text-gray-500">Pop: ${(props.population / 100000).toFixed(1)}L</div>
-                </div>`,
-                {
-                    permanent: false,
-                    direction: 'top',
-                    className: 'district-tooltip',
-                }
-            );
-        }
-    }, [onDistrictClick, router, showLabels]);
+    }, [onDistrictClick, router]);
 
     if (!mounted) {
         return (
@@ -125,30 +222,93 @@ export default function OdishaMap({
     const geoJsonData = getDistrictGeoJSON();
 
     return (
-        <div className="w-full h-[500px] md:h-[600px] rounded-xl overflow-hidden border border-amber-800/30">
+        <div className="w-full h-[500px] md:h-[600px] rounded-xl overflow-hidden border border-amber-800/30 relative">
+            {/* CSS for 3D hover effect */}
+            <style jsx global>{`
+                .leaflet-interactive:hover {
+                    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
+                    transform: translateY(-2px);
+                    transition: all 0.2s ease;
+                }
+                .leaflet-popup-content-wrapper {
+                    background: transparent !important;
+                    box-shadow: 0 8px 32px rgba(0,0,0,0.4) !important;
+                    border-radius: 12px !important;
+                    overflow: hidden;
+                    padding: 0 !important;
+                }
+                .leaflet-popup-content {
+                    margin: 0 !important;
+                    width: auto !important;
+                }
+                .leaflet-popup-tip {
+                    background: #171717 !important;
+                }
+                .leaflet-popup-close-button {
+                    display: none !important;
+                }
+            `}</style>
+
             <MapContainer
                 center={odishaCentroid}
                 zoom={7}
-                style={{ height: '100%', width: '100%', background: '#1a1a1a' }}
+                style={{ height: '100%', width: '100%', background: '#0a0a0a' }}
                 zoomControl={true}
                 scrollWheelZoom={true}
             >
                 <MapBounds bounds={odishaBounds} />
 
-                {/* Dark theme tiles */}
+                {/* Very dark base map */}
                 <TileLayer
                     attribution='&copy; <a href="https://carto.com/">CARTO</a>'
-                    url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+                    url="https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png"
                 />
 
-                {/* District Polygons */}
+                {/* District Polygons with unique colors */}
                 <GeoJSON
                     key={`districts-${hoveredDistrict}-${selectedDistrict}`}
                     data={geoJsonData as GeoJSON.FeatureCollection}
                     style={getStyle as (feature: Feature<Geometry, unknown> | undefined) => Record<string, unknown>}
                     onEachFeature={onEachFeature as (feature: Feature<Geometry, unknown>, layer: Layer) => void}
                 />
+
+                {/* Popup for hovered district */}
+                {hoveredDistrictData && (
+                    <Popup
+                        position={hoveredDistrictData.centroid}
+                        closeButton={false}
+                        autoPan={false}
+                    >
+                        <DistrictInfoCard
+                            district={hoveredDistrictData}
+                            blocks={hoveredBlocks}
+                        />
+                    </Popup>
+                )}
             </MapContainer>
+
+            {/* Legend overlay */}
+            <div className="absolute bottom-4 left-4 z-[1000] bg-black/80 backdrop-blur-sm rounded-lg p-3 border border-amber-800/30">
+                <div className="text-xs text-amber-100 mb-2 font-medium">Regions</div>
+                <div className="space-y-1">
+                    {[
+                        { name: 'Coastal', color: '#0ea5e9' },
+                        { name: 'Central', color: '#22c55e' },
+                        { name: 'Northern', color: '#f59e0b' },
+                        { name: 'Southern', color: '#ec4899' },
+                    ].map((r) => (
+                        <div key={r.name} className="flex items-center gap-2">
+                            <div className="w-3 h-3 rounded" style={{ backgroundColor: r.color }} />
+                            <span className="text-xs text-amber-100/70">{r.name}</span>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            {/* Hover instruction */}
+            <div className="absolute top-4 right-4 z-[1000] bg-black/70 backdrop-blur-sm rounded-lg px-3 py-2 border border-amber-800/30">
+                <span className="text-xs text-amber-400">Hover to see details • Click to explore</span>
+            </div>
         </div>
     );
 }
@@ -156,10 +316,10 @@ export default function OdishaMap({
 // Legend component
 export function MapLegend() {
     const regions = [
-        { name: 'Coastal', color: regionColors.coastal, count: 8 },
-        { name: 'Central', color: regionColors.central, count: 7 },
-        { name: 'Northern', color: regionColors.northern, count: 6 },
-        { name: 'Southern', color: regionColors.southern, count: 9 },
+        { name: 'Coastal', color: '#0ea5e9', count: 8 },
+        { name: 'Central', color: '#22c55e', count: 7 },
+        { name: 'Northern', color: '#f59e0b', count: 6 },
+        { name: 'Southern', color: '#ec4899', count: 9 },
     ];
 
     return (
@@ -169,7 +329,7 @@ export function MapLegend() {
                 {regions.map((region) => (
                     <div key={region.name} className="flex items-center gap-2">
                         <div
-                            className="w-4 h-4 rounded-full"
+                            className="w-4 h-4 rounded"
                             style={{ backgroundColor: region.color }}
                         />
                         <span className="text-amber-100/80 text-sm">
@@ -252,8 +412,8 @@ export function DistrictListPanel({
                                 <div className="text-amber-500/70 text-sm odia-text">{district.name_od}</div>
                             </div>
                             <div
-                                className="w-3 h-3 rounded-full mt-1"
-                                style={{ backgroundColor: regionColors[district.region] }}
+                                className="w-4 h-4 rounded mt-1"
+                                style={{ backgroundColor: districtColors[district.id] || regionColors[district.region] }}
                             />
                         </div>
                         <div className="text-xs text-amber-100/50 mt-1">
