@@ -1,0 +1,76 @@
+{
+    "block_id": "jaleswar",
+    "district_id": "balasore",
+    "villages": [
+        {
+            "id": "digha",
+            "name_en": "Digha",
+            "name_od": "ଦିଘା",
+            "gp": "Jaleswar",
+            "population": 4500
+        },
+        {
+            "id": "talasari",
+            "name_en": "Talasari",
+            "name_od": "ତାଳସରି",
+            "gp": "Talasari",
+            "population": 6200
+        },
+        {
+            "id": "udaypur",
+            "name_en": "Udaypur",
+            "name_od": "ଉଦୟପୁର",
+            "gp": "Udaypur",
+            "population": 3800
+        },
+        {
+            "id": "chandana",
+            "name_en": "Chandana",
+            "name_od": "ଚନ୍ଦନା",
+            "gp": "Chandana",
+            "population": 4100
+        },
+        {
+            "id": "bhusandpur",
+            "name_en": "Bhusandpur",
+            "name_od": "ଭୁସଣ୍ଡପୁର",
+            "gp": "Bhusandpur",
+            "population": 5500
+        },
+        {
+            "id": "narsinghpur",
+            "name_en": "Narsinghpur",
+            "name_od": "ନରସିଂହପୁର",
+            "gp": "Bhusandpur",
+            "population": 2900
+        },
+        {
+            "id": "gopalgaon",
+            "name_en": "Gopalgaon",
+            "name_od": "ଗୋପାଳଗାଁ",
+            "gp": "Gopalgaon",
+            "population": 4800
+        },
+        {
+            "id": "bhadrak-r",
+            "name_en": "Bhadrak Road",
+            "name_od": "ଭଦ୍ରକ ରୋଡ଼",
+            "gp": "Gopalgaon",
+            "population": 2200
+        },
+        {
+            "id": "bishnupur",
+            "name_en": "Bishnupur",
+            "name_od": "ବିଷ୍ଣୁପୁର",
+            "gp": "Bishnupur",
+            "population": 3600
+        },
+        {
+            "id": "mohanpur",
+            "name_en": "Mohanpur",
+            "name_od": "ମୋହନପୁର",
+            "gp": "Bishnupur",
+            "population": 2800
+        }
+    ]
+}

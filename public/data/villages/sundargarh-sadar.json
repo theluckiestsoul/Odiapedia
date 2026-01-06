@@ -1,0 +1,76 @@
+{
+    "block_id": "sundargarh-sadar",
+    "district_id": "sundargarh",
+    "villages": [
+        {
+            "id": "sundargarh-town",
+            "name_en": "Sundargarh Town",
+            "name_od": "ସୁନ୍ଦରଗଡ଼",
+            "gp": "Sundargarh",
+            "population": 42000
+        },
+        {
+            "id": "rajgangpur-sg",
+            "name_en": "Rajgangpur",
+            "name_od": "ରାଜଗାଙ୍ଗପୁର",
+            "gp": "Rajgangpur",
+            "population": 58000
+        },
+        {
+            "id": "bonai-sg",
+            "name_en": "Bonai",
+            "name_od": "ବୋନାଇ",
+            "gp": "Bonai",
+            "population": 18000
+        },
+        {
+            "id": "lahunipara-sg",
+            "name_en": "Lahunipara",
+            "name_od": "ଲହୁଣୀପାଡ଼ା",
+            "gp": "Lahunipara",
+            "population": 8500
+        },
+        {
+            "id": "kutra-sg",
+            "name_en": "Kutra",
+            "name_od": "କୁତ୍ରା",
+            "gp": "Kutra",
+            "population": 5200
+        },
+        {
+            "id": "gurundia-sg",
+            "name_en": "Gurundia",
+            "name_od": "ଗୁରୁଣ୍ଡିଆ",
+            "gp": "Gurundia",
+            "population": 4500
+        },
+        {
+            "id": "hemgir-sg",
+            "name_en": "Hemgir",
+            "name_od": "ହେମଗିର",
+            "gp": "Hemgir",
+            "population": 6800
+        },
+        {
+            "id": "bisra-sg",
+            "name_en": "Bisra",
+            "name_od": "ବିସ୍ରା",
+            "gp": "Bisra",
+            "population": 7200
+        },
+        {
+            "id": "balisankara-sg",
+            "name_en": "Balisankara",
+            "name_od": "ବାଲିସଙ୍କରା",
+            "gp": "Balisankara",
+            "population": 3500
+        },
+        {
+            "id": "nuagaon-sg",
+            "name_en": "Nuagaon",
+            "name_od": "ନୂଆଗାଁ",
+            "gp": "Nuagaon",
+            "population": 4100
+        }
+    ]
+}

@@ -1,0 +1,62 @@
+{
+    "block_id": "aska",
+    "district_id": "ganjam",
+    "villages": [
+        {
+            "id": "aska-town",
+            "name_en": "Aska",
+            "name_od": "ଆସ୍କା",
+            "gp": "Aska",
+            "population": 42000
+        },
+        {
+            "id": "surada",
+            "name_en": "Surada",
+            "name_od": "ସୁରଡ଼ା",
+            "gp": "Surada",
+            "population": 15000
+        },
+        {
+            "id": "hinjilicut-gj",
+            "name_en": "Hinjilicut",
+            "name_od": "ହିଞ୍ଜିଳିକଟୁ",
+            "gp": "Hinjilicut",
+            "population": 28000
+        },
+        {
+            "id": "purushottampur-gj",
+            "name_en": "Purushottampur",
+            "name_od": "ପୁରୁଷୋତ୍ତମପୁର",
+            "gp": "Purushottampur",
+            "population": 18000
+        },
+        {
+            "id": "kabisuryanagar-gj",
+            "name_en": "Kabisuryanagar",
+            "name_od": "କବିସୂର୍ଯ୍ୟନଗର",
+            "gp": "Kabisuryanagar",
+            "population": 12000
+        },
+        {
+            "id": "digapahandi-gj",
+            "name_en": "Digapahandi",
+            "name_od": "ଦିଗପହଣ୍ଡି",
+            "gp": "Digapahandi",
+            "population": 8500
+        },
+        {
+            "id": "polasara-gj",
+            "name_en": "Polasara",
+            "name_od": "ପୋଲାସରା",
+            "gp": "Polasara",
+            "population": 6200
+        },
+        {
+            "id": "buguda-gj",
+            "name_en": "Buguda",
+            "name_od": "ବୁଗୁଡ଼ା",
+            "gp": "Buguda",
+            "population": 5500
+        }
+    ]
+}

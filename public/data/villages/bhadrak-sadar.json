@@ -1,0 +1,76 @@
+{
+    "block_id": "bhadrak-sadar",
+    "district_id": "bhadrak",
+    "villages": [
+        {
+            "id": "bhadrak-town",
+            "name_en": "Bhadrak Town",
+            "name_od": "ଭଦ୍ରକ",
+            "gp": "Bhadrak",
+            "population": 108000
+        },
+        {
+            "id": "charampa",
+            "name_en": "Charampa",
+            "name_od": "ଚରମ୍ପା",
+            "gp": "Charampa",
+            "population": 8500
+        },
+        {
+            "id": "basudevpur-bh",
+            "name_en": "Basudevpur",
+            "name_od": "ବାସୁଦେବପୁର",
+            "gp": "Basudevpur",
+            "population": 15000
+        },
+        {
+            "id": "dhamnagar-bh",
+            "name_en": "Dhamnagar",
+            "name_od": "ଧାମନଗର",
+            "gp": "Dhamnagar",
+            "population": 22000
+        },
+        {
+            "id": "tihidi-bh",
+            "name_en": "Tihidi",
+            "name_od": "ତିହିଡ଼ି",
+            "gp": "Tihidi",
+            "population": 12000
+        },
+        {
+            "id": "bonth-bh",
+            "name_en": "Bonth",
+            "name_od": "ବୋନଥ",
+            "gp": "Bonth",
+            "population": 6500
+        },
+        {
+            "id": "aradi",
+            "name_en": "Aradi",
+            "name_od": "ଆରଡ଼ି",
+            "gp": "Aradi",
+            "population": 4800
+        },
+        {
+            "id": "randia",
+            "name_en": "Randia",
+            "name_od": "ରାଣଡ଼ିଆ",
+            "gp": "Randia",
+            "population": 7200
+        },
+        {
+            "id": "dhauli",
+            "name_en": "Dhauli",
+            "name_od": "ଧଉଲି",
+            "gp": "Dhauli",
+            "population": 3500
+        },
+        {
+            "id": "akhuapada",
+            "name_en": "Akhuapada",
+            "name_od": "ଆଖୁଆପଡ଼ା",
+            "gp": "Akhuapada",
+            "population": 5100
+        }
+    ]
+}

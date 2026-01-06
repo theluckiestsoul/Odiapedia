@@ -1,0 +1,62 @@
+{
+    "block_id": "chilika",
+    "district_id": "khurda",
+    "villages": [
+        {
+            "id": "balugaon",
+            "name_en": "Balugaon",
+            "name_od": "ବାଲୁଗାଁ",
+            "gp": "Balugaon",
+            "population": 18000
+        },
+        {
+            "id": "barkul",
+            "name_en": "Barkul",
+            "name_od": "ବରକୁଳ",
+            "gp": "Barkul",
+            "population": 4500
+        },
+        {
+            "id": "nairi",
+            "name_en": "Nairi",
+            "name_od": "ନାଇରି",
+            "gp": "Nairi",
+            "population": 3200
+        },
+        {
+            "id": "kalijai-island",
+            "name_en": "Kalijai Island",
+            "name_od": "କାଳିଜାଇ ଦ୍ୱୀପ",
+            "gp": "Kalijai",
+            "population": 500
+        },
+        {
+            "id": "mangalajodi",
+            "name_en": "Mangalajodi",
+            "name_od": "ମଙ୍ଗଳାଯୋଡ଼ି",
+            "gp": "Mangalajodi",
+            "population": 6200
+        },
+        {
+            "id": "parikud",
+            "name_en": "Parikud",
+            "name_od": "ପରୀକୁଦ",
+            "gp": "Parikud",
+            "population": 2800
+        },
+        {
+            "id": "arakuda",
+            "name_en": "Arakuda",
+            "name_od": "ଆରକୁଡ଼ା",
+            "gp": "Arakuda",
+            "population": 1500
+        },
+        {
+            "id": "gabakunda",
+            "name_en": "Gabakunda",
+            "name_od": "ଗାବାକୁଣ୍ଡା",
+            "gp": "Gabakunda",
+            "population": 2100
+        }
+    ]
+}

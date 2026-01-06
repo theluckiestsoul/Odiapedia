@@ -1,0 +1,90 @@
+{
+    "block_id": "khurda-sadar",
+    "district_id": "khurda",
+    "villages": [
+        {
+            "id": "khurda-town",
+            "name_en": "Khurda Town",
+            "name_od": "ଖୋର୍ଦ୍ଧା",
+            "gp": "Khurda",
+            "population": 45000
+        },
+        {
+            "id": "balakati",
+            "name_en": "Balakati",
+            "name_od": "ବାଲାକାଟି",
+            "gp": "Balakati",
+            "population": 8500
+        },
+        {
+            "id": "haripurgarh",
+            "name_en": "Haripurgarh",
+            "name_od": "ହରିପୁରଗଡ଼",
+            "gp": "Haripurgarh",
+            "population": 6200
+        },
+        {
+            "id": "kantabada",
+            "name_en": "Kantabada",
+            "name_od": "କଣ୍ଟାବଡ଼ା",
+            "gp": "Kantabada",
+            "population": 4800
+        },
+        {
+            "id": "barimula",
+            "name_en": "Barimula",
+            "name_od": "ବାରିମୁଳ",
+            "gp": "Barimula",
+            "population": 5100
+        },
+        {
+            "id": "golabai",
+            "name_en": "Golabai",
+            "name_od": "ଗୋଲାବାଇ",
+            "gp": "Golabai",
+            "population": 3800
+        },
+        {
+            "id": "mendhasala",
+            "name_en": "Mendhasala",
+            "name_od": "ମେଣ୍ଢାସାଲ",
+            "gp": "Mendhasala",
+            "population": 4200
+        },
+        {
+            "id": "baghamari",
+            "name_en": "Baghamari",
+            "name_od": "ବାଘମାରୀ",
+            "gp": "Baghamari",
+            "population": 3500
+        },
+        {
+            "id": "dera",
+            "name_en": "Dera",
+            "name_od": "ଡେରା",
+            "gp": "Dera",
+            "population": 2900
+        },
+        {
+            "id": "pitapali",
+            "name_en": "Pitapali",
+            "name_od": "ପିଟାପାଲି",
+            "gp": "Pitapali",
+            "population": 3200
+        },
+        {
+            "id": "baranga",
+            "name_en": "Baranga",
+            "name_od": "ବରଙ୍ଗ",
+            "gp": "Baranga",
+            "population": 4500
+        },
+        {
+            "id": "kuhudi",
+            "name_en": "Kuhudi",
+            "name_od": "କୁହୁଡ଼ି",
+            "gp": "Baranga",
+            "population": 2100
+        }
+    ]
+}

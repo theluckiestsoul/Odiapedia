@@ -1,0 +1,90 @@
+{
+    "block_id": "rourkela",
+    "district_id": "sundargarh",
+    "villages": [
+        {
+            "id": "rourkela-city",
+            "name_en": "Rourkela City",
+            "name_od": "ରାଉରକେଲା",
+            "gp": "Rourkela",
+            "population": 485000
+        },
+        {
+            "id": "sector-1",
+            "name_en": "Sector 1",
+            "name_od": "ସେକ୍ଟର ୧",
+            "gp": "Sector 1",
+            "population": 35000
+        },
+        {
+            "id": "sector-2",
+            "name_en": "Sector 2",
+            "name_od": "ସେକ୍ଟର ୨",
+            "gp": "Sector 2",
+            "population": 42000
+        },
+        {
+            "id": "sector-4",
+            "name_en": "Sector 4",
+            "name_od": "ସେକ୍ଟର ୪",
+            "gp": "Sector 4",
+            "population": 28000
+        },
+        {
+            "id": "sector-6",
+            "name_en": "Sector 6",
+            "name_od": "ସେକ୍ଟର ୬",
+            "gp": "Sector 6",
+            "population": 32000
+        },
+        {
+            "id": "chhend",
+            "name_en": "Chhend",
+            "name_od": "ଛେଣ୍ଡ",
+            "gp": "Chhend",
+            "population": 18000
+        },
+        {
+            "id": "basanti-colony",
+            "name_en": "Basanti Colony",
+            "name_od": "ବାସନ୍ତୀ କଲୋନୀ",
+            "gp": "Basanti Colony",
+            "population": 25000
+        },
+        {
+            "id": "civil-township",
+            "name_en": "Civil Township",
+            "name_od": "ସିଭିଲ ଟାଉନସିପ",
+            "gp": "Civil Township",
+            "population": 22000
+        },
+        {
+            "id": "panposh",
+            "name_en": "Panposh",
+            "name_od": "ପାନପୋଷ",
+            "gp": "Panposh",
+            "population": 15000
+        },
+        {
+            "id": "bondamunda",
+            "name_en": "Bondamunda",
+            "name_od": "ବଣ୍ଡାମୁଣ୍ଡା",
+            "gp": "Bondamunda",
+            "population": 12000
+        },
+        {
+            "id": "vedvyas",
+            "name_en": "Vedvyas",
+            "name_od": "ବେଦବ୍ୟାସ",
+            "gp": "Vedvyas",
+            "population": 8500
+        },
+        {
+            "id": "udit-nagar",
+            "name_en": "Udit Nagar",
+            "name_od": "ଉଦିତ ନଗର",
+            "gp": "Udit Nagar",
+            "population": 16000
+        }
+    ]
+}

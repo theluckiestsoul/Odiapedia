@@ -1,0 +1,69 @@
+{
+    "block_id": "nilgiri",
+    "district_id": "balasore",
+    "villages": [
+        {
+            "id": "nilgiri-town",
+            "name_en": "Nilgiri Town",
+            "name_od": "ନୀଳଗିରି",
+            "gp": "Nilgiri",
+            "population": 12000
+        },
+        {
+            "id": "kuldiha",
+            "name_en": "Kuldiha",
+            "name_od": "କୁଳଦିହା",
+            "gp": "Kuldiha",
+            "population": 3200
+        },
+        {
+            "id": "bangriposi-b",
+            "name_en": "Bangriposi Border",
+            "name_od": "ବାଙ୍ଗିରିପୋଷି",
+            "gp": "Kuldiha",
+            "population": 1800
+        },
+        {
+            "id": "simulia-n",
+            "name_en": "Simulia",
+            "name_od": "ସିମୁଳିଆ",
+            "gp": "Simulia",
+            "population": 4500
+        },
+        {
+            "id": "khadipada",
+            "name_en": "Khadipada",
+            "name_od": "ଖଡ଼ିପଡ଼ା",
+            "gp": "Simulia",
+            "population": 2600
+        },
+        {
+            "id": "kantabania",
+            "name_en": "Kantabania",
+            "name_od": "କଣ୍ଟାବଣିଆ",
+            "gp": "Kantabania",
+            "population": 3800
+        },
+        {
+            "id": "rajghat",
+            "name_en": "Rajghat",
+            "name_od": "ରାଜଘାଟ",
+            "gp": "Kantabania",
+            "population": 2100
+        },
+        {
+            "id": "chadheigaon",
+            "name_en": "Chadheigaon",
+            "name_od": "ଛଡ଼େଇଗାଁ",
+            "gp": "Chadheigaon",
+            "population": 2900
+        },
+        {
+            "id": "barakudi",
+            "name_en": "Barakudi",
+            "name_od": "ବରାକୁଡ଼ି",
+            "gp": "Chadheigaon",
+            "population": 1500
+        }
+    ]
+}

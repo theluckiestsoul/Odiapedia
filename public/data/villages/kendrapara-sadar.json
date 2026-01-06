@@ -1,0 +1,76 @@
+{
+    "block_id": "kendrapara-sadar",
+    "district_id": "kendrapara",
+    "villages": [
+        {
+            "id": "kendrapara-town",
+            "name_en": "Kendrapara Town",
+            "name_od": "କେନ୍ଦ୍ରାପଡ଼ା",
+            "gp": "Kendrapara",
+            "population": 55000
+        },
+        {
+            "id": "pattamundai-ke",
+            "name_en": "Pattamundai",
+            "name_od": "ପଟ୍ଟାମୁଣ୍ଡାଇ",
+            "gp": "Pattamundai",
+            "population": 25000
+        },
+        {
+            "id": "marsaghai-ke",
+            "name_en": "Marsaghai",
+            "name_od": "ମାର୍ସାଘାଇ",
+            "gp": "Marsaghai",
+            "population": 12000
+        },
+        {
+            "id": "rajnagar-ke",
+            "name_en": "Rajnagar",
+            "name_od": "ରାଜନଗର",
+            "gp": "Rajnagar",
+            "population": 8500
+        },
+        {
+            "id": "mahakalapara-ke",
+            "name_en": "Mahakalapara",
+            "name_od": "ମହାକାଳାପାଡ଼ା",
+            "gp": "Mahakalapara",
+            "population": 6200
+        },
+        {
+            "id": "pentha",
+            "name_en": "Pentha",
+            "name_od": "ପେନଥା",
+            "gp": "Pentha",
+            "population": 4500
+        },
+        {
+            "id": "habelikhati",
+            "name_en": "Habelikhati",
+            "name_od": "ହାବେଲିଖାତି",
+            "gp": "Habelikhati",
+            "population": 3800
+        },
+        {
+            "id": "tantiapatna",
+            "name_en": "Tantiapatna",
+            "name_od": "ତାନ୍ତିଆପାଟଣା",
+            "gp": "Tantiapatna",
+            "population": 5100
+        },
+        {
+            "id": "dangamal",
+            "name_en": "Dangamal",
+            "name_od": "ଦଙ୍ଗାମାଳ",
+            "gp": "Dangamal",
+            "population": 2800
+        },
+        {
+            "id": "bhitarkanika-gate",
+            "name_en": "Bhitarkanika Gate",
+            "name_od": "ଭିତରକନିକା",
+            "gp": "Bhitarkanika",
+            "population": 1500
+        }
+    ]
+}

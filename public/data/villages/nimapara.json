@@ -1,0 +1,76 @@
+{
+    "block_id": "nimapara",
+    "district_id": "puri",
+    "villages": [
+        {
+            "id": "nimapara-town",
+            "name_en": "Nimapara",
+            "name_od": "ନିମାପାଡ଼ା",
+            "gp": "Nimapara",
+            "population": 28000
+        },
+        {
+            "id": "pipili-nm",
+            "name_en": "Pipili",
+            "name_od": "ପିପିଲି",
+            "gp": "Pipili",
+            "population": 18000
+        },
+        {
+            "id": "kakatpur-nm",
+            "name_en": "Kakatpur",
+            "name_od": "କାକଟପୁର",
+            "gp": "Kakatpur",
+            "population": 12000
+        },
+        {
+            "id": "konark-nm",
+            "name_en": "Konark",
+            "name_od": "କୋଣାର୍କ",
+            "gp": "Konark",
+            "population": 8500
+        },
+        {
+            "id": "chandrabhaga",
+            "name_en": "Chandrabhaga",
+            "name_od": "ଚନ୍ଦ୍ରଭାଗା",
+            "gp": "Chandrabhaga",
+            "population": 3500
+        },
+        {
+            "id": "beleswar",
+            "name_en": "Beleswar",
+            "name_od": "ବେଲେଶ୍ୱର",
+            "gp": "Beleswar",
+            "population": 4200
+        },
+        {
+            "id": "ramchandi",
+            "name_en": "Ramchandi",
+            "name_od": "ରାମଚଣ୍ଡି",
+            "gp": "Ramchandi",
+            "population": 2800
+        },
+        {
+            "id": "panchama",
+            "name_en": "Panchama",
+            "name_od": "ପଞ୍ଚମ",
+            "gp": "Panchama",
+            "population": 5100
+        },
+        {
+            "id": "kurujanga",
+            "name_en": "Kurujanga",
+            "name_od": "କୁରୁଜଙ୍ଗ",
+            "gp": "Kurujanga",
+            "population": 3800
+        },
+        {
+            "id": "rebana",
+            "name_en": "Rebana",
+            "name_od": "ରେବାଣା",
+            "gp": "Rebana",
+            "population": 2500
+        }
+    ]
+}

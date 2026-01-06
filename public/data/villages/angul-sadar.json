@@ -1,0 +1,76 @@
+{
+    "block_id": "angul-sadar",
+    "district_id": "angul",
+    "villages": [
+        {
+            "id": "angul-town",
+            "name_en": "Angul Town",
+            "name_od": "ଆନ୍ଗୁଳ",
+            "gp": "Angul",
+            "population": 85000
+        },
+        {
+            "id": "talcher-a",
+            "name_en": "Talcher",
+            "name_od": "ତାଳଚେର",
+            "gp": "Talcher",
+            "population": 72000
+        },
+        {
+            "id": "meramundali",
+            "name_en": "Meramundali",
+            "name_od": "ମେରାମୁଣ୍ଡାଲି",
+            "gp": "Meramundali",
+            "population": 15000
+        },
+        {
+            "id": "nalco-nagar",
+            "name_en": "NALCO Nagar",
+            "name_od": "ନାଲକୋ ନଗର",
+            "gp": "NALCO",
+            "population": 25000
+        },
+        {
+            "id": "kusumonigoda",
+            "name_en": "Kusumonigoda",
+            "name_od": "କୁସୁମୋନିଗୋଡ଼ା",
+            "gp": "Kusumonigoda",
+            "population": 4800
+        },
+        {
+            "id": "jarapada",
+            "name_en": "Jarapada",
+            "name_od": "ଜରାପଡ଼ା",
+            "gp": "Jarapada",
+            "population": 5200
+        },
+        {
+            "id": "bantala",
+            "name_en": "Bantala",
+            "name_od": "ବାନ୍ତାଲା",
+            "gp": "Bantala",
+            "population": 3800
+        },
+        {
+            "id": "kaniha-a",
+            "name_en": "Kaniha",
+            "name_od": "କଣିହା",
+            "gp": "Kaniha",
+            "population": 8500
+        },
+        {
+            "id": "deulbera",
+            "name_en": "Deulbera",
+            "name_od": "ଦେଉଳବେରା",
+            "gp": "Deulbera",
+            "population": 2900
+        },
+        {
+            "id": "handapa",
+            "name_en": "Handapa",
+            "name_od": "ହଣ୍ଡାପା",
+            "gp": "Handapa",
+            "population": 3500
+        }
+    ]
+}

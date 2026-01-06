@@ -1,0 +1,76 @@
+{
+    "block_id": "brahmagiri",
+    "district_id": "puri",
+    "villages": [
+        {
+            "id": "brahmagiri-town",
+            "name_en": "Brahmagiri",
+            "name_od": "ବ୍ରହ୍ମଗିରି",
+            "gp": "Brahmagiri",
+            "population": 18000
+        },
+        {
+            "id": "balugan",
+            "name_en": "Balugan",
+            "name_od": "ବାଲୁଗାଁ",
+            "gp": "Balugan",
+            "population": 8500
+        },
+        {
+            "id": "sakhigopal",
+            "name_en": "Sakhigopal",
+            "name_od": "ସଖୀଗୋପାଳ",
+            "gp": "Sakhigopal",
+            "population": 12000
+        },
+        {
+            "id": "satpada",
+            "name_en": "Satpada",
+            "name_od": "ସାତପଡ଼ା",
+            "gp": "Satpada",
+            "population": 6500
+        },
+        {
+            "id": "chilika-br",
+            "name_en": "Chilika",
+            "name_od": "ଚିଲିକା",
+            "gp": "Chilika",
+            "population": 4200
+        },
+        {
+            "id": "chandanpur-br",
+            "name_en": "Chandanpur",
+            "name_od": "ଚନ୍ଦନପୁର",
+            "gp": "Chandanpur",
+            "population": 5800
+        },
+        {
+            "id": "niali-br",
+            "name_en": "Niali",
+            "name_od": "ନିଆଳି",
+            "gp": "Niali",
+            "population": 7200
+        },
+        {
+            "id": "kotinada",
+            "name_en": "Kotinada",
+            "name_od": "କୋଟିନାଡ଼ା",
+            "gp": "Kotinada",
+            "population": 3500
+        },
+        {
+            "id": "bhusandpur-br",
+            "name_en": "Bhusandpur",
+            "name_od": "ଭୁସଣ୍ଡପୁର",
+            "gp": "Bhusandpur",
+            "population": 4100
+        },
+        {
+            "id": "rangapur",
+            "name_en": "Rangapur",
+            "name_od": "ରଙ୍ଗାପୁର",
+            "gp": "Rangapur",
+            "population": 2800
+        }
+    ]
+}

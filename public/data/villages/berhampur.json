@@ -1,0 +1,90 @@
+{
+    "block_id": "berhampur",
+    "district_id": "ganjam",
+    "villages": [
+        {
+            "id": "berhampur-city",
+            "name_en": "Berhampur City",
+            "name_od": "ବ୍ରହ୍ମପୁର",
+            "gp": "Berhampur",
+            "population": 356000
+        },
+        {
+            "id": "gopalpur",
+            "name_en": "Gopalpur",
+            "name_od": "ଗୋପାଳପୁର",
+            "gp": "Gopalpur",
+            "population": 15000
+        },
+        {
+            "id": "nimakhandi",
+            "name_en": "Nimakhandi",
+            "name_od": "ନିମଖଣ୍ଡି",
+            "gp": "Nimakhandi",
+            "population": 8500
+        },
+        {
+            "id": "ambapua",
+            "name_en": "Ambapua",
+            "name_od": "ଆମ୍ବାପୁଆ",
+            "gp": "Ambapua",
+            "population": 12000
+        },
+        {
+            "id": "engineering-school",
+            "name_en": "Engineering School Area",
+            "name_od": "ଇଞ୍ଜିନିୟରିଂ ସ୍କୁଲ",
+            "gp": "Ambapua",
+            "population": 25000
+        },
+        {
+            "id": "gosaninuagaon",
+            "name_en": "Gosaninuagaon",
+            "name_od": "ଗୋସାଣିନୂଆଗାଁ",
+            "gp": "Gosaninuagaon",
+            "population": 28000
+        },
+        {
+            "id": "kamapalli",
+            "name_en": "Kamapalli",
+            "name_od": "କାମାପଲ୍ଲୀ",
+            "gp": "Kamapalli",
+            "population": 9500
+        },
+        {
+            "id": "brahmapur-r",
+            "name_en": "Brahmapur Road",
+            "name_od": "ବ୍ରହ୍ମପୁର ରୋଡ଼",
+            "gp": "Kamapalli",
+            "population": 6200
+        },
+        {
+            "id": "ankuli",
+            "name_en": "Ankuli",
+            "name_od": "ଆଙ୍କୁଲି",
+            "gp": "Ankuli",
+            "population": 4800
+        },
+        {
+            "id": "khodasingi",
+            "name_en": "Khodasingi",
+            "name_od": "ଖୋଡ଼ାସିଙ୍ଗି",
+            "gp": "Khodasingi",
+            "population": 18000
+        },
+        {
+            "id": "goilundi",
+            "name_en": "Goilundi",
+            "name_od": "ଗୋଇଲୁଣ୍ଡି",
+            "gp": "Goilundi",
+            "population": 7500
+        },
+        {
+            "id": "baidyanathpur-b",
+            "name_en": "Baidyanathpur",
+            "name_od": "ବୈଦ୍ୟନାଥପୁର",
+            "gp": "Baidyanathpur",
+            "population": 11000
+        }
+    ]
+}

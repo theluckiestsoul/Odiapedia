@@ -1,0 +1,118 @@
+{
+    "block_id": "balasore-sadar",
+    "district_id": "balasore",
+    "villages": [
+        {
+            "id": "chandipur",
+            "name_en": "Chandipur",
+            "name_od": "ଚାନ୍ଦିପୁର",
+            "gp": "Chandipur",
+            "population": 8500
+        },
+        {
+            "id": "dagara",
+            "name_en": "Dagara",
+            "name_od": "ଦଗରା",
+            "gp": "Chandipur",
+            "population": 3200
+        },
+        {
+            "id": "kasafal",
+            "name_en": "Kasafal",
+            "name_od": "କସଫାଲ",
+            "gp": "Kasafal",
+            "population": 4800
+        },
+        {
+            "id": "rasalpur",
+            "name_en": "Rasalpur",
+            "name_od": "ରସାଲପୁର",
+            "gp": "Kasafal",
+            "population": 2900
+        },
+        {
+            "id": "gobindapur",
+            "name_en": "Gobindapur",
+            "name_od": "ଗୋବିନ୍ଦପୁର",
+            "gp": "Gobindapur",
+            "population": 5600
+        },
+        {
+            "id": "balimunda",
+            "name_en": "Balimunda",
+            "name_od": "ବାଲିମୁଣ୍ଡା",
+            "gp": "Gobindapur",
+            "population": 3100
+        },
+        {
+            "id": "haladipada",
+            "name_en": "Haladipada",
+            "name_od": "ହଳଦିପଡ଼ା",
+            "gp": "Haladipada",
+            "population": 6200
+        },
+        {
+            "id": "jagannathpur",
+            "name_en": "Jagannathpur",
+            "name_od": "ଜଗନ୍ନାଥପୁର",
+            "gp": "Haladipada",
+            "population": 4100
+        },
+        {
+            "id": "nuagaon",
+            "name_en": "Nuagaon",
+            "name_od": "ନୂଆଗାଁ",
+            "gp": "Nuagaon",
+            "population": 3800
+        },
+        {
+            "id": "baidyanathpur",
+            "name_en": "Baidyanathpur",
+            "name_od": "ବୈଦ୍ୟନାଥପୁର",
+            "gp": "Nuagaon",
+            "population": 2500
+        },
+        {
+            "id": "sainso",
+            "name_en": "Sainso",
+            "name_od": "ସାଇନ୍ସୋ",
+            "gp": "Sainso",
+            "population": 5100
+        },
+        {
+            "id": "patrapada",
+            "name_en": "Patrapada",
+            "name_od": "ପାତ୍ରପଡ଼ା",
+            "gp": "Sainso",
+            "population": 2800
+        },
+        {
+            "id": "kamarda",
+            "name_en": "Kamarda",
+            "name_od": "କାମାର୍ଦା",
+            "gp": "Kamarda",
+            "population": 4500
+        },
+        {
+            "id": "simulia",
+            "name_en": "Old Simulia",
+            "name_od": "ପୁରୁଣା ସିମୁଳିଆ",
+            "gp": "Kamarda",
+            "population": 3200
+        },
+        {
+            "id": "khantapada",
+            "name_en": "Khantapada",
+            "name_od": "ଖଣ୍ଟାପଡ଼ା",
+            "gp": "Khantapada",
+            "population": 3900
+        },
+        {
+            "id": "gudgudia",
+            "name_en": "Gudgudia",
+            "name_od": "ଗୁଡ଼ଗୁଡ଼ିଆ",
+            "gp": "Khantapada",
+            "population": 2100
+        }
+    ]
+}

@@ -1,0 +1,76 @@
+{
+    "block_id": "chhatrapur",
+    "district_id": "ganjam",
+    "villages": [
+        {
+            "id": "chhatrapur-town",
+            "name_en": "Chhatrapur",
+            "name_od": "ଛତ୍ରପୁର",
+            "gp": "Chhatrapur",
+            "population": 35000
+        },
+        {
+            "id": "gopalpur-gj",
+            "name_en": "Gopalpur Beach",
+            "name_od": "ଗୋପାଳପୁର ସମୁଦ୍ରତଟ",
+            "gp": "Gopalpur",
+            "population": 15000
+        },
+        {
+            "id": "rambha",
+            "name_en": "Rambha",
+            "name_od": "ରମ୍ଭା",
+            "gp": "Rambha",
+            "population": 8500
+        },
+        {
+            "id": "khallikote-gj",
+            "name_en": "Khallikote",
+            "name_od": "ଖଲ୍ଲିକୋଟ",
+            "gp": "Khallikote",
+            "population": 22000
+        },
+        {
+            "id": "ganjam-town",
+            "name_en": "Ganjam Town",
+            "name_od": "ଗଞ୍ଜାମ",
+            "gp": "Ganjam",
+            "population": 12000
+        },
+        {
+            "id": "podapadar",
+            "name_en": "Podapadar",
+            "name_od": "ପୋଡ଼ାପଡ଼ର",
+            "gp": "Podapadar",
+            "population": 4500
+        },
+        {
+            "id": "dharakote-gj",
+            "name_en": "Dharakote",
+            "name_od": "ଧାରାକୋଟ",
+            "gp": "Dharakote",
+            "population": 6200
+        },
+        {
+            "id": "narendrapur",
+            "name_en": "Narendrapur",
+            "name_od": "ନରେନ୍ଦ୍ରପୁର",
+            "gp": "Narendrapur",
+            "population": 3800
+        },
+        {
+            "id": "humma",
+            "name_en": "Humma",
+            "name_od": "ହୁମ୍ମା",
+            "gp": "Humma",
+            "population": 5100
+        },
+        {
+            "id": "kanisi",
+            "name_en": "Kanisi",
+            "name_od": "କାନିସି",
+            "gp": "Kanisi",
+            "population": 2900
+        }
+    ]
+}

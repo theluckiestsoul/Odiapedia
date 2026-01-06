@@ -1,0 +1,76 @@
+{
+    "block_id": "baripada",
+    "district_id": "mayurbhanj",
+    "villages": [
+        {
+            "id": "baripada-town",
+            "name_en": "Baripada Town",
+            "name_od": "ବାରିପଦା",
+            "gp": "Baripada",
+            "population": 115000
+        },
+        {
+            "id": "bangiriposi-m",
+            "name_en": "Bangiriposi",
+            "name_od": "ବାଙ୍ଗିରିପୋଷି",
+            "gp": "Bangiriposi",
+            "population": 12000
+        },
+        {
+            "id": "rasgovindpur",
+            "name_en": "Rasgovindpur",
+            "name_od": "ରାସଗୋବିନ୍ଦପୁର",
+            "gp": "Rasgovindpur",
+            "population": 8500
+        },
+        {
+            "id": "takatpur",
+            "name_en": "Takatpur",
+            "name_od": "ତକତପୁର",
+            "gp": "Takatpur",
+            "population": 6200
+        },
+        {
+            "id": "kuliana",
+            "name_en": "Kuliana",
+            "name_od": "କୁଳିଆନା",
+            "gp": "Kuliana",
+            "population": 4800
+        },
+        {
+            "id": "morada",
+            "name_en": "Morada",
+            "name_od": "ମୋରାଡ଼ା",
+            "gp": "Morada",
+            "population": 5500
+        },
+        {
+            "id": "sarat",
+            "name_en": "Sarat",
+            "name_od": "ସାରାତ",
+            "gp": "Sarat",
+            "population": 3800
+        },
+        {
+            "id": "khunta-m",
+            "name_en": "Khunta",
+            "name_od": "ଖୁଣ୍ଟା",
+            "gp": "Khunta",
+            "population": 7200
+        },
+        {
+            "id": "similipal-gate",
+            "name_en": "Similipal Gate",
+            "name_od": "ସିମିଳିପାଳ",
+            "gp": "Similipal",
+            "population": 2500
+        },
+        {
+            "id": "bhanjpur",
+            "name_en": "Bhanjpur",
+            "name_od": "ଭଞ୍ଜପୁର",
+            "gp": "Bhanjpur",
+            "population": 4100
+        }
+    ]
+}

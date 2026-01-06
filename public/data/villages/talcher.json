@@ -1,0 +1,69 @@
+{
+    "block_id": "talcher",
+    "district_id": "angul",
+    "villages": [
+        {
+            "id": "talcher-town",
+            "name_en": "Talcher Town",
+            "name_od": "ତାଳଚେର",
+            "gp": "Talcher",
+            "population": 72000
+        },
+        {
+            "id": "talcher-thermal",
+            "name_en": "Talcher Thermal",
+            "name_od": "ତାଳଚେର ଥର୍ମାଲ",
+            "gp": "Talcher Thermal",
+            "population": 18000
+        },
+        {
+            "id": "hindol-road",
+            "name_en": "Hindol Road",
+            "name_od": "ହିନ୍ଦୋଲ ରୋଡ଼",
+            "gp": "Hindol Road",
+            "population": 8500
+        },
+        {
+            "id": "mcl-nagar",
+            "name_en": "MCL Nagar",
+            "name_od": "ଏମସିଏଲ ନଗର",
+            "gp": "MCL",
+            "population": 15000
+        },
+        {
+            "id": "jagannathpur-tc",
+            "name_en": "Jagannathpur",
+            "name_od": "ଜଗନ୍ନାଥପୁର",
+            "gp": "Jagannathpur",
+            "population": 5500
+        },
+        {
+            "id": "nandira",
+            "name_en": "Nandira",
+            "name_od": "ନନ୍ଦିରା",
+            "gp": "Nandira",
+            "population": 4200
+        },
+        {
+            "id": "santhapada",
+            "name_en": "Santhapada",
+            "name_od": "ସାନ୍ଥାପଡ଼ା",
+            "gp": "Santhapada",
+            "population": 3800
+        },
+        {
+            "id": "koliha",
+            "name_en": "Koliha",
+            "name_od": "କଳିହା",
+            "gp": "Koliha",
+            "population": 2900
+        },
+        {
+            "id": "deuldiha",
+            "name_en": "Deuldiha",
+            "name_od": "ଦେଉଳଡ଼ିହା",
+            "gp": "Deuldiha",
+            "population": 4100
+        }
+    ]
+}

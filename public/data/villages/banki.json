@@ -1,0 +1,62 @@
+{
+    "block_id": "banki",
+    "district_id": "cuttack",
+    "villages": [
+        {
+            "id": "banki-town",
+            "name_en": "Banki",
+            "name_od": "ବାଙ୍କି",
+            "gp": "Banki",
+            "population": 22000
+        },
+        {
+            "id": "athgarh-ct",
+            "name_en": "Athgarh",
+            "name_od": "ଅଠଗଡ଼",
+            "gp": "Athgarh",
+            "population": 18000
+        },
+        {
+            "id": "tigiria-ct",
+            "name_en": "Tigiria",
+            "name_od": "ଟିଗିରିଆ",
+            "gp": "Tigiria",
+            "population": 12000
+        },
+        {
+            "id": "baramba-ct",
+            "name_en": "Baramba",
+            "name_od": "ବରମ୍ବା",
+            "gp": "Baramba",
+            "population": 15000
+        },
+        {
+            "id": "narasinghpur-ct",
+            "name_en": "Narasinghpur",
+            "name_od": "ନରସିଂହପୁର",
+            "gp": "Narasinghpur",
+            "population": 8500
+        },
+        {
+            "id": "dampara-ct",
+            "name_en": "Dampara",
+            "name_od": "ଦାମପାଡ଼ା",
+            "gp": "Dampara",
+            "population": 5200
+        },
+        {
+            "id": "kantapada-ct",
+            "name_en": "Kantapada",
+            "name_od": "କାନ୍ତାପଡ଼ା",
+            "gp": "Kantapada",
+            "population": 4800
+        },
+        {
+            "id": "nischintakoili-ct",
+            "name_en": "Nischintakoili",
+            "name_od": "ନିଶ୍ଚିନ୍ତକୋଇଲି",
+            "gp": "Nischintakoili",
+            "population": 6200
+        }
+    ]
+}

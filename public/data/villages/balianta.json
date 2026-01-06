@@ -1,0 +1,62 @@
+{
+    "block_id": "balianta",
+    "district_id": "khurda",
+    "villages": [
+        {
+            "id": "gothapatna",
+            "name_en": "Gothapatna",
+            "name_od": "ଗୋଠପାଟଣା",
+            "gp": "Gothapatna",
+            "population": 15000
+        },
+        {
+            "id": "daya-west",
+            "name_en": "Daya West",
+            "name_od": "ଦୟା ପଶ୍ଚିମ",
+            "gp": "Daya",
+            "population": 8500
+        },
+        {
+            "id": "balianta-town",
+            "name_en": "Balianta",
+            "name_od": "ବାଲିଅନ୍ତା",
+            "gp": "Balianta",
+            "population": 12000
+        },
+        {
+            "id": "malipada",
+            "name_en": "Malipada",
+            "name_od": "ମାଳିପଡ଼ା",
+            "gp": "Malipada",
+            "population": 6200
+        },
+        {
+            "id": "gopalpur-kh",
+            "name_en": "Gopalpur",
+            "name_od": "ଗୋପାଳପୁର",
+            "gp": "Gopalpur",
+            "population": 4800
+        },
+        {
+            "id": "nuagaon-kh",
+            "name_en": "Nuagaon",
+            "name_od": "ନୂଆଗାଁ",
+            "gp": "Nuagaon",
+            "population": 5500
+        },
+        {
+            "id": "andhari",
+            "name_en": "Andhari",
+            "name_od": "ଆନ୍ଧାରି",
+            "gp": "Andhari",
+            "population": 3200
+        },
+        {
+            "id": "pahala",
+            "name_en": "Pahala",
+            "name_od": "ପାହାଳ",
+            "gp": "Pahala",
+            "population": 4100
+        }
+    ]
+}

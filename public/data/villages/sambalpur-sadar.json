@@ -1,0 +1,76 @@
+{
+    "block_id": "sambalpur-sadar",
+    "district_id": "sambalpur",
+    "villages": [
+        {
+            "id": "sambalpur-city",
+            "name_en": "Sambalpur City",
+            "name_od": "ସମ୍ବଲପୁର",
+            "gp": "Sambalpur",
+            "population": 210000
+        },
+        {
+            "id": "budharaja",
+            "name_en": "Budharaja",
+            "name_od": "ବୁଦ୍ଧରାଜା",
+            "gp": "Budharaja",
+            "population": 45000
+        },
+        {
+            "id": "khetrajpur",
+            "name_en": "Khetrajpur",
+            "name_od": "କ୍ଷେତ୍ରଜପୁର",
+            "gp": "Khetrajpur",
+            "population": 38000
+        },
+        {
+            "id": "modipara",
+            "name_en": "Modipara",
+            "name_od": "ମୋଦୀପାରା",
+            "gp": "Modipara",
+            "population": 22000
+        },
+        {
+            "id": "ainthapali",
+            "name_en": "Ainthapali",
+            "name_od": "ଆଇନଥାପାଲି",
+            "gp": "Ainthapali",
+            "population": 18000
+        },
+        {
+            "id": "dhanupali",
+            "name_en": "Dhanupali",
+            "name_od": "ଧାନୁପାଲି",
+            "gp": "Dhanupali",
+            "population": 15000
+        },
+        {
+            "id": "burla",
+            "name_en": "Burla",
+            "name_od": "ବୁଲ",
+            "gp": "Burla",
+            "population": 52000
+        },
+        {
+            "id": "hirakud",
+            "name_en": "Hirakud",
+            "name_od": "ହୀରାକୁଦ",
+            "gp": "Hirakud",
+            "population": 28000
+        },
+        {
+            "id": "katarbaga",
+            "name_en": "Katarbaga",
+            "name_od": "କାଟାରବାଗ",
+            "gp": "Katarbaga",
+            "population": 8500
+        },
+        {
+            "id": "sakhipara",
+            "name_en": "Sakhipara",
+            "name_od": "ସଖୀପାରା",
+            "gp": "Sakhipara",
+            "population": 12000
+        }
+    ]
+}

@@ -1,0 +1,104 @@
+{
+    "block_id": "cuttack-sadar",
+    "district_id": "cuttack",
+    "villages": [
+        {
+            "id": "choudwar",
+            "name_en": "Choudwar",
+            "name_od": "ଚୌଦ୍ୱାର",
+            "gp": "Choudwar",
+            "population": 28000
+        },
+        {
+            "id": "jobra",
+            "name_en": "Jobra",
+            "name_od": "ଯୋବ୍ରା",
+            "gp": "Jobra",
+            "population": 15000
+        },
+        {
+            "id": "madhupatna",
+            "name_en": "Madhupatna",
+            "name_od": "ମଧୁପାଟଣା",
+            "gp": "Madhupatna",
+            "population": 22000
+        },
+        {
+            "id": "bidanasi",
+            "name_en": "Bidanasi",
+            "name_od": "ବିଡ଼ାନାସି",
+            "gp": "Bidanasi",
+            "population": 35000
+        },
+        {
+            "id": "kathajodi",
+            "name_en": "Kathajodi",
+            "name_od": "କାଠଜୋଡ଼ି",
+            "gp": "Kathajodi",
+            "population": 12000
+        },
+        {
+            "id": "jagatpur",
+            "name_en": "Jagatpur",
+            "name_od": "ଜଗତପୁର",
+            "gp": "Jagatpur",
+            "population": 18000
+        },
+        {
+            "id": "malgodown",
+            "name_en": "Malgodown",
+            "name_od": "ମାଲଗୋଡାଉନ",
+            "gp": "Jagatpur",
+            "population": 8500
+        },
+        {
+            "id": "buxi-bazar",
+            "name_en": "Buxi Bazar",
+            "name_od": "ବକ୍ସି ବଜାର",
+            "gp": "Buxi Bazar",
+            "population": 16000
+        },
+        {
+            "id": "college-square",
+            "name_en": "College Square",
+            "name_od": "କଲେଜ ସ୍କୋୟାର",
+            "gp": "Buxi Bazar",
+            "population": 25000
+        },
+        {
+            "id": "tulsipur",
+            "name_en": "Tulsipur",
+            "name_od": "ତୁଳସୀପୁର",
+            "gp": "Tulsipur",
+            "population": 9500
+        },
+        {
+            "id": "kandarpur",
+            "name_en": "Kandarpur",
+            "name_od": "କନ୍ଦରପୁର",
+            "gp": "Kandarpur",
+            "population": 7200
+        },
+        {
+            "id": "mundali",
+            "name_en": "Mundali",
+            "name_od": "ମୁଣ୍ଡାଲି",
+            "gp": "Mundali",
+            "population": 8800
+        },
+        {
+            "id": "naraj",
+            "name_en": "Naraj",
+            "name_od": "ନରାଜ",
+            "gp": "Naraj",
+            "population": 5600
+        },
+        {
+            "id": "badamba-r",
+            "name_en": "Badamba Road",
+            "name_od": "ବାଦମ୍ବା ରୋଡ଼",
+            "gp": "Naraj",
+            "population": 4200
+        }
+    ]
+}

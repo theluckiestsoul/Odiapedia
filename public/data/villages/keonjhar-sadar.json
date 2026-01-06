@@ -1,0 +1,76 @@
+{
+    "block_id": "keonjhar-sadar",
+    "district_id": "keonjhar",
+    "villages": [
+        {
+            "id": "keonjhar-town",
+            "name_en": "Keonjhar Town",
+            "name_od": "କେଉଁଝର",
+            "gp": "Keonjhar",
+            "population": 75000
+        },
+        {
+            "id": "barbil",
+            "name_en": "Barbil",
+            "name_od": "ବାରବିଲ",
+            "gp": "Barbil",
+            "population": 45000
+        },
+        {
+            "id": "joda-k",
+            "name_en": "Joda",
+            "name_od": "ଜୋଡ଼ା",
+            "gp": "Joda",
+            "population": 52000
+        },
+        {
+            "id": "champua-k",
+            "name_en": "Champua",
+            "name_od": "ଚମ୍ପୁଆ",
+            "gp": "Champua",
+            "population": 28000
+        },
+        {
+            "id": "telkoi-k",
+            "name_en": "Telkoi",
+            "name_od": "ତେଲକୋଇ",
+            "gp": "Telkoi",
+            "population": 8500
+        },
+        {
+            "id": "jhumpura-k",
+            "name_en": "Jhumpura",
+            "name_od": "ଝୁମ୍ପୁରା",
+            "gp": "Jhumpura",
+            "population": 6200
+        },
+        {
+            "id": "ghatagaon-k",
+            "name_en": "Ghatagaon",
+            "name_od": "ଘାଟଗାଁ",
+            "gp": "Ghatagaon",
+            "population": 4800
+        },
+        {
+            "id": "patna-k",
+            "name_en": "Patna",
+            "name_od": "ପାଟଣା",
+            "gp": "Patna",
+            "population": 5500
+        },
+        {
+            "id": "banspal-k",
+            "name_en": "Banspal",
+            "name_od": "ବାଂସପାଲ",
+            "gp": "Banspal",
+            "population": 3200
+        },
+        {
+            "id": "harichandanpur-k",
+            "name_en": "Harichandanpur",
+            "name_od": "ହରିଚନ୍ଦନପୁର",
+            "gp": "Harichandanpur",
+            "population": 4100
+        }
+    ]
+}

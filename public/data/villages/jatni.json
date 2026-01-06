@@ -1,0 +1,76 @@
+{
+    "block_id": "jatni",
+    "district_id": "khurda",
+    "villages": [
+        {
+            "id": "jatni-town",
+            "name_en": "Jatni",
+            "name_od": "ଜଟଣି",
+            "gp": "Jatni",
+            "population": 28000
+        },
+        {
+            "id": "gangapada",
+            "name_en": "Gangapada",
+            "name_od": "ଗଙ୍ଗାପଡ଼ା",
+            "gp": "Gangapada",
+            "population": 6500
+        },
+        {
+            "id": "hansapal",
+            "name_en": "Hansapal",
+            "name_od": "ହଂସପାଲ",
+            "gp": "Hansapal",
+            "population": 5800
+        },
+        {
+            "id": "sundarpada",
+            "name_en": "Sundarpada",
+            "name_od": "ସୁନ୍ଦରପଡ଼ା",
+            "gp": "Sundarpada",
+            "population": 12000
+        },
+        {
+            "id": "sisupalgarh",
+            "name_en": "Sisupalgarh",
+            "name_od": "ଶିଶୁପାଳଗଡ଼",
+            "gp": "Sisupalgarh",
+            "population": 4200
+        },
+        {
+            "id": "arakhpur",
+            "name_en": "Arakhpur",
+            "name_od": "ଆରାଖପୁର",
+            "gp": "Arakhpur",
+            "population": 3800
+        },
+        {
+            "id": "gurujang",
+            "name_en": "Gurujang",
+            "name_od": "ଗୁରୁଜଙ୍ଗ",
+            "gp": "Gurujang",
+            "population": 5100
+        },
+        {
+            "id": "rameswar",
+            "name_en": "Rameswar",
+            "name_od": "ରାମେଶ୍ୱର",
+            "gp": "Rameswar",
+            "population": 4500
+        },
+        {
+            "id": "khuntapur",
+            "name_en": "Khuntapur",
+            "name_od": "ଖୁଣ୍ଟାପୁର",
+            "gp": "Khuntapur",
+            "population": 3200
+        },
+        {
+            "id": "padanpur",
+            "name_en": "Padanpur",
+            "name_od": "ପଦାନପୁର",
+            "gp": "Padanpur",
+            "population": 2800
+        }
+    ]
+}

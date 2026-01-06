@@ -1,0 +1,76 @@
+{
+    "block_id": "jajpur-sadar",
+    "district_id": "jajpur",
+    "villages": [
+        {
+            "id": "jajpur-town",
+            "name_en": "Jajpur Town",
+            "name_od": "ଯାଜପୁର",
+            "gp": "Jajpur",
+            "population": 52000
+        },
+        {
+            "id": "jajpur-road",
+            "name_en": "Jajpur Road",
+            "name_od": "ଯାଜପୁର ରୋଡ଼",
+            "gp": "Jajpur Road",
+            "population": 35000
+        },
+        {
+            "id": "vyasanagar-jj",
+            "name_en": "Vyasanagar",
+            "name_od": "ବ୍ୟାସନଗର",
+            "gp": "Vyasanagar",
+            "population": 48000
+        },
+        {
+            "id": "binjharpur-jj",
+            "name_en": "Binjharpur",
+            "name_od": "ବିନ୍ଝାରପୁର",
+            "gp": "Binjharpur",
+            "population": 15000
+        },
+        {
+            "id": "dharmasala-jj",
+            "name_en": "Dharmasala",
+            "name_od": "ଧର୍ମଶାଳା",
+            "gp": "Dharmasala",
+            "population": 8500
+        },
+        {
+            "id": "sukinda-jj",
+            "name_en": "Sukinda",
+            "name_od": "ସୁକିନ୍ଦା",
+            "gp": "Sukinda",
+            "population": 22000
+        },
+        {
+            "id": "tomka",
+            "name_en": "Tomka",
+            "name_od": "ତୋମକା",
+            "gp": "Tomka",
+            "population": 6200
+        },
+        {
+            "id": "dasarathpur-jj",
+            "name_en": "Dasarathpur",
+            "name_od": "ଦଶରଥପୁର",
+            "gp": "Dasarathpur",
+            "population": 12000
+        },
+        {
+            "id": "korei-jj",
+            "name_en": "Korei",
+            "name_od": "କୋରେଇ",
+            "gp": "Korei",
+            "population": 8000
+        },
+        {
+            "id": "danagadi-jj",
+            "name_en": "Danagadi",
+            "name_od": "ଦାନଗଡ଼ି",
+            "gp": "Danagadi",
+            "population": 4500
+        }
+    ]
+}

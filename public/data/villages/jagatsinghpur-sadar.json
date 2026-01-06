@@ -1,0 +1,76 @@
+{
+    "block_id": "jagatsinghpur-sadar",
+    "district_id": "jagatsinghpur",
+    "villages": [
+        {
+            "id": "jagatsinghpur-town",
+            "name_en": "Jagatsinghpur Town",
+            "name_od": "ଯାଜପୁର",
+            "gp": "Jagatsinghpur",
+            "population": 28000
+        },
+        {
+            "id": "paradeep",
+            "name_en": "Paradeep",
+            "name_od": "ପାରାଦ୍ୱୀପ",
+            "gp": "Paradeep",
+            "population": 85000
+        },
+        {
+            "id": "paradeep-port",
+            "name_en": "Paradeep Port",
+            "name_od": "ପାରାଦ୍ୱୀପ ବନ୍ଦର",
+            "gp": "Paradeep Port",
+            "population": 35000
+        },
+        {
+            "id": "erasama-js",
+            "name_en": "Erasama",
+            "name_od": "ଏର୍ସାମା",
+            "gp": "Erasama",
+            "population": 12000
+        },
+        {
+            "id": "balikuda-js",
+            "name_en": "Balikuda",
+            "name_od": "ବାଲିକୁଦା",
+            "gp": "Balikuda",
+            "population": 8500
+        },
+        {
+            "id": "tirtol-js",
+            "name_en": "Tirtol",
+            "name_od": "ତିର୍ତ୍ତୋଲ",
+            "gp": "Tirtol",
+            "population": 6200
+        },
+        {
+            "id": "nuagaon-js",
+            "name_en": "Nuagaon",
+            "name_od": "ନୂଆଗାଁ",
+            "gp": "Nuagaon",
+            "population": 4800
+        },
+        {
+            "id": "kujang-js",
+            "name_en": "Kujang",
+            "name_od": "କୁଜଙ୍ଗ",
+            "gp": "Kujang",
+            "population": 5500
+        },
+        {
+            "id": "raghunathpur-js",
+            "name_en": "Raghunathpur",
+            "name_od": "ରଘୁନାଥପୁର",
+            "gp": "Raghunathpur",
+            "population": 3800
+        },
+        {
+            "id": "biridi-js",
+            "name_en": "Biridi",
+            "name_od": "ବିରିଡ଼ି",
+            "gp": "Biridi",
+            "population": 4200
+        }
+    ]
+}

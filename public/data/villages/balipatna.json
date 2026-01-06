@@ -1,0 +1,62 @@
+{
+    "block_id": "balipatna",
+    "district_id": "khurda",
+    "villages": [
+        {
+            "id": "balipatna-town",
+            "name_en": "Balipatna",
+            "name_od": "ବାଲିପାଟଣା",
+            "gp": "Balipatna",
+            "population": 12000
+        },
+        {
+            "id": "gambharimunda",
+            "name_en": "Gambharimunda",
+            "name_od": "ଗମ୍ଭାରୀମୁଣ୍ଡା",
+            "gp": "Gambharimunda",
+            "population": 5500
+        },
+        {
+            "id": "bainchua",
+            "name_en": "Bainchua",
+            "name_od": "ବାଇଁଚୁଆ",
+            "gp": "Bainchua",
+            "population": 4200
+        },
+        {
+            "id": "mania",
+            "name_en": "Mania",
+            "name_od": "ମାନିଆ",
+            "gp": "Mania",
+            "population": 3800
+        },
+        {
+            "id": "raghunathpur-bp",
+            "name_en": "Raghunathpur",
+            "name_od": "ରଘୁନାଥପୁର",
+            "gp": "Raghunathpur",
+            "population": 6200
+        },
+        {
+            "id": "nakhara",
+            "name_en": "Nakhara",
+            "name_od": "ନଖରା",
+            "gp": "Nakhara",
+            "population": 4500
+        },
+        {
+            "id": "kaipadar",
+            "name_en": "Kaipadar",
+            "name_od": "କାଇପଡ଼ର",
+            "gp": "Kaipadar",
+            "population": 3200
+        },
+        {
+            "id": "kuansh",
+            "name_en": "Kuansh",
+            "name_od": "କୁଆଁଶ",
+            "gp": "Kuansh",
+            "population": 2800
+        }
+    ]
+}
