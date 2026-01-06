@@ -41,6 +41,7 @@ const navLinks = [
     { href: "/history", label: "History", odia: "ଇତିହାସ" },
     { href: "/history/timeline", label: "Timeline", odia: "ସମୟରେଖା" },
     { href: "/calendar", label: "Calendar", odia: "ପଞ୍ଜିକା" },
+    { href: "/map", label: "Map", odia: "ମାନଚିତ୍ର" },
     { href: "/food", label: "Food", odia: "ଖାଦ୍ୟ" },
     { href: "/people", label: "People", odia: "ଲୋକ" },
     { href: "/about", label: "About", odia: "ବିଷୟରେ" },
