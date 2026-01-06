@@ -60,6 +60,14 @@ const sections = [
     gradient: "from-emerald-900 to-teal-950",
   },
   {
+    href: "/districts",
+    title: "Districts",
+    odia: "ଜିଲ୍ଲା",
+    description: "Explore the 30 districts of Odisha, from Angul to Sundargarh.",
+    icon: "📍",
+    gradient: "from-rose-900 to-pink-950",
+  },
+  {
     href: "/about",
     title: "About",
     odia: "ବିଷୟରେ",

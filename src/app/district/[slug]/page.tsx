@@ -4,6 +4,7 @@ import { getDistrictBySlug, getAllDistrictSlugs } from "@/lib/districts";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { useMDXComponents } from "@/../mdx-components";
 import Link from "next/link";
+import { getAllTehsilsForDistrict } from "@/lib/tehsils";
 
 interface PageProps {
     params: Promise<{ slug: string }>;
@@ -31,6 +32,35 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
             type: "article",
         },
     };
+}
+
+function TehsilList({ districtSlug }: { districtSlug: string }) {
+    const tehsils = getAllTehsilsForDistrict(districtSlug);
+
+    if (tehsils.length === 0) {
+        return (
+            <div className="col-span-full text-amber-500/40 italic text-sm py-4">
+                Tehsil entries coming soon...
+            </div>
+        );
+    }
+
+    return (
+        <>
+            {tehsils.map((tehsil) => (
+                <Link
+                    key={tehsil.slug}
+                    href={`/district/${districtSlug}/${tehsil.slug}`}
+                    className="group block p-4 rounded-lg bg-amber-950/20 border border-amber-900/30 hover:border-amber-500/50 hover:bg-amber-900/30 transition-all"
+                >
+                    <div className="flex justify-between items-center">
+                        <span className="text-amber-100 group-hover:text-amber-300 font-medium">{tehsil.title}</span>
+                        <span className="text-amber-500/50 group-hover:translate-x-1 transition-transform">→</span>
+                    </div>
+                </Link>
+            ))}
+        </>
+    );
 }
 
 export default async function DistrictPage({ params }: PageProps) {
@@ -81,6 +111,16 @@ export default async function DistrictPage({ params }: PageProps) {
                             <span className="block text-amber-500/60 text-xs uppercase tracking-wider mb-1">MLA / MP</span>
                             <span className="text-lg font-semibold text-amber-100">{district.mla_mp || "N/A"}</span>
                         </div>
+                    </div>
+                </section>
+
+                {/* Tehsils Section (Phase 2 Addition) */}
+                <section className="mb-12">
+                    <h2 className="text-2xl font-display font-bold text-amber-500 mb-6 flex items-center gap-2">
+                        <span>🏙️</span> Tehsils & Administrative Areas
+                    </h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <TehsilList districtSlug={district.slug} />
                     </div>
                 </section>
 

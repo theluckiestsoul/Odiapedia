@@ -65,6 +65,7 @@ const menuItems: MenuItem[] = [
         label: "Discover",
         odia: "ଆବିଷ୍କାର",
         children: [
+            { href: "/districts", label: "Districts", odia: "ଜିଲ୍ଲା", icon: "📍" },
             { href: "/map", label: "Map", odia: "ମାନଚିତ୍ର", icon: "🗺️" },
             { href: "/food", label: "Food", odia: "ଖାଦ୍ୟ", icon: "🍛" },
             { href: "/calendar", label: "Calendar", odia: "ପଞ୍ଜିକା", icon: "📅" },

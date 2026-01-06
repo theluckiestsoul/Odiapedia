@@ -4,6 +4,7 @@ const footerLinks = [
     { href: "/language", label: "Language" },
     { href: "/culture", label: "Culture" },
     { href: "/history", label: "History" },
+    { href: "/districts", label: "Districts" },
     { href: "/food", label: "Food" },
     { href: "/people", label: "People" },
     { href: "/about", label: "About" },
