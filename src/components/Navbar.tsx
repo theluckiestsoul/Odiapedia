@@ -4,6 +4,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import SearchModal from "./SearchModal";
+import LanguageToggle from "./LanguageToggle";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 // Article data for search (pre-built at module load)
 const searchArticles = [
@@ -47,6 +49,7 @@ const navLinks = [
 export default function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
+    const { language } = useLanguage();
 
     return (
         <>
@@ -82,9 +85,12 @@ export default function Navbar() {
                                     href={link.href}
                                     className="px-4 py-2 text-amber-100/80 hover:text-amber-300 transition-all duration-300 font-medium animated-underline"
                                 >
-                                    {link.label}
+                                    {language === 'od' ? link.odia : link.label}
                                 </Link>
                             ))}
+
+                            {/* Language Toggle */}
+                            <LanguageToggle />
 
                             {/* Search Button */}
                             <button
@@ -172,10 +178,16 @@ export default function Navbar() {
                                         onClick={() => setIsMenuOpen(false)}
                                         className="px-4 py-3 rounded-lg text-amber-100/80 hover:text-amber-300 hover:bg-amber-900/20 transition-all duration-200 font-medium flex justify-between items-center"
                                     >
-                                        <span>{link.label}</span>
-                                        <span className="text-amber-600/60 text-sm odia-text">{link.odia}</span>
+                                        <span>{language === 'od' ? link.odia : link.label}</span>
+                                        <span className="text-amber-600/60 text-sm odia-text">{language === 'od' ? link.label : link.odia}</span>
                                     </Link>
                                 ))}
+
+                                {/* Language Toggle for Mobile */}
+                                <div className="px-4 py-3 flex items-center justify-between">
+                                    <span className="text-amber-100/60">{language === 'od' ? 'ଭାଷା ପରିବର୍ତ୍ତନ' : 'Switch Language'}</span>
+                                    <LanguageToggle />
+                                </div>
                             </div>
                         </div>
                     )}
