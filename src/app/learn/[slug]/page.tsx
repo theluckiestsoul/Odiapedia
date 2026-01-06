@@ -1,3 +1,4 @@
+import remarkGfm from "remark-gfm";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
@@ -134,7 +135,15 @@ export default async function LessonPage({
 
                 <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="prose prose-invert prose-amber max-w-none">
-                        <MDXRemote source={lesson.content} components={components} />
+                        <MDXRemote
+                            source={lesson.content}
+                            components={components}
+                            options={{
+                                mdxOptions: {
+                                    remarkPlugins: [remarkGfm],
+                                }
+                            }}
+                        />
                     </div>
                 </div>
             </article>

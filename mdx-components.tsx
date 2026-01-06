@@ -89,7 +89,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
             </code>
         ),
         pre: ({ children }) => (
-            <pre className="bg-neutral-900 border border-amber-900/30 rounded-lg p-4 overflow-x-auto mb-6">
+            <pre className="bg-neutral-900 border border-amber-900/30 rounded-lg p-6 overflow-x-auto mb-6 text-amber-100/90 font-mono text-lg leading-relaxed">
                 {children}
             </pre>
         ),
@@ -113,19 +113,28 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
             <em className="text-amber-200/90 italic">{children}</em>
         ),
 
-        // Table
+        // Table - all elements needed for proper rendering
         table: ({ children }) => (
-            <div className="overflow-x-auto mb-6">
-                <table className="w-full border-collapse">{children}</table>
+            <div className="overflow-x-auto mb-8 rounded-lg border border-amber-900/30">
+                <table className="w-full border-collapse min-w-full">{children}</table>
             </div>
         ),
+        thead: ({ children }) => (
+            <thead className="bg-amber-900/40">{children}</thead>
+        ),
+        tbody: ({ children }) => (
+            <tbody className="divide-y divide-amber-900/20">{children}</tbody>
+        ),
+        tr: ({ children }) => (
+            <tr className="hover:bg-amber-900/10 transition-colors">{children}</tr>
+        ),
         th: ({ children }) => (
-            <th className="bg-amber-900/30 text-amber-200 font-semibold px-4 py-3 text-left border border-amber-900/30">
+            <th className="bg-amber-900/30 text-amber-200 font-semibold px-4 py-3 text-left border-b border-amber-900/30 text-sm uppercase tracking-wide">
                 {children}
             </th>
         ),
         td: ({ children }) => (
-            <td className="text-amber-100/80 px-4 py-3 border border-amber-900/30">
+            <td className="text-amber-100/80 px-4 py-3 text-lg odia-text">
                 {children}
             </td>
         ),
@@ -133,3 +142,4 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         ...components,
     };
 }
+
