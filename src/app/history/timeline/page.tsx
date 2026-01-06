@@ -1,19 +1,11 @@
 import { Metadata } from "next";
 import Link from "next/link";
+import TimelineView, { TimelineEvent } from "@/components/history/TimelineView";
 
 export const metadata: Metadata = {
     title: "Timeline of Odisha History",
     description: "Explore the complete history of Odisha from prehistoric times to modern era - ancient civilizations, empires, dynasties, and major events.",
 };
-
-interface TimelineEvent {
-    year: string;
-    era: string;
-    title: string;
-    titleOdia?: string;
-    description: string;
-    category: "prehistoric" | "ancient" | "medieval" | "colonial" | "modern";
-}
 
 const timelineEvents: TimelineEvent[] = [
     // Prehistoric Era
@@ -89,6 +81,7 @@ const timelineEvents: TimelineEvent[] = [
         titleOdia: "କଳିଙ୍ଗ ଯୁଦ୍ଧ",
         description: "Emperor Ashoka's brutal conquest kills 100,000+ warriors. The bloodshed transforms him to embrace Buddhism and non-violence. One of history's most significant wars.",
         category: "ancient",
+        image: "/images/timeline/kalinga-war.png"
     },
     {
         year: "260 BCE",
@@ -207,6 +200,7 @@ const timelineEvents: TimelineEvent[] = [
         titleOdia: "ଗଙ୍ଗ ବଂଶ",
         description: "The Eastern Ganga dynasty is established, beginning one of Odisha's most glorious periods.",
         category: "medieval",
+        image: "/images/timeline/odissi-dance.png"
     },
     {
         year: "1077-1147 CE",
@@ -246,6 +240,7 @@ const timelineEvents: TimelineEvent[] = [
         titleOdia: "କୋଣାର୍କ ସୂର୍ଯ୍ୟ ମନ୍ଦିର",
         description: "The magnificent Sun Temple at Konark is built as a giant chariot with 24 wheels. Now a UNESCO World Heritage Site.",
         category: "medieval",
+        image: "/images/timeline/konark-wheel.png"
     },
     {
         year: "1278 CE",
@@ -475,6 +470,7 @@ const timelineEvents: TimelineEvent[] = [
         titleOdia: "ରାଉରକେଲା ଇସ୍ପାତ କାରଖାନା",
         description: "Rourkela Steel Plant (RSP) is established - first public sector steel plant with German collaboration.",
         category: "modern",
+        image: "/images/timeline/modern-odisha.png"
     },
     {
         year: "1961 CE",
@@ -558,12 +554,12 @@ const timelineEvents: TimelineEvent[] = [
     },
 ];
 
-const categoryColors: Record<string, { bg: string; border: string; dot: string }> = {
-    prehistoric: { bg: "from-stone-900/50 to-stone-800/50", border: "border-stone-700/50", dot: "bg-stone-500" },
-    ancient: { bg: "from-amber-900/50 to-yellow-900/50", border: "border-amber-700/50", dot: "bg-amber-500" },
-    medieval: { bg: "from-orange-900/50 to-red-900/50", border: "border-orange-700/50", dot: "bg-orange-500" },
-    colonial: { bg: "from-slate-900/50 to-zinc-800/50", border: "border-slate-600/50", dot: "bg-slate-400" },
-    modern: { bg: "from-emerald-900/50 to-green-900/50", border: "border-emerald-700/50", dot: "bg-emerald-500" },
+const categoryColors: Record<string, { bg: string; border: string; dot: string; text: string }> = {
+    prehistoric: { bg: "from-stone-900/50 to-stone-800/50", border: "border-stone-700/50", dot: "bg-stone-500", text: "text-stone-400" },
+    ancient: { bg: "from-amber-900/50 to-yellow-900/50", border: "border-amber-700/50", dot: "bg-amber-500", text: "text-amber-400" },
+    medieval: { bg: "from-orange-900/50 to-red-900/50", border: "border-orange-700/50", dot: "bg-orange-500", text: "text-orange-400" },
+    colonial: { bg: "from-slate-900/50 to-zinc-800/50", border: "border-slate-600/50", dot: "bg-slate-400", text: "text-slate-400" },
+    modern: { bg: "from-emerald-900/50 to-green-900/50", border: "border-emerald-700/50", dot: "bg-emerald-500", text: "text-emerald-400" },
 };
 
 export default function TimelinePage() {
@@ -610,52 +606,7 @@ export default function TimelinePage() {
 
             {/* Timeline */}
             <section className="py-16 bg-black">
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="relative">
-                        {/* Vertical Line */}
-                        <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-amber-600/50 via-amber-500/30 to-amber-600/50 transform md:-translate-x-1/2"></div>
-
-                        {/* Events */}
-                        <div className="space-y-8">
-                            {timelineEvents.map((event, index) => {
-                                const colors = categoryColors[event.category];
-                                const isLeft = index % 2 === 0;
-
-                                return (
-                                    <div
-                                        key={index}
-                                        className={`relative flex items-start gap-6 ${isLeft ? "md:flex-row" : "md:flex-row-reverse"
-                                            }`}
-                                    >
-                                        {/* Dot */}
-                                        <div className="absolute left-4 md:left-1/2 w-4 h-4 rounded-full border-2 border-black transform -translate-x-1/2 z-10 flex items-center justify-center">
-                                            <div className={`w-3 h-3 rounded-full ${colors.dot}`}></div>
-                                        </div>
-
-                                        {/* Content */}
-                                        <div className={`ml-12 md:ml-0 md:w-[calc(50%-2rem)] ${isLeft ? "md:pr-8 md:text-right" : "md:pl-8"}`}>
-                                            <div className={`bg-gradient-to-br ${colors.bg} rounded-xl p-6 border ${colors.border}`}>
-                                                <span className="text-amber-400 font-mono text-sm">{event.year}</span>
-                                                <span className="text-amber-500/50 text-xs ml-2">• {event.era}</span>
-                                                <h3 className="text-xl font-semibold text-amber-100 mt-2">
-                                                    {event.title}
-                                                </h3>
-                                                {event.titleOdia && (
-                                                    <p className="text-amber-500/70 odia-text text-sm mt-1">
-                                                        {event.titleOdia}
-                                                    </p>
-                                                )}
-                                                <p className="text-amber-100/60 text-sm mt-3 leading-relaxed">
-                                                    {event.description}
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                );
-                            })}
-                        </div>
-                    </div>
-                </div>
+                <TimelineView events={timelineEvents} categoryColors={categoryColors} />
             </section>
 
             {/* Call to Action */}
