@@ -1,0 +1,111 @@
+{
+    "block_id": "puri-sadar",
+    "district_id": "puri",
+    "villages": [
+        {
+            "id": "baliapanda",
+            "name_en": "Baliapanda",
+            "name_od": "ବାଲିଆପଣ୍ଡା",
+            "gp": "Baliapanda",
+            "population": 8500
+        },
+        {
+            "id": "penthakata",
+            "name_en": "Penthakata",
+            "name_od": "ପେଣ୍ଠାକଟା",
+            "gp": "Penthakata",
+            "population": 12000
+        },
+        {
+            "id": "gaudabada",
+            "name_en": "Gaudabada",
+            "name_od": "ଗୌଡ଼ବଡ଼ା",
+            "gp": "Gaudabada",
+            "population": 5500
+        },
+        {
+            "id": "sipasarubali",
+            "name_en": "Sipasarubali",
+            "name_od": "ସିପାସରୁବଲି",
+            "gp": "Sipasarubali",
+            "population": 4200
+        },
+        {
+            "id": "talabania",
+            "name_en": "Talabania",
+            "name_od": "ତାଳବଣିଆ",
+            "gp": "Talabania",
+            "population": 6800
+        },
+        {
+            "id": "mangalaghat",
+            "name_en": "Mangalaghat",
+            "name_od": "ମଙ୍ଗଳାଘାଟ",
+            "gp": "Mangalaghat",
+            "population": 3500
+        },
+        {
+            "id": "chandanpur",
+            "name_en": "Chandanpur",
+            "name_od": "ଚନ୍ଦନପୁର",
+            "gp": "Chandanpur",
+            "population": 7200
+        },
+        {
+            "id": "gopinathpur",
+            "name_en": "Gopinathpur",
+            "name_od": "ଗୋପୀନାଥପୁର",
+            "gp": "Gopinathpur",
+            "population": 4800
+        },
+        {
+            "id": "matitota",
+            "name_en": "Matitota",
+            "name_od": "ମାଟିତୋଟା",
+            "gp": "Matitota",
+            "population": 3200
+        },
+        {
+            "id": "harachandi",
+            "name_en": "Harachandi",
+            "name_od": "ହରଚଣ୍ଡୀ",
+            "gp": "Harachandi",
+            "population": 5100
+        },
+        {
+            "id": "chakratirtha",
+            "name_en": "Chakratirtha",
+            "name_od": "ଚକ୍ରତୀର୍ଥ",
+            "gp": "Chakratirtha",
+            "population": 2800
+        },
+        {
+            "id": "badadanda",
+            "name_en": "Badadanda",
+            "name_od": "ବଡ଼ଦଣ୍ଡ",
+            "gp": "Badadanda",
+            "population": 15000
+        },
+        {
+            "id": "lokanath",
+            "name_en": "Lokanath",
+            "name_od": "ଲୋକନାଥ",
+            "gp": "Lokanath",
+            "population": 8000
+        },
+        {
+            "id": "balighai",
+            "name_en": "Balighai",
+            "name_od": "ବାଲିଘାଇ",
+            "gp": "Balighai",
+            "population": 4500
+        },
+        {
+            "id": "nuagaon",
+            "name_en": "Nuagaon",
+            "name_od": "ନୂଆଗାଁ",
+            "gp": "Nuagaon",
+            "population": 6200
+        }
+    ]
+}

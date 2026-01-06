@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getDistrictById, regionColors } from '@/data/districts';
 import { getBlockById, getBlocksByDistrictId, Block } from '@/data/blocks';
+import VillageList from '@/components/map/VillageList';
 
 interface PageProps {
     params: Promise<{ slug: string; blockSlug: string }>;
@@ -211,6 +212,13 @@ export default async function BlockPage({ params }: PageProps) {
                             </a>
                         </div>
                     </div>
+                </div>
+            </section>
+
+            {/* Villages - Lazy Loaded */}
+            <section className="py-12 border-t border-amber-900/20">
+                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <VillageList blockId={blockSlug} districtId={slug} />
                 </div>
             </section>
 

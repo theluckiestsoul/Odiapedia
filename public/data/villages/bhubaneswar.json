@@ -1,0 +1,146 @@
+{
+    "block_id": "bhubaneswar",
+    "district_id": "khurda",
+    "villages": [
+        {
+            "id": "patia",
+            "name_en": "Patia",
+            "name_od": "ପାଟିଆ",
+            "gp": "Patia",
+            "population": 45000
+        },
+        {
+            "id": "chandrasekharpur",
+            "name_en": "Chandrasekharpur",
+            "name_od": "ଚନ୍ଦ୍ରଶେଖରପୁର",
+            "gp": "Chandrasekharpur",
+            "population": 82000
+        },
+        {
+            "id": "nayapalli",
+            "name_en": "Nayapalli",
+            "name_od": "ନୟାପଲ୍ଲୀ",
+            "gp": "Nayapalli",
+            "population": 55000
+        },
+        {
+            "id": "sailashree-vihar",
+            "name_en": "Sailashree Vihar",
+            "name_od": "ସାଇଲଶ୍ରୀ ବିହାର",
+            "gp": "Chandrasekharpur",
+            "population": 28000
+        },
+        {
+            "id": "niladri-vihar",
+            "name_en": "Niladri Vihar",
+            "name_od": "ନୀଳାଦ୍ରୀ ବିହାର",
+            "gp": "Chandrasekharpur",
+            "population": 22000
+        },
+        {
+            "id": "damana",
+            "name_en": "Damana",
+            "name_od": "ଦାମନା",
+            "gp": "Damana",
+            "population": 12000
+        },
+        {
+            "id": "aiginia",
+            "name_en": "Aiginia",
+            "name_od": "ଐଗିନିଆ",
+            "gp": "Aiginia",
+            "population": 8500
+        },
+        {
+            "id": "khandagiri",
+            "name_en": "Khandagiri",
+            "name_od": "ଖଣ୍ଡଗିରି",
+            "gp": "Khandagiri",
+            "population": 35000
+        },
+        {
+            "id": "bharatpur",
+            "name_en": "Bharatpur",
+            "name_od": "ଭାରତପୁର",
+            "gp": "Bharatpur",
+            "population": 18000
+        },
+        {
+            "id": "infocity",
+            "name_en": "Infocity",
+            "name_od": "ଇନଫୋସିଟି",
+            "gp": "Patia",
+            "population": 15000
+        },
+        {
+            "id": "jaydev-vihar",
+            "name_en": "Jaydev Vihar",
+            "name_od": "ଜୟଦେବ ବିହାର",
+            "gp": "Nayapalli",
+            "population": 25000
+        },
+        {
+            "id": "saheed-nagar",
+            "name_en": "Saheed Nagar",
+            "name_od": "ସହୀଦ ନଗର",
+            "gp": "Saheed Nagar",
+            "population": 42000
+        },
+        {
+            "id": "vani-vihar",
+            "name_en": "Vani Vihar",
+            "name_od": "ବାଣୀ ବିହାର",
+            "gp": "Vani Vihar",
+            "population": 18000
+        },
+        {
+            "id": "acharya-vihar",
+            "name_en": "Acharya Vihar",
+            "name_od": "ଆଚାର୍ଯ୍ୟ ବିହାର",
+            "gp": "Acharya Vihar",
+            "population": 22000
+        },
+        {
+            "id": "rasulgarh",
+            "name_en": "Rasulgarh",
+            "name_od": "ରସୁଲଗଡ଼",
+            "gp": "Rasulgarh",
+            "population": 32000
+        },
+        {
+            "id": "mancheswar",
+            "name_en": "Mancheswar",
+            "name_od": "ମଞ୍ଚେଶ୍ୱର",
+            "gp": "Mancheswar",
+            "population": 48000
+        },
+        {
+            "id": "palasuni",
+            "name_en": "Palasuni",
+            "name_od": "ପଲାସୁନି",
+            "gp": "Palasuni",
+            "population": 15000
+        },
+        {
+            "id": "tamando",
+            "name_en": "Tamando",
+            "name_od": "ତମାଣ୍ଡୋ",
+            "gp": "Tamando",
+            "population": 8000
+        },
+        {
+            "id": "baragada",
+            "name_en": "Baragada",
+            "name_od": "ବରଗଡ଼ା",
+            "gp": "Baragada",
+            "population": 12000
+        },
+        {
+            "id": "pokhariput",
+            "name_en": "Pokhariput",
+            "name_od": "ପୋଖରିପୁଟ",
+            "gp": "Pokhariput",
+            "population": 18000
+        }
+    ]
+}
