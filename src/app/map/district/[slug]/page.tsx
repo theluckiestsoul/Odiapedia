@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { odishaDistricts, getDistrictById, regionColors, District } from '@/data/districts';
+import { getBlocksByDistrictId } from '@/data/blocks';
 
 interface PageProps {
     params: Promise<{ slug: string }>;
@@ -34,6 +35,9 @@ export default async function DistrictPage({ params }: PageProps) {
     if (!district) {
         notFound();
     }
+
+    // Get blocks for this district
+    const blocks = getBlocksByDistrictId(slug);
 
     // Get neighboring districts (same region)
     const relatedDistricts = odishaDistricts
@@ -183,6 +187,45 @@ export default async function DistrictPage({ params }: PageProps) {
                     </div>
                 </div>
             </section>
+
+            {/* Blocks in this District */}
+            {blocks.length > 0 && (
+                <section className="py-12 border-t border-amber-900/20">
+                    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="flex items-center justify-between mb-6">
+                            <h2 className="text-2xl font-bold text-amber-100 font-display">
+                                🏘️ Blocks in {district.name_en}
+                            </h2>
+                            <span className="text-amber-500 text-sm">
+                                {blocks.length} blocks
+                            </span>
+                        </div>
+
+                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                            {blocks.map((block) => (
+                                <Link
+                                    key={block.id}
+                                    href={`/map/district/${district.id}/block/${block.id}`}
+                                    className="bg-neutral-900/50 hover:bg-amber-900/20 rounded-lg p-4 border border-amber-800/30 hover:border-amber-600/50 transition-all group"
+                                >
+                                    <div className="font-medium text-amber-100 group-hover:text-amber-300 transition-colors">
+                                        {block.name_en}
+                                    </div>
+                                    <div className="text-amber-500/70 text-sm odia-text">
+                                        {block.name_od}
+                                    </div>
+                                    <div className="flex items-center gap-2 mt-2 text-xs text-amber-100/50">
+                                        <span>📍 {block.headquarters}</span>
+                                        {block.gps_count && (
+                                            <span>• {block.gps_count} GPs</span>
+                                        )}
+                                    </div>
+                                </Link>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            )}
 
             {/* Related Districts */}
             {relatedDistricts.length > 0 && (
