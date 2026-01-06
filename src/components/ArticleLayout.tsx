@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArticleMeta } from "@/lib/mdx";
+import { ArticleMeta, getAllArticles } from "@/lib/mdx";
 
 interface ArticleLayoutProps {
     meta: ArticleMeta;
@@ -15,8 +15,21 @@ const categoryLabels: Record<string, { label: string; odia: string; icon: string
     about: { label: "About", odia: "ବିଷୟରେ", icon: "ℹ️" },
 };
 
+function getRelatedArticles(currentMeta: ArticleMeta, limit: number = 3): ArticleMeta[] {
+    // Get articles from the same category
+    const categoryArticles = getAllArticles(currentMeta.category);
+
+    // Filter out the current article
+    const related = categoryArticles.filter((article) => article.slug !== currentMeta.slug);
+
+    // If not enough from same category, we could add from other categories
+    // For now, just return what we have (up to limit)
+    return related.slice(0, limit);
+}
+
 export default function ArticleLayout({ meta, children }: ArticleLayoutProps) {
     const category = categoryLabels[meta.category] || { label: meta.category, odia: "", icon: "📄" };
+    const relatedArticles = getRelatedArticles(meta);
 
     const formattedDate = new Date(meta.date).toLocaleDateString("en-US", {
         year: "numeric",
@@ -91,8 +104,40 @@ export default function ArticleLayout({ meta, children }: ArticleLayoutProps) {
                 </div>
             </article>
 
+            {/* Related Articles */}
+            {relatedArticles.length > 0 && (
+                <section className="py-12 bg-gradient-to-b from-black to-neutral-950 border-t border-amber-900/20">
+                    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <h2 className="text-2xl font-bold text-amber-100 mb-6 font-display flex items-center gap-3">
+                            <span className="text-amber-500">📖</span>
+                            Related Articles
+                        </h2>
+
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            {relatedArticles.map((article) => (
+                                <Link
+                                    key={article.slug}
+                                    href={`/${article.category}/${article.slug}`}
+                                    className="group bg-gradient-to-br from-amber-950/30 to-orange-950/30 rounded-xl p-5 border border-amber-900/20 hover:border-amber-600/40 transition-all duration-300"
+                                >
+                                    <span className="text-2xl mb-3 block">
+                                        {categoryLabels[article.category]?.icon || "📄"}
+                                    </span>
+                                    <h3 className="text-base font-semibold text-amber-100 group-hover:text-amber-300 transition-colors line-clamp-2 mb-2">
+                                        {article.title}
+                                    </h3>
+                                    <p className="text-amber-100/50 text-sm line-clamp-2">
+                                        {article.description}
+                                    </p>
+                                </Link>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            )}
+
             {/* Back to category */}
-            <section className="py-12 bg-gradient-to-b from-black to-neutral-950 border-t border-amber-900/20">
+            <section className="py-8 bg-neutral-950 border-t border-amber-900/10">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                     <Link
                         href={`/${meta.category}`}
