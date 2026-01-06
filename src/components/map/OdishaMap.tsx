@@ -1,48 +1,14 @@
 "use client";
 
-import { useEffect, useState } from 'react';
-import { MapContainer, TileLayer, CircleMarker, Tooltip, useMap, Polygon } from 'react-leaflet';
+import { useEffect, useState, useCallback } from 'react';
+import { MapContainer, TileLayer, useMap, GeoJSON, Tooltip } from 'react-leaflet';
 import { District, odishaDistricts, odishaCentroid, regionColors } from '@/data/districts';
+import { getDistrictGeoJSON, districtPolygons } from '@/data/districtPolygons';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import 'leaflet/dist/leaflet.css';
-
-// Simplified Odisha state boundary coordinates (approximate)
-const odishaBoundaryCoords: [number, number][] = [
-    [22.57, 86.74], // North-east (Mayurbhanj)
-    [22.34, 87.12],
-    [21.93, 87.45],
-    [21.53, 87.42],
-    [21.13, 87.03], // Balasore coast
-    [20.75, 86.82],
-    [20.46, 86.92],
-    [20.26, 86.78],
-    [19.82, 86.43], // Puri coast
-    [19.27, 85.08],
-    [18.88, 84.62],
-    [18.35, 84.18], // Ganjam coast
-    [18.03, 83.42],
-    [17.95, 82.35], // Malkangiri (South)
-    [18.26, 81.74],
-    [18.72, 81.52],
-    [19.15, 82.02],
-    [19.51, 82.03],
-    [19.92, 82.15],
-    [20.18, 82.42],
-    [20.53, 82.31],
-    [20.82, 82.47], // Nuapada
-    [21.05, 82.73],
-    [21.32, 83.12],
-    [21.53, 83.36],
-    [21.82, 83.43],
-    [22.02, 83.72], // Jharsuguda
-    [22.18, 84.02],
-    [22.35, 84.32],
-    [22.45, 84.62],
-    [22.52, 85.12],
-    [22.62, 85.62],
-    [22.68, 86.08],
-    [22.57, 86.74], // Back to start
-];
+import type { Layer, LeafletMouseEvent } from 'leaflet';
+import type { Feature, Geometry } from 'geojson';
 
 interface OdishaMapProps {
     onDistrictClick?: (district: District) => void;
@@ -59,16 +25,89 @@ function MapBounds({ bounds }: { bounds: [[number, number], [number, number]] })
     return null;
 }
 
+// District properties type
+interface DistrictProperties {
+    id: string;
+    name_en: string;
+    name_od: string;
+    region: 'coastal' | 'central' | 'northern' | 'southern' | 'western';
+    population: number;
+    area_sq_km: number;
+    headquarters: string;
+    color: string;
+}
+
 export default function OdishaMap({
     onDistrictClick,
     selectedDistrict,
     showLabels = true
 }: OdishaMapProps) {
     const [mounted, setMounted] = useState(false);
+    const [hoveredDistrict, setHoveredDistrict] = useState<string | null>(null);
+    const router = useRouter();
 
     useEffect(() => {
         setMounted(true);
     }, []);
+
+    // Style function for GeoJSON features
+    const getStyle = useCallback((feature: Feature<Geometry, DistrictProperties> | undefined) => {
+        if (!feature?.properties) return {};
+
+        const isHovered = hoveredDistrict === feature.properties.id;
+        const isSelected = selectedDistrict === feature.properties.id;
+
+        return {
+            fillColor: feature.properties.color,
+            weight: isHovered || isSelected ? 3 : 1.5,
+            opacity: 1,
+            color: isHovered || isSelected ? '#fbbf24' : '#ffffff',
+            fillOpacity: isHovered ? 0.8 : isSelected ? 0.9 : 0.6,
+        };
+    }, [hoveredDistrict, selectedDistrict]);
+
+    // Event handlers for each feature
+    const onEachFeature = useCallback((feature: Feature<Geometry, DistrictProperties>, layer: Layer) => {
+        if (!feature.properties) return;
+
+        const props = feature.properties;
+
+        layer.on({
+            mouseover: (e: LeafletMouseEvent) => {
+                setHoveredDistrict(props.id);
+                e.target.bringToFront();
+            },
+            mouseout: () => {
+                setHoveredDistrict(null);
+            },
+            click: () => {
+                const district = odishaDistricts.find(d => d.id === props.id);
+                if (district) {
+                    if (onDistrictClick) {
+                        onDistrictClick(district);
+                    } else {
+                        router.push(`/map/district/${props.id}`);
+                    }
+                }
+            },
+        });
+
+        // Bind tooltip
+        if (showLabels) {
+            layer.bindTooltip(
+                `<div class="text-center">
+                    <div class="font-bold">${props.name_en}</div>
+                    <div class="text-xs">${props.name_od}</div>
+                    <div class="text-xs text-gray-500">Pop: ${(props.population / 100000).toFixed(1)}L</div>
+                </div>`,
+                {
+                    permanent: false,
+                    direction: 'top',
+                    className: 'district-tooltip',
+                }
+            );
+        }
+    }, [onDistrictClick, router, showLabels]);
 
     if (!mounted) {
         return (
@@ -82,6 +121,8 @@ export default function OdishaMap({
         [17.8, 81.3],
         [22.8, 87.5]
     ];
+
+    const geoJsonData = getDistrictGeoJSON();
 
     return (
         <div className="w-full h-[500px] md:h-[600px] rounded-xl overflow-hidden border border-amber-800/30">
@@ -100,57 +141,13 @@ export default function OdishaMap({
                     url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
                 />
 
-                {/* Odisha State Boundary - Highlight */}
-                <Polygon
-                    positions={odishaBoundaryCoords}
-                    pathOptions={{
-                        color: '#f59e0b',
-                        weight: 3,
-                        fillColor: '#f59e0b',
-                        fillOpacity: 0.08,
-                        dashArray: '5, 10',
-                    }}
+                {/* District Polygons */}
+                <GeoJSON
+                    key={`districts-${hoveredDistrict}-${selectedDistrict}`}
+                    data={geoJsonData as GeoJSON.FeatureCollection}
+                    style={getStyle as (feature: Feature<Geometry, unknown> | undefined) => Record<string, unknown>}
+                    onEachFeature={onEachFeature as (feature: Feature<Geometry, unknown>, layer: Layer) => void}
                 />
-
-                {/* District markers */}
-                {odishaDistricts.map((district) => {
-                    const isSelected = selectedDistrict === district.id;
-                    const baseRadius = Math.sqrt(district.population / 100000) * 2;
-
-                    return (
-                        <CircleMarker
-                            key={district.id}
-                            center={district.centroid}
-                            radius={isSelected ? baseRadius * 1.5 : baseRadius}
-                            pathOptions={{
-                                fillColor: isSelected ? '#fbbf24' : regionColors[district.region],
-                                fillOpacity: isSelected ? 0.9 : 0.7,
-                                color: isSelected ? '#fbbf24' : '#ffffff',
-                                weight: isSelected ? 3 : 1,
-                            }}
-                            eventHandlers={{
-                                click: () => onDistrictClick?.(district),
-                            }}
-                        >
-                            {showLabels && (
-                                <Tooltip
-                                    direction="top"
-                                    offset={[0, -10]}
-                                    permanent={isSelected}
-                                    className="district-tooltip"
-                                >
-                                    <div className="text-center">
-                                        <div className="font-bold">{district.name_en}</div>
-                                        <div className="text-xs odia-text">{district.name_od}</div>
-                                        <div className="text-xs text-gray-500">
-                                            Pop: {(district.population / 100000).toFixed(1)}L
-                                        </div>
-                                    </div>
-                                </Tooltip>
-                            )}
-                        </CircleMarker>
-                    );
-                })}
             </MapContainer>
         </div>
     );
