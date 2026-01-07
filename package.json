@@ -11,7 +11,9 @@
   "dependencies": {
     "@mdx-js/react": "^3.1.1",
     "@next/mdx": "^16.1.1",
+    "@types/glob": "^9.0.0",
     "framer-motion": "^12.24.7",
+    "glob": "^13.0.0",
     "gray-matter": "^4.0.3",
     "leaflet": "^1.9.4",
     "next": "16.1.1",

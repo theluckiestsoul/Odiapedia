@@ -5,6 +5,7 @@ import { getDistrictBySlug, getAllDistrictSlugs } from "@/lib/districts";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { useMDXComponents } from "@/../mdx-components";
 import Link from "next/link";
+import { getSpotsByTehsil } from "@/lib/spots";
 
 interface PageProps {
     params: Promise<{ slug: string; tehsil: string }>;
@@ -47,6 +48,9 @@ export default async function TehsilPage({ params }: PageProps) {
     const { slug, tehsil } = await params;
     const tehsilData = getTehsilBySlug(slug, tehsil);
     const districtData = getDistrictBySlug(slug);
+
+    // Fetch Spots for this Tehsil
+    const spots = getSpotsByTehsil(slug, tehsil);
 
     if (!tehsilData) {
         notFound();
@@ -101,6 +105,38 @@ export default async function TehsilPage({ params }: PageProps) {
                         </div>
                     </div>
                 </section>
+
+                {/* SPOTS SECTION (New in Phase 3) */}
+                {spots.length > 0 && (
+                    <section className="mb-12">
+                        <h2 className="text-2xl font-display font-bold text-amber-500 mb-6 flex items-center gap-2">
+                            <span>🗺️</span> Places to Visit in {tehsilData.title}
+                        </h2>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            {spots.map((spot) => (
+                                <Link
+                                    key={spot.slug}
+                                    href={`/district/${slug}/${tehsil}/${spot.slug}`}
+                                    className="group block bg-neutral-900/50 border border-amber-900/20 rounded-xl overflow-hidden hover:border-amber-500/50 transition-all"
+                                >
+                                    <div className="p-6">
+                                        <div className="flex justify-between items-start mb-2">
+                                            <span className="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-amber-900/40 text-amber-400 mb-2">
+                                                {spot.category}
+                                            </span>
+                                        </div>
+                                        <h3 className="text-xl font-bold text-amber-100 mb-2 group-hover:text-amber-400 transition-colors">
+                                            {spot.title}
+                                        </h3>
+                                        <p className="text-amber-100/60 text-sm line-clamp-2">
+                                            {spot.description}
+                                        </p>
+                                    </div>
+                                </Link>
+                            ))}
+                        </div>
+                    </section>
+                )}
 
                 {/* Main Content */}
                 <article className="prose prose-lg prose-invert prose-amber max-w-none">
