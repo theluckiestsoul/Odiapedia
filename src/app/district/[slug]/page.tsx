@@ -112,132 +112,169 @@ export default async function DistrictPage({ params }: PageProps) {
 
     const components = useMDXComponents({});
 
+    // Schema.org Structured Data
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "AdministrativeArea",
+                "name": districtContent.title,
+                "description": districtContent.description,
+                "containedInPlace": {
+                    "@type": "State",
+                    "name": "Odisha"
+                },
+                ...(districtData && {
+                    "geo": {
+                        "@type": "GeoCoordinates",
+                        "latitude": districtData.centroid[0],
+                        "longitude": districtData.centroid[1]
+                    }
+                })
+            },
+            {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://odiapedia.com" },
+                    { "@type": "ListItem", "position": 2, "name": "Districts", "item": "https://odiapedia.com/districts" },
+                    { "@type": "ListItem", "position": 3, "name": districtContent.title, "item": `https://odiapedia.com/district/${slug}` }
+                ]
+            }
+        ]
+    };
+
     return (
-        <div className="min-h-screen bg-black text-amber-100">
-            {districtData && (
-                <div
-                    className="absolute top-0 left-0 right-0 h-[50vh] opacity-20 pointer-events-none"
-                    style={{
-                        background: `linear-gradient(to bottom, ${regionColors[districtData.region]}40, transparent)`,
-                    }}
-                />
-            )}
+        <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
+            <div className="min-h-screen bg-black text-amber-100">
+                {districtData && (
+                    <div
+                        className="absolute top-0 left-0 right-0 h-[50vh] opacity-20 pointer-events-none"
+                        style={{
+                            background: `linear-gradient(to bottom, ${regionColors[districtData.region]}40, transparent)`,
+                        }}
+                    />
+                )}
 
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10">
-                <nav className="flex items-center gap-2 text-sm mb-8 text-amber-500/60">
-                    <Link href="/" className="hover:text-amber-400">Home</Link>
-                    <span>/</span>
-                    <Link href="/districts" className="hover:text-amber-400">Districts</Link>
-                    <span>/</span>
-                    <span className="text-amber-300">{districtContent.title}</span>
-                </nav>
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10">
+                    <nav className="flex items-center gap-2 text-sm mb-8 text-amber-500/60">
+                        <Link href="/" className="hover:text-amber-400">Home</Link>
+                        <span>/</span>
+                        <Link href="/districts" className="hover:text-amber-400">Districts</Link>
+                        <span>/</span>
+                        <span className="text-amber-300">{districtContent.title}</span>
+                    </nav>
 
-                <header className="mb-12 text-center">
-                    {districtData && (
-                        <div
-                            className="inline-block px-3 py-1 rounded-full text-xs font-semibold tracking-wide uppercase mb-6 border"
-                            style={{
-                                borderColor: `${regionColors[districtData.region]}50`,
-                                backgroundColor: `${regionColors[districtData.region]}20`,
-                                color: regionColors[districtData.region]
-                            }}
-                        >
-                            {districtData.region} Odisha
-                        </div>
-                    )}
-                    <h1 className="text-5xl md:text-8xl font-bold mb-4 font-display text-transparent bg-clip-text bg-gradient-to-r from-amber-200 to-amber-500">
-                        {districtContent.title}
-                    </h1>
-                    {districtData && (
-                        <p className="text-3xl text-amber-500/60 odia-text mb-6">
-                            {districtData.name_od}
-                        </p>
-                    )}
-                    <p className="text-xl text-amber-100/60 max-w-2xl mx-auto leading-relaxed">
-                        {districtContent.description}
-                    </p>
-                </header>
-
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    {/* LEFT COLUMN: Main Narrative */}
-                    <div className="lg:col-span-2 space-y-12">
-                        {/* At a Glance Section */}
-                        <section className="bg-amber-950/20 border border-amber-900/40 rounded-2xl p-8 backdrop-blur-sm">
-                            <h2 className="text-2xl font-display font-bold text-amber-500 mb-6 flex items-center gap-2">
-                                <span>📊</span> At a Glance
-                            </h2>
-                            <div className="grid grid-cols-2 gap-6">
-                                <div className="p-4 rounded-xl bg-black/40 border border-amber-900/20">
-                                    <span className="block text-amber-500/60 text-xs uppercase tracking-wider mb-1">Headquarters</span>
-                                    <span className="text-lg font-semibold text-amber-100">{districtContent.headquarters || districtData?.headquarters || "N/A"}</span>
-                                </div>
-                                <div className="p-4 rounded-xl bg-black/40 border border-amber-900/20">
-                                    <span className="block text-amber-500/60 text-xs uppercase tracking-wider mb-1">Population</span>
-                                    <span className="text-lg font-semibold text-amber-100">{districtContent.population || (districtData ? `${(districtData.population / 100000).toFixed(2)}L` : "N/A")}</span>
-                                </div>
-                                <div className="p-4 rounded-xl bg-black/40 border border-amber-900/20">
-                                    <span className="block text-amber-500/60 text-xs uppercase tracking-wider mb-1">Area</span>
-                                    <span className="text-lg font-semibold text-amber-100">{districtContent.area || (districtData ? `${districtData.area_sq_km} sq km` : "N/A")}</span>
-                                </div>
-                                <div className="p-4 rounded-xl bg-black/40 border border-amber-900/20">
-                                    <span className="block text-amber-500/60 text-xs uppercase tracking-wider mb-1">Literacy</span>
-                                    <span className="text-lg font-semibold text-amber-100">{districtData ? `${districtData.literacy}%` : "N/A"}</span>
-                                </div>
-                            </div>
-                        </section>
-
-                        {/* Main Content */}
-                        <article className="prose prose-lg prose-invert prose-amber max-w-none">
-                            <MDXRemote source={districtContent.content} components={components} />
-                        </article>
-                    </div>
-
-                    {/* RIGHT COLUMN: Map & Admin */}
-                    <div className="space-y-8 lg:sticky lg:top-24 h-fit">
-                        {/* Location Map */}
+                    <header className="mb-12 text-center">
                         {districtData && (
-                            <div className="bg-neutral-900/50 rounded-2xl border border-amber-800/30 overflow-hidden">
-                                <div className="p-4 border-b border-amber-800/30 bg-neutral-900">
-                                    <h3 className="font-bold text-amber-100 flex items-center gap-2">
-                                        <span>📍</span> Location
-                                    </h3>
-                                </div>
-                                <div className="h-[250px] relative">
-                                    <iframe
-                                        src={`https://www.openstreetmap.org/export/embed.html?bbox=${districtData.bounds[0][1] - 0.5},${districtData.bounds[0][0] - 0.5},${districtData.bounds[1][1] + 0.5},${districtData.bounds[1][0] + 0.5}&layer=mapnik&marker=${districtData.centroid[0]},${districtData.centroid[1]}`}
-                                        style={{ width: '100%', height: '100%', border: 0 }}
-                                        title={`Map of ${districtData.name_en}`}
-                                    />
-                                </div>
-                                <div className="p-4 bg-neutral-900">
-                                    <a
-                                        href={`https://www.google.com/maps/search/${districtData.name_en}+district+odisha/@${districtData.centroid[0]},${districtData.centroid[1]},9z`}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="block w-full text-center px-4 py-2 bg-amber-900/30 hover:bg-amber-800/50 border border-amber-700/30 rounded-lg text-amber-300 text-sm transition-colors"
-                                    >
-                                        Open in Google Maps ↗
-                                    </a>
-                                </div>
+                            <div
+                                className="inline-block px-3 py-1 rounded-full text-xs font-semibold tracking-wide uppercase mb-6 border"
+                                style={{
+                                    borderColor: `${regionColors[districtData.region]}50`,
+                                    backgroundColor: `${regionColors[districtData.region]}20`,
+                                    color: regionColors[districtData.region]
+                                }}
+                            >
+                                {districtData.region} Odisha
                             </div>
                         )}
+                        <h1 className="text-5xl md:text-8xl font-bold mb-4 font-display text-transparent bg-clip-text bg-gradient-to-r from-amber-200 to-amber-500">
+                            {districtContent.title}
+                        </h1>
+                        {districtData && (
+                            <p className="text-3xl text-amber-500/60 odia-text mb-6">
+                                {districtData.name_od}
+                            </p>
+                        )}
+                        <p className="text-xl text-amber-100/60 max-w-2xl mx-auto leading-relaxed">
+                            {districtContent.description}
+                        </p>
+                    </header>
 
-                        {/* Tehsils/Blocks List */}
-                        <div className="bg-neutral-900/30 rounded-2xl border border-amber-800/20 p-6">
-                            <h2 className="text-xl font-display font-bold text-amber-500 mb-4 flex items-center gap-2">
-                                <span>🏙️</span> Administration
-                            </h2>
-                            <div className="flex flex-col gap-2 max-h-[500px] overflow-y-auto pr-2 custom-scrollbar">
-                                <TehsilList districtSlug={slug} />
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                        {/* LEFT COLUMN: Main Narrative */}
+                        <div className="lg:col-span-2 space-y-12">
+                            {/* At a Glance Section */}
+                            <section className="bg-amber-950/20 border border-amber-900/40 rounded-2xl p-8 backdrop-blur-sm">
+                                <h2 className="text-2xl font-display font-bold text-amber-500 mb-6 flex items-center gap-2">
+                                    <span>📊</span> At a Glance
+                                </h2>
+                                <div className="grid grid-cols-2 gap-6">
+                                    <div className="p-4 rounded-xl bg-black/40 border border-amber-900/20">
+                                        <span className="block text-amber-500/60 text-xs uppercase tracking-wider mb-1">Headquarters</span>
+                                        <span className="text-lg font-semibold text-amber-100">{districtContent.headquarters || districtData?.headquarters || "N/A"}</span>
+                                    </div>
+                                    <div className="p-4 rounded-xl bg-black/40 border border-amber-900/20">
+                                        <span className="block text-amber-500/60 text-xs uppercase tracking-wider mb-1">Population</span>
+                                        <span className="text-lg font-semibold text-amber-100">{districtContent.population || (districtData ? `${(districtData.population / 100000).toFixed(2)}L` : "N/A")}</span>
+                                    </div>
+                                    <div className="p-4 rounded-xl bg-black/40 border border-amber-900/20">
+                                        <span className="block text-amber-500/60 text-xs uppercase tracking-wider mb-1">Area</span>
+                                        <span className="text-lg font-semibold text-amber-100">{districtContent.area || (districtData ? `${districtData.area_sq_km} sq km` : "N/A")}</span>
+                                    </div>
+                                    <div className="p-4 rounded-xl bg-black/40 border border-amber-900/20">
+                                        <span className="block text-amber-500/60 text-xs uppercase tracking-wider mb-1">Literacy</span>
+                                        <span className="text-lg font-semibold text-amber-100">{districtData ? `${districtData.literacy}%` : "N/A"}</span>
+                                    </div>
+                                </div>
+                            </section>
+
+                            {/* Main Content */}
+                            <article className="prose prose-lg prose-invert prose-amber max-w-none">
+                                <MDXRemote source={districtContent.content} components={components} />
+                            </article>
+                        </div>
+
+                        {/* RIGHT COLUMN: Map & Admin */}
+                        <div className="space-y-8 lg:sticky lg:top-24 h-fit">
+                            {/* Location Map */}
+                            {districtData && (
+                                <div className="bg-neutral-900/50 rounded-2xl border border-amber-800/30 overflow-hidden">
+                                    <div className="p-4 border-b border-amber-800/30 bg-neutral-900">
+                                        <h3 className="font-bold text-amber-100 flex items-center gap-2">
+                                            <span>📍</span> Location
+                                        </h3>
+                                    </div>
+                                    <div className="h-[250px] relative">
+                                        <iframe
+                                            src={`https://www.openstreetmap.org/export/embed.html?bbox=${districtData.bounds[0][1] - 0.5},${districtData.bounds[0][0] - 0.5},${districtData.bounds[1][1] + 0.5},${districtData.bounds[1][0] + 0.5}&layer=mapnik&marker=${districtData.centroid[0]},${districtData.centroid[1]}`}
+                                            style={{ width: '100%', height: '100%', border: 0 }}
+                                            title={`Map of ${districtData.name_en}`}
+                                        />
+                                    </div>
+                                    <div className="p-4 bg-neutral-900">
+                                        <a
+                                            href={`https://www.google.com/maps/search/${districtData.name_en}+district+odisha/@${districtData.centroid[0]},${districtData.centroid[1]},9z`}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="block w-full text-center px-4 py-2 bg-amber-900/30 hover:bg-amber-800/50 border border-amber-700/30 rounded-lg text-amber-300 text-sm transition-colors"
+                                        >
+                                            Open in Google Maps ↗
+                                        </a>
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* Tehsils/Blocks List */}
+                            <div className="bg-neutral-900/30 rounded-2xl border border-amber-800/20 p-6">
+                                <h2 className="text-xl font-display font-bold text-amber-500 mb-4 flex items-center gap-2">
+                                    <span>🏙️</span> Administration
+                                </h2>
+                                <div className="flex flex-col gap-2 max-h-[500px] overflow-y-auto pr-2 custom-scrollbar">
+                                    <TehsilList districtSlug={slug} />
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <footer className="mt-16 pt-8 border-t border-amber-900/30 text-center text-amber-500/40 text-sm">
-                    <p>Part of Odiapedia - The Diary of Odisha</p>
-                </footer>
+                    <footer className="mt-16 pt-8 border-t border-amber-900/30 text-center text-amber-500/40 text-sm">
+                        <p>Part of Odiapedia - The Diary of Odisha</p>
+                    </footer>
+                </div>
             </div>
-        </div>
+        </>
     );
 }
