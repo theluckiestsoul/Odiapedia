@@ -7,6 +7,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import { useMDXComponents } from "@/../mdx-components";
 import Link from "next/link";
 import { getAllTehsilsForDistrict } from "@/lib/tehsils";
+import remarkGfm from "remark-gfm";
 
 interface PageProps {
     params: Promise<{ slug: string }>;
@@ -224,7 +225,11 @@ export default async function DistrictPage({ params }: PageProps) {
 
                             {/* Main Content */}
                             <article className="prose prose-lg prose-invert prose-amber max-w-none">
-                                <MDXRemote source={districtContent.content} components={components} />
+                                <MDXRemote
+                                    source={districtContent.content}
+                                    components={components}
+                                    options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
+                                />
                             </article>
                         </div>
 

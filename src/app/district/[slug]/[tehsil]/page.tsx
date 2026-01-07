@@ -6,6 +6,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import { useMDXComponents } from "@/../mdx-components";
 import Link from "next/link";
 import { getSpotsByTehsil } from "@/lib/spots";
+import remarkGfm from "remark-gfm";
 
 interface PageProps {
     params: Promise<{ slug: string; tehsil: string }>;
@@ -140,7 +141,11 @@ export default async function TehsilPage({ params }: PageProps) {
 
                 {/* Main Content */}
                 <article className="prose prose-lg prose-invert prose-amber max-w-none">
-                    <MDXRemote source={tehsilData.content} components={components} />
+                    <MDXRemote
+                        source={tehsilData.content}
+                        components={components}
+                        options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
+                    />
                 </article>
 
                 <section className="mt-16 pt-12 border-t border-amber-900/30">

@@ -6,6 +6,7 @@ import { getDistrictBySlug } from "@/lib/districts";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { useMDXComponents } from "@/../mdx-components";
 import Link from "next/link";
+import remarkGfm from "remark-gfm";
 
 interface PageProps {
     params: Promise<{ slug: string; tehsil: string; spot: string }>;
@@ -131,7 +132,11 @@ export default async function SpotPage({ params }: PageProps) {
                         {/* Main Narrative */}
                         <div className="lg:col-span-2">
                             <article className="prose prose-lg prose-invert prose-amber max-w-none">
-                                <MDXRemote source={spotData.content} components={components} />
+                                <MDXRemote
+                                    source={spotData.content}
+                                    components={components}
+                                    options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
+                                />
                             </article>
                         </div>
 

@@ -4,6 +4,7 @@ import { getArticleBySlug, getArticleSlugs } from "@/lib/mdx";
 import ArticleLayout from "@/components/ArticleLayout";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { useMDXComponents } from "@/../mdx-components";
+import remarkGfm from "remark-gfm";
 
 interface PageProps {
     params: Promise<{ slug: string }>;
@@ -49,7 +50,15 @@ export default async function ArticlePage({ params }: PageProps) {
 
     return (
         <ArticleLayout meta={article}>
-            <MDXRemote source={article.content} components={components} />
+            <MDXRemote
+                source={article.content}
+                components={components}
+                options={{
+                    mdxOptions: {
+                        remarkPlugins: [remarkGfm],
+                    }
+                }}
+            />
         </ArticleLayout>
     );
 }

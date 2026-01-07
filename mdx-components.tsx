@@ -116,11 +116,11 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         // Table - all elements needed for proper rendering
         table: ({ children }) => (
             <div className="overflow-x-auto mb-8 rounded-lg border border-amber-900/30">
-                <table className="w-full border-collapse min-w-full">{children}</table>
+                <table className="w-full table-auto min-w-full text-left">{children}</table>
             </div>
         ),
         thead: ({ children }) => (
-            <thead className="bg-amber-900/40">{children}</thead>
+            <thead className="bg-amber-900/40 border-b border-amber-900/30">{children}</thead>
         ),
         tbody: ({ children }) => (
             <tbody className="divide-y divide-amber-900/20">{children}</tbody>
@@ -129,12 +129,12 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
             <tr className="hover:bg-amber-900/10 transition-colors">{children}</tr>
         ),
         th: ({ children }) => (
-            <th className="bg-amber-900/30 text-amber-200 font-semibold px-4 py-3 text-left border-b border-amber-900/30 text-sm uppercase tracking-wide">
+            <th className="bg-amber-900/30 text-amber-200 font-semibold px-4 py-3 text-left text-base whitespace-nowrap">
                 {children}
             </th>
         ),
         td: ({ children }) => (
-            <td className="text-amber-100/80 px-4 py-3 text-lg odia-text">
+            <td className="text-amber-100/80 px-4 py-3 text-base odia-text align-middle">
                 {children}
             </td>
         ),
