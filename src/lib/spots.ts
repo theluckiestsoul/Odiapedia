@@ -59,6 +59,31 @@ export function getSpotsByTehsil(districtSlug: string, tehsilSlug: string): Spot
     );
 }
 
+export function getNearbySpots(currentSpot: SpotMeta, limit: number = 3): SpotMeta[] {
+    const allSpots = getAllSpots();
+
+    // 1. Same Tehsil (Highest Priority)
+    const sameTehsil = allSpots.filter(
+        s => s.district === currentSpot.district &&
+            s.tehsil === currentSpot.tehsil &&
+            s.slug !== currentSpot.slug
+    );
+
+    if (sameTehsil.length >= limit) {
+        return sameTehsil.slice(0, limit);
+    }
+
+    // 2. Same District (Lower Priority)
+    const sameDistrict = allSpots.filter(
+        s => s.district === currentSpot.district &&
+            s.tehsil !== currentSpot.tehsil &&
+            s.slug !== currentSpot.slug
+    );
+
+    // Combine and slice
+    return [...sameTehsil, ...sameDistrict].slice(0, limit);
+}
+
 export function getSpotBySlug(districtSlug: string, spotSlug: string): Spot | null {
     // We assume the file is at content/spots/[districtSlug]/[spotSlug].mdx
     const filePath = path.join(spotsDirectory, districtSlug, `${spotSlug}.mdx`);
