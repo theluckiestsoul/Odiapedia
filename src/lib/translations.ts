@@ -1,6 +1,6 @@
-// Translation strings for English and Odia
+// Translation strings for English, Odia, and Hindi
 
-export type Language = 'en' | 'od';
+export type Language = 'en' | 'od' | 'hi';
 
 export const translations = {
     // Navigation

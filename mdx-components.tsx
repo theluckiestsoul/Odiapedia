@@ -1,5 +1,6 @@
 import type { MDXComponents } from "mdx/types";
 import Link from "next/link";
+import LanguageSelector from "@/components/LanguageSelector";
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
     return {
@@ -138,6 +139,9 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
                 {children}
             </td>
         ),
+
+        // Language Selector for multi-language articles
+        LanguageSelector,
 
         ...components,
     };
