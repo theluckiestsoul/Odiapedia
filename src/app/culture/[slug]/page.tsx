@@ -25,6 +25,21 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         return { title: "Article Not Found" };
     }
 
+    // Build alternate languages for metadata
+    const alternateLanguages: Record<string, string> = {};
+    if (article.alternates) {
+        for (const [lang, path] of Object.entries(article.alternates)) {
+            // Map our language codes to standard hreflang codes
+            const hreflang = lang === 'od' ? 'or' : lang;
+            alternateLanguages[hreflang] = `https://odiapedia.com${path}`;
+        }
+    }
+    // Add current language as canonical
+    if (article.lang) {
+        const currentHreflang = article.lang === 'od' ? 'or' : article.lang;
+        alternateLanguages[currentHreflang] = `https://odiapedia.com/${CATEGORY}/${slug}`;
+    }
+
     return {
         title: article.title,
         description: article.description,
@@ -34,7 +49,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
             type: "article",
             publishedTime: article.date,
             authors: [article.author],
+            locale: article.lang === 'od' ? 'or_IN' : article.lang === 'hi' ? 'hi_IN' : 'en_US',
         },
+        alternates: Object.keys(alternateLanguages).length > 0 ? {
+            languages: alternateLanguages,
+        } : undefined,
     };
 }
 

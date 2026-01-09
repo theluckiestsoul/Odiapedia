@@ -1,13 +1,80 @@
 "use client";
 
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useRouter, usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react';
+
+// Map language codes to URL suffixes
+const LANG_SUFFIXES: Record<string, string> = {
+    en: '-en',
+    od: '-od',
+    hi: '-hi',
+};
 
 export default function LanguageToggle() {
-    const { language, toggleLanguage } = useLanguage();
+    const { language, toggleLanguage, setLanguage } = useLanguage();
+    const router = useRouter();
+    const pathname = usePathname();
+    const [alternates, setAlternates] = useState<Record<string, string>>({});
+
+    // Check for alternate language links in the page head
+    useEffect(() => {
+        const checkAlternates = () => {
+            const altLinks: Record<string, string> = {};
+
+            // Look for alternate links in the document head
+            const links = document.querySelectorAll('link[rel="alternate"][hreflang]');
+            links.forEach((link) => {
+                const hreflang = link.getAttribute('hreflang');
+                const href = link.getAttribute('href');
+                if (hreflang && href) {
+                    // Map hreflang codes to our language codes
+                    const langCode = hreflang === 'or' ? 'od' : hreflang;
+                    altLinks[langCode] = href;
+                }
+            });
+
+            // Also check URL patterns for language suffixes
+            if (Object.keys(altLinks).length === 0) {
+                // Check if current URL has a language suffix
+                const currentPath = pathname;
+                for (const [lang, suffix] of Object.entries(LANG_SUFFIXES)) {
+                    if (currentPath.endsWith(suffix)) {
+                        // This is a multi-language article
+                        const basePath = currentPath.slice(0, -suffix.length);
+                        // Add all possible alternates
+                        for (const [altLang, altSuffix] of Object.entries(LANG_SUFFIXES)) {
+                            altLinks[altLang] = basePath + altSuffix;
+                        }
+                        break;
+                    }
+                }
+            }
+
+            setAlternates(altLinks);
+        };
+
+        checkAlternates();
+
+        // Re-check when pathname changes
+    }, [pathname]);
+
+    const handleToggle = () => {
+        const newLang = language === 'en' ? 'od' : 'en';
+
+        // If there's an alternate URL for the new language, navigate to it
+        if (alternates[newLang]) {
+            setLanguage(newLang);
+            router.push(alternates[newLang]);
+        } else {
+            // Just toggle the UI language
+            toggleLanguage();
+        }
+    };
 
     return (
         <button
-            onClick={toggleLanguage}
+            onClick={handleToggle}
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-full 
                  bg-amber-900/30 hover:bg-amber-800/50 
                  border border-amber-700/30 hover:border-amber-600/50

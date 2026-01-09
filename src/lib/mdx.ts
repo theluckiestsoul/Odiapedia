@@ -12,6 +12,8 @@ export interface ArticleMeta {
     author: string;
     slug: string;
     image?: string;
+    lang?: string;
+    alternates?: Record<string, string>;
 }
 
 export interface Article extends ArticleMeta {
@@ -57,6 +59,8 @@ export function getArticleBySlug(
         date: data.date || new Date().toISOString(),
         author: data.author || "Odiapedia Team",
         image: data.image,
+        lang: data.lang,
+        alternates: data.alternates,
         slug,
         content,
     };
