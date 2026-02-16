@@ -566,38 +566,39 @@ export default function TimelinePage() {
     const eventCount = timelineEvents.length;
 
     return (
-        <div className="min-h-screen bg-black">
+        <div className="min-h-screen bg-slate-50">
             {/* Hero Section */}
             <section className="relative py-24 overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-b from-amber-950/30 via-black to-black"></div>
-                <div className="absolute inset-0 pattern-overlay opacity-20"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-teal-900 via-teal-800 to-blue-900"></div>
+                <div className="absolute inset-0 bg-water opacity-20 mix-blend-soft-light"></div>
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-slate-50/10"></div>
 
                 <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <span className="text-7xl mb-6 block">📜</span>
-                    <h1 className="text-5xl md:text-6xl font-bold text-amber-100 mb-4 font-display">
+                    <span className="text-7xl mb-6 block animate-float">📜</span>
+                    <h1 className="text-5xl md:text-6xl font-bold text-white mb-4 font-display">
                         Timeline of Odisha
                     </h1>
-                    <p className="text-3xl text-amber-500/80 odia-text mb-8">
+                    <p className="text-3xl text-teal-200 odia-text mb-8">
                         ଓଡ଼ିଶାର ଇତିହାସ
                     </p>
-                    <p className="text-xl text-amber-100/70 max-w-2xl mx-auto leading-relaxed mb-4">
+                    <p className="text-xl text-teal-100/90 max-w-2xl mx-auto leading-relaxed mb-4 font-light">
                         From prehistoric caves to modern achievements — explore the rich and tumultuous
                         history of Kalinga/Odisha spanning over a million years.
                     </p>
-                    <p className="text-amber-500/60 text-sm">
+                    <p className="text-teal-300 text-sm font-medium tracking-wide uppercase">
                         {eventCount} historical events documented
                     </p>
                 </div>
             </section>
 
             {/* Era Legend */}
-            <section className="py-8 border-b border-amber-900/20">
+            <section className="py-8 border-b border-slate-200 bg-white shadow-sm sticky top-16 z-20">
                 <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex flex-wrap justify-center gap-4">
                         {Object.entries(categoryColors).map(([era, colors]) => (
-                            <div key={era} className="flex items-center gap-2">
+                            <div key={era} className="flex items-center gap-2 px-3 py-1 rounded-full bg-slate-50 border border-slate-100">
                                 <div className={`w-3 h-3 rounded-full ${colors.dot}`}></div>
-                                <span className="text-amber-100/60 text-sm capitalize">{era}</span>
+                                <span className="text-slate-600 text-sm capitalize font-medium">{era}</span>
                             </div>
                         ))}
                     </div>
@@ -605,38 +606,39 @@ export default function TimelinePage() {
             </section>
 
             {/* Timeline */}
-            <section className="py-16 bg-black">
+            <section className="py-16 bg-slate-50 relative">
+                <div className="absolute inset-0 pattern-grid opacity-5 pointer-events-none"></div>
                 <TimelineView events={timelineEvents} categoryColors={categoryColors} />
             </section>
 
             {/* Call to Action */}
-            <section className="py-16 bg-gradient-to-b from-black to-neutral-950 border-t border-amber-900/20">
+            <section className="py-16 bg-white border-t border-slate-200">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h2 className="text-2xl font-bold text-amber-100 mb-6 font-display">
+                    <h2 className="text-3xl font-bold text-slate-800 mb-8 font-display">
                         Explore More History
                     </h2>
                     <div className="flex flex-wrap justify-center gap-4">
                         <Link
                             href="/history/konark-sun-temple"
-                            className="px-6 py-3 bg-amber-900/30 hover:bg-amber-900/50 border border-amber-700/30 rounded-xl text-amber-100 transition-colors"
+                            className="px-6 py-3 bg-white hover:bg-orange-50 border border-slate-200 hover:border-orange-200 rounded-xl text-slate-700 hover:text-orange-700 transition-all shadow-sm hover:shadow-md"
                         >
                             🏛️ Konark Temple
                         </Link>
                         <Link
                             href="/history/jagannath-temple"
-                            className="px-6 py-3 bg-amber-900/30 hover:bg-amber-900/50 border border-amber-700/30 rounded-xl text-amber-100 transition-colors"
+                            className="px-6 py-3 bg-white hover:bg-orange-50 border border-slate-200 hover:border-orange-200 rounded-xl text-slate-700 hover:text-orange-700 transition-all shadow-sm hover:shadow-md"
                         >
                             🛕 Jagannath Temple
                         </Link>
                         <Link
                             href="/history/lingaraj-temple"
-                            className="px-6 py-3 bg-amber-900/30 hover:bg-amber-900/50 border border-amber-700/30 rounded-xl text-amber-100 transition-colors"
+                            className="px-6 py-3 bg-white hover:bg-orange-50 border border-slate-200 hover:border-orange-200 rounded-xl text-slate-700 hover:text-orange-700 transition-all shadow-sm hover:shadow-md"
                         >
                             🕉️ Lingaraj Temple
                         </Link>
                         <Link
                             href="/history"
-                            className="px-6 py-3 bg-amber-600 hover:bg-amber-500 rounded-xl text-black font-medium transition-colors"
+                            className="px-6 py-3 bg-teal-600 hover:bg-teal-700 rounded-xl text-white font-bold transition-colors shadow-lg shadow-teal-600/20"
                         >
                             View All History →
                         </Link>
