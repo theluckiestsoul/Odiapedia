@@ -34,11 +34,11 @@ export function getLatestUpdates(): UpdateItem[] {
     });
 
     // 2. Movie Reviews (Use release year as proxy for now, or add a 'reviewedDate' to data)
-    // For this demo, we'll assign recent dummy dates to make them appear 'new'
+    // For this demo, we'll assign recent dummy dates to make them appear 'new', but slightly older than today's articles
     movieReviews.forEach((review, index) => {
-        // Mocking dates: Daman (newest), then Pratikshya
+        // Mocking dates: Start from 2 days ago to let real articles take precedence
         const mockDate = new Date();
-        mockDate.setDate(mockDate.getDate() - index); // Daman = Today, Pratikshya = Yesterday
+        mockDate.setDate(mockDate.getDate() - (index + 2));
 
         updates.push({
             id: `review-${review.id}`,
@@ -54,12 +54,16 @@ export function getLatestUpdates(): UpdateItem[] {
 
     // 3. Cinema Timeline (Use year, but prioritized for the 'New Feature' aspect)
     // We can highlight the Cinema Timeline launch itself as an update
+    // Set to yesterday so real breaking news (like Hampi) comes first
+    const yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+
     updates.push({
         id: "feature-cinema-timeline",
         type: "event",
         title: "Odia Cinema Timeline Launched",
         description: "Explore the complete history of Ollywood from 1936 to 2024. Over 80 years of cinematic heritage documented.",
-        date: new Date().toISOString().split('T')[0], // Today
+        date: yesterday.toISOString().split('T')[0],
         image: "/images/cinema/sita_bibaha.png",
         link: "/culture/cinema/timeline",
         tag: "New Feature"
