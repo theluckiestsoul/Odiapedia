@@ -76,6 +76,13 @@ export default function LanguageToggle() {
         // Update the language in the context
         setLanguage(newLangCode as 'en' | 'od');
 
+        // Check for specific alternate link first (e.g., article-slug-en -> article-slug-od)
+        if (alternates[newLangCode]) {
+            router.push(alternates[newLangCode]);
+            setIsOpen(false);
+            return;
+        }
+
         const currentPath = pathname;
         // Basic logic: if switching to 'od', prefix with /od if not already there.
         // If switching to 'en', remove /od prefix.
