@@ -228,7 +228,7 @@ export default async function DistrictPage({ params }: PageProps) {
                                 <MDXRemote
                                     source={districtContent.content}
                                     components={components}
-                                    options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
+                                    options={{ mdxOptions: { remarkPlugins: [remarkGfm] }, blockJS: false }}
                                 />
                             </article>
                         </div>

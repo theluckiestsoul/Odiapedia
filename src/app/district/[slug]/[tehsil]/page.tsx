@@ -144,7 +144,7 @@ export default async function TehsilPage({ params }: PageProps) {
                     <MDXRemote
                         source={tehsilData.content}
                         components={components}
-                        options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
+                        options={{ mdxOptions: { remarkPlugins: [remarkGfm] }, blockJS: false }}
                     />
                 </article>
 

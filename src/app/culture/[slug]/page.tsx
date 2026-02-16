@@ -72,7 +72,7 @@ export default async function ArticlePage({ params }: PageProps) {
             <MDXRemote
                 source={article.content}
                 components={components}
-                options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
+                options={{ mdxOptions: { remarkPlugins: [remarkGfm] }, blockJS: false }}
             />
         </ArticleLayout>
     );

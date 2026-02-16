@@ -135,7 +135,7 @@ export default async function SpotPage({ params }: PageProps) {
                                 <MDXRemote
                                     source={spotData.content}
                                     components={components}
-                                    options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
+                                    options={{ mdxOptions: { remarkPlugins: [remarkGfm] }, blockJS: false }}
                                 />
                             </article>
                         </div>
