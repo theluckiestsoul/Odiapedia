@@ -18,6 +18,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
         "/about",
         "/districts",
         "/map",
+        "/learn",
+        "/panjika",
+        "/panjika/biraja",
+        "/panjika/jagannath",
     ].map((route) => ({
         url: `${baseUrl}${route}`,
         lastModified: new Date(),

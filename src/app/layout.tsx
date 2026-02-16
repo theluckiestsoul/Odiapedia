@@ -29,6 +29,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://odiapedia.com'),
   title: {
     default: "Odiapedia - Discover Odia Culture, Language & Heritage",
     template: "%s | Odiapedia"

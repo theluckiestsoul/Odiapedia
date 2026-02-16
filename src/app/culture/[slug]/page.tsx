@@ -1,29 +1,34 @@
 import { notFound } from "next/navigation";
-import { Metadata } from "next";
-import { getArticleBySlug, getArticleSlugs } from "@/lib/mdx";
+import type { Metadata } from "next";
+import { getArticleBySlug, getAllArticles } from "@/lib/mdx";
 import ArticleLayout from "@/components/ArticleLayout";
 import { MDXRemote } from "next-mdx-remote/rsc";
-import { useMDXComponents } from "@/../mdx-components";
+import { useMDXComponents } from "../../../../mdx-components";
 import remarkGfm from "remark-gfm";
+import Image from "next/image";
+import Link from "next/link";
+import JsonLd from "@/components/JsonLd";
 
-interface PageProps {
+type Props = {
     params: Promise<{ slug: string }>;
-}
+};
 
 const CATEGORY = "culture";
 
-export async function generateStaticParams() {
-    const slugs = getArticleSlugs(CATEGORY);
-    return slugs.map((slug) => ({ slug }));
-}
-
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+// Generate dynamic metadata
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const { slug } = await params;
-    const article = getArticleBySlug(CATEGORY, slug);
+    const article = getArticleBySlug("culture", slug);
 
     if (!article) {
-        return { title: "Article Not Found" };
+        return {
+            title: "Article Not Found",
+        };
     }
+
+    const title = `${article.title} | Odiapedia Culture`;
+    const description = article.description || `Read about ${article.title} in Odia culture.`;
+    const images = article.image ? [article.image] : [];
 
     // Build alternate languages for metadata
     const alternateLanguages: Record<string, string> = {};
@@ -37,19 +42,26 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     // Add current language as canonical
     if (article.lang) {
         const currentHreflang = article.lang === 'od' ? 'or' : article.lang;
-        alternateLanguages[currentHreflang] = `https://odiapedia.com/${CATEGORY}/${slug}`;
+        alternateLanguages[currentHreflang] = `https://odiapedia.com/culture/${slug}`;
     }
 
     return {
-        title: article.title,
-        description: article.description,
+        title,
+        description,
         openGraph: {
-            title: article.title,
-            description: article.description,
+            title,
+            description,
             type: "article",
             publishedTime: article.date,
             authors: [article.author],
+            images,
             locale: article.lang === 'od' ? 'or_IN' : article.lang === 'hi' ? 'hi_IN' : 'en_US',
+        },
+        twitter: {
+            card: "summary_large_image",
+            title,
+            description,
+            images,
         },
         alternates: Object.keys(alternateLanguages).length > 0 ? {
             languages: alternateLanguages,
@@ -57,7 +69,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
 }
 
-export default async function ArticlePage({ params }: PageProps) {
+export default async function ArticlePage({ params }: Props) {
     const { slug } = await params;
     const article = getArticleBySlug(CATEGORY, slug);
 

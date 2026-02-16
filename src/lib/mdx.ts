@@ -89,7 +89,7 @@ export function getAllArticles(category: string): ArticleMeta[] {
  * Get all articles across all categories
  */
 export function getAllArticlesMetadata(): ArticleMeta[] {
-    const categories = ["language", "culture", "history", "food", "people", "about"];
+    const categories = ["language", "culture", "history", "food", "people", "about", "learn"];
 
     return categories.flatMap((category) => getAllArticles(category));
 }
@@ -98,7 +98,7 @@ export function getAllArticlesMetadata(): ArticleMeta[] {
  * Get categories with article counts
  */
 export function getCategoriesWithCounts(): { category: string; count: number }[] {
-    const categories = ["language", "culture", "history", "food", "people", "about"];
+    const categories = ["language", "culture", "history", "food", "people", "about", "learn"];
 
     return categories.map((category) => ({
         category,

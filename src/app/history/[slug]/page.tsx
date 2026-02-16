@@ -1,23 +1,28 @@
 import { notFound } from "next/navigation";
-import { Metadata } from "next";
-import { getArticleBySlug, getArticleSlugs } from "@/lib/mdx";
+import type { Metadata } from "next";
+import { getArticleBySlug, getAllArticles } from "@/lib/mdx";
 import ArticleLayout from "@/components/ArticleLayout";
 import { MDXRemote } from "next-mdx-remote/rsc";
-import { useMDXComponents } from "@/../mdx-components";
+import { useMDXComponents } from "../../../../mdx-components";
 import remarkGfm from "remark-gfm";
+import Image from "next/image";
+import Link from "next/link";
+import JsonLd from "@/components/JsonLd";
 
-interface PageProps {
+type Props = {
     params: Promise<{ slug: string }>;
-}
+};
 
 const CATEGORY = "history";
 
 export async function generateStaticParams() {
-    const slugs = getArticleSlugs(CATEGORY);
-    return slugs.map((slug) => ({ slug }));
+    const articles = getAllArticles(CATEGORY);
+    return articles.map((article) => ({
+        slug: article.slug,
+    }));
 }
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const { slug } = await params;
     const article = getArticleBySlug(CATEGORY, slug);
 
@@ -25,20 +30,34 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         return { title: "Article Not Found" };
     }
 
+    const title = `${article.title} | Odiapedia History`;
+    const description = article.description || `Read about ${article.title} in Odia history.`;
+    const images = article.image ? [article.image] : [];
+
     return {
-        title: article.title,
-        description: article.description,
+        title,
+        description,
         openGraph: {
-            title: article.title,
-            description: article.description,
+            title,
+            description,
             type: "article",
             publishedTime: article.date,
             authors: [article.author],
+            images,
         },
+        twitter: {
+            card: "summary_large_image",
+            title,
+            description,
+            images,
+        },
+        alternates: {
+            canonical: `/history/${slug}`,
+        }
     };
 }
 
-export default async function ArticlePage({ params }: PageProps) {
+export default async function ArticlePage({ params }: Props) {
     const { slug } = await params;
     const article = getArticleBySlug(CATEGORY, slug);
 

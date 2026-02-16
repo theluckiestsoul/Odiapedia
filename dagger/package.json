@@ -1,0 +1,14 @@
+{
+    "name": "dagger",
+    "version": "0.0.0",
+    "type": "module",
+    "main": "dist/index.js",
+    "scripts": {
+        "build": "tsc"
+    },
+    "devDependencies": {
+        "@dagger.io/dagger": "^0.19.11",
+        "ts-node": "^10.9.2",
+        "typescript": "^5.0.0"
+    }
+}
