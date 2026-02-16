@@ -1,156 +1,141 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700&family=Noto+Sans+Oriya:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
-:root {
-  --background: #fdfbf7;
-  /* Warm Cream / Palm Leaf */
-  --foreground: #2d1810;
-  /* Deep Earthy Brown / Temple Shadow */
-  --accent: #d97706;
-  --accent-light: #fbbf24;
-  --gold: #b45309;
-  /* Darker gold for contrast on light bg */
-  --deep-orange: #c2410c;
-  --maroon: #7f1d1d;
-  --cream: #fef3c7;
-
-  --card-bg: #ffffff;
-  --card-border: #fcd34d;
-}
-
-@theme inline {
+@theme {
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
-  --color-gold: var(--gold);
-  --font-sans: 'Noto Sans', 'Noto Sans Oriya', system-ui, sans-serif;
-  --font-display: 'Playfair Display', serif;
+  --color-accent-foreground: var(--accent-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  --font-display: var(--font-playfair), serif;
+  --font-sans: var(--font-geist-sans), sans-serif;
 }
 
-* {
-  box-sizing: border-box;
+@layer utilities {
+  .animated-underline {
+    position: relative;
+    text-decoration: none;
+  }
+
+  .animated-underline::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: currentColor;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease-out;
+  }
+
+  .animated-underline:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-teal-200;
+  }
+
+  .odia-text {
+    font-family: var(--font-noto-sans-oriya), sans-serif;
+  }
+
+  /* Subtle water ripple pattern */
+  .bg-water {
+    background-image: radial-gradient(circle at 100% 50%, transparent 20%, rgba(20, 184, 166, 0.05) 21%, rgba(20, 184, 166, 0.05) 34%, transparent 35%, transparent),
+      radial-gradient(circle at 0% 50%, transparent 20%, rgba(20, 184, 166, 0.05) 21%, rgba(20, 184, 166, 0.05) 34%, transparent 35%, transparent);
+    background-size: 100px 100px;
+  }
 }
 
-html {
-  scroll-behavior: smooth;
+@layer base {
+  :root {
+    --background: #f8fafc;
+    /* slate-50 - Cool Breeze */
+    --foreground: #0f172a;
+    /* slate-900 - Deep Navy */
+    --card: #ffffff;
+    --card-foreground: #0f172a;
+    --popover: #ffffff;
+    --popover-foreground: #0f172a;
+    --primary: #0f766e;
+    /* teal-700 - Deep Ocean */
+    --primary-foreground: #ffffff;
+    --secondary: #e2e8f0;
+    /* slate-200 */
+    --secondary-foreground: #1e293b;
+    --muted: #f1f5f9;
+    /* slate-100 */
+    --muted-foreground: #64748b;
+    /* slate-500 */
+    --accent: #f0fdfa;
+    /* teal-50 */
+    --accent-foreground: #0f766e;
+    --destructive: #be123c;
+    /* rose-700 */
+    --destructive-foreground: #ffffff;
+    --border: #e2e8f0;
+    /* slate-200 */
+    --input: #e2e8f0;
+    --ring: #14b8a6;
+    /* teal-500 */
+    --radius: 0.75rem;
+    /* More rounded for organic feel */
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-geist-sans), sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-playfair), serif;
+    @apply tracking-wide text-slate-900;
+  }
+
+  * {
+    border-color: var(--border);
+  }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: 'Noto Sans', 'Noto Sans Oriya', system-ui, sans-serif;
-  line-height: 1.6;
-}
+/* Custom Scrollbar */
+@layer utilities {
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
 
-/* Odia text specific styling */
-.odia-text {
-  font-family: 'Noto Sans Oriya', 'Noto Sans', sans-serif;
-}
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
 
-/* Display font for headings */
-.font-display {
-  font-family: 'Playfair Display', serif;
-}
-
-/* Rich gradient backgrounds */
-.bg-rich-gradient {
-  background: linear-gradient(135deg, #1a0a0a 0%, #2d1810 25%, #1f1f1f 50%, #2d1810 75%, #1a0a0a 100%);
-}
-
-.bg-gold-gradient {
-  background: linear-gradient(135deg, #c9a227 0%, #d4a842 50%, #b8941f 100%);
-}
-
-.bg-temple-gradient {
-  background: linear-gradient(180deg, #1a0a0a 0%, #2d1810 50%, #1a0a0a 100%);
-}
-
-/* Golden border effect */
-.golden-border {
-  border: 2px solid transparent;
-  background: linear-gradient(var(--background), var(--background)) padding-box,
-    linear-gradient(135deg, #c9a227, #d4a842, #b8941f, #c9a227) border-box;
-}
-
-/* Decorative patterns */
-.pattern-overlay {
-  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23b45309' fill-opacity='0.08'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-}
-
-/* Temple-style decorative elements */
-.temple-border-top {
-  border-top: 4px solid;
-  border-image: linear-gradient(90deg, transparent, #c9a227, #d4a842, #c9a227, transparent) 1;
-}
-
-.temple-border-bottom {
-  border-bottom: 4px solid;
-  border-image: linear-gradient(90deg, transparent, #c9a227, #d4a842, #c9a227, transparent) 1;
-}
-
-/* Glowing text effect */
-.text-glow {
-  text-shadow: 0 0 20px rgba(201, 162, 39, 0.5), 0 0 40px rgba(201, 162, 39, 0.3);
-}
-
-/* Card hover effects */
-.card-hover {
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.card-hover:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(201, 162, 39, 0.2);
-}
-
-/* Smooth transitions for interactive elements */
-a,
-button {
-  transition: all 0.3s ease-in-out;
-}
-
-/* Focus styles for accessibility */
-a:focus-visible,
-button:focus-visible {
-  outline: 2px solid var(--gold);
-  outline-offset: 2px;
-}
-
-/* Custom scrollbar - dark theme */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #1a1a1a;
-}
-
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, #c9a227, #d4a842);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, #d4a842, #c9a227);
-}
-
-/* Animated underline */
-.animated-underline {
-  position: relative;
-}
-
-.animated-underline::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: linear-gradient(90deg, #c9a227, #d4a842);
-  transition: width 0.3s ease;
-}
-
-.animated-underline:hover::after {
-  width: 100%;
+  ::-webkit-scrollbar-thumb {
+    @apply bg-zinc-300 rounded-full hover:bg-zinc-400 transition-colors;
+  }
 }

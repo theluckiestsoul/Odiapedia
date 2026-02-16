@@ -95,21 +95,22 @@ export default function CalendarPage() {
     const today = new Date();
 
     return (
-        <div className="min-h-screen bg-black">
+        <div className="min-h-screen bg-slate-50">
             {/* Hero Section */}
             <section className="relative py-24 overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-b from-amber-950/30 via-black to-black"></div>
-                <div className="absolute inset-0 pattern-overlay opacity-20"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-teal-900 via-teal-800 to-blue-900"></div>
+                <div className="absolute inset-0 bg-water opacity-20 mix-blend-soft-light"></div>
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-slate-50/10"></div>
 
                 <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <span className="text-7xl mb-6 block">🗓️</span>
-                    <h1 className="text-5xl md:text-6xl font-bold text-amber-100 mb-4 font-display">
+                    <span className="text-7xl mb-6 block animate-float">🗓️</span>
+                    <h1 className="text-5xl md:text-6xl font-bold text-white mb-4 font-display">
                         Odia Calendar
                     </h1>
-                    <p className="text-3xl text-amber-500/80 odia-text mb-8">
+                    <p className="text-3xl text-teal-200 odia-text mb-8">
                         ଓଡ଼ିଆ ପଞ୍ଜିକା
                     </p>
-                    <p className="text-xl text-amber-100/70 max-w-2xl mx-auto leading-relaxed">
+                    <p className="text-xl text-teal-50 max-w-2xl mx-auto leading-relaxed text-shadow-sm">
                         Complete Panchanga with tithi, nakshatra, yoga, karana —
                         accurate calculations based on Vedic astronomy.
                     </p>
@@ -117,78 +118,80 @@ export default function CalendarPage() {
             </section>
 
             {/* Today's Panchanga - Detailed */}
-            <section className="py-8 border-y border-amber-900/30 bg-gradient-to-r from-amber-950/20 via-black to-amber-950/20">
+            <section className="py-12 border-y border-slate-200 bg-slate-100">
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <h2 className="text-2xl font-bold text-amber-100 mb-6 text-center font-display">
-                        ଆଜିର ପଞ୍ଚାଙ୍ଗ — Today&apos;s Panchanga
+                    <h2 className="text-2xl font-bold text-slate-900 mb-6 text-center font-display flex items-center justify-center gap-3">
+                        <span className="text-teal-600">ଆଜିର ପଞ୍ଚାଙ୍ଗ</span>
+                        <span className="text-slate-400">|</span>
+                        <span>Today&apos;s Panchanga</span>
                     </h2>
 
-                    <div className="bg-gradient-to-br from-amber-900/20 to-amber-950/30 rounded-2xl p-6 border border-amber-800/30 mb-6">
+                    <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-xl shadow-slate-200/50 mb-6">
                         <div className="text-center mb-6">
-                            <p className="text-amber-500/60 text-sm">{today.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
-                            <p className="text-3xl font-bold text-amber-100 odia-text mt-2">{panchanga.vara}</p>
-                            <p className="text-amber-400">{panchanga.varaEnglish}</p>
+                            <p className="text-slate-500 text-sm font-medium uppercase tracking-wider">{today.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                            <p className="text-4xl font-bold text-slate-900 odia-text mt-2">{panchanga.vara}</p>
+                            <p className="text-teal-600 font-medium">{panchanga.varaEnglish}</p>
                         </div>
 
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                             {/* Odia Year */}
-                            <div className="bg-black/40 rounded-xl p-4 text-center">
-                                <p className="text-amber-500/60 text-xs uppercase mb-1">ଓଡ଼ିଆ ବର୍ଷ</p>
-                                <p className="text-2xl font-bold text-amber-100 odia-text">ଶକାବ୍ଦ {panchanga.sakaYear}</p>
-                                <p className="text-amber-400 text-sm">Saka {panchanga.sakaYear}</p>
+                            <div className="bg-slate-50 rounded-xl p-4 text-center border border-slate-100">
+                                <p className="text-slate-400 text-xs uppercase mb-1">ଓଡ଼ିଆ ବର୍ଷ</p>
+                                <p className="text-2xl font-bold text-slate-800 odia-text">ଶକାବ୍ଦ {panchanga.sakaYear}</p>
+                                <p className="text-teal-600 text-sm">Saka {panchanga.sakaYear}</p>
                             </div>
 
                             {/* Odia Month */}
-                            <div className="bg-black/40 rounded-xl p-4 text-center">
-                                <p className="text-amber-500/60 text-xs uppercase mb-1">ଓଡ଼ିଆ ମାସ</p>
-                                <p className="text-2xl font-bold text-amber-100 odia-text">{panchanga.odiaMonth}</p>
-                                <p className="text-amber-400 text-sm">{odiaMonths[panchanga.odiaMonthIndex].english}</p>
+                            <div className="bg-slate-50 rounded-xl p-4 text-center border border-slate-100">
+                                <p className="text-slate-400 text-xs uppercase mb-1">ଓଡ଼ିଆ ମାସ</p>
+                                <p className="text-2xl font-bold text-slate-800 odia-text">{panchanga.odiaMonth}</p>
+                                <p className="text-teal-600 text-sm">{odiaMonths[panchanga.odiaMonthIndex].english}</p>
                             </div>
 
                             {/* Tithi */}
-                            <div className="bg-black/40 rounded-xl p-4 text-center">
-                                <p className="text-amber-500/60 text-xs uppercase mb-1">ତିଥି</p>
-                                <p className="text-xl font-bold text-amber-100 odia-text">{panchanga.tithi}</p>
-                                <p className="text-amber-400 text-sm">{panchanga.tithiEnglish}</p>
+                            <div className="bg-slate-50 rounded-xl p-4 text-center border border-slate-100">
+                                <p className="text-slate-400 text-xs uppercase mb-1">ତିଥି</p>
+                                <p className="text-xl font-bold text-slate-800 odia-text">{panchanga.tithi}</p>
+                                <p className="text-teal-600 text-sm">{panchanga.tithiEnglish}</p>
                             </div>
 
                             {/* Paksha */}
-                            <div className="bg-black/40 rounded-xl p-4 text-center">
-                                <p className="text-amber-500/60 text-xs uppercase mb-1">ପକ୍ଷ</p>
-                                <p className="text-xl font-bold text-amber-100">
+                            <div className="bg-slate-50 rounded-xl p-4 text-center border border-slate-100">
+                                <p className="text-slate-400 text-xs uppercase mb-1">ପକ୍ଷ</p>
+                                <p className="text-xl font-bold text-slate-800">
                                     {panchanga.paksha === 'shukla' ? '🌙 ଶୁକ୍ଳ' : '🌑 କୃଷ୍ଣ'}
                                 </p>
-                                <p className="text-amber-400 text-sm">{panchanga.paksha === 'shukla' ? 'Waxing Moon' : 'Waning Moon'}</p>
+                                <p className="text-teal-600 text-sm">{panchanga.paksha === 'shukla' ? 'Waxing Moon' : 'Waning Moon'}</p>
                             </div>
                         </div>
 
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
                             {/* Nakshatra */}
-                            <div className="bg-black/40 rounded-xl p-4 text-center">
-                                <p className="text-amber-500/60 text-xs uppercase mb-1">ନକ୍ଷତ୍ର</p>
-                                <p className="text-lg font-bold text-amber-100 odia-text">{panchanga.nakshatra}</p>
-                                <p className="text-amber-400 text-xs">{panchanga.nakshatraEnglish}</p>
+                            <div className="bg-slate-50 rounded-xl p-4 text-center border border-slate-100">
+                                <p className="text-slate-400 text-xs uppercase mb-1">ନକ୍ଷତ୍ର</p>
+                                <p className="text-lg font-bold text-slate-800 odia-text">{panchanga.nakshatra}</p>
+                                <p className="text-teal-600 text-xs">{panchanga.nakshatraEnglish}</p>
                             </div>
 
                             {/* Yoga */}
-                            <div className="bg-black/40 rounded-xl p-4 text-center">
-                                <p className="text-amber-500/60 text-xs uppercase mb-1">ଯୋଗ</p>
-                                <p className="text-lg font-bold text-amber-100 odia-text">{panchanga.yoga}</p>
-                                <p className="text-amber-400 text-xs">Yoga</p>
+                            <div className="bg-slate-50 rounded-xl p-4 text-center border border-slate-100">
+                                <p className="text-slate-400 text-xs uppercase mb-1">ଯୋଗ</p>
+                                <p className="text-lg font-bold text-slate-800 odia-text">{panchanga.yoga}</p>
+                                <p className="text-teal-600 text-xs">Yoga</p>
                             </div>
 
                             {/* Karana */}
-                            <div className="bg-black/40 rounded-xl p-4 text-center">
-                                <p className="text-amber-500/60 text-xs uppercase mb-1">କରଣ</p>
-                                <p className="text-lg font-bold text-amber-100 odia-text">{panchanga.karana}</p>
-                                <p className="text-amber-400 text-xs">Karana</p>
+                            <div className="bg-slate-50 rounded-xl p-4 text-center border border-slate-100">
+                                <p className="text-slate-400 text-xs uppercase mb-1">କରଣ</p>
+                                <p className="text-lg font-bold text-slate-800 odia-text">{panchanga.karana}</p>
+                                <p className="text-teal-600 text-xs">Karana</p>
                             </div>
 
                             {/* Sun Times */}
-                            <div className="bg-black/40 rounded-xl p-4 text-center">
-                                <p className="text-amber-500/60 text-xs uppercase mb-1">ସୂର୍ଯ୍ୟୋଦୟ / ଅସ୍ତ</p>
-                                <p className="text-lg font-bold text-amber-100">🌅 {panchanga.sunrise}</p>
-                                <p className="text-amber-400 text-xs">🌇 {panchanga.sunset}</p>
+                            <div className="bg-slate-50 rounded-xl p-4 text-center border border-slate-100">
+                                <p className="text-slate-400 text-xs uppercase mb-1">ସୂର୍ଯ୍ୟୋଦୟ / ଅସ୍ତ</p>
+                                <p className="text-lg font-bold text-slate-800">🌅 {panchanga.sunrise}</p>
+                                <p className="text-teal-600 text-xs">🌇 {panchanga.sunset}</p>
                             </div>
                         </div>
                     </div>
@@ -196,42 +199,42 @@ export default function CalendarPage() {
             </section>
 
             {/* Panjika References */}
-            <section className="py-8 bg-black">
+            <section className="py-8 bg-white border-t border-slate-200">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <h2 className="text-xl font-bold text-amber-100 mb-6 text-center font-display">
+                    <h2 className="text-xl font-bold text-slate-800 mb-6 text-center font-display">
                         📖 Browse Traditional Panjikas
                     </h2>
-                    <p className="text-amber-100/60 text-center mb-6 text-sm">
+                    <p className="text-slate-500 text-center mb-6 text-sm">
                         Click to open like a traditional printed book
                     </p>
                     <div className="grid md:grid-cols-2 gap-6">
                         <Link
                             href="/panjika/jagannath"
-                            className="bg-gradient-to-br from-orange-900/30 to-red-900/30 rounded-xl p-6 border border-orange-700/30 hover:border-orange-500 hover:scale-105 transition-all group"
+                            className="bg-white rounded-xl p-6 border border-slate-200 hover:border-orange-500 hover:shadow-lg hover:scale-105 transition-all group"
                         >
                             <div className="text-center">
                                 <span className="text-5xl mb-4 block">🛕</span>
-                                <h3 className="text-2xl font-bold text-amber-100 mb-2 odia-text group-hover:text-amber-300 transition-colors">ଜଗନ୍ନାଥ ପଞ୍ଜିକା</h3>
-                                <p className="text-amber-400">Jagannath Panjika</p>
-                                <p className="text-amber-100/50 text-sm mt-3">
+                                <h3 className="text-2xl font-bold text-slate-800 mb-2 odia-text group-hover:text-orange-600 transition-colors">ଜଗନ୍ନାଥ ପଞ୍ଜିକା</h3>
+                                <p className="text-teal-600 font-medium">Jagannath Panjika</p>
+                                <p className="text-slate-500 text-sm mt-3">
                                     Coastal Odisha • Temple Rituals
                                 </p>
-                                <p className="text-amber-500 text-sm mt-4 group-hover:underline">📖 Open Book →</p>
+                                <p className="text-orange-500 text-sm mt-4 group-hover:underline">📖 Open Book →</p>
                             </div>
                         </Link>
 
                         <Link
                             href="/panjika/biraja"
-                            className="bg-gradient-to-br from-purple-900/30 to-fuchsia-900/30 rounded-xl p-6 border border-purple-700/30 hover:border-purple-500 hover:scale-105 transition-all group"
+                            className="bg-white rounded-xl p-6 border border-slate-200 hover:border-purple-500 hover:shadow-lg hover:scale-105 transition-all group"
                         >
                             <div className="text-center">
                                 <span className="text-5xl mb-4 block">🔱</span>
-                                <h3 className="text-2xl font-bold text-amber-100 mb-2 odia-text group-hover:text-amber-300 transition-colors">ବିରଜା ପଞ୍ଜିକା</h3>
-                                <p className="text-amber-400">Biraja Panjika</p>
-                                <p className="text-amber-100/50 text-sm mt-3">
+                                <h3 className="text-2xl font-bold text-slate-800 mb-2 odia-text group-hover:text-purple-600 transition-colors">ବିରଜା ପଞ୍ଜିକା</h3>
+                                <p className="text-teal-600 font-medium">Biraja Panjika</p>
+                                <p className="text-slate-500 text-sm mt-3">
                                     Western Odisha • Agricultural
                                 </p>
-                                <p className="text-amber-500 text-sm mt-4 group-hover:underline">📖 Open Book →</p>
+                                <p className="text-purple-500 text-sm mt-4 group-hover:underline">📖 Open Book →</p>
                             </div>
                         </Link>
                     </div>
@@ -239,12 +242,12 @@ export default function CalendarPage() {
             </section>
 
             {/* 12 Months with Festivals */}
-            <section className="py-16 bg-black">
+            <section className="py-16 bg-slate-50 border-t border-slate-200">
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <h2 className="text-3xl font-bold text-amber-100 mb-4 text-center font-display">
+                    <h2 className="text-3xl font-bold text-slate-900 mb-4 text-center font-display">
                         ବାରମାସ — Twelve Months
                     </h2>
-                    <p className="text-amber-100/60 text-center mb-12">
+                    <p className="text-slate-500 text-center mb-12">
                         The Odia calendar follows the lunisolar system with 12 months
                     </p>
 
@@ -252,27 +255,27 @@ export default function CalendarPage() {
                         {odiaMonths.map((month, index) => (
                             <div
                                 key={month.english}
-                                className={`bg-gradient-to-br ${monthColors[index]} rounded-xl p-6 border border-amber-800/30 ${index === panchanga.odiaMonthIndex ? 'ring-2 ring-amber-500' : ''
+                                className={`bg-white rounded-xl p-6 border transition-all hover:shadow-lg ${index === panchanga.odiaMonthIndex ? 'ring-2 ring-teal-500 border-teal-500 shadow-md' : 'border-slate-200'
                                     }`}
                             >
-                                <div className="flex justify-between items-start mb-4">
+                                <div className="flex justify-between items-start mb-4 border-b border-slate-100 pb-4">
                                     <div>
-                                        <span className="text-amber-400 text-sm font-mono">#{index + 1}</span>
+                                        <span className="text-teal-500 text-sm font-mono font-bold">#{index + 1}</span>
                                         {index === panchanga.odiaMonthIndex && (
-                                            <span className="ml-2 text-xs bg-amber-500 text-black px-2 py-0.5 rounded-full">Current</span>
+                                            <span className="ml-2 text-xs bg-teal-500 text-white px-2 py-0.5 rounded-full">Current</span>
                                         )}
-                                        <h3 className="text-2xl font-bold text-amber-100 odia-text">{month.odia}</h3>
-                                        <p className="text-amber-300">{month.english}</p>
+                                        <h3 className="text-2xl font-bold text-slate-900 odia-text mt-1">{month.odia}</h3>
+                                        <p className="text-slate-500 font-medium">{month.english}</p>
                                     </div>
-                                    <span className="text-amber-500/60 text-sm">{month.gregorian}</span>
+                                    <span className="text-slate-400 text-xs bg-slate-100 px-2 py-1 rounded">{month.gregorian}</span>
                                 </div>
 
                                 <div className="space-y-2">
                                     {monthFestivals[index].map((festival) => (
-                                        <div key={festival.transliteration} className="bg-black/30 rounded-lg p-3">
-                                            <p className="text-amber-100 font-medium odia-text text-sm">{festival.name}</p>
-                                            <p className="text-amber-400 text-xs">{festival.transliteration}</p>
-                                            <p className="text-amber-100/50 text-xs mt-1">{festival.description}</p>
+                                        <div key={festival.transliteration} className="bg-slate-50 rounded-lg p-3 hover:bg-slate-100 transition-colors">
+                                            <p className="text-slate-800 font-medium odia-text text-sm">{festival.name}</p>
+                                            <p className="text-teal-600 text-xs font-medium">{festival.transliteration}</p>
+                                            <p className="text-slate-500 text-xs mt-1">{festival.description}</p>
                                         </div>
                                     ))}
                                 </div>
@@ -283,23 +286,23 @@ export default function CalendarPage() {
             </section>
 
             {/* Nakshatra Reference */}
-            <section className="py-16 bg-gradient-to-b from-black to-neutral-950 border-t border-amber-900/20">
+            <section className="py-16 bg-white border-t border-slate-200">
                 <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <h2 className="text-2xl font-bold text-amber-100 mb-6 text-center font-display">
+                    <h2 className="text-2xl font-bold text-slate-900 mb-6 text-center font-display">
                         ୨୭ ନକ୍ଷତ୍ର — 27 Nakshatras
                     </h2>
-                    <div className="grid grid-cols-3 md:grid-cols-9 gap-2">
+                    <div className="grid grid-cols-3 md:grid-cols-9 gap-3">
                         {nakshatras.map((nak, i) => (
                             <div
                                 key={i}
-                                className={`rounded-lg p-2 text-center border ${i === panchanga.nakshatraIndex
-                                    ? 'bg-amber-600/30 border-amber-500'
-                                    : 'bg-amber-900/10 border-amber-800/20'
+                                className={`rounded-lg p-3 text-center border transition-all hover:shadow-sm ${i === panchanga.nakshatraIndex
+                                    ? 'bg-teal-50 border-teal-500 shadow-sm'
+                                    : 'bg-white border-slate-200 hover:border-teal-300'
                                     }`}
                             >
-                                <span className="text-amber-400 text-xs font-mono">{i + 1}</span>
-                                <p className="text-amber-100 text-xs odia-text leading-tight">{nak.odia}</p>
-                                <p className="text-amber-500/60 text-[10px]">{nak.english}</p>
+                                <span className="text-slate-400 text-xs font-mono mb-1 block">{i + 1}</span>
+                                <p className="text-slate-900 text-sm odia-text leading-tight font-medium">{nak.odia}</p>
+                                <p className="text-teal-600 text-[10px] mt-1">{nak.english}</p>
                             </div>
                         ))}
                     </div>
@@ -307,22 +310,22 @@ export default function CalendarPage() {
             </section>
 
             {/* Vara (Weekdays) Reference */}
-            <section className="py-12 bg-neutral-950">
+            <section className="py-12 bg-slate-50 border-t border-slate-200">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <h2 className="text-xl font-bold text-amber-100 mb-6 text-center font-display">
+                    <h2 className="text-xl font-bold text-slate-900 mb-6 text-center font-display">
                         ଏ ସପ୍ତାହ — Days of the Week
                     </h2>
-                    <div className="grid grid-cols-7 gap-2">
+                    <div className="grid grid-cols-7 gap-3">
                         {varas.map((vara, i) => (
                             <div
                                 key={i}
-                                className={`rounded-lg p-3 text-center ${i === new Date().getDay()
-                                    ? 'bg-amber-600/30 border border-amber-500'
-                                    : 'bg-amber-900/10'
+                                className={`rounded-lg p-3 text-center border transition-all ${i === new Date().getDay()
+                                    ? 'bg-teal-50 border-teal-500 shadow-sm'
+                                    : 'bg-white border-slate-200'
                                     }`}
                             >
-                                <p className="text-amber-100 text-sm odia-text">{vara.odia}</p>
-                                <p className="text-amber-500/60 text-xs">{vara.english.slice(0, 3)}</p>
+                                <p className="text-slate-900 text-sm odia-text font-medium">{vara.odia}</p>
+                                <p className="text-slate-500 text-xs mt-1">{vara.english.slice(0, 3)}</p>
                             </div>
                         ))}
                     </div>
@@ -330,31 +333,31 @@ export default function CalendarPage() {
             </section>
 
             {/* Explore Related */}
-            <section className="py-12 bg-neutral-950 border-t border-amber-900/20">
+            <section className="py-12 bg-white border-t border-slate-200">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h3 className="text-xl font-bold text-amber-100 mb-6">Explore Related</h3>
+                    <h3 className="text-xl font-bold text-slate-900 mb-6">Explore Related</h3>
                     <div className="flex flex-wrap justify-center gap-4">
                         <Link
                             href="/culture/rath-yatra"
-                            className="px-6 py-3 bg-amber-900/30 hover:bg-amber-900/50 border border-amber-700/30 rounded-xl text-amber-100 transition-colors"
+                            className="px-6 py-3 bg-white hover:bg-slate-50 border border-slate-200 rounded-xl text-slate-700 hover:text-teal-700 font-medium transition-colors shadow-sm hover:shadow-md"
                         >
                             🛕 Rath Yatra
                         </Link>
                         <Link
                             href="/culture/durga-puja"
-                            className="px-6 py-3 bg-amber-900/30 hover:bg-amber-900/50 border border-amber-700/30 rounded-xl text-amber-100 transition-colors"
+                            className="px-6 py-3 bg-white hover:bg-slate-50 border border-slate-200 rounded-xl text-slate-700 hover:text-teal-700 font-medium transition-colors shadow-sm hover:shadow-md"
                         >
                             🎭 Durga Puja
                         </Link>
                         <Link
                             href="/culture/nuakhai"
-                            className="px-6 py-3 bg-amber-900/30 hover:bg-amber-900/50 border border-amber-700/30 rounded-xl text-amber-100 transition-colors"
+                            className="px-6 py-3 bg-white hover:bg-slate-50 border border-slate-200 rounded-xl text-slate-700 hover:text-teal-700 font-medium transition-colors shadow-sm hover:shadow-md"
                         >
                             🌾 Nuakhai
                         </Link>
                         <Link
                             href="/history/timeline"
-                            className="px-6 py-3 bg-amber-600 hover:bg-amber-500 rounded-xl text-black font-medium transition-colors"
+                            className="px-6 py-3 bg-teal-600 hover:bg-teal-700 rounded-xl text-white font-medium transition-colors shadow-lg shadow-teal-900/20"
                         >
                             📜 View Timeline
                         </Link>

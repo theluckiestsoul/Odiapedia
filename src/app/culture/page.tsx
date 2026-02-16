@@ -11,26 +11,26 @@ export default function CulturePage() {
     const articles = getAllArticles("culture");
 
     return (
-        <div className="min-h-screen bg-black">
+        <div className="min-h-screen bg-slate-50">
             {/* Hero Section */}
             <section className="relative py-24 overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-b from-purple-950/30 via-black to-black"></div>
-                <div className="absolute inset-0 pattern-overlay opacity-20"></div>
+                <div className="absolute inset-0 bg-gradient-to-b from-teal-50 via-white to-slate-50"></div>
+                <div className="absolute inset-0 bg-water opacity-30"></div>
 
                 <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <span className="text-7xl mb-6 block">🎭</span>
-                    <h1 className="text-5xl md:text-6xl font-bold text-amber-100 mb-4 font-display">
+                    <span className="text-7xl mb-6 block animate-bounce-slow">🎭</span>
+                    <h1 className="text-5xl md:text-6xl font-bold text-slate-900 mb-4 font-display">
                         Odia Culture
                     </h1>
-                    <p className="text-3xl text-amber-500/80 odia-text mb-8">
+                    <p className="text-3xl text-teal-700 odia-text mb-8 font-medium">
                         ଓଡ଼ିଶା ସଂସ୍କୃତି
                     </p>
                     <div className="flex items-center justify-center gap-4 mb-8">
-                        <div className="h-px w-16 bg-gradient-to-r from-transparent to-amber-600"></div>
-                        <div className="w-3 h-3 rotate-45 bg-amber-500"></div>
-                        <div className="h-px w-16 bg-gradient-to-l from-transparent to-amber-600"></div>
+                        <div className="h-px w-16 bg-gradient-to-r from-transparent to-teal-600"></div>
+                        <div className="w-3 h-3 rotate-45 bg-rose-500"></div>
+                        <div className="h-px w-16 bg-gradient-to-l from-transparent to-teal-600"></div>
                     </div>
-                    <p className="text-xl text-amber-100/70 max-w-2xl mx-auto leading-relaxed">
+                    <p className="text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
                         A vibrant tapestry of classical dance, music, art, festivals, and traditions
                         that have flourished for millennia.
                     </p>
@@ -43,43 +43,43 @@ export default function CulturePage() {
             )}
 
             {/* Content Section */}
-            <section className="py-16 bg-black relative">
-                <div className="absolute inset-0 pattern-overlay opacity-10"></div>
+            <section className="py-16 bg-white relative">
+                <div className="absolute inset-0 bg-water opacity-10"></div>
 
                 <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <h2 className="text-2xl font-bold text-amber-100 mb-8 font-display">Highlights</h2>
+                    <h2 className="text-2xl font-bold text-slate-900 mb-8 font-display border-l-4 border-rose-500 pl-4">Highlights</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         {/* Odissi Dance */}
-                        <div className="bg-gradient-to-br from-purple-950/50 to-fuchsia-950/50 rounded-2xl p-8 border border-purple-800/30 card-hover">
-                            <h3 className="text-2xl font-bold text-amber-100 mb-4 font-display">🩰 Odissi Dance</h3>
-                            <p className="text-amber-100/70">
+                        <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 border border-white shadow-sm hover:shadow-xl transition-all duration-300 group hover:-translate-y-1 ring-1 ring-slate-100 hover:ring-teal-100">
+                            <h3 className="text-2xl font-bold text-slate-800 mb-4 font-display group-hover:text-teal-700 transition-colors">🩰 Odissi Dance</h3>
+                            <p className="text-slate-600 leading-relaxed">
                                 One of the eight classical dance forms of India, Odissi originated in the temples
                                 of Odisha and is known for its sculptural poses and fluid movements.
                             </p>
                         </div>
 
                         {/* Pattachitra */}
-                        <div className="bg-gradient-to-br from-orange-950/50 to-amber-950/50 rounded-2xl p-8 border border-orange-800/30 card-hover">
-                            <h3 className="text-2xl font-bold text-amber-100 mb-4 font-display">🎨 Pattachitra Art</h3>
-                            <p className="text-amber-100/70">
+                        <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 border border-white shadow-sm hover:shadow-xl transition-all duration-300 group hover:-translate-y-1 ring-1 ring-slate-100 hover:ring-rose-100">
+                            <h3 className="text-2xl font-bold text-slate-800 mb-4 font-display group-hover:text-rose-600 transition-colors">🎨 Pattachitra Art</h3>
+                            <p className="text-slate-600 leading-relaxed">
                                 Traditional cloth-based scroll painting known for its intricate details,
                                 mythological narratives, and vibrant natural colors.
                             </p>
                         </div>
 
                         {/* Festivals */}
-                        <div className="bg-gradient-to-br from-red-950/50 to-rose-950/50 rounded-2xl p-8 border border-red-800/30 card-hover">
-                            <h3 className="text-2xl font-bold text-amber-100 mb-4 font-display">🎉 Rath Yatra</h3>
-                            <p className="text-amber-100/70">
+                        <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 border border-white shadow-sm hover:shadow-xl transition-all duration-300 group hover:-translate-y-1 ring-1 ring-slate-100 hover:ring-orange-100">
+                            <h3 className="text-2xl font-bold text-slate-800 mb-4 font-display group-hover:text-orange-600 transition-colors">🎉 Rath Yatra</h3>
+                            <p className="text-slate-600 leading-relaxed">
                                 The world-famous Chariot Festival of Lord Jagannath in Puri,
                                 attracting millions of devotees from around the globe.
                             </p>
                         </div>
 
                         {/* Music */}
-                        <div className="bg-gradient-to-br from-blue-950/50 to-indigo-950/50 rounded-2xl p-8 border border-blue-800/30 card-hover">
-                            <h3 className="text-2xl font-bold text-amber-100 mb-4 font-display">🎵 Classical Music</h3>
-                            <p className="text-amber-100/70">
+                        <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 border border-white shadow-sm hover:shadow-xl transition-all duration-300 group hover:-translate-y-1 ring-1 ring-slate-100 hover:ring-blue-100">
+                            <h3 className="text-2xl font-bold text-slate-800 mb-4 font-display group-hover:text-blue-600 transition-colors">🎵 Classical Music</h3>
+                            <p className="text-slate-600 leading-relaxed">
                                 Odissi music with its unique ragas and talas forms the melodic
                                 foundation for the classical dance and temple traditions.
                             </p>

@@ -1,11 +1,28 @@
 import type { Metadata, Viewport } from "next";
+import { Geist, Geist_Mono, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
+  subsets: ["latin"],
+  display: "swap",
+});
+
 export const viewport: Viewport = {
-  themeColor: "#f59e0b",
+  themeColor: "#0d9488",
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,
@@ -105,7 +122,7 @@ export default function RootLayout({
           </>
         )}
       </head>
-      <body className="min-h-screen flex flex-col antialiased bg-background text-foreground">
+      <body className={`min-h-screen flex flex-col antialiased bg-background text-foreground selection:bg-teal-100 selection:text-teal-900 ${playfair.variable} ${geistSans.variable} ${geistMono.variable}`}>
         <LanguageProvider>
           <Navbar />
           <main className="flex-1">

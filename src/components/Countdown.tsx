@@ -66,8 +66,8 @@ export default function Countdown({
 
     if (timeLeft.isExpired) {
         return (
-            <div className="p-6 bg-gradient-to-r from-amber-100 to-white border border-amber-200 rounded-xl text-center my-8 shadow-sm">
-                <h3 className="text-2xl font-bold text-amber-800 font-display">
+            <div className="p-6 bg-white border border-zinc-200 rounded-xl text-center my-8 shadow-sm">
+                <h3 className="text-2xl font-bold text-zinc-900">
                     {labels.expired}
                 </h3>
             </div>
@@ -76,11 +76,22 @@ export default function Countdown({
 
     return (
         <div className="my-10">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
-                <TimeUnit value={timeLeft.days} label={labels.days} />
-                <TimeUnit value={timeLeft.hours} label={labels.hours} />
-                <TimeUnit value={timeLeft.minutes} label={labels.minutes} />
-                <TimeUnit value={timeLeft.seconds} label={labels.seconds} />
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
+                {Object.entries({
+                    days: timeLeft.days,
+                    hours: timeLeft.hours,
+                    minutes: timeLeft.minutes,
+                    seconds: timeLeft.seconds,
+                }).map(([unit, value]) => (
+                    <div key={unit} className="bg-white/80 backdrop-blur rounded-xl p-4 text-center border border-teal-100 shadow-sm hover:shadow-md transition-all group ring-1 ring-slate-50 hover:ring-teal-100">
+                        <div className="text-3xl md:text-4xl font-bold text-teal-700 mb-1 font-mono group-hover:scale-110 transition-transform duration-300">
+                            {value.toString().padStart(2, '0')}
+                        </div>
+                        <div className="text-xs uppercase tracking-wider text-slate-500 font-medium group-hover:text-teal-600">
+                            {labels[unit as keyof typeof labels]}
+                        </div>
+                    </div>
+                ))}
             </div>
         </div>
     );
@@ -88,11 +99,11 @@ export default function Countdown({
 
 function TimeUnit({ value, label }: { value: number; label: string }) {
     return (
-        <div className="flex flex-col items-center bg-gradient-to-b from-amber-50 to-white border border-amber-200 p-4 rounded-xl shadow-lg shadow-amber-900/5">
-            <span className="text-4xl md:text-5xl font-bold text-amber-700 font-display tabular-nums">
+        <div className="flex flex-col items-center bg-white border border-zinc-200 p-4 rounded-xl shadow-sm">
+            <span className="text-4xl md:text-5xl font-bold text-orange-600 tabular-nums tracking-tight">
                 {String(value).padStart(2, "0")}
             </span>
-            <span className="text-amber-900/60 text-sm md:text-base uppercase tracking-wider mt-2">
+            <span className="text-zinc-500 text-sm md:text-base uppercase tracking-wider mt-2 font-medium">
                 {label}
             </span>
         </div>

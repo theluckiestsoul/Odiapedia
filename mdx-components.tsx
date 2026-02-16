@@ -7,29 +7,29 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     return {
         // Headings
         h1: ({ children }) => (
-            <h1 className="text-4xl md:text-5xl font-bold text-amber-900 mb-6 mt-12 first:mt-0 font-display">
+            <h1 className="text-4xl md:text-5xl font-bold text-teal-900 mb-6 mt-12 first:mt-0 tracking-wide font-display">
                 {children}
             </h1>
         ),
         h2: ({ children }) => (
-            <h2 className="text-3xl font-bold text-amber-800 mb-4 mt-10 font-display">
+            <h2 className="text-3xl font-bold text-teal-800 mb-4 mt-10 tracking-wide font-display border-b-2 border-teal-100 pb-2 inline-block">
                 {children}
             </h2>
         ),
         h3: ({ children }) => (
-            <h3 className="text-2xl font-semibold text-amber-700 mb-3 mt-8">
+            <h3 className="text-2xl font-semibold text-teal-800 mb-3 mt-8 tracking-wide font-display">
                 {children}
             </h3>
         ),
         h4: ({ children }) => (
-            <h4 className="text-xl font-semibold text-amber-600 mb-2 mt-6">
+            <h4 className="text-xl font-semibold text-teal-700 mb-2 mt-6 tracking-wide font-display">
                 {children}
             </h4>
         ),
 
         // Paragraphs
         p: ({ children }) => (
-            <p className="text-amber-900/80 leading-relaxed mb-6 text-lg">
+            <p className="text-slate-700 leading-relaxed mb-6 text-lg font-sans">
                 {children}
             </p>
         ),
@@ -41,13 +41,13 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
             </ul>
         ),
         ol: ({ children }) => (
-            <ol className="list-decimal list-inside space-y-3 mb-6 ml-4 text-amber-900/80">
+            <ol className="list-decimal list-inside space-y-3 mb-6 ml-4 text-slate-700">
                 {children}
             </ol>
         ),
         li: ({ children }) => (
-            <li className="text-amber-900/80 flex items-start gap-3">
-                <span className="text-amber-600 mt-1">✦</span>
+            <li className="text-slate-700 flex items-start gap-3">
+                <span className="text-rose-500 mt-1.5 text-sm">✦</span>
                 <span>{children}</span>
             </li>
         ),
@@ -59,7 +59,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
                 return (
                     <Link
                         href={href}
-                        className="text-amber-700 hover:text-amber-600 underline underline-offset-4 transition-colors"
+                        className="text-teal-700 hover:text-teal-900 underline underline-offset-4 transition-colors font-medium decoration-rose-300 hover:decoration-rose-500"
                     >
                         {children}
                     </Link>
@@ -70,7 +70,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-amber-700 hover:text-amber-600 underline underline-offset-4 transition-colors"
+                    className="text-orange-600 hover:text-orange-700 underline underline-offset-4 transition-colors font-medium"
                 >
                     {children}
                 </a>
@@ -79,64 +79,60 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
 
         // Blockquote
         blockquote: ({ children }) => (
-            <blockquote className="border-l-4 border-amber-600 pl-6 my-8 italic text-amber-900/80 bg-amber-50 py-4 pr-4 rounded-r-lg">
+            <blockquote className="border-l-4 border-rose-400 pl-6 my-8 italic text-slate-700 bg-rose-50/50 py-6 pr-6 rounded-r-lg font-display text-xl leading-relaxed">
                 {children}
             </blockquote>
         ),
 
         // Code
         code: ({ children }) => (
-            <code className="bg-amber-100 text-amber-800 px-2 py-1 rounded text-sm font-mono">
+            <code className="bg-slate-200 text-slate-800 px-1.5 py-0.5 rounded text-sm font-mono border border-slate-300">
                 {children}
             </code>
         ),
         pre: ({ children }) => (
-            <pre className="bg-amber-950 border border-amber-900/10 rounded-lg p-6 overflow-x-auto mb-6 text-amber-50 font-mono text-lg leading-relaxed">
+            <pre className="bg-slate-900 border border-slate-800 rounded-xl p-6 overflow-x-auto mb-8 text-slate-100 font-mono text-sm leading-relaxed shadow-lg ring-1 ring-white/10">
                 {children}
             </pre>
         ),
 
         // Horizontal Rule
         hr: () => (
-            <div className="my-12 flex items-center justify-center gap-4">
-                <div className="h-px w-16 bg-gradient-to-r from-transparent to-amber-600"></div>
-                <div className="w-2 h-2 rotate-45 bg-amber-500"></div>
-                <div className="h-px w-16 bg-gradient-to-l from-transparent to-amber-600"></div>
-            </div>
+            <hr className="my-12 border-slate-200" />
         ),
 
         // Strong/Bold
         strong: ({ children }) => (
-            <strong className="text-amber-800 font-semibold">{children}</strong>
+            <strong className="text-slate-900 font-bold">{children}</strong>
         ),
 
         // Emphasis/Italic
         em: ({ children }) => (
-            <em className="text-amber-900/90 italic">{children}</em>
+            <em className="text-slate-800 italic font-display">{children}</em>
         ),
 
         // Table - all elements needed for proper rendering
         table: ({ children }) => (
-            <div className="overflow-x-auto mb-8 rounded-lg border border-amber-200">
+            <div className="overflow-x-auto mb-8 rounded-lg border border-slate-200 shadow-sm">
                 <table className="w-full table-auto min-w-full text-left">{children}</table>
             </div>
         ),
         thead: ({ children }) => (
-            <thead className="bg-amber-100 border-b border-amber-200">{children}</thead>
+            <thead className="bg-slate-100 border-b border-slate-200 font-display">{children}</thead>
         ),
         tbody: ({ children }) => (
-            <tbody className="divide-y divide-amber-100">{children}</tbody>
+            <tbody className="divide-y divide-slate-100">{children}</tbody>
         ),
         tr: ({ children }) => (
-            <tr className="hover:bg-amber-50 transition-colors">{children}</tr>
+            <tr className="hover:bg-teal-50/30 transition-colors">{children}</tr>
         ),
         th: ({ children }) => (
-            <th className="bg-amber-50 text-amber-900 font-semibold px-4 py-3 text-left text-base whitespace-nowrap">
+            <th className="bg-slate-50 text-slate-900 font-bold px-6 py-4 text-left text-sm whitespace-nowrap">
                 {children}
             </th>
         ),
         td: ({ children }) => (
-            <td className="text-amber-900/80 px-4 py-3 text-base odia-text align-middle">
+            <td className="text-slate-600 px-6 py-4 text-sm odia-text align-middle">
                 {children}
             </td>
         ),
@@ -148,4 +144,3 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         ...components,
     };
 }
-

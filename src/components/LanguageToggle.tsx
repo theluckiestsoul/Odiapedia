@@ -16,6 +16,14 @@ export default function LanguageToggle() {
     const router = useRouter();
     const pathname = usePathname();
     const [alternates, setAlternates] = useState<Record<string, string>>({});
+    const [isOpen, setIsOpen] = useState(false);
+
+    const languages = [
+        { code: 'en', name: 'English', flag: '🇬🇧' },
+        { code: 'od', name: 'Odia', flag: '🇮🇳' }
+    ];
+
+    const currentLanguage = languages.find(l => l.code === language) || languages[0];
 
     // Check for alternate language links in the page head
     useEffect(() => {
@@ -59,54 +67,78 @@ export default function LanguageToggle() {
         // Re-check when pathname changes
     }, [pathname]);
 
-    const handleToggle = () => {
-        const newLang = language === 'en' ? 'od' : 'en';
-
-        // If there's an alternate URL for the new language, navigate to it
-        if (alternates[newLang]) {
-            setLanguage(newLang);
-            router.push(alternates[newLang]);
-        } else {
-            // Just toggle the UI language
-            toggleLanguage();
+    const handleLanguageSelect = (newLangCode: string) => {
+        if (newLangCode === currentLanguage.code) {
+            setIsOpen(false);
+            return;
         }
+
+        // Update the language in the context
+        setLanguage(newLangCode as 'en' | 'od');
+
+        const currentPath = pathname;
+        // Basic logic: if switching to 'od', prefix with /od if not already there.
+        // If switching to 'en', remove /od prefix.
+        // This relies on middleware or next.js config to handle the actual routing/locale detection better,
+        // but for a simple toggle:
+
+        let newPath = currentPath;
+        if (newLangCode === 'od' && !currentPath.startsWith('/od')) {
+            newPath = `/od${currentPath}`;
+        } else if (newLangCode === 'en' && currentPath.startsWith('/od')) {
+            newPath = currentPath.replace(/^\/od/, '') || '/';
+        }
+
+        router.push(newPath);
+        setIsOpen(false);
     };
 
     return (
-        <button
-            onClick={handleToggle}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full 
-                 bg-amber-100/50 hover:bg-amber-200/50 
-                 border border-amber-200 hover:border-amber-300
-                 transition-all duration-200 group"
-            aria-label={`Switch to ${language === 'en' ? 'Odia' : 'English'}`}
-            title={`Switch to ${language === 'en' ? 'Odia' : 'English'}`}
-        >
-            {/* Globe Icon */}
-            <svg
-                className="w-4 h-4 text-amber-700 group-hover:text-amber-900 transition-colors"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+        <div className="relative inline-block text-left">
+            <button
+                onClick={() => setIsOpen(!isOpen)}
+                className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-teal-100 bg-white/50 hover:bg-white hover:border-teal-200 transition-all text-sm font-medium text-slate-700 hover:text-teal-700 shadow-sm hover:shadow-md ring-1 ring-transparent hover:ring-teal-50"
+                aria-haspopup="true"
+                aria-expanded={isOpen}
+                aria-label={`Current language: ${currentLanguage.name}`}
             >
-                <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
-                />
-            </svg>
+                <span className="w-5 h-5 rounded-full bg-gradient-to-br from-teal-500 to-teal-600 text-white flex items-center justify-center text-[10px] shadow-sm">
+                    {currentLanguage.code.toUpperCase()}
+                </span>
+                <span className="hidden sm:inline">{currentLanguage.name}</span>
+                <svg
+                    className={`w-4 h-4 text-slate-400 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+            </button>
 
-            {/* Current / Switch To */}
-            <span className="text-sm font-medium">
-                <span className={`transition-all ${language === 'en' ? 'text-amber-900' : 'text-amber-600'}`}>
-                    EN
-                </span>
-                <span className="text-amber-400 mx-1">/</span>
-                <span className={`transition-all ${language === 'od' ? 'text-amber-900' : 'text-amber-600'} odia-text`}>
-                    ଓ
-                </span>
-            </span>
-        </button>
+            {isOpen && (
+                <div className="absolute top-full right-0 mt-2 w-40 bg-white border border-teal-100 rounded-xl shadow-xl shadow-teal-900/10 py-1 z-50 overflow-hidden ring-1 ring-black/5 animate-in fade-in slide-in-from-top-2 duration-200">
+                    {languages.map((lang) => (
+                        <button
+                            key={lang.code}
+                            onClick={() => handleLanguageSelect(lang.code)}
+                            className={`w-full text-left px-4 py-2.5 text-sm transition-colors flex items-center gap-3 hover:bg-teal-50/50 ${language === lang.code
+                                ? 'text-teal-700 bg-teal-50 font-medium'
+                                : 'text-slate-600 hover:text-slate-900'
+                                }`}
+                            role="menuitem"
+                        >
+                            <span className={`w-2 h-2 rounded-full ${language === lang.code ? 'bg-teal-500' : 'bg-slate-200'}`}></span>
+                            {lang.name}
+                            {language === lang.code && (
+                                <svg className="w-4 h-4 ml-auto text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                </svg>
+                            )}
+                        </button>
+                    ))}
+                </div>
+            )}
+        </div>
     );
 }

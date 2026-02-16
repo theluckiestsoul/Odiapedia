@@ -97,7 +97,7 @@ function DropdownMenu({ item, language, onClose }: { item: MenuItem; language: s
         return (
             <Link
                 href={item.href || "/"}
-                className="px-4 py-2 text-amber-900 hover:text-amber-700 transition-all duration-300 font-medium animated-underline"
+                className="px-4 py-2 text-zinc-600 hover:text-orange-600 transition-all duration-300 font-medium animated-underline"
             >
                 {language === 'od' ? item.odia : item.label}
             </Link>
@@ -109,7 +109,7 @@ function DropdownMenu({ item, language, onClose }: { item: MenuItem; language: s
             <button
                 onClick={() => setIsOpen(!isOpen)}
                 onMouseEnter={() => setIsOpen(true)}
-                className="px-4 py-2 text-amber-900 hover:text-amber-700 transition-all duration-300 font-medium flex items-center gap-1"
+                className="px-4 py-2 text-zinc-600 hover:text-orange-600 transition-all duration-300 font-medium flex items-center gap-1"
             >
                 {language === 'od' ? item.odia : item.label}
                 <svg
@@ -124,7 +124,7 @@ function DropdownMenu({ item, language, onClose }: { item: MenuItem; language: s
 
             {isOpen && (
                 <div
-                    className="absolute top-full left-0 mt-1 w-48 bg-white/95 backdrop-blur-md border border-amber-200 rounded-lg shadow-xl py-2 z-50"
+                    className="absolute top-full left-0 mt-1 w-48 bg-white border border-zinc-200 rounded-lg shadow-xl shadow-zinc-200/50 py-2 z-50"
                     onMouseLeave={() => setIsOpen(false)}
                 >
                     {item.children.map((child) => (
@@ -132,12 +132,12 @@ function DropdownMenu({ item, language, onClose }: { item: MenuItem; language: s
                             key={child.href}
                             href={child.href}
                             onClick={() => { setIsOpen(false); onClose(); }}
-                            className="flex items-center gap-3 px-4 py-2.5 text-amber-900 hover:text-amber-700 hover:bg-amber-50 transition-colors"
+                            className="flex items-center gap-3 px-4 py-2.5 text-zinc-600 hover:text-orange-600 hover:bg-orange-50 transition-colors"
                         >
-                            {child.icon && <span className="text-lg">{child.icon}</span>}
+                            {child.icon && <span className="text-lg grayscale group-hover:grayscale-0">{child.icon}</span>}
                             <div className="flex flex-col">
                                 <span className="font-medium">{language === 'od' ? child.odia : child.label}</span>
-                                <span className="text-xs text-amber-500/60">{language === 'od' ? child.label : child.odia}</span>
+                                <span className="text-xs text-zinc-400">{language === 'od' ? child.label : child.odia}</span>
                             </div>
                         </Link>
                     ))}
@@ -155,12 +155,12 @@ export default function Navbar() {
 
     return (
         <>
-            <nav className="sticky top-0 z-50 bg-gradient-to-b from-background/95 to-background/80 backdrop-blur-md border-b border-amber-900/10">
+            <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-teal-100 supports-[backdrop-filter]:bg-white/60">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between items-center h-20">
                         {/* Logo */}
                         <Link href="/" className="flex items-center gap-3 group">
-                            <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-amber-600/50 group-hover:border-amber-500 transition-colors">
+                            <div className="relative w-10 h-10 rounded-lg overflow-hidden border border-teal-100 shadow-sm ring-1 ring-teal-50">
                                 <Image
                                     src="/logo.png"
                                     alt="Odiapedia Logo"
@@ -170,10 +170,10 @@ export default function Navbar() {
                                 />
                             </div>
                             <div className="flex flex-col">
-                                <span className="text-2xl font-bold bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 bg-clip-text text-transparent font-display">
+                                <span className="text-2xl font-bold text-zinc-900 tracking-tight">
                                     Odiapedia
                                 </span>
-                                <span className="text-sm text-amber-600/80 odia-text -mt-1">
+                                <span className="text-sm text-zinc-500 odia-text -mt-1 font-medium">
                                     ଓଡ଼ିଆପିଡ଼ିଆ
                                 </span>
                             </div>
@@ -196,11 +196,11 @@ export default function Navbar() {
                             {/* Search Button */}
                             <button
                                 onClick={() => setIsSearchOpen(true)}
-                                className="ml-2 p-2 rounded-lg hover:bg-amber-900/30 transition-colors border border-amber-800/30 group"
+                                className="ml-2 p-2 rounded-lg hover:bg-zinc-100 transition-colors text-zinc-400 hover:text-zinc-900"
                                 aria-label="Search"
                             >
                                 <svg
-                                    className="w-5 h-5 text-amber-700 group-hover:text-amber-900"
+                                    className="w-5 h-5"
                                     fill="none"
                                     stroke="currentColor"
                                     viewBox="0 0 24 24"

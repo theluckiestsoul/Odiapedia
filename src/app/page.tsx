@@ -9,7 +9,8 @@ const sections = [
     odia: "ଭାଷା",
     description: "The classical Odia language, one of the oldest in India with a rich literary tradition spanning millennia.",
     icon: "📚",
-    gradient: "from-blue-900 to-indigo-950",
+    color: "text-blue-600",
+    bg: "bg-blue-50",
   },
   {
     href: "/culture",
@@ -17,7 +18,8 @@ const sections = [
     odia: "ସଂସ୍କୃତି",
     description: "Vibrant traditions, classical Odissi dance, intricate Pattachitra art, and sacred festivals.",
     icon: "🎭",
-    gradient: "from-purple-900 to-fuchsia-950",
+    color: "text-purple-600",
+    bg: "bg-purple-50",
   },
   {
     href: "/history",
@@ -25,7 +27,8 @@ const sections = [
     odia: "ଇତିହାସ",
     description: "From the mighty Kalinga Empire to the architectural wonders of ancient temple kingdoms.",
     icon: "🏛️",
-    gradient: "from-amber-900 to-orange-950",
+    color: "text-orange-600",
+    bg: "bg-orange-50",
   },
   {
     href: "/history/timeline",
@@ -33,7 +36,8 @@ const sections = [
     odia: "ସମୟରେଖା",
     description: "65+ events from prehistoric caves to modern Odisha — explore a million years of history.",
     icon: "📜",
-    gradient: "from-stone-800 to-neutral-950",
+    color: "text-stone-600",
+    bg: "bg-stone-50",
   },
   {
     href: "/calendar",
@@ -41,7 +45,8 @@ const sections = [
     odia: "ପଞ୍ଜିକା",
     description: "Odia Panjika with 12 months, festivals, tithi, nakshatra, and Odia year.",
     icon: "🗓️",
-    gradient: "from-cyan-900 to-teal-950",
+    color: "text-cyan-600",
+    bg: "bg-cyan-50",
   },
   {
     href: "/food",
@@ -49,7 +54,8 @@ const sections = [
     odia: "ଖାଦ୍ୟ",
     description: "Sacred temple prasad, aromatic coastal curries, and legendary sweets like Rasagola.",
     icon: "🍛",
-    gradient: "from-red-900 to-rose-950",
+    color: "text-rose-600",
+    bg: "bg-rose-50",
   },
   {
     href: "/people",
@@ -57,7 +63,8 @@ const sections = [
     odia: "ଲୋକ",
     description: "Remarkable individuals who shaped Odisha's identity through arts, freedom, and innovation.",
     icon: "👥",
-    gradient: "from-emerald-900 to-teal-950",
+    color: "text-emerald-600",
+    bg: "bg-emerald-50",
   },
   {
     href: "/districts",
@@ -65,7 +72,8 @@ const sections = [
     odia: "ଜିଲ୍ଲା",
     description: "Explore the 30 districts of Odisha, from Angul to Sundargarh.",
     icon: "📍",
-    gradient: "from-rose-900 to-pink-950",
+    color: "text-pink-600",
+    bg: "bg-pink-50",
   },
   {
     href: "/about",
@@ -73,7 +81,8 @@ const sections = [
     odia: "ବିଷୟରେ",
     description: "Learn about our mission to preserve and share Odia heritage with the world.",
     icon: "ℹ️",
-    gradient: "from-slate-800 to-zinc-950",
+    color: "text-slate-600",
+    bg: "bg-slate-50",
   },
 ];
 
@@ -88,22 +97,21 @@ const categoryIcons: Record<string, string> = {
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 bg-gradient-to-b from-amber-50/20 via-background to-background"></div>
-        <div className="absolute inset-0 pattern-overlay opacity-30"></div>
+      <section className="relative pt-24 pb-32 flex items-center justify-center overflow-hidden bg-slate-50">
+        {/* Coastal Background Gradients */}
+        <div className="absolute top-0 left-0 right-0 h-[700px] bg-gradient-to-b from-teal-50/80 via-blue-50/50 to-transparent -z-10"></div>
+        <div className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] bg-teal-200/20 rounded-full blur-[100px] -z-10 mix-blend-multiply animate-pulse"></div>
+        <div className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-blue-200/20 rounded-full blur-[100px] -z-10 mix-blend-multiply animate-pulse delay-1000"></div>
 
-        {/* Decorative Elements */}
-        <div className="absolute top-20 left-10 w-32 h-32 bg-amber-600/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 right-10 w-48 h-48 bg-amber-600/10 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-amber-900/5 rounded-full blur-3xl"></div>
+        {/* Pattern Overlay */}
+        <div className="absolute inset-0 bg-water opacity-30 -z-5 pointer-events-none"></div>
 
-        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           {/* Logo */}
-          <div className="mb-8 flex justify-center">
-            <div className="relative w-32 h-32 rounded-full overflow-hidden border-4 border-amber-600/50 shadow-2xl shadow-amber-900/30">
+          <div className="mb-12 flex justify-center">
+            <div className="relative w-36 h-36 rounded-2xl overflow-hidden shadow-2xl shadow-teal-900/20 rotate-3 hover:rotate-0 transition-transform duration-500 border-4 border-white/70 backdrop-blur-md ring-1 ring-teal-100">
               <Image
                 src="/logo.png"
                 alt="Odiapedia"
@@ -114,77 +122,59 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Title */}
-          <h1 className="text-6xl md:text-8xl font-bold mb-4 font-display">
-            <span className="bg-gradient-to-r from-amber-300 via-yellow-200 to-amber-400 bg-clip-text text-transparent text-glow">
-              Odiapedia
-            </span>
+          <h1 className="text-6xl md:text-8xl font-bold mb-8 tracking-tight font-display drop-shadow-sm text-transparent bg-clip-text bg-gradient-to-r from-teal-800 to-blue-900 pb-2">
+            Odiapedia
           </h1>
 
-          <p className="text-3xl md:text-4xl text-amber-500/80 mb-6 odia-text font-medium">
+          <div className="text-3xl md:text-4xl text-teal-700 mb-10 font-medium odia-text opacity-90 drop-shadow-sm">
             ଓଡ଼ିଆପିଡ଼ିଆ
-          </p>
-
-          {/* Decorative Line */}
-          <div className="flex items-center justify-center gap-4 mb-8">
-            <div className="h-px w-16 bg-gradient-to-r from-transparent to-amber-600"></div>
-            <div className="w-3 h-3 rotate-45 bg-amber-600"></div>
-            <div className="h-px w-16 bg-gradient-to-l from-transparent to-amber-600"></div>
           </div>
 
-          <p className="text-xl md:text-2xl text-amber-900/80 mb-12 max-w-3xl mx-auto leading-relaxed">
-            Discover the ancient land of Odisha — its classical language, sacred temples,
-            vibrant art, legendary cuisine, and timeless traditions.
+          <p className="text-xl md:text-2xl text-slate-600 mb-12 max-w-2xl mx-auto leading-relaxed font-light">
+            The open encyclopedia for Odisha&apos;s classical language, culture, history, and heritage.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
             <Link
-              href="/culture"
-              className="group inline-flex items-center justify-center px-10 py-5 text-lg font-semibold text-black bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 rounded-full hover:from-amber-300 hover:via-yellow-200 hover:to-amber-400 shadow-lg shadow-amber-900/30 transition-all duration-300 transform hover:-translate-y-1"
+              href="/learn/alphabet"
+              className="px-8 py-4 bg-gradient-to-r from-teal-600 to-teal-500 text-white rounded-full hover:from-teal-700 hover:to-teal-600 transition-all duration-300 shadow-lg shadow-teal-600/25 hover:shadow-teal-600/40 font-medium text-lg flex items-center gap-2 group ring-1 ring-teal-400/50"
             >
-              Begin Your Journey
-              <svg className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-              </svg>
+              Start Exploring
+              <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
             </Link>
             <Link
               href="/about"
-              className="inline-flex items-center justify-center px-10 py-5 text-lg font-semibold text-amber-300 border-2 border-amber-600/50 rounded-full hover:border-amber-500 hover:bg-amber-900/20 transition-all duration-300"
+              className="px-8 py-4 bg-white/80 backdrop-blur-sm text-slate-700 rounded-full hover:bg-white border border-slate-200 transition-all duration-300 font-medium text-lg hover:border-teal-200 hover:text-teal-700 shadow-sm hover:shadow-md"
             >
-              About Odiapedia
+              Learn More
             </Link>
           </div>
         </div>
-
-        {/* Bottom Wave */}
-        <div className="absolute bottom-0 left-0 right-0">
-          <svg className="w-full h-24 fill-background" viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path>
-          </svg>
-        </div>
       </section>
 
-      {/* Odia Parba Banner */}
-      <section className="relative py-12 bg-gradient-to-r from-amber-100 to-amber-50 border-y border-amber-600/20 overflow-hidden">
-        <div className="absolute inset-0 pattern-overlay opacity-20"></div>
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-8">
+      {/* Odia Parba Banner - Coastal Vibrance Style */}
+      <section className="py-12 border-y border-teal-100 bg-gradient-to-r from-teal-50 via-cyan-50 to-blue-50 relative overflow-hidden">
+        <div className="absolute inset-0 bg-water opacity-10 mix-blend-multiply pointer-events-none"></div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-8 relative z-10">
           <div className="text-center md:text-left">
-            <h2 className="text-3xl md:text-4xl font-bold text-amber-900 mb-2 font-display">
+            <span className="inline-block px-3 py-1 rounded-full bg-teal-100 text-teal-800 text-sm font-bold mb-3 border border-teal-200 shadow-sm animate-pulse">
+              🚀 Upcoming Event
+            </span>
+            <h2 className="text-4xl font-bold text-teal-900 mb-2 font-display">
               Odia Parba 2026
             </h2>
-            <p className="text-amber-700 text-lg odia-text">
-              ଓଡ଼ିଶା ପର୍ବ ୨୦୨୬ — ଦିଲ୍ଲୀ ଛାତିରେ ଓଡ଼ିଶାର ଏକ ଦମଦାର ଉତ୍ସବ
-            </p>
-            <p className="text-amber-900/70 mt-2">
-              March 13-15 • Jawaharlal Nehru Stadium, New Delhi
+            <p className="text-slate-700 text-lg flex items-center justify-center md:justify-start gap-2">
+              <span>📍 New Delhi</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-teal-400"></span>
+              <span>📅 March 13-15, 2026</span>
             </p>
           </div>
           <Link
             href="/culture/odia-parba-en"
-            className="inline-flex items-center px-8 py-3 bg-amber-600 hover:bg-amber-500 text-black font-bold rounded-full transition-colors shadow-lg shadow-amber-900/40"
+            className="inline-flex items-center px-8 py-4 bg-white text-teal-700 font-bold rounded-xl border-2 border-teal-100 hover:border-teal-300 hover:text-teal-800 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 shadow-sm group"
           >
-            Vist Event Page
-            <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            View Event Details
+            <svg className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
           </Link>
@@ -192,144 +182,101 @@ export default function Home() {
       </section>
 
       {/* Explore Section */}
-      <section className="py-24 bg-background relative">
-        <div className="absolute inset-0 pattern-overlay opacity-20"></div>
-
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-24 bg-white relative">
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent"></div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-amber-900 mb-4 font-display">
-              Explore Odisha
+            <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-4 font-display">
+              Explore by <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-blue-600">Category</span>
             </h2>
-            <p className="text-amber-500/70 text-2xl odia-text">
-              ଓଡ଼ିଶା ଅନୁସନ୍ଧାନ କରନ୍ତୁ
+            <p className="text-slate-500 text-xl max-w-2xl mx-auto font-light">
+              Dive into the rich tapestry of Odisha's heritage through our curated collections
             </p>
-            <div className="flex items-center justify-center gap-4 mt-6">
-              <div className="h-px w-24 bg-gradient-to-r from-transparent to-amber-600"></div>
-              <div className="w-2 h-2 rotate-45 bg-amber-500"></div>
-              <div className="h-px w-24 bg-gradient-to-l from-transparent to-amber-600"></div>
-            </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {sections.map((section) => (
               <Link
                 key={section.href}
                 href={section.href}
-                className="group relative overflow-hidden rounded-2xl card-hover"
+                className="group block p-8 bg-slate-50 rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl hover:shadow-teal-900/10 hover:-translate-y-1 transition-all duration-300 relative overflow-hidden"
               >
-                <div className={`absolute inset-0 bg-gradient-to-br ${section.gradient} opacity-90`}></div>
-                <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent"></div>
-                <div className="absolute inset-0 border border-amber-600/20 rounded-2xl group-hover:border-amber-500/40 transition-colors"></div>
+                {/* Hover Gradient Border Effect */}
+                <div className="absolute inset-0 border-2 border-transparent group-hover:border-teal-100 rounded-2xl transition-colors duration-300 pointer-events-none"></div>
 
-                <div className="relative p-8 min-h-[280px] flex flex-col justify-end">
-                  <span className="text-5xl mb-4 block transform group-hover:scale-110 transition-transform duration-300">
+                <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-teal-400 to-blue-500 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300`}></div>
+                <div className={`absolute -right-10 -bottom-10 w-40 h-40 rounded-full ${section.bg} opacity-20 group-hover:scale-150 transition-transform duration-500 blur-2xl`}></div>
+
+                <div className="flex items-start justify-between mb-6">
+                  <div className={`w-14 h-14 rounded-2xl ${section.bg} flex items-center justify-center text-2xl group-hover:scale-110 transition-transform relative z-10 shadow-sm group-hover:rotate-6 duration-300`}>
                     {section.icon}
+                  </div>
+                  <span className="text-slate-300 group-hover:text-teal-300 transition-colors">
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
                   </span>
-                  <div className="flex items-baseline gap-3 mb-3">
-                    <h3 className="text-2xl font-bold text-white group-hover:text-amber-200 transition-colors font-display">
-                      {section.title}
-                    </h3>
-                    <span className="text-amber-200/90 odia-text">
-                      {section.odia}
-                    </span>
-                  </div>
-                  <p className="text-white/80 text-sm leading-relaxed">
-                    {section.description}
-                  </p>
-
-                  {/* Arrow indicator */}
-                  <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <svg className="w-6 h-6 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                  </div>
                 </div>
+
+                <h2 className="text-2xl font-bold text-slate-900 mb-2 group-hover:text-teal-700 transition-colors font-display relative z-10">
+                  {section.title}
+                </h2>
+                <div className="text-sm font-medium text-teal-600/80 mb-3 odia-text relative z-10">{section.odia}</div>
+                <p className="text-slate-600 leading-relaxed group-hover:text-slate-700 relative z-10 text-sm">
+                  {section.description}
+                </p>
               </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Featured Articles Section */}
-      <section className="py-20 bg-gradient-to-b from-background to-amber-50 relative">
-        <div className="absolute inset-0 pattern-overlay opacity-5"></div>
-
-        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-amber-900 mb-4 font-display">
-              Latest Articles
-            </h2>
-            <p className="text-amber-900/70 text-lg">
-              Start exploring with our newest content
-            </p>
+      {/* Latest Articles */}
+      <section className="py-24 bg-slate-50 border-t border-slate-200">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between mb-12">
+            <div>
+              <h2 className="text-3xl font-bold text-slate-900 mb-2 font-display">
+                Latest Articles
+              </h2>
+              <p className="text-slate-500">
+                Fresh content from our contributors
+              </p>
+            </div>
+            <Link href="/history" className="hidden md:inline-flex items-center text-teal-600 font-bold hover:text-teal-700 hover:bg-teal-50 px-4 py-2 rounded-lg transition-colors">
+              View all articles
+              <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {getAllArticlesMetadata()
               .slice(0, 6)
               .map((article) => (
                 <Link
                   key={`${article.category}/${article.slug}`}
                   href={`/${article.category}/${article.slug}`}
-                  className="group bg-white rounded-2xl p-6 border border-amber-900/10 hover:border-amber-600/50 shadow-sm hover:shadow-md transition-all duration-300"
+                  className="group bg-white rounded-2xl overflow-hidden border border-slate-200 hover:border-teal-200 hover:shadow-lg hover:shadow-teal-900/5 transition-all duration-300 flex flex-col h-full"
                 >
-                  <div className="flex items-start gap-4">
-                    <span className="text-3xl">
-                      {categoryIcons[article.category] || "📄"}
-                    </span>
-                    <div className="flex-1">
-                      <span className="text-xs text-amber-700 uppercase tracking-wider">
+                  <div className="p-6 flex-1">
+                    <div className="flex items-center gap-2 mb-4">
+                      <span className="text-xs font-bold uppercase tracking-wider text-teal-700 bg-teal-50 px-2 py-1 rounded border border-teal-100">
                         {article.category}
                       </span>
-                      <h3 className="text-lg font-semibold text-amber-950 group-hover:text-amber-700 transition-colors mb-2 mt-1">
-                        {article.title}
-                      </h3>
-                      <p className="text-amber-900/70 text-sm line-clamp-2">
-                        {article.description}
-                      </p>
-                      <span className="inline-block mt-3 text-amber-500 text-sm group-hover:text-amber-400">
-                        Read article →
-                      </span>
                     </div>
+                    <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-teal-700 line-clamp-2 transition-colors font-display">
+                      {article.title}
+                    </h3>
+                    <p className="text-slate-500 text-sm line-clamp-3 leading-relaxed">
+                      {article.description}
+                    </p>
+                  </div>
+                  <div className="px-6 py-4 bg-slate-50 border-t border-slate-100 flex items-center justify-between group-hover:bg-teal-50/30 transition-colors">
+                    <span className="text-sm font-medium text-slate-400 group-hover:text-teal-600 transition-colors">Read article</span>
+                    <span className="text-teal-600 transform translate-x-0 group-hover:translate-x-1 opacity-0 group-hover:opacity-100 transition-all font-bold">→</span>
                   </div>
                 </Link>
               ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Heritage Section */}
-      <section className="py-24 bg-gradient-to-b from-background via-amber-100/30 to-background relative overflow-hidden">
-        <div className="absolute inset-0 pattern-overlay opacity-10"></div>
-
-        {/* Decorative Elements */}
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-amber-600/50 to-transparent"></div>
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-amber-600/50 to-transparent"></div>
-
-        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="mb-8">
-            <span className="text-6xl">🛕</span>
-          </div>
-
-          <h2 className="text-3xl md:text-4xl font-bold text-amber-900 mb-6 font-display">
-            Preserving Our Sacred Heritage
-          </h2>
-
-          <p className="text-xl text-amber-900/70 mb-8 max-w-2xl mx-auto leading-relaxed">
-            From the Sun Temple of Konark to the sacred shores of Puri,
-            Odisha&apos;s heritage spans thousands of years of art, spirituality, and culture.
-          </p>
-
-          <p className="text-3xl text-amber-500/80 odia-text font-medium mb-8">
-            ଆମର ପବିତ୍ର ଐତିହ୍ୟକୁ ସଂରକ୍ଷଣ କରିବା
-          </p>
-
-          <div className="flex items-center justify-center gap-8 text-4xl">
-            <span className="opacity-60 hover:opacity-100 transition-opacity cursor-default">🌅</span>
-            <span className="opacity-60 hover:opacity-100 transition-opacity cursor-default">🎨</span>
-            <span className="opacity-100">🛕</span>
-            <span className="opacity-60 hover:opacity-100 transition-opacity cursor-default">💃</span>
-            <span className="opacity-60 hover:opacity-100 transition-opacity cursor-default">📜</span>
           </div>
         </div>
       </section>
