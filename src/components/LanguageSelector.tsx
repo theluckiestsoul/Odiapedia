@@ -4,88 +4,88 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 interface LanguageOption {
-    code: string;
-    label: string;
-    nativeLabel: string;
-    flag: string;
-    path: string;
+  code: string;
+  label: string;
+  nativeLabel: string;
+  flag: string;
+  path: string;
 }
 
 interface LanguageSelectorProps {
-    languages: {
-        en?: string;
-        od?: string;
-        hi?: string;
-    };
-    currentLang: 'en' | 'od' | 'hi';
+  languages: {
+    en?: string;
+    od?: string;
+    hi?: string;
+  };
+  currentLang: 'en' | 'od' | 'hi';
 }
 
 const languageConfig: Record<string, Omit<LanguageOption, 'path'>> = {
-    en: {
-        code: 'en',
-        label: 'English',
-        nativeLabel: 'English',
-        flag: '🇬🇧',
-    },
-    od: {
-        code: 'od',
-        label: 'Odia',
-        nativeLabel: 'ଓଡ଼ିଆ',
-        flag: '🇮🇳',
-    },
-    hi: {
-        code: 'hi',
-        label: 'Hindi',
-        nativeLabel: 'हिंदी',
-        flag: '🇮🇳',
-    },
+  en: {
+    code: 'en',
+    label: 'English',
+    nativeLabel: 'English',
+    flag: '🇺🇸',
+  },
+  od: {
+    code: 'od',
+    label: 'Odia',
+    nativeLabel: 'ଓଡ଼ିଆ',
+    flag: '🇮🇳',
+  },
+  hi: {
+    code: 'hi',
+    label: 'Hindi',
+    nativeLabel: 'हिंदी',
+    flag: '🇮🇳',
+  },
 };
 
 export default function LanguageSelector({ languages, currentLang }: LanguageSelectorProps) {
-    const pathname = usePathname();
+  const pathname = usePathname();
 
-    // Build available languages
-    const availableLanguages: LanguageOption[] = Object.entries(languages)
-        .filter(([, path]) => path) // Filter out undefined paths
-        .map(([code, path]) => ({
-            ...languageConfig[code],
-            path: path as string,
-        }));
+  // Build available languages
+  const availableLanguages: LanguageOption[] = Object.entries(languages)
+    .filter(([, path]) => path) // Filter out undefined paths
+    .map(([code, path]) => ({
+      ...languageConfig[code],
+      path: path as string,
+    }));
 
-    if (availableLanguages.length <= 1) {
-        return null; // Don't show selector if only one language
-    }
+  if (availableLanguages.length <= 1) {
+    return null; // Don't show selector if only one language
+  }
 
-    return (
-        <div className="language-selector">
-            <div className="language-selector-inner">
-                <span className="language-icon">🌐</span>
-                <span className="language-label">Read in:</span>
-                <div className="language-buttons">
-                    {availableLanguages.map((lang, index) => {
-                        const isActive = lang.code === currentLang;
-                        return (
-                            <span key={lang.code}>
-                                {isActive ? (
-                                    <span className="language-button active">
-                                        <span className="lang-flag">{lang.flag}</span>
-                                        <span className="lang-name">{lang.nativeLabel}</span>
-                                    </span>
-                                ) : (
-                                    <Link href={lang.path} className="language-button">
-                                        <span className="lang-flag">{lang.flag}</span>
-                                        <span className="lang-name">{lang.nativeLabel}</span>
-                                    </Link>
-                                )}
-                                {index < availableLanguages.length - 1 && (
-                                    <span className="lang-divider">|</span>
-                                )}
-                            </span>
-                        );
-                    })}
-                </div>
-            </div>
-            <style jsx>{`
+  return (
+    <div className="language-selector">
+      <div className="language-selector-inner">
+        <span className="language-icon">🌐</span>
+        <span className="language-label">Read in:</span>
+        <div className="language-buttons">
+          {availableLanguages.map((lang, index) => {
+            const isActive = lang.code === currentLang;
+            return (
+              <span key={lang.code}>
+                {isActive ? (
+                  <span className="language-button active">
+                    <span className="lang-flag">{lang.flag}</span>
+                    <span className="lang-name">{lang.nativeLabel}</span>
+                  </span>
+                ) : (
+                  <Link href={lang.path} className="language-button">
+                    <span className="lang-flag">{lang.flag}</span>
+                    <span className="lang-name">{lang.nativeLabel}</span>
+                  </Link>
+                )}
+                {index < availableLanguages.length - 1 && (
+                  <span className="lang-divider">|</span>
+                )}
+              </span>
+            );
+          })}
+        </div>
+      </div>
+      <style jsx>{`
         .language-selector {
           margin: 1.5rem 0 2rem;
           padding: 0;
@@ -174,6 +174,6 @@ export default function LanguageSelector({ languages, currentLang }: LanguageSel
           }
         }
       `}</style>
-        </div>
-    );
+    </div>
+  );
 }

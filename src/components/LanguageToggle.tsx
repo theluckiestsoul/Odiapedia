@@ -19,7 +19,7 @@ export default function LanguageToggle() {
     const [isOpen, setIsOpen] = useState(false);
 
     const languages = [
-        { code: 'en', name: 'English', flag: '🇬🇧' },
+        { code: 'en', name: 'English', flag: '🇺🇸' },
         { code: 'od', name: 'Odia', flag: '🇮🇳' }
     ];
 
