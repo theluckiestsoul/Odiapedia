@@ -4,7 +4,7 @@ import { getDistrictBySlug, getAllDistrictSlugs } from "@/lib/districts";
 import { getDistrictById } from "@/data/districts";
 import { getBlocksByDistrictId } from "@/data/blocks";
 import { MDXRemote } from "next-mdx-remote/rsc";
-import { useMDXComponents } from "@/../mdx-components";
+import { useMDXComponents } from "../../../../mdx-components";
 import Link from "next/link";
 import { getAllTehsilsForDistrict } from "@/lib/tehsils";
 import remarkGfm from "remark-gfm";
@@ -14,11 +14,11 @@ interface PageProps {
 }
 
 const regionColors: Record<string, string> = {
-    coastal: "#3b82f6", // Blue
-    central: "#8b5cf6", // Violet
-    northern: "#10b981", // Emerald
-    southern: "#f43f5e", // Rose
-    western: "#f59e0b", // Amber
+    coastal: "#0d9488", // Teal
+    central: "#7c3aed", // Violet
+    northern: "#059669", // Emerald
+    southern: "#e11d48", // Rose
+    western: "#d97706", // Amber
 };
 
 export async function generateStaticParams() {
@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     }
 
     return {
-        title: `${district.title} - The Diary of Odisha`,
+        title: `${district.title} - Odiapedia`,
         description: district.description,
         openGraph: {
             title: district.title,
@@ -52,7 +52,7 @@ function TehsilList({ districtSlug }: { districtSlug: string }) {
     // Check if we have any administrative content
     if (tehsils.length === 0 && blocks.length === 0) {
         return (
-            <div className="col-span-full text-amber-500/40 italic text-sm py-4">
+            <div className="col-span-full text-slate-500 italic text-sm py-4">
                 Administrative entries coming soon...
             </div>
         );
@@ -65,30 +65,28 @@ function TehsilList({ districtSlug }: { districtSlug: string }) {
                 <Link
                     key={tehsil.slug}
                     href={`/district/${districtSlug}/${tehsil.slug}`}
-                    className="group block p-4 rounded-lg bg-amber-950/20 border border-amber-900/30 hover:border-amber-500/50 hover:bg-amber-900/30 transition-all"
+                    className="group block p-4 rounded-xl bg-white border border-slate-200 shadow-sm hover:shadow-md hover:border-teal-200 transition-all"
                 >
                     <div className="flex justify-between items-center mb-1">
-                        <span className="text-amber-100 group-hover:text-amber-300 font-bold">{tehsil.title}</span>
-                        <span className="text-amber-500/50 group-hover:translate-x-1 transition-transform">→</span>
+                        <span className="text-slate-800 group-hover:text-teal-700 font-bold">{tehsil.title}</span>
+                        <span className="text-slate-400 group-hover:translate-x-1 group-hover:text-teal-500 transition-transform">→</span>
                     </div>
-                    <div className="text-xs text-amber-500/60 uppercase tracking-wider">Tehsil (Diary Entry)</div>
+                    <div className="text-xs text-slate-500 uppercase tracking-wider font-medium">Tehsil (Diary Entry)</div>
                 </Link>
             ))}
 
             {/* Data Blocks (Data Only) */}
             {blocks.map((block) => {
-                // Determine if this block corresponds to a tehsil we already showed to avoid duplication?
-                // For now, listing both is safer as they might not 1:1 map in all cases, or names differ.
                 return (
                     <div
                         key={block.id}
-                        className="group block p-4 rounded-lg bg-neutral-900/40 border border-amber-800/20"
+                        className="group block p-4 rounded-xl bg-slate-50 border border-slate-200/60"
                     >
                         <div className="flex justify-between items-center mb-1">
-                            <span className="text-amber-100/80 font-medium">{block.name_en}</span>
+                            <span className="text-slate-700 font-medium">{block.name_en}</span>
                         </div>
-                        <div className="text-xs text-amber-500/40 odia-text mb-1">{block.name_od}</div>
-                        <div className="text-xs text-amber-500/30 uppercase tracking-wider flex gap-2">
+                        <div className="text-xs text-slate-500 odia-text mb-1">{block.name_od}</div>
+                        <div className="text-xs text-slate-400 uppercase tracking-wider flex gap-2">
                             <span>Block</span>
                             <span>•</span>
                             <span>{block.gps_count} GPs</span>
@@ -150,47 +148,44 @@ export default async function DistrictPage({ params }: PageProps) {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             />
-            <div className="min-h-screen bg-black text-amber-100">
-                {districtData && (
-                    <div
-                        className="absolute top-0 left-0 right-0 h-[50vh] opacity-20 pointer-events-none"
-                        style={{
-                            background: `linear-gradient(to bottom, ${regionColors[districtData.region]}40, transparent)`,
-                        }}
-                    />
-                )}
+            <div className="min-h-screen bg-slate-50 text-slate-900 pb-20">
+                {/* Hero Background */}
+                <div className="absolute top-0 left-0 right-0 h-[500px] overflow-hidden pointer-events-none">
+                    <div className="absolute inset-0 bg-gradient-to-b from-teal-50 via-white to-transparent" />
+                    <div className="absolute inset-0 bg-water opacity-40" />
+                </div>
 
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10">
-                    <nav className="flex items-center gap-2 text-sm mb-8 text-amber-500/60">
-                        <Link href="/" className="hover:text-amber-400">Home</Link>
-                        <span>/</span>
-                        <Link href="/districts" className="hover:text-amber-400">Districts</Link>
-                        <span>/</span>
-                        <span className="text-amber-300">{districtContent.title}</span>
+                    {/* Breadcrumbs */}
+                    <nav className="flex items-center gap-2 text-sm mb-8 text-slate-500 font-medium">
+                        <Link href="/" className="hover:text-teal-700 transition-colors">Home</Link>
+                        <span className="text-slate-300">/</span>
+                        <Link href="/districts" className="hover:text-teal-700 transition-colors">Districts</Link>
+                        <span className="text-slate-300">/</span>
+                        <span className="text-teal-700">{districtContent.title}</span>
                     </nav>
 
                     <header className="mb-12 text-center">
                         {districtData && (
                             <div
-                                className="inline-block px-3 py-1 rounded-full text-xs font-semibold tracking-wide uppercase mb-6 border"
+                                className="inline-block px-3 py-1 rounded-full text-xs font-bold tracking-wide uppercase mb-6 border bg-white shadow-sm"
                                 style={{
-                                    borderColor: `${regionColors[districtData.region]}50`,
-                                    backgroundColor: `${regionColors[districtData.region]}20`,
+                                    borderColor: `${regionColors[districtData.region]}30`,
                                     color: regionColors[districtData.region]
                                 }}
                             >
-                                {districtData.region} Odisha
+                                {districtData.region} Region
                             </div>
                         )}
-                        <h1 className="text-5xl md:text-8xl font-bold mb-4 font-display text-transparent bg-clip-text bg-gradient-to-r from-amber-200 to-amber-500">
+                        <h1 className="text-5xl md:text-7xl font-bold mb-4 font-display text-slate-900 tracking-tight">
                             {districtContent.title}
                         </h1>
                         {districtData && (
-                            <p className="text-3xl text-amber-500/60 odia-text mb-6">
+                            <p className="text-3xl text-slate-400 odia-text mb-6">
                                 {districtData.name_od}
                             </p>
                         )}
-                        <p className="text-xl text-amber-100/60 max-w-2xl mx-auto leading-relaxed">
+                        <p className="text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
                             {districtContent.description}
                         </p>
                     </header>
@@ -199,32 +194,32 @@ export default async function DistrictPage({ params }: PageProps) {
                         {/* LEFT COLUMN: Main Narrative */}
                         <div className="lg:col-span-2 space-y-12">
                             {/* At a Glance Section */}
-                            <section className="bg-amber-950/20 border border-amber-900/40 rounded-2xl p-8 backdrop-blur-sm">
-                                <h2 className="text-2xl font-display font-bold text-amber-500 mb-6 flex items-center gap-2">
-                                    <span>📊</span> At a Glance
+                            <section className="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm">
+                                <h2 className="text-xl font-display font-bold text-slate-900 mb-6 flex items-center gap-2">
+                                    <span className="text-teal-600">📊</span> At a Glance
                                 </h2>
                                 <div className="grid grid-cols-2 gap-6">
-                                    <div className="p-4 rounded-xl bg-black/40 border border-amber-900/20">
-                                        <span className="block text-amber-500/60 text-xs uppercase tracking-wider mb-1">Headquarters</span>
-                                        <span className="text-lg font-semibold text-amber-100">{districtContent.headquarters || districtData?.headquarters || "N/A"}</span>
+                                    <div className="p-4 rounded-xl bg-slate-50 border border-slate-100">
+                                        <span className="block text-slate-500 text-xs uppercase tracking-wider mb-1 font-semibold">Headquarters</span>
+                                        <span className="text-lg font-bold text-slate-800">{districtContent.headquarters || districtData?.headquarters || "N/A"}</span>
                                     </div>
-                                    <div className="p-4 rounded-xl bg-black/40 border border-amber-900/20">
-                                        <span className="block text-amber-500/60 text-xs uppercase tracking-wider mb-1">Population</span>
-                                        <span className="text-lg font-semibold text-amber-100">{districtContent.population || (districtData ? `${(districtData.population / 100000).toFixed(2)}L` : "N/A")}</span>
+                                    <div className="p-4 rounded-xl bg-slate-50 border border-slate-100">
+                                        <span className="block text-slate-500 text-xs uppercase tracking-wider mb-1 font-semibold">Population</span>
+                                        <span className="text-lg font-bold text-slate-800">{districtContent.population || (districtData ? `${(districtData.population / 100000).toFixed(2)}L` : "N/A")}</span>
                                     </div>
-                                    <div className="p-4 rounded-xl bg-black/40 border border-amber-900/20">
-                                        <span className="block text-amber-500/60 text-xs uppercase tracking-wider mb-1">Area</span>
-                                        <span className="text-lg font-semibold text-amber-100">{districtContent.area || (districtData ? `${districtData.area_sq_km} sq km` : "N/A")}</span>
+                                    <div className="p-4 rounded-xl bg-slate-50 border border-slate-100">
+                                        <span className="block text-slate-500 text-xs uppercase tracking-wider mb-1 font-semibold">Area</span>
+                                        <span className="text-lg font-bold text-slate-800">{districtContent.area || (districtData ? `${districtData.area_sq_km} sq km` : "N/A")}</span>
                                     </div>
-                                    <div className="p-4 rounded-xl bg-black/40 border border-amber-900/20">
-                                        <span className="block text-amber-500/60 text-xs uppercase tracking-wider mb-1">Literacy</span>
-                                        <span className="text-lg font-semibold text-amber-100">{districtData ? `${districtData.literacy}%` : "N/A"}</span>
+                                    <div className="p-4 rounded-xl bg-slate-50 border border-slate-100">
+                                        <span className="block text-slate-500 text-xs uppercase tracking-wider mb-1 font-semibold">Literacy</span>
+                                        <span className="text-lg font-bold text-slate-800">{districtData ? `${districtData.literacy}%` : "N/A"}</span>
                                     </div>
                                 </div>
                             </section>
 
                             {/* Main Content */}
-                            <article className="prose prose-lg prose-invert prose-amber max-w-none">
+                            <article className="prose prose-lg prose-slate max-w-none prose-headings:font-display prose-headings:text-slate-900 prose-p:text-slate-700 prose-a:text-teal-700 prose-a:no-underline hover:prose-a:underline prose-img:rounded-xl">
                                 <MDXRemote
                                     source={districtContent.content}
                                     components={components}
@@ -237,10 +232,10 @@ export default async function DistrictPage({ params }: PageProps) {
                         <div className="space-y-8 lg:sticky lg:top-24 h-fit">
                             {/* Location Map */}
                             {districtData && (
-                                <div className="bg-neutral-900/50 rounded-2xl border border-amber-800/30 overflow-hidden">
-                                    <div className="p-4 border-b border-amber-800/30 bg-neutral-900">
-                                        <h3 className="font-bold text-amber-100 flex items-center gap-2">
-                                            <span>📍</span> Location
+                                <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+                                    <div className="p-4 border-b border-slate-100 bg-slate-50/50">
+                                        <h3 className="font-bold text-slate-900 flex items-center gap-2">
+                                            <span className="text-teal-600">📍</span> Location
                                         </h3>
                                     </div>
                                     <div className="h-[250px] relative">
@@ -250,12 +245,12 @@ export default async function DistrictPage({ params }: PageProps) {
                                             title={`Map of ${districtData.name_en}`}
                                         />
                                     </div>
-                                    <div className="p-4 bg-neutral-900">
+                                    <div className="p-4 bg-white">
                                         <a
                                             href={`https://www.google.com/maps/search/${districtData.name_en}+district+odisha/@${districtData.centroid[0]},${districtData.centroid[1]},9z`}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="block w-full text-center px-4 py-2 bg-amber-900/30 hover:bg-amber-800/50 border border-amber-700/30 rounded-lg text-amber-300 text-sm transition-colors"
+                                            className="block w-full text-center px-4 py-2 bg-slate-100 hover:bg-teal-50 border border-slate-200 hover:border-teal-200 rounded-lg text-slate-700 hover:text-teal-700 text-sm transition-all font-medium"
                                         >
                                             Open in Google Maps ↗
                                         </a>
@@ -264,9 +259,9 @@ export default async function DistrictPage({ params }: PageProps) {
                             )}
 
                             {/* Tehsils/Blocks List */}
-                            <div className="bg-neutral-900/30 rounded-2xl border border-amber-800/20 p-6">
-                                <h2 className="text-xl font-display font-bold text-amber-500 mb-4 flex items-center gap-2">
-                                    <span>🏙️</span> Administration
+                            <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+                                <h2 className="text-lg font-display font-bold text-slate-900 mb-4 flex items-center gap-2">
+                                    <span className="text-teal-600">🏙️</span> Administration
                                 </h2>
                                 <div className="flex flex-col gap-2 max-h-[500px] overflow-y-auto pr-2 custom-scrollbar">
                                     <TehsilList districtSlug={slug} />
@@ -275,8 +270,8 @@ export default async function DistrictPage({ params }: PageProps) {
                         </div>
                     </div>
 
-                    <footer className="mt-16 pt-8 border-t border-amber-900/30 text-center text-amber-500/40 text-sm">
-                        <p>Part of Odiapedia - The Diary of Odisha</p>
+                    <footer className="mt-16 pt-8 border-t border-slate-200 text-center text-slate-500 text-sm">
+                        <p>© {new Date().getFullYear()} Odiapedia - The Diary of Odisha</p>
                     </footer>
                 </div>
             </div>

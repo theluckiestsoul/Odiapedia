@@ -85,10 +85,13 @@ const sections = [
   },
 ];
 
+import { getLatestUpdates } from "@/lib/updates";
+
 export default function Home() {
   const latestArticles = getAllArticlesMetadata().slice(0, 6);
+  const latestUpdates = getLatestUpdates();
 
   return (
-    <HomeClient sections={sections} latestArticles={latestArticles} />
+    <HomeClient sections={sections} latestArticles={latestArticles} latestUpdates={latestUpdates} />
   );
 }

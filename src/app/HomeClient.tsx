@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { UpdateItem } from "@/lib/updates";
+
 
 interface Section {
     href: string;
@@ -24,9 +26,10 @@ interface ArticleMetadata {
 interface HomeClientProps {
     sections: Section[];
     latestArticles: ArticleMetadata[];
+    latestUpdates: UpdateItem[];
 }
 
-export default function HomeClient({ sections, latestArticles }: HomeClientProps) {
+export default function HomeClient({ sections, latestArticles, latestUpdates }: HomeClientProps) {
     const { language } = useLanguage();
     const [mounted, setMounted] = useState(false);
 
@@ -167,6 +170,66 @@ export default function HomeClient({ sections, latestArticles }: HomeClientProps
                                 </p>
                             </Link>
                         ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* What's New Section */}
+            <section className="py-20 bg-slate-50">
+                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="flex items-center justify-between mb-10">
+                        <div>
+                            <span className="text-teal-600 font-bold uppercase tracking-wider text-sm mb-2 block">Fresh Updates</span>
+                            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 font-display">
+                                What's New on Odiapedia
+                            </h2>
+                        </div>
+                        <Link href="/latest" className="hidden md:inline-flex items-center text-slate-600 hover:text-teal-600 font-medium transition-colors">
+                            View all updates →
+                        </Link>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        {latestUpdates.slice(0, 3).map((item) => (
+                            <Link
+                                key={item.id}
+                                href={item.link}
+                                className="group block bg-white rounded-xl overflow-hidden border border-slate-200 hover:border-teal-300 hover:shadow-lg transition-all duration-300"
+                            >
+                                <div className="relative h-48 bg-slate-100 overflow-hidden">
+                                    {item.image ? (
+                                        <Image
+                                            src={item.image}
+                                            alt={item.title}
+                                            fill
+                                            className="object-cover group-hover:scale-105 transition-transform duration-500"
+                                        />
+                                    ) : (
+                                        <div className="w-full h-full flex items-center justify-center text-4xl">
+                                            {item.type === 'article' ? '📄' : '✨'}
+                                        </div>
+                                    )}
+                                    <div className="absolute top-2 left-2">
+                                        <span className={`text-xs font-bold uppercase px-2 py-1 rounded bg-white/90 backdrop-blur-sm text-slate-900 shadow-sm`}>
+                                            {item.tag}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div className="p-5">
+                                    <h3 className="text-lg font-bold text-slate-900 mb-2 group-hover:text-teal-700 transition-colors line-clamp-1">
+                                        {item.title}
+                                    </h3>
+                                    <p className="text-slate-500 text-sm line-clamp-2">
+                                        {item.description}
+                                    </p>
+                                </div>
+                            </Link>
+                        ))}
+                    </div>
+                    <div className="mt-8 text-center md:hidden">
+                        <Link href="/latest" className="inline-block px-6 py-3 bg-white border border-slate-200 rounded-lg text-slate-700 font-medium hover:border-teal-300 transition-colors">
+                            View all updates
+                        </Link>
                     </div>
                 </div>
             </section>

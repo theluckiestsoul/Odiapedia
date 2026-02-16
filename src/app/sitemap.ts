@@ -22,6 +22,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
         "/panjika",
         "/panjika/biraja",
         "/panjika/jagannath",
+        '/culture/cinema/timeline', // Cinema Timeline
+        '/culture/cinema/reviews',  // Movie Reviews
+        '/latest',                  // Latest Updates
     ].map((route) => ({
         url: `${baseUrl}${route}`,
         lastModified: new Date(),
