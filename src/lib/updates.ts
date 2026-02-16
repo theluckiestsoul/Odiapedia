@@ -26,7 +26,7 @@ export function getLatestUpdates(): UpdateItem[] {
             id: `article-${article.slug}`,
             type: "article",
             title: article.title,
-            description: article.excerpt,
+            description: article.description,
             date: article.date, // Assumes YYYY-MM-DD
             link: `/${article.category}/${article.slug}`,
             tag: "Read Article"
