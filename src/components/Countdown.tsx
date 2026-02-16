@@ -66,8 +66,8 @@ export default function Countdown({
 
     if (timeLeft.isExpired) {
         return (
-            <div className="p-6 bg-gradient-to-r from-amber-900/40 to-black border border-amber-600/30 rounded-xl text-center my-8">
-                <h3 className="text-2xl font-bold text-amber-400 font-display">
+            <div className="p-6 bg-gradient-to-r from-amber-100 to-white border border-amber-200 rounded-xl text-center my-8 shadow-sm">
+                <h3 className="text-2xl font-bold text-amber-800 font-display">
                     {labels.expired}
                 </h3>
             </div>
@@ -88,11 +88,11 @@ export default function Countdown({
 
 function TimeUnit({ value, label }: { value: number; label: string }) {
     return (
-        <div className="flex flex-col items-center bg-gradient-to-b from-amber-900/20 to-black border border-amber-800/30 p-4 rounded-xl shadow-lg shadow-amber-900/10">
-            <span className="text-4xl md:text-5xl font-bold text-amber-400 font-display tabular-nums">
+        <div className="flex flex-col items-center bg-gradient-to-b from-amber-50 to-white border border-amber-200 p-4 rounded-xl shadow-lg shadow-amber-900/5">
+            <span className="text-4xl md:text-5xl font-bold text-amber-700 font-display tabular-nums">
                 {String(value).padStart(2, "0")}
             </span>
-            <span className="text-amber-100/60 text-sm md:text-base uppercase tracking-wider mt-2">
+            <span className="text-amber-900/60 text-sm md:text-base uppercase tracking-wider mt-2">
                 {label}
             </span>
         </div>

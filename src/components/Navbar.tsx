@@ -97,7 +97,7 @@ function DropdownMenu({ item, language, onClose }: { item: MenuItem; language: s
         return (
             <Link
                 href={item.href || "/"}
-                className="px-4 py-2 text-amber-100/80 hover:text-amber-300 transition-all duration-300 font-medium animated-underline"
+                className="px-4 py-2 text-amber-900 hover:text-amber-700 transition-all duration-300 font-medium animated-underline"
             >
                 {language === 'od' ? item.odia : item.label}
             </Link>
@@ -109,7 +109,7 @@ function DropdownMenu({ item, language, onClose }: { item: MenuItem; language: s
             <button
                 onClick={() => setIsOpen(!isOpen)}
                 onMouseEnter={() => setIsOpen(true)}
-                className="px-4 py-2 text-amber-100/80 hover:text-amber-300 transition-all duration-300 font-medium flex items-center gap-1"
+                className="px-4 py-2 text-amber-900 hover:text-amber-700 transition-all duration-300 font-medium flex items-center gap-1"
             >
                 {language === 'od' ? item.odia : item.label}
                 <svg
@@ -124,7 +124,7 @@ function DropdownMenu({ item, language, onClose }: { item: MenuItem; language: s
 
             {isOpen && (
                 <div
-                    className="absolute top-full left-0 mt-1 w-48 bg-neutral-900/95 backdrop-blur-md border border-amber-800/30 rounded-lg shadow-xl py-2 z-50"
+                    className="absolute top-full left-0 mt-1 w-48 bg-white/95 backdrop-blur-md border border-amber-200 rounded-lg shadow-xl py-2 z-50"
                     onMouseLeave={() => setIsOpen(false)}
                 >
                     {item.children.map((child) => (
@@ -132,7 +132,7 @@ function DropdownMenu({ item, language, onClose }: { item: MenuItem; language: s
                             key={child.href}
                             href={child.href}
                             onClick={() => { setIsOpen(false); onClose(); }}
-                            className="flex items-center gap-3 px-4 py-2.5 text-amber-100/80 hover:text-amber-300 hover:bg-amber-900/30 transition-colors"
+                            className="flex items-center gap-3 px-4 py-2.5 text-amber-900 hover:text-amber-700 hover:bg-amber-50 transition-colors"
                         >
                             {child.icon && <span className="text-lg">{child.icon}</span>}
                             <div className="flex flex-col">
@@ -155,7 +155,7 @@ export default function Navbar() {
 
     return (
         <>
-            <nav className="sticky top-0 z-50 bg-gradient-to-b from-black/95 to-black/80 backdrop-blur-md border-b border-amber-900/30">
+            <nav className="sticky top-0 z-50 bg-gradient-to-b from-background/95 to-background/80 backdrop-blur-md border-b border-amber-900/10">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between items-center h-20">
                         {/* Logo */}
@@ -200,7 +200,7 @@ export default function Navbar() {
                                 aria-label="Search"
                             >
                                 <svg
-                                    className="w-5 h-5 text-amber-400 group-hover:text-amber-300"
+                                    className="w-5 h-5 text-amber-700 group-hover:text-amber-900"
                                     fill="none"
                                     stroke="currentColor"
                                     viewBox="0 0 24 24"
@@ -223,7 +223,7 @@ export default function Navbar() {
                                 aria-label="Search"
                             >
                                 <svg
-                                    className="w-5 h-5 text-amber-400"
+                                    className="w-5 h-5 text-amber-700"
                                     fill="none"
                                     stroke="currentColor"
                                     viewBox="0 0 24 24"
@@ -243,7 +243,7 @@ export default function Navbar() {
                                 aria-label="Toggle menu"
                             >
                                 <svg
-                                    className="w-6 h-6 text-amber-400"
+                                    className="w-6 h-6 text-amber-700"
                                     fill="none"
                                     stroke="currentColor"
                                     viewBox="0 0 24 24"
@@ -270,7 +270,7 @@ export default function Navbar() {
 
                     {/* Mobile Menu */}
                     {isMenuOpen && (
-                        <div className="md:hidden py-4 border-t border-amber-900/30">
+                        <div className="md:hidden py-4 border-t border-amber-900/10">
                             <div className="flex flex-col gap-1">
                                 {menuItems.map((item) => (
                                     <div key={item.label}>
@@ -278,7 +278,7 @@ export default function Navbar() {
                                             <>
                                                 <button
                                                     onClick={() => setExpandedMobile(expandedMobile === item.label ? null : item.label)}
-                                                    className="w-full px-4 py-3 rounded-lg text-amber-100/80 hover:text-amber-300 hover:bg-amber-900/20 transition-all duration-200 font-medium flex justify-between items-center"
+                                                    className="w-full px-4 py-3 rounded-lg text-amber-900 hover:text-amber-700 hover:bg-amber-50 transition-all duration-200 font-medium flex justify-between items-center"
                                                 >
                                                     <span>{language === 'od' ? item.odia : item.label}</span>
                                                     <svg
@@ -297,7 +297,7 @@ export default function Navbar() {
                                                                 key={child.href}
                                                                 href={child.href}
                                                                 onClick={() => setIsMenuOpen(false)}
-                                                                className="flex items-center gap-3 px-3 py-2 rounded-lg text-amber-100/70 hover:text-amber-300 hover:bg-amber-900/20 transition-all"
+                                                                className="flex items-center gap-3 px-3 py-2 rounded-lg text-amber-800 hover:text-amber-600 hover:bg-amber-50 transition-all"
                                                             >
                                                                 {child.icon && <span>{child.icon}</span>}
                                                                 <div>
@@ -313,7 +313,7 @@ export default function Navbar() {
                                             <Link
                                                 href={item.href || "/"}
                                                 onClick={() => setIsMenuOpen(false)}
-                                                className="px-4 py-3 rounded-lg text-amber-100/80 hover:text-amber-300 hover:bg-amber-900/20 transition-all duration-200 font-medium flex justify-between items-center"
+                                                className="px-4 py-3 rounded-lg text-amber-900 hover:text-amber-700 hover:bg-amber-50 transition-all duration-200 font-medium flex justify-between items-center"
                                             >
                                                 <span>{language === 'od' ? item.odia : item.label}</span>
                                                 <span className="text-amber-600/60 text-sm odia-text">{language === 'od' ? item.label : item.odia}</span>
@@ -324,7 +324,7 @@ export default function Navbar() {
 
                                 {/* Language Toggle for Mobile */}
                                 <div className="px-4 py-3 flex items-center justify-between border-t border-amber-800/30 mt-2">
-                                    <span className="text-amber-100/60">{language === 'od' ? 'ଭାଷା ପରିବର୍ତ୍ତନ' : 'Switch Language'}</span>
+                                    <span className="text-amber-900/60">{language === 'od' ? 'ଭାଷା ପରିବର୍ତ୍ତନ' : 'Switch Language'}</span>
                                     <LanguageToggle />
                                 </div>
                             </div>

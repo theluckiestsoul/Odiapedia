@@ -80,7 +80,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className="dark">
+    <html lang="en">
       <head>
         <script
           type="application/ld+json"
@@ -105,7 +105,7 @@ export default function RootLayout({
           </>
         )}
       </head>
-      <body className="min-h-screen flex flex-col antialiased bg-black text-white">
+      <body className="min-h-screen flex flex-col antialiased bg-background text-foreground">
         <LanguageProvider>
           <Navbar />
           <main className="flex-1">

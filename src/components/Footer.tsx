@@ -14,7 +14,7 @@ export default function Footer() {
     const currentYear = new Date().getFullYear();
 
     return (
-        <footer className="bg-gradient-to-b from-black to-neutral-950 border-t border-amber-900/30 pattern-overlay">
+        <footer className="bg-gradient-to-b from-amber-950 to-black border-t border-amber-900/30 pattern-overlay">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
                     {/* Brand */}

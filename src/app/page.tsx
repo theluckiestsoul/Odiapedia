@@ -88,11 +88,11 @@ const categoryIcons: Record<string, string> = {
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-background">
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
         {/* Background Pattern */}
-        <div className="absolute inset-0 bg-gradient-to-b from-amber-950/20 via-black to-black"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-amber-50/20 via-background to-background"></div>
         <div className="absolute inset-0 pattern-overlay opacity-30"></div>
 
         {/* Decorative Elements */}
@@ -128,11 +128,11 @@ export default function Home() {
           {/* Decorative Line */}
           <div className="flex items-center justify-center gap-4 mb-8">
             <div className="h-px w-16 bg-gradient-to-r from-transparent to-amber-600"></div>
-            <div className="w-3 h-3 rotate-45 bg-amber-500"></div>
+            <div className="w-3 h-3 rotate-45 bg-amber-600"></div>
             <div className="h-px w-16 bg-gradient-to-l from-transparent to-amber-600"></div>
           </div>
 
-          <p className="text-xl md:text-2xl text-amber-100/70 mb-12 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl md:text-2xl text-amber-900/80 mb-12 max-w-3xl mx-auto leading-relaxed">
             Discover the ancient land of Odisha — its classical language, sacred temples,
             vibrant art, legendary cuisine, and timeless traditions.
           </p>
@@ -158,24 +158,24 @@ export default function Home() {
 
         {/* Bottom Wave */}
         <div className="absolute bottom-0 left-0 right-0">
-          <svg className="w-full h-24 fill-black" viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <svg className="w-full h-24 fill-background" viewBox="0 0 1200 120" preserveAspectRatio="none">
             <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path>
           </svg>
         </div>
       </section>
 
       {/* Odia Parba Banner */}
-      <section className="relative py-12 bg-gradient-to-r from-amber-900 to-black border-y border-amber-600/30 overflow-hidden">
+      <section className="relative py-12 bg-gradient-to-r from-amber-100 to-amber-50 border-y border-amber-600/20 overflow-hidden">
         <div className="absolute inset-0 pattern-overlay opacity-20"></div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="text-center md:text-left">
-            <h2 className="text-3xl md:text-4xl font-bold text-amber-100 mb-2 font-display">
+            <h2 className="text-3xl md:text-4xl font-bold text-amber-900 mb-2 font-display">
               Odia Parba 2026
             </h2>
-            <p className="text-amber-400 text-lg odia-text">
+            <p className="text-amber-700 text-lg odia-text">
               ଓଡ଼ିଶା ପର୍ବ ୨୦୨୬ — ଦିଲ୍ଲୀ ଛାତିରେ ଓଡ଼ିଶାର ଏକ ଦମଦାର ଉତ୍ସବ
             </p>
-            <p className="text-amber-100/60 mt-2">
+            <p className="text-amber-900/70 mt-2">
               March 13-15 • Jawaharlal Nehru Stadium, New Delhi
             </p>
           </div>
@@ -192,12 +192,12 @@ export default function Home() {
       </section>
 
       {/* Explore Section */}
-      <section className="py-24 bg-black relative">
+      <section className="py-24 bg-background relative">
         <div className="absolute inset-0 pattern-overlay opacity-20"></div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-amber-100 mb-4 font-display">
+            <h2 className="text-4xl md:text-5xl font-bold text-amber-900 mb-4 font-display">
               Explore Odisha
             </h2>
             <p className="text-amber-500/70 text-2xl odia-text">
@@ -218,7 +218,7 @@ export default function Home() {
                 className="group relative overflow-hidden rounded-2xl card-hover"
               >
                 <div className={`absolute inset-0 bg-gradient-to-br ${section.gradient} opacity-90`}></div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent"></div>
                 <div className="absolute inset-0 border border-amber-600/20 rounded-2xl group-hover:border-amber-500/40 transition-colors"></div>
 
                 <div className="relative p-8 min-h-[280px] flex flex-col justify-end">
@@ -226,14 +226,14 @@ export default function Home() {
                     {section.icon}
                   </span>
                   <div className="flex items-baseline gap-3 mb-3">
-                    <h3 className="text-2xl font-bold text-amber-100 group-hover:text-amber-300 transition-colors font-display">
+                    <h3 className="text-2xl font-bold text-white group-hover:text-amber-200 transition-colors font-display">
                       {section.title}
                     </h3>
-                    <span className="text-amber-500/70 odia-text">
+                    <span className="text-amber-200/90 odia-text">
                       {section.odia}
                     </span>
                   </div>
-                  <p className="text-amber-100/60 text-sm leading-relaxed">
+                  <p className="text-white/80 text-sm leading-relaxed">
                     {section.description}
                   </p>
 
@@ -251,15 +251,15 @@ export default function Home() {
       </section>
 
       {/* Featured Articles Section */}
-      <section className="py-20 bg-gradient-to-b from-black to-neutral-950 relative">
+      <section className="py-20 bg-gradient-to-b from-background to-amber-50 relative">
         <div className="absolute inset-0 pattern-overlay opacity-5"></div>
 
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-amber-100 mb-4 font-display">
+            <h2 className="text-3xl md:text-4xl font-bold text-amber-900 mb-4 font-display">
               Latest Articles
             </h2>
-            <p className="text-amber-100/60 text-lg">
+            <p className="text-amber-900/70 text-lg">
               Start exploring with our newest content
             </p>
           </div>
@@ -271,20 +271,20 @@ export default function Home() {
                 <Link
                   key={`${article.category}/${article.slug}`}
                   href={`/${article.category}/${article.slug}`}
-                  className="group bg-gradient-to-br from-amber-950/30 to-orange-950/30 rounded-2xl p-6 border border-amber-900/30 hover:border-amber-600/50 transition-all duration-300"
+                  className="group bg-white rounded-2xl p-6 border border-amber-900/10 hover:border-amber-600/50 shadow-sm hover:shadow-md transition-all duration-300"
                 >
                   <div className="flex items-start gap-4">
                     <span className="text-3xl">
                       {categoryIcons[article.category] || "📄"}
                     </span>
                     <div className="flex-1">
-                      <span className="text-xs text-amber-500/60 uppercase tracking-wider">
+                      <span className="text-xs text-amber-700 uppercase tracking-wider">
                         {article.category}
                       </span>
-                      <h3 className="text-lg font-semibold text-amber-100 group-hover:text-amber-300 transition-colors mb-2 mt-1">
+                      <h3 className="text-lg font-semibold text-amber-950 group-hover:text-amber-700 transition-colors mb-2 mt-1">
                         {article.title}
                       </h3>
-                      <p className="text-amber-100/60 text-sm line-clamp-2">
+                      <p className="text-amber-900/70 text-sm line-clamp-2">
                         {article.description}
                       </p>
                       <span className="inline-block mt-3 text-amber-500 text-sm group-hover:text-amber-400">
@@ -299,7 +299,7 @@ export default function Home() {
       </section>
 
       {/* Heritage Section */}
-      <section className="py-24 bg-gradient-to-b from-black via-amber-950/10 to-black relative overflow-hidden">
+      <section className="py-24 bg-gradient-to-b from-background via-amber-100/30 to-background relative overflow-hidden">
         <div className="absolute inset-0 pattern-overlay opacity-10"></div>
 
         {/* Decorative Elements */}
@@ -311,11 +311,11 @@ export default function Home() {
             <span className="text-6xl">🛕</span>
           </div>
 
-          <h2 className="text-3xl md:text-4xl font-bold text-amber-100 mb-6 font-display">
+          <h2 className="text-3xl md:text-4xl font-bold text-amber-900 mb-6 font-display">
             Preserving Our Sacred Heritage
           </h2>
 
-          <p className="text-xl text-amber-100/60 mb-8 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xl text-amber-900/70 mb-8 max-w-2xl mx-auto leading-relaxed">
             From the Sun Temple of Konark to the sacred shores of Puri,
             Odisha&apos;s heritage spans thousands of years of art, spirituality, and culture.
           </p>

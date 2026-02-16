@@ -76,15 +76,15 @@ export default function LanguageToggle() {
         <button
             onClick={handleToggle}
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-full 
-                 bg-amber-900/30 hover:bg-amber-800/50 
-                 border border-amber-700/30 hover:border-amber-600/50
+                 bg-amber-100/50 hover:bg-amber-200/50 
+                 border border-amber-200 hover:border-amber-300
                  transition-all duration-200 group"
             aria-label={`Switch to ${language === 'en' ? 'Odia' : 'English'}`}
             title={`Switch to ${language === 'en' ? 'Odia' : 'English'}`}
         >
             {/* Globe Icon */}
             <svg
-                className="w-4 h-4 text-amber-400 group-hover:text-amber-300 transition-colors"
+                className="w-4 h-4 text-amber-700 group-hover:text-amber-900 transition-colors"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -99,11 +99,11 @@ export default function LanguageToggle() {
 
             {/* Current / Switch To */}
             <span className="text-sm font-medium">
-                <span className={`transition-all ${language === 'en' ? 'text-amber-100' : 'text-amber-400'}`}>
+                <span className={`transition-all ${language === 'en' ? 'text-amber-900' : 'text-amber-600'}`}>
                     EN
                 </span>
-                <span className="text-amber-600 mx-1">/</span>
-                <span className={`transition-all ${language === 'od' ? 'text-amber-100' : 'text-amber-400'} odia-text`}>
+                <span className="text-amber-400 mx-1">/</span>
+                <span className={`transition-all ${language === 'od' ? 'text-amber-900' : 'text-amber-600'} odia-text`}>
                     ଓ
                 </span>
             </span>

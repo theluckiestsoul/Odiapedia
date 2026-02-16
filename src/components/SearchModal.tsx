@@ -81,11 +81,11 @@ export default function SearchModal({ isOpen, onClose, articles }: SearchModalPr
             />
 
             {/* Modal */}
-            <div className="relative w-full max-w-2xl bg-gradient-to-b from-neutral-900 to-black rounded-2xl border border-amber-900/30 shadow-2xl shadow-amber-900/20 overflow-hidden">
+            <div className="relative w-full max-w-2xl bg-white/95 backdrop-blur-md rounded-2xl border border-amber-200 shadow-2xl shadow-amber-900/10 overflow-hidden">
                 {/* Search Input */}
-                <div className="flex items-center gap-3 p-4 border-b border-amber-900/30">
+                <div className="flex items-center gap-3 p-4 border-b border-amber-100">
                     <svg
-                        className="w-5 h-5 text-amber-500"
+                        className="w-5 h-5 text-amber-600"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -103,11 +103,11 @@ export default function SearchModal({ isOpen, onClose, articles }: SearchModalPr
                         placeholder="Search articles..."
                         value={query}
                         onChange={(e) => setQuery(e.target.value)}
-                        className="flex-1 bg-transparent text-amber-100 placeholder-amber-500/50 outline-none text-lg"
+                        className="flex-1 bg-transparent text-amber-900 placeholder-amber-900/40 outline-none text-lg"
                     />
                     <button
                         onClick={onClose}
-                        className="text-amber-500/50 hover:text-amber-400 text-sm"
+                        className="text-amber-900/40 hover:text-amber-700 text-sm"
                     >
                         ESC
                     </button>
@@ -116,11 +116,11 @@ export default function SearchModal({ isOpen, onClose, articles }: SearchModalPr
                 {/* Results */}
                 <div className="max-h-[60vh] overflow-y-auto">
                     {query.length < 2 ? (
-                        <div className="p-8 text-center text-amber-500/50">
+                        <div className="p-8 text-center text-amber-900/40">
                             Type at least 2 characters to search...
                         </div>
                     ) : results.length === 0 ? (
-                        <div className="p-8 text-center text-amber-500/50">
+                        <div className="p-8 text-center text-amber-900/40">
                             No articles found for &quot;{query}&quot;
                         </div>
                     ) : (
@@ -130,26 +130,26 @@ export default function SearchModal({ isOpen, onClose, articles }: SearchModalPr
                                     key={`${result.category}/${result.slug}`}
                                     href={`/${result.category}/${result.slug}`}
                                     onClick={onClose}
-                                    className="flex items-start gap-4 p-4 rounded-xl hover:bg-amber-900/20 transition-colors group"
+                                    className="flex items-start gap-4 p-4 rounded-xl hover:bg-amber-50 transition-colors group"
                                 >
                                     <span className="text-2xl">
                                         {categoryIcons[result.category] || "📄"}
                                     </span>
                                     <div className="flex-1 min-w-0">
                                         <div className="flex items-center gap-2 mb-1">
-                                            <span className="text-xs text-amber-500/60 uppercase tracking-wider">
+                                            <span className="text-xs text-amber-600/80 uppercase tracking-wider">
                                                 {result.category}
                                             </span>
                                         </div>
-                                        <h3 className="text-amber-100 font-medium group-hover:text-amber-300 transition-colors truncate">
+                                        <h3 className="text-amber-900 font-medium group-hover:text-amber-700 transition-colors truncate">
                                             {result.title}
                                         </h3>
-                                        <p className="text-amber-100/50 text-sm truncate">
+                                        <p className="text-amber-900/60 text-sm truncate">
                                             {result.description}
                                         </p>
                                     </div>
                                     <svg
-                                        className="w-5 h-5 text-amber-500/30 group-hover:text-amber-400 transition-colors flex-shrink-0 mt-1"
+                                        className="w-5 h-5 text-amber-900/20 group-hover:text-amber-600 transition-colors flex-shrink-0 mt-1"
                                         fill="none"
                                         stroke="currentColor"
                                         viewBox="0 0 24 24"
@@ -168,7 +168,7 @@ export default function SearchModal({ isOpen, onClose, articles }: SearchModalPr
                 </div>
 
                 {/* Footer */}
-                <div className="p-3 border-t border-amber-900/20 flex items-center justify-between text-xs text-amber-500/40">
+                <div className="p-3 border-t border-amber-100 flex items-center justify-between text-xs text-amber-900/40">
                     <span>{articles.length} articles available</span>
                     <span>↵ to select • ESC to close</span>
                 </div>
