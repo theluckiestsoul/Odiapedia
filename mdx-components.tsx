@@ -1,6 +1,7 @@
 import type { MDXComponents } from "mdx/types";
 import Link from "next/link";
 import LanguageSelector from "@/components/LanguageSelector";
+import Countdown from "@/components/Countdown";
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
     return {
@@ -142,6 +143,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
 
         // Language Selector for multi-language articles
         LanguageSelector,
+        Countdown,
 
         ...components,
     };

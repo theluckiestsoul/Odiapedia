@@ -164,6 +164,33 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Odia Parba Banner */}
+      <section className="relative py-12 bg-gradient-to-r from-amber-900 to-black border-y border-amber-600/30 overflow-hidden">
+        <div className="absolute inset-0 pattern-overlay opacity-20"></div>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="text-center md:text-left">
+            <h2 className="text-3xl md:text-4xl font-bold text-amber-100 mb-2 font-display">
+              Odia Parba 2026
+            </h2>
+            <p className="text-amber-400 text-lg odia-text">
+              ଓଡ଼ିଶା ପର୍ବ ୨୦୨୬ — ଦିଲ୍ଲୀ ଛାତିରେ ଓଡ଼ିଶାର ଏକ ଦମଦାର ଉତ୍ସବ
+            </p>
+            <p className="text-amber-100/60 mt-2">
+              March 13-15 • Jawaharlal Nehru Stadium, New Delhi
+            </p>
+          </div>
+          <Link
+            href="/culture/odia-parba-en"
+            className="inline-flex items-center px-8 py-3 bg-amber-600 hover:bg-amber-500 text-black font-bold rounded-full transition-colors shadow-lg shadow-amber-900/40"
+          >
+            Vist Event Page
+            <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </Link>
+        </div>
+      </section>
+
       {/* Explore Section */}
       <section className="py-24 bg-black relative">
         <div className="absolute inset-0 pattern-overlay opacity-20"></div>
