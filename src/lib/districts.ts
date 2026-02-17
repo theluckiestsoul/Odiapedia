@@ -13,6 +13,7 @@ export interface DistrictMeta {
     headquarters?: string;
     mla_mp?: string;
     image?: string;
+    titleOdia?: string;
 }
 
 export interface District extends DistrictMeta {
@@ -48,6 +49,7 @@ export function getDistrictBySlug(slug: string): District | null {
         headquarters: data.headquarters,
         mla_mp: data.mla_mp,
         image: data.image,
+        titleOdia: data.titleOdia,
         content,
     };
 }
