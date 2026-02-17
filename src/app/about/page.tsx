@@ -121,7 +121,7 @@ export default function AboutPage() {
                         and suggestions from the community to make this the best resource for Odisha.
                     </p>
                     <a
-                        href="https://github.com/theluckiestsoul/odia-pedia"
+                        href="https://github.com/theluckiestsoul/Odiapedia"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 bg-white text-teal-900 px-8 py-3 rounded-full font-bold hover:bg-teal-50 transition-colors shadow-lg shadow-teal-900/50"
