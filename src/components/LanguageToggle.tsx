@@ -84,11 +84,27 @@ export default function LanguageToggle() {
         }
 
         const currentPath = pathname;
+
+        // Special handling for districts
+        if (currentPath.startsWith('/district/')) {
+            const parts = currentPath.split('/');
+            const slug = parts[parts.length - 1]; // Get the last part
+
+            if (newLangCode === 'od' && !slug.endsWith('-od')) {
+                // Switch to Odia: append -od
+                router.push(`${currentPath}-od`);
+                setIsOpen(false);
+                return;
+            } else if (newLangCode === 'en' && slug.endsWith('-od')) {
+                // Switch to English: remove -od
+                router.push(currentPath.replace(/-od$/, ''));
+                setIsOpen(false);
+                return;
+            }
+        }
+
         // Basic logic: if switching to 'od', prefix with /od if not already there.
         // If switching to 'en', remove /od prefix.
-        // This relies on middleware or next.js config to handle the actual routing/locale detection better,
-        // but for a simple toggle:
-
         let newPath = currentPath;
         if (newLangCode === 'od' && !currentPath.startsWith('/od')) {
             newPath = `/od${currentPath}`;
