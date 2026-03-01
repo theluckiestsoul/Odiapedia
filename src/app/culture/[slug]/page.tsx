@@ -15,6 +15,13 @@ type Props = {
 
 const CATEGORY = "culture";
 
+export async function generateStaticParams() {
+    const articles = getAllArticles(CATEGORY);
+    return articles.map((article) => ({
+        slug: article.slug,
+    }));
+}
+
 // Generate dynamic metadata
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const { slug } = await params;
