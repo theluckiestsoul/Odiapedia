@@ -34,12 +34,31 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     // Dynamic article pages (existing)
     const articles = getAllArticlesMetadata();
-    const articlePages = articles.map((article) => ({
-        url: `${baseUrl}/${article.category}/${article.slug}`,
-        lastModified: new Date(article.date),
-        changeFrequency: "monthly" as const,
-        priority: 0.6,
-    }));
+    const articlePages = articles.map((article) => {
+        const languages: Record<string, string> = {};
+
+        // Map the alternate language paths
+        if (article.alternates) {
+            for (const [lang, path] of Object.entries(article.alternates)) {
+                const hreflang = lang === 'od' ? 'or' : lang;
+                languages[hreflang] = `${baseUrl}${path}`;
+            }
+        }
+
+        // Add the current canonical language
+        if (article.lang) {
+            const currentHreflang = article.lang === 'od' ? 'or' : article.lang;
+            languages[currentHreflang] = `${baseUrl}/${article.category}/${article.slug}`;
+        }
+
+        return {
+            url: `${baseUrl}/${article.category}/${article.slug}`,
+            lastModified: new Date(article.date),
+            changeFrequency: "monthly" as const,
+            priority: 0.6,
+            alternates: Object.keys(languages).length > 0 ? { languages } : undefined,
+        };
+    });
 
     // District pages
     const districtSlugs = getAllDistrictSlugs();
