@@ -44,6 +44,10 @@ const languageConfig: Record<string, Omit<LanguageOption, 'path'>> = {
 export default function LanguageSelector({ languages, currentLang }: LanguageSelectorProps) {
   const pathname = usePathname();
 
+  if (!languages) {
+    return null;
+  }
+
   // Build available languages
   const availableLanguages: LanguageOption[] = Object.entries(languages)
     .filter(([, path]) => path) // Filter out undefined paths
