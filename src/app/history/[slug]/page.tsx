@@ -7,7 +7,6 @@ import { useMDXComponents } from "../../../../mdx-components";
 import remarkGfm from "remark-gfm";
 import Image from "next/image";
 import Link from "next/link";
-import JsonLd from "@/components/JsonLd";
 
 type Props = {
     params: Promise<{ slug: string }>;

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArticleMeta, getAllArticles } from "@/lib/mdx";
 import ShareButtons from "./ShareButtons";
+import JsonLd from "./JsonLd";
 
 interface ArticleLayoutProps {
     meta: ArticleMeta;
@@ -38,8 +39,22 @@ export default function ArticleLayout({ meta, children }: ArticleLayoutProps) {
         day: "numeric",
     });
 
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": meta.title,
+        "description": meta.description,
+        "author": {
+            "@type": "Person",
+            "name": meta.author,
+        },
+        "datePublished": meta.date,
+        "image": meta.image ? `https://odiapedia.com${meta.image}` : undefined,
+    };
+
     return (
         <div className="min-h-screen bg-slate-50">
+            <JsonLd data={jsonLd} />
             {/* Hero Section */}
             <section className="relative py-20 overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-r from-teal-900 via-teal-800 to-blue-900"></div>

@@ -66,6 +66,9 @@ export async function generateMetadata({
     return {
         title: lesson.meta.title,
         description: lesson.meta.description,
+        alternates: {
+            canonical: `/learn/${slug}`,
+        }
     };
 }
 

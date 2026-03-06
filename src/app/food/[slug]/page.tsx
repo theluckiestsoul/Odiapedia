@@ -35,6 +35,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
             publishedTime: article.date,
             authors: [article.author],
         },
+        alternates: {
+            canonical: `/${CATEGORY}/${slug}`,
+        }
     };
 }
 
