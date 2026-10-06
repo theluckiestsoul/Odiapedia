@@ -3,342 +3,253 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import SearchModal from "./SearchModal";
 import LanguageToggle from "./LanguageToggle";
+import Icon from "./Icon";
 import { useLanguage } from "@/contexts/LanguageContext";
+import type { IconName } from "@/lib/site";
+import type { SearchEntry } from "@/lib/mdx";
 
-// Article data for search (pre-built at module load)
-const searchArticles = [
-    { title: "Odia Alphabet & Script", description: "Learn about the Odia script, its unique rounded letters designed for palm leaf writing", category: "language", slug: "odia-alphabet" },
-    { title: "Common Odia Greetings", description: "Essential Odia greetings and phrases for everyday conversations", category: "language", slug: "common-greetings" },
-    { title: "Raja Parba Festival", description: "A unique three-day festival celebrating womanhood and the earth", category: "culture", slug: "raja-parba" },
-    { title: "Rath Yatra - The Chariot Festival", description: "The world-famous chariot festival where millions gather", category: "culture", slug: "rath-yatra" },
-    { title: "Odissi Dance", description: "One of India's eight classical dance forms originating from temples", category: "culture", slug: "odissi-dance" },
-    { title: "Durga Puja in Odisha", description: "How Durga Puja is celebrated with unique Odia traditions", category: "culture", slug: "durga-puja" },
-    { title: "Kumar Purnima", description: "The festival of unmarried girls worshipping the moon", category: "culture", slug: "kumar-purnima" },
-    { title: "Manabasa Gurubara", description: "Month-long tradition of worshipping Goddess Lakshmi", category: "culture", slug: "manabasa-gurubara" },
-    { title: "Nuakhai Harvest Festival", description: "The most important festival of Western Odisha", category: "culture", slug: "nuakhai" },
-    { title: "Pattachitra Art", description: "Traditional cloth scroll painting from Raghurajpur", category: "culture", slug: "pattachitra" },
-    { title: "History of Odisha", description: "From ancient Kalinga to modern Odisha", category: "history", slug: "odisha-history-brief" },
-    { title: "Konark Sun Temple", description: "UNESCO World Heritage Site designed as a giant chariot", category: "history", slug: "konark-sun-temple" },
-    { title: "Jagannath Temple History", description: "The sacred abode and one of the four Char Dhams", category: "history", slug: "jagannath-temple" },
-    { title: "Lingaraj Temple", description: "The magnificent 11th-century temple in Bhubaneswar", category: "history", slug: "lingaraj-temple" },
-    { title: "Chilika Lake", description: "Asia's largest brackish water lagoon", category: "history", slug: "chilika-lake" },
-    { title: "Famous Foods of Odisha", description: "From sacred Mahaprasad to legendary Rasagola", category: "food", slug: "famous-foods" },
-    { title: "Chhena Poda", description: "The caramelized cheese cake dessert of Odisha", category: "food", slug: "chhena-poda" },
-    { title: "Pakhala Bhata", description: "The fermented rice summer staple", category: "food", slug: "pakhala-bhata" },
-    { title: "Rasagola", description: "The iconic sweet with GI tag belonging to Odisha", category: "food", slug: "rasagola" },
-    { title: "Fakir Mohan Senapati", description: "Father of modern Odia literature", category: "people", slug: "fakir-mohan-senapati" },
-    { title: "Biju Patnaik", description: "The legendary pilot and leader who shaped modern Odisha", category: "people", slug: "biju-patnaik" },
-    { title: "Kelucharan Mohapatra", description: "The maestro who revived Odissi dance", category: "people", slug: "kelucharan-mohapatra" },
-    { title: "What is Odiapedia", description: "Learn about our mission to preserve Odia heritage", category: "about", slug: "what-is-odiapedia" },
-];
+interface MenuChild {
+    href: string;
+    label: string;
+    odia: string;
+    icon: IconName;
+    hint: string;
+}
 
-// Organized menu structure with submenus
 interface MenuItem {
     href?: string;
     label: string;
     odia: string;
-    children?: { href: string; label: string; odia: string; icon?: string }[];
+    children?: MenuChild[];
 }
 
 const menuItems: MenuItem[] = [
     {
-        label: "Learn",
-        odia: "ଶିଖନ୍ତୁ",
-        children: [
-            { href: "/learn", label: "Lessons", odia: "ପାଠ", icon: "📚" },
-            { href: "/language", label: "Language", odia: "ଭାଷା", icon: "🗣️" },
-        ]
-    },
-    {
         label: "Explore",
         odia: "ଅନୁସନ୍ଧାନ",
         children: [
-            { href: "/culture", label: "Culture", odia: "ସଂସ୍କୃତି", icon: "🎭" },
-            { href: "/history", label: "History", odia: "ଇତିହାସ", icon: "📜" },
-            { href: "/history/timeline", label: "Timeline", odia: "ସମୟରେଖା", icon: "⏳" },
-            { href: "/people", label: "People", odia: "ଲୋକ", icon: "👥" },
-        ]
+            { href: "/language", label: "Language", odia: "ଭାଷା", icon: "language", hint: "Script, dialects, literature" },
+            { href: "/learn", label: "Learn Odia", odia: "ଓଡ଼ିଆ ଶିଖନ୍ତୁ", icon: "pen", hint: "Free lessons for beginners" },
+            { href: "/history", label: "History", odia: "ଇତିହାସ", icon: "scroll", hint: "Kalinga to modern Odisha" },
+            { href: "/history/timeline", label: "Timeline", odia: "ସମୟରେଖା", icon: "hourglass", hint: "Key events, era by era" },
+            { href: "/culture", label: "Culture & Festivals", odia: "ସଂସ୍କୃତି", icon: "mask", hint: "Festivals, dance, crafts" },
+            { href: "/food", label: "Food", odia: "ଖାଦ୍ୟ", icon: "bowl", hint: "Mahaprasad, pithas, sweets" },
+            { href: "/people", label: "People", odia: "ବ୍ୟକ୍ତିତ୍ୱ", icon: "people", hint: "Poets, leaders, artists" },
+        ],
     },
     {
-        label: "Discover",
-        odia: "ଆବିଷ୍କାର",
+        label: "Places",
+        odia: "ସ୍ଥାନ",
         children: [
-            { href: "/districts", label: "Districts", odia: "ଜିଲ୍ଲା", icon: "📍" },
-            { href: "/map", label: "Map", odia: "ମାନଚିତ୍ର", icon: "🗺️" },
-            { href: "/food", label: "Food", odia: "ଖାଦ୍ୟ", icon: "🍛" },
-            { href: "/calendar", label: "Calendar", odia: "ପଞ୍ଜିକା", icon: "📅" },
-        ]
+            { href: "/districts", label: "30 Districts", odia: "ଜିଲ୍ଲା", icon: "pin", hint: "Every district of Odisha" },
+            { href: "/map", label: "Interactive Map", odia: "ମାନଚିତ୍ର", icon: "map", hint: "Explore Odisha visually" },
+            { href: "/travel", label: "Travel Guides", odia: "ଭ୍ରମଣ", icon: "compass", hint: "Destinations & itineraries" },
+            { href: "/travel/plan", label: "Plan a Trip", odia: "ଯାତ୍ରା ଯୋଜନା", icon: "suitcase", hint: "Free custom itinerary" },
+        ],
     },
-    {
-        href: "/about",
-        label: "About",
-        odia: "ବିଷୟରେ"
-    }
+    { href: "/calendar", label: "Calendar", odia: "ପଞ୍ଜିକା" },
+    { href: "/shop", label: "Shop", odia: "ଦୋକାନ" },
+    { href: "/about", label: "About", odia: "ବିଷୟରେ" },
 ];
 
-// Dropdown component
-function DropdownMenu({ item, language, onClose }: { item: MenuItem; language: string; onClose: () => void }) {
+function DropdownMenu({ item, language, active }: { item: MenuItem; language: string; active: boolean }) {
     const [isOpen, setIsOpen] = useState(false);
-    const dropdownRef = useRef<HTMLDivElement>(null);
+    const ref = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        function handleClickOutside(event: MouseEvent) {
-            if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-                setIsOpen(false);
-            }
+        function onDown(e: MouseEvent) {
+            if (ref.current && !ref.current.contains(e.target as Node)) setIsOpen(false);
         }
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => document.removeEventListener("mousedown", handleClickOutside);
+        function onKey(e: KeyboardEvent) {
+            if (e.key === "Escape") setIsOpen(false);
+        }
+        document.addEventListener("mousedown", onDown);
+        document.addEventListener("keydown", onKey);
+        return () => {
+            document.removeEventListener("mousedown", onDown);
+            document.removeEventListener("keydown", onKey);
+        };
     }, []);
+
+    const base = `rounded-full px-3.5 py-2 text-[0.94rem] font-medium transition-colors ${active ? "text-laterite-700" : "text-ink-700 hover:text-laterite-700"}`;
 
     if (!item.children) {
         return (
-            <Link
-                href={item.href || "/"}
-                className="px-4 py-2 text-zinc-600 hover:text-orange-600 transition-all duration-300 font-medium animated-underline"
-            >
-                {language === 'od' ? item.odia : item.label}
+            <Link href={item.href || "/"} className={base} aria-current={active ? "page" : undefined}>
+                {language === "od" ? item.odia : item.label}
             </Link>
         );
     }
 
     return (
-        <div className="relative" ref={dropdownRef}>
+        <div className="relative" ref={ref} onMouseLeave={() => setIsOpen(false)}>
             <button
+                type="button"
                 onClick={() => setIsOpen(!isOpen)}
                 onMouseEnter={() => setIsOpen(true)}
-                className="px-4 py-2 text-zinc-600 hover:text-orange-600 transition-all duration-300 font-medium flex items-center gap-1"
+                aria-expanded={isOpen}
+                aria-haspopup="true"
+                className={`${base} flex items-center gap-1`}
             >
-                {language === 'od' ? item.odia : item.label}
-                <svg
-                    className={`w-4 h-4 transition-transform ${isOpen ? 'rotate-180' : ''}`}
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
+                {language === "od" ? item.odia : item.label}
+                <Icon name="chevron" className={`h-4 w-4 transition-transform ${isOpen ? "rotate-180" : ""}`} />
             </button>
 
             {isOpen && (
-                <div
-                    className="absolute top-full left-0 mt-1 w-48 bg-white border border-zinc-200 rounded-lg shadow-xl shadow-zinc-200/50 py-2 z-50"
-                    onMouseLeave={() => setIsOpen(false)}
-                >
-                    {item.children.map((child) => (
-                        <Link
-                            key={child.href}
-                            href={child.href}
-                            onClick={() => { setIsOpen(false); onClose(); }}
-                            className="flex items-center gap-3 px-4 py-2.5 text-zinc-600 hover:text-orange-600 hover:bg-orange-50 transition-colors"
-                        >
-                            {child.icon && <span className="text-lg grayscale group-hover:grayscale-0">{child.icon}</span>}
-                            <div className="flex flex-col">
-                                <span className="font-medium">{language === 'od' ? child.odia : child.label}</span>
-                                <span className="text-xs text-zinc-400">{language === 'od' ? child.label : child.odia}</span>
-                            </div>
-                        </Link>
-                    ))}
+                <div className="absolute left-1/2 top-full z-50 -translate-x-1/2 pt-2">
+                    <div className={`grid gap-1 rounded-2xl border border-sand-200 bg-white p-2 shadow-2xl shadow-ink-900/10 ${item.children.length > 4 ? "w-[34rem] grid-cols-2" : "w-72"}`}>
+                        {item.children.map((child) => (
+                            <Link
+                                key={child.href}
+                                href={child.href}
+                                onClick={() => setIsOpen(false)}
+                                className="group flex items-start gap-3 rounded-xl p-3 transition-colors hover:bg-sand-100"
+                            >
+                                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-laterite-50 text-laterite-600 transition-colors group-hover:bg-laterite-500 group-hover:text-white">
+                                    <Icon name={child.icon} className="h-[1.1rem] w-[1.1rem]" />
+                                </span>
+                                <span className="flex flex-col">
+                                    <span className="text-sm font-semibold text-ink-900">{language === "od" ? child.odia : child.label}</span>
+                                    <span className="text-xs text-ink-500">{child.hint}</span>
+                                </span>
+                            </Link>
+                        ))}
+                    </div>
                 </div>
             )}
         </div>
     );
 }
 
-export default function Navbar() {
+export default function Navbar({ searchIndex = [] }: { searchIndex?: SearchEntry[] }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
-    const [expandedMobile, setExpandedMobile] = useState<string | null>(null);
+    const [scrolled, setScrolled] = useState(false);
     const { language } = useLanguage();
+    const pathname = usePathname() || "/";
+
+    useEffect(() => {
+        const onScroll = () => setScrolled(window.scrollY > 8);
+        onScroll();
+        window.addEventListener("scroll", onScroll, { passive: true });
+        const onKey = (e: KeyboardEvent) => {
+            if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+                e.preventDefault();
+                setIsSearchOpen(true);
+            }
+        };
+        document.addEventListener("keydown", onKey);
+        return () => {
+            window.removeEventListener("scroll", onScroll);
+            document.removeEventListener("keydown", onKey);
+        };
+    }, []);
+
+    useEffect(() => {
+        setIsMenuOpen(false);
+    }, [pathname]);
+
+    const isActive = (item: MenuItem) =>
+        item.href ? pathname === item.href || pathname.startsWith(item.href + "/") : !!item.children?.some((c) => pathname === c.href || pathname.startsWith(c.href + "/"));
 
     return (
         <>
-            <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-teal-100 supports-[backdrop-filter]:bg-white/60">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex justify-between items-center h-20">
-                        {/* Logo */}
-                        <Link href="/" className="flex items-center gap-3 group">
-                            <div className="relative w-10 h-10 rounded-lg overflow-hidden border border-teal-100 shadow-sm ring-1 ring-teal-50">
-                                <Image
-                                    src="/logo.png"
-                                    alt="Odiapedia Logo"
-                                    fill
-                                    className="object-cover"
-                                    priority
-                                />
-                            </div>
-                            <div className="flex flex-col">
-                                <span className="text-2xl font-bold text-zinc-900 tracking-tight">
-                                    Odiapedia
-                                </span>
-                                <span className="text-sm text-zinc-500 odia-text -mt-1 font-medium">
-                                    ଓଡ଼ିଆପିଡ଼ିଆ
-                                </span>
-                            </div>
+            <header className={`sticky top-0 z-50 border-b transition-all ${scrolled ? "border-sand-200 bg-white/90 shadow-sm backdrop-blur-md" : "border-transparent bg-background/80 backdrop-blur"}`}>
+                <div className="container-page">
+                    <div className="flex h-[4.5rem] items-center justify-between gap-4">
+                        <Link href="/" className="flex shrink-0 items-center gap-3" aria-label="Odiapedia home">
+                            <span className="relative h-11 w-11 overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-sand-200">
+                                <Image src="/logo.png" alt="" fill sizes="44px" className="object-cover" priority />
+                            </span>
+                            <span className="flex flex-col leading-none">
+                                <span className="font-display text-[1.45rem] font-semibold tracking-tight text-ink-900">Odiapedia</span>
+                                <span lang="or" className="mt-1 font-odia text-[0.8rem] text-laterite-600">ଓଡ଼ିଆପିଡ଼ିଆ</span>
+                            </span>
                         </Link>
 
-                        {/* Desktop Navigation */}
-                        <div className="hidden md:flex items-center gap-1">
+                        <nav aria-label="Main" className="hidden items-center gap-0.5 lg:flex">
                             {menuItems.map((item) => (
-                                <DropdownMenu
-                                    key={item.label}
-                                    item={item}
-                                    language={language}
-                                    onClose={() => { }}
-                                />
+                                <DropdownMenu key={item.label} item={item} language={language} active={isActive(item)} />
                             ))}
+                        </nav>
 
-                            {/* Language Toggle */}
-                            <LanguageToggle />
-
-                            {/* Search Button */}
+                        <div className="flex items-center gap-2">
                             <button
+                                type="button"
                                 onClick={() => setIsSearchOpen(true)}
-                                className="ml-2 p-2 rounded-lg hover:bg-zinc-100 transition-colors text-zinc-400 hover:text-zinc-900"
+                                className="hidden items-center gap-2 rounded-full border border-sand-300 bg-white px-3.5 py-2 text-sm text-ink-500 transition-colors hover:border-laterite-300 hover:text-ink-800 md:flex"
+                                aria-label="Search Odiapedia"
+                            >
+                                <Icon name="search" className="h-4 w-4" />
+                                <span>Search</span>
+                                <kbd className="ml-2 rounded border border-sand-200 bg-sand-50 px-1.5 text-[10px] font-medium text-ink-400">⌘K</kbd>
+                            </button>
+                            <div className="hidden lg:block">
+                                <LanguageToggle />
+                            </div>
+                            <Link href="/travel/plan" className="btn-primary hidden !px-4 !py-2 xl:inline-flex">
+                                Plan a trip
+                            </Link>
+                            <button
+                                type="button"
+                                onClick={() => setIsSearchOpen(true)}
+                                className="rounded-full border border-sand-300 bg-white p-2.5 text-ink-700 md:hidden"
                                 aria-label="Search"
                             >
-                                <svg
-                                    className="w-5 h-5"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={2}
-                                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                                    />
-                                </svg>
+                                <Icon name="search" className="h-5 w-5" />
                             </button>
-                        </div>
-
-                        {/* Mobile: Search + Menu Buttons */}
-                        <div className="md:hidden flex items-center gap-2">
                             <button
-                                onClick={() => setIsSearchOpen(true)}
-                                className="p-2 rounded-lg hover:bg-amber-900/30 transition-colors border border-amber-800/30"
-                                aria-label="Search"
-                            >
-                                <svg
-                                    className="w-5 h-5 text-amber-700"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={2}
-                                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                                    />
-                                </svg>
-                            </button>
-
-                            <button
+                                type="button"
                                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                                className="p-2 rounded-lg hover:bg-amber-900/30 transition-colors border border-amber-800/30"
-                                aria-label="Toggle menu"
+                                className="rounded-full border border-sand-300 bg-white p-2.5 text-ink-700 lg:hidden"
+                                aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+                                aria-expanded={isMenuOpen}
                             >
-                                <svg
-                                    className="w-6 h-6 text-amber-700"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
-                                >
-                                    {isMenuOpen ? (
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth={2}
-                                            d="M6 18L18 6M6 6l12 12"
-                                        />
-                                    ) : (
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth={2}
-                                            d="M4 6h16M4 12h16M4 18h16"
-                                        />
-                                    )}
-                                </svg>
+                                <Icon name={isMenuOpen ? "close" : "menu"} className="h-5 w-5" />
                             </button>
                         </div>
                     </div>
-
-                    {/* Mobile Menu */}
-                    {isMenuOpen && (
-                        <div className="md:hidden py-4 border-t border-amber-900/10">
-                            <div className="flex flex-col gap-1">
-                                {menuItems.map((item) => (
-                                    <div key={item.label}>
-                                        {item.children ? (
-                                            <>
-                                                <button
-                                                    onClick={() => setExpandedMobile(expandedMobile === item.label ? null : item.label)}
-                                                    className="w-full px-4 py-3 rounded-lg text-amber-900 hover:text-amber-700 hover:bg-amber-50 transition-all duration-200 font-medium flex justify-between items-center"
-                                                >
-                                                    <span>{language === 'od' ? item.odia : item.label}</span>
-                                                    <svg
-                                                        className={`w-4 h-4 transition-transform ${expandedMobile === item.label ? 'rotate-180' : ''}`}
-                                                        fill="none"
-                                                        stroke="currentColor"
-                                                        viewBox="0 0 24 24"
-                                                    >
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                                                    </svg>
-                                                </button>
-                                                {expandedMobile === item.label && (
-                                                    <div className="ml-4 border-l border-amber-800/30 pl-4 py-2 space-y-1">
-                                                        {item.children.map((child) => (
-                                                            <Link
-                                                                key={child.href}
-                                                                href={child.href}
-                                                                onClick={() => setIsMenuOpen(false)}
-                                                                className="flex items-center gap-3 px-3 py-2 rounded-lg text-amber-800 hover:text-amber-600 hover:bg-amber-50 transition-all"
-                                                            >
-                                                                {child.icon && <span>{child.icon}</span>}
-                                                                <div>
-                                                                    <span className="font-medium">{language === 'od' ? child.odia : child.label}</span>
-                                                                    <span className="text-amber-600/60 text-sm ml-2">{language === 'od' ? child.label : child.odia}</span>
-                                                                </div>
-                                                            </Link>
-                                                        ))}
-                                                    </div>
-                                                )}
-                                            </>
-                                        ) : (
-                                            <Link
-                                                href={item.href || "/"}
-                                                onClick={() => setIsMenuOpen(false)}
-                                                className="px-4 py-3 rounded-lg text-amber-900 hover:text-amber-700 hover:bg-amber-50 transition-all duration-200 font-medium flex justify-between items-center"
-                                            >
-                                                <span>{language === 'od' ? item.odia : item.label}</span>
-                                                <span className="text-amber-600/60 text-sm odia-text">{language === 'od' ? item.label : item.odia}</span>
-                                            </Link>
-                                        )}
-                                    </div>
-                                ))}
-
-                                {/* Language Toggle for Mobile */}
-                                <div className="px-4 py-3 flex items-center justify-between border-t border-amber-800/30 mt-2">
-                                    <span className="text-amber-900/60">{language === 'od' ? 'ଭାଷା ପରିବର୍ତ୍ତନ' : 'Switch Language'}</span>
-                                    <LanguageToggle />
-                                </div>
-                            </div>
-                        </div>
-                    )}
                 </div>
-            </nav>
 
-            {/* Search Modal */}
-            <SearchModal
-                isOpen={isSearchOpen}
-                onClose={() => setIsSearchOpen(false)}
-                articles={searchArticles}
-            />
+                {isMenuOpen && (
+                    <div className="max-h-[calc(100vh-4.5rem)] overflow-y-auto border-t border-sand-200 bg-white lg:hidden">
+                        <nav aria-label="Mobile" className="container-page space-y-6 py-6">
+                            {menuItems.map((item) =>
+                                item.children ? (
+                                    <div key={item.label}>
+                                        <p className="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-ink-400">{language === "od" ? item.odia : item.label}</p>
+                                        <div className="grid grid-cols-2 gap-2">
+                                            {item.children.map((c) => (
+                                                <Link key={c.href} href={c.href} className="flex items-center gap-2.5 rounded-xl border border-sand-200 p-3 text-sm font-medium text-ink-800 active:bg-sand-100">
+                                                    <Icon name={c.icon} className="h-4 w-4 shrink-0 text-laterite-600" />
+                                                    {language === "od" ? c.odia : c.label}
+                                                </Link>
+                                            ))}
+                                        </div>
+                                    </div>
+                                ) : null
+                            )}
+                            <div className="flex flex-wrap gap-2">
+                                {menuItems.filter((i) => !i.children).map((i) => (
+                                    <Link key={i.href} href={i.href!} className="chip !px-4 !py-2 !text-sm">
+                                        {language === "od" ? i.odia : i.label}
+                                    </Link>
+                                ))}
+                            </div>
+                            <div className="flex items-center justify-between border-t border-sand-200 pt-5">
+                                <span className="text-sm text-ink-500">{language === "od" ? "ଭାଷା" : "Language"}</span>
+                                <LanguageToggle />
+                            </div>
+                            <Link href="/travel/plan" className="btn-primary w-full">Plan a trip to Odisha</Link>
+                        </nav>
+                    </div>
+                )}
+            </header>
+
+            <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} articles={searchIndex} />
         </>
     );
 }

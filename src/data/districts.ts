@@ -447,8 +447,25 @@ export const odishaDistricts: District[] = [
 ];
 
 // Get district by ID
+/**
+ * Map/GeoJSON ids that differ from the district page slugs (content/districts/*.mdx).
+ * Keep the ids unchanged (they match the boundary data) and translate when linking.
+ */
+export const DISTRICT_PAGE_SLUGS: Record<string, string> = {
+    bolangir: 'balangir',
+    keonjhar: 'kendujhar',
+    khurda: 'khordha',
+    sonepur: 'subarnapur',
+};
+
+/** URL slug of a district page for a map/data id. */
+export function districtPageSlug(id: string): string {
+    return DISTRICT_PAGE_SLUGS[id] || id;
+}
+
+/** Find district data by map id or by page slug. */
 export function getDistrictById(id: string): District | undefined {
-    return odishaDistricts.find(d => d.id === id);
+    return odishaDistricts.find(d => d.id === id || districtPageSlug(d.id) === id);
 }
 
 // Get districts by region

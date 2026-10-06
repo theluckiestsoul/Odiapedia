@@ -1,7 +1,8 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-    title: 'Odisha Map - 30 Districts Interactive Explorer',
+    title: 'Interactive Map of Odisha – 30 Districts',
+    alternates: { canonical: '/map' },
     description: 'Explore all 30 districts of Odisha on an interactive map. View population, area, literacy rates, and more for each district.',
 };
 

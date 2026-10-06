@@ -1,96 +1,95 @@
 import { MetadataRoute } from "next";
-import { getAllArticlesMetadata } from "@/lib/mdx";
+import { getAllArticlesMetadata, type ArticleMeta } from "@/lib/mdx";
 import { getAllDistrictSlugs } from "@/lib/districts";
 import { getAllTehsilsForDistrict } from "@/lib/tehsils";
 import { getAllSpots } from "@/lib/spots";
+import { SITE } from "@/lib/site";
 
+/**
+ * XML sitemap. lastModified uses each article's real "updated" date — never "now" —
+ * so search engines can trust it (Google ignores lastmod values that are always fresh).
+ */
 export default function sitemap(): MetadataRoute.Sitemap {
-    const baseUrl = "https://odiapedia.com";
+    const base = SITE.url;
+    const articles = getAllArticlesMetadata().filter((a) => !a.noindex);
+    const latestIn = (pred: (a: ArticleMeta) => boolean) =>
+        articles.filter(pred).reduce<string | undefined>((max, a) => (!max || a.updated > max ? a.updated : max), undefined);
+    const newest = latestIn(() => true);
 
-    // Static pages
-    const staticPages = [
-        "",
-        "/language",
-        "/culture",
-        "/history",
-        "/food",
-        "/people",
-        "/about",
-        "/districts",
-        "/map",
-        "/learn",
-        "/panjika",
-        "/panjika/biraja",
-        "/panjika/jagannath",
-        '/culture/cinema/timeline', // Cinema Timeline
-        '/culture/cinema/reviews',  // Movie Reviews
-        '/latest',                  // Latest Updates
-    ].map((route) => ({
-        url: `${baseUrl}${route}`,
-        lastModified: new Date(),
-        changeFrequency: "weekly" as const,
-        priority: route === "" ? 1 : 0.8,
-    }));
+    const hubs: { path: string; category?: string; priority: number; freq: MetadataRoute.Sitemap[number]["changeFrequency"] }[] = [
+        { path: "", priority: 1, freq: "daily" },
+        { path: "/travel", category: "travel", priority: 0.9, freq: "weekly" },
+        { path: "/culture", category: "culture", priority: 0.9, freq: "weekly" },
+        { path: "/history", category: "history", priority: 0.9, freq: "weekly" },
+        { path: "/language", category: "language", priority: 0.9, freq: "weekly" },
+        { path: "/food", category: "food", priority: 0.9, freq: "weekly" },
+        { path: "/people", category: "people", priority: 0.8, freq: "weekly" },
+        { path: "/learn", category: "learn", priority: 0.8, freq: "monthly" },
+        { path: "/districts", priority: 0.8, freq: "monthly" },
+        { path: "/calendar", priority: 0.9, freq: "daily" },
+        { path: "/travel/plan", priority: 0.7, freq: "monthly" },
+        { path: "/shop", priority: 0.6, freq: "monthly" },
+        { path: "/partners", priority: 0.4, freq: "monthly" },
+        { path: "/map", priority: 0.6, freq: "monthly" },
+        { path: "/history/timeline", priority: 0.7, freq: "monthly" },
+        { path: "/panjika", priority: 0.6, freq: "monthly" },
+        { path: "/panjika/biraja", priority: 0.4, freq: "yearly" },
+        { path: "/panjika/jagannath", priority: 0.4, freq: "yearly" },
+        { path: "/culture/cinema/timeline", priority: 0.5, freq: "monthly" },
+        { path: "/culture/cinema/reviews", priority: 0.4, freq: "monthly" },
+        { path: "/latest", priority: 0.5, freq: "weekly" },
+        { path: "/about", category: "about", priority: 0.5, freq: "monthly" },
+    ];
 
-    // Dynamic article pages (existing)
-    const articles = getAllArticlesMetadata();
-    const articlePages = articles.map((article) => {
-        const languages: Record<string, string> = {};
-
-        // Map the alternate language paths
-        if (article.alternates) {
-            for (const [lang, path] of Object.entries(article.alternates)) {
-                const hreflang = lang === 'od' ? 'or' : lang;
-                languages[hreflang] = `${baseUrl}${path}`;
-            }
-        }
-
-        // Add the current canonical language
-        if (article.lang) {
-            const currentHreflang = article.lang === 'od' ? 'or' : article.lang;
-            languages[currentHreflang] = `${baseUrl}/${article.category}/${article.slug}`;
-        }
-
+    const hubPages: MetadataRoute.Sitemap = hubs.map((h) => {
+        const lm = h.path === "" || h.path === "/latest" ? newest : h.category ? latestIn((a) => a.category === h.category) : undefined;
         return {
-            url: `${baseUrl}/${article.category}/${article.slug}`,
-            lastModified: new Date(article.date),
-            changeFrequency: "monthly" as const,
-            priority: 0.6,
-            alternates: Object.keys(languages).length > 0 ? { languages } : undefined,
+            url: `${base}${h.path}`,
+            ...(lm ? { lastModified: lm } : {}),
+            changeFrequency: h.freq,
+            priority: h.priority,
         };
     });
 
-    // District pages
-    const districtSlugs = getAllDistrictSlugs();
-    const districtPages = districtSlugs.map((slug) => ({
-        url: `${baseUrl}/district/${slug}`,
-        lastModified: new Date(),
-        changeFrequency: "monthly" as const,
-        priority: 0.9, // High priority - core content
-    }));
+    const articlePages: MetadataRoute.Sitemap = articles.map((a) => {
+        const languages: Record<string, string> = {};
+        if (a.alternates) {
+            for (const [lang, path] of Object.entries(a.alternates)) languages[lang === "od" ? "or" : lang] = `${base}${path}`;
+            languages[a.lang === "od" ? "or" : a.lang || "en"] = `${base}/${a.category}/${a.slug}`;
+        }
+        return {
+            url: `${base}/${a.category}/${a.slug}`,
+            lastModified: a.updated,
+            changeFrequency: "monthly" as const,
+            priority: a.category === "travel" || (a.sources?.length ?? 0) > 0 ? 0.8 : 0.6,
+            ...(Object.keys(languages).length > 1 ? { alternates: { languages } } : {}),
+        };
+    });
 
-    // Tehsil pages
+    const districtSlugs = getAllDistrictSlugs();
+    const districtPages: MetadataRoute.Sitemap = districtSlugs.map((slug) => {
+        const baseSlug = slug.replace(/-od$/, "");
+        const hasPair = districtSlugs.includes(`${baseSlug}-od`) && districtSlugs.includes(baseSlug);
+        return {
+            url: `${base}/district/${slug}`,
+            changeFrequency: "monthly" as const,
+            priority: slug.endsWith("-od") ? 0.6 : 0.8,
+            ...(hasPair ? { alternates: { languages: { en: `${base}/district/${baseSlug}`, or: `${base}/district/${baseSlug}-od` } } } : {}),
+        };
+    });
+
     const tehsilPages: MetadataRoute.Sitemap = [];
-    for (const districtSlug of districtSlugs) {
-        const tehsils = getAllTehsilsForDistrict(districtSlug);
-        for (const tehsil of tehsils) {
-            tehsilPages.push({
-                url: `${baseUrl}/district/${districtSlug}/${tehsil.slug}`,
-                lastModified: new Date(),
-                changeFrequency: "monthly" as const,
-                priority: 0.7,
-            });
+    for (const districtSlug of districtSlugs.filter((s) => !s.endsWith("-od"))) {
+        for (const tehsil of getAllTehsilsForDistrict(districtSlug)) {
+            tehsilPages.push({ url: `${base}/district/${districtSlug}/${tehsil.slug}`, changeFrequency: "monthly", priority: 0.5 });
         }
     }
 
-    // Spot pages (POIs)
-    const spots = getAllSpots();
-    const spotPages = spots.map((spot) => ({
-        url: `${baseUrl}/district/${spot.district}/${spot.tehsil}/${spot.slug}`,
-        lastModified: new Date(),
+    const spotPages: MetadataRoute.Sitemap = getAllSpots().map((spot) => ({
+        url: `${base}/district/${spot.district}/${spot.tehsil}/${spot.slug}`,
         changeFrequency: "monthly" as const,
-        priority: 0.7,
+        priority: 0.6,
     }));
 
-    return [...staticPages, ...articlePages, ...districtPages, ...tehsilPages, ...spotPages];
+    return [...hubPages, ...articlePages, ...districtPages, ...tehsilPages, ...spotPages];
 }

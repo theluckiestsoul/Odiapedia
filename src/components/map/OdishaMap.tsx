@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useCallback } from 'react';
 import { MapContainer, TileLayer, useMap, GeoJSON, Popup } from 'react-leaflet';
-import { District, odishaDistricts, odishaCentroid, regionColors } from '@/data/districts';
+import { District, odishaDistricts, odishaCentroid, regionColors, districtPageSlug } from '@/data/districts';
 import { getDistrictGeoJSON } from '@/data/districtPolygons';
 import { getBlocksByDistrictId } from '@/data/blocks';
 import { useRouter } from 'next/navigation';
@@ -120,7 +120,7 @@ function DistrictInfoCard({ district, blocks }: { district: District; blocks: nu
 
             {/* Footer */}
             <div className="bg-slate-50 px-3 py-2 text-center border-t border-slate-200">
-                <span className="text-xs text-teal-600 font-medium">Click to explore →</span>
+                <span className="text-xs text-laterite-600 font-medium">Click to explore →</span>
             </div>
         </div>
     );
@@ -199,7 +199,7 @@ export default function OdishaMap({
                     if (onDistrictClick) {
                         onDistrictClick(district);
                     } else {
-                        router.push(`/district/${props.id}`);
+                        router.push(`/district/${districtPageSlug(props.id)}`);
                     }
                 }
             },
@@ -209,7 +209,7 @@ export default function OdishaMap({
     if (!mounted) {
         return (
             <div className="w-full h-[500px] bg-slate-100 rounded-xl flex items-center justify-center border border-slate-200">
-                <div className="text-teal-600 animate-pulse font-medium">Loading map...</div>
+                <div className="text-laterite-600 animate-pulse font-medium">Loading map...</div>
             </div>
         );
     }
@@ -310,7 +310,7 @@ export default function OdishaMap({
 
             {/* Hover instruction */}
             <div className="absolute top-4 right-4 z-[1000] bg-white/80 backdrop-blur-md rounded-full px-4 py-2 border border-slate-200 shadow-sm">
-                <span className="text-xs text-teal-700 font-medium">Hover for details • Click to explore</span>
+                <span className="text-xs text-laterite-700 font-medium">Hover for details • Click to explore</span>
             </div>
         </div>
     );
@@ -369,7 +369,7 @@ export function DistrictListPanel({
         <div className="bg-white rounded-xl border border-slate-200 shadow-lg p-4 h-[500px] md:h-[600px] flex flex-col">
             <h3 className="text-xl font-bold text-slate-800 mb-4 flex items-center justify-between">
                 <span>Districts</span>
-                <span className="text-teal-600 text-sm bg-teal-50 px-2 py-1 rounded-full">{districts.length}</span>
+                <span className="text-laterite-600 text-sm bg-laterite-50 px-2 py-1 rounded-full">{districts.length}</span>
             </h3>
 
             {/* Search */}
@@ -378,7 +378,7 @@ export function DistrictListPanel({
                 placeholder="Search district..."
                 value={filter}
                 onChange={(e) => setFilter(e.target.value)}
-                className="w-full px-4 py-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-teal-500 mb-3"
+                className="w-full px-4 py-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-laterite-500 mb-3"
             />
 
             {/* Region filter */}
@@ -388,7 +388,7 @@ export function DistrictListPanel({
                         key={region}
                         onClick={() => setRegionFilter(region)}
                         className={`px-3 py-1 rounded-full text-xs transition-all font-medium ${regionFilter === region
-                            ? 'bg-teal-600 text-white shadow-md'
+                            ? 'bg-laterite-600 text-white shadow-md'
                             : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
                             }`}
                     >
@@ -402,16 +402,16 @@ export function DistrictListPanel({
                 {filteredDistricts.map((district) => (
                     <Link
                         key={district.id}
-                        href={`/district/${district.id}`}
+                        href={`/district/${districtPageSlug(district.id)}`}
                         className={`block p-3 rounded-lg transition-all border ${selectedDistrict === district.id
-                            ? 'bg-teal-50 border-teal-200 shadow-sm'
+                            ? 'bg-laterite-50 border-laterite-200 shadow-sm'
                             : 'bg-white hover:bg-slate-50 border-transparent hover:border-slate-200'
                             }`}
                         onClick={() => onDistrictSelect?.(district)}
                     >
                         <div className="flex justify-between items-start">
                             <div>
-                                <div className={`font-medium ${selectedDistrict === district.id ? 'text-teal-900' : 'text-slate-800'}`}>{district.name_en}</div>
+                                <div className={`font-medium ${selectedDistrict === district.id ? 'text-laterite-900' : 'text-slate-800'}`}>{district.name_en}</div>
                                 <div className="text-slate-500 text-sm odia-text">{district.name_od}</div>
                             </div>
                             <div

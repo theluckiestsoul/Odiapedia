@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+/* ==========================================================================
+   Odiapedia design system
+   Palette inspired by Odisha: Konark laterite & khondalite, temple sandstone,
+   Sambalpuri ikat, turmeric/saffron, and the deep blue of the Bay of Bengal.
+   ========================================================================== */
+
 @theme {
   --color-border: var(--border);
   --color-input: var(--input);
@@ -21,22 +27,227 @@
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
 
+  /* Temple sandstone neutrals */
+  --color-sand-50: #fcfaf6;
+  --color-sand-100: #f7f1e7;
+  --color-sand-200: #ede2cf;
+  --color-sand-300: #ddc9a8;
+  --color-sand-400: #c6a97c;
+  --color-sand-500: #a98a5c;
+
+  /* Konark laterite (primary accent) */
+  --color-laterite-50: #fbf1ec;
+  --color-laterite-100: #f6ddd1;
+  --color-laterite-200: #ecb9a2;
+  --color-laterite-300: #df8f6d;
+  --color-laterite-400: #cf6a43;
+  --color-laterite-500: #b8522b;
+  --color-laterite-600: #9c4122;
+  --color-laterite-700: #7d331d;
+  --color-laterite-800: #5f281a;
+  --color-laterite-900: #421d14;
+
+  /* Turmeric / saffron */
+  --color-saffron-50: #fef8ec;
+  --color-saffron-100: #fdf0d5;
+  --color-saffron-200: #fbdca1;
+  --color-saffron-300: #f6c164;
+  --color-saffron-400: #f0a63a;
+  --color-saffron-500: #e08a1e;
+  --color-saffron-600: #bf6c12;
+
+  /* Bay of Bengal ink blue (from the logo) */
+  --color-ink-50: #eef2f9;
+  --color-ink-100: #d9e1f0;
+  --color-ink-200: #b3c2df;
+  --color-ink-300: #8199c6;
+  --color-ink-400: #5671a9;
+  --color-ink-500: #3d578e;
+  --color-ink-600: #2f4574;
+  --color-ink-700: #24365c;
+  --color-ink-800: #1b2946;
+  --color-ink-900: #121c33;
+  --color-ink-950: #0b1222;
+
+  /* Chilika teal (secondary) */
+  --color-chilika-500: #138a7e;
+  --color-chilika-600: #0f6f66;
+  --color-chilika-700: #0d5a53;
+
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
 
-  --font-display: var(--font-playfair), serif;
-  --font-sans: var(--font-geist-sans), sans-serif;
+  --font-display: var(--font-fraunces), "Noto Serif Oriya", Georgia, serif;
+  --font-sans: var(--font-geist-sans), "Noto Sans Oriya", system-ui, sans-serif;
+  --font-odia: var(--font-noto-sans-oriya), "Noto Sans Oriya", sans-serif;
+  --font-odia-serif: var(--font-noto-serif-oriya), "Noto Serif Oriya", serif;
+
+  --animate-fade-up: fade-up 0.6s ease-out both;
+
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition-all duration-200;
+}
+@utility btn-primary {
+  @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition-all duration-200 bg-laterite-500 text-white shadow-sm shadow-laterite-900/20 hover:bg-laterite-600;
+}
+@utility btn-dark {
+  @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition-all duration-200 bg-ink-900 text-white hover:bg-ink-800;
+}
+@utility btn-ghost {
+  @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition-all duration-200 border border-sand-300 bg-white/70 text-ink-800 hover:border-laterite-300 hover:text-laterite-700;
+}
+@utility card {
+  @apply rounded-2xl border border-sand-200 bg-white shadow-[0_1px_0_rgba(27,41,70,0.04)] transition-all duration-300;
+}
+@utility card-link {
+  @apply rounded-2xl border border-sand-200 bg-white shadow-[0_1px_0_rgba(27,41,70,0.04)] transition-all duration-300 hover:-translate-y-0.5 hover:border-laterite-200 hover:shadow-[0_18px_40px_-24px_rgba(66,29,20,0.45)];
+}
+
+@layer base {
+  :root {
+    --background: #fcfaf6;
+    --foreground: #1b2946;
+    --card: #ffffff;
+    --card-foreground: #1b2946;
+    --popover: #ffffff;
+    --popover-foreground: #1b2946;
+    --primary: #b8522b;
+    --primary-foreground: #ffffff;
+    --secondary: #f7f1e7;
+    --secondary-foreground: #24365c;
+    --muted: #f7f1e7;
+    --muted-foreground: #5c6478;
+    --accent: #fdf0d5;
+    --accent-foreground: #7d331d;
+    --destructive: #be123c;
+    --destructive-foreground: #ffffff;
+    --border: #ede2cf;
+    --input: #ddc9a8;
+    --ring: #cf6a43;
+    --radius: 0.875rem;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-sans);
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    @apply text-ink-900;
+    letter-spacing: -0.01em;
+  }
+
+  * {
+    border-color: var(--border);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background: var(--color-saffron-200);
+    color: var(--color-ink-900);
+  }
+
+  :lang(or), .odia-text {
+    font-family: var(--font-odia);
+    line-height: 1.6;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-laterite-600;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-sand-200 bg-sand-50 px-3 py-1 text-xs font-medium text-ink-700;
+  }
+
+  /* Article typography (applies to MDX output) */
+  .article-body {
+    @apply text-[1.075rem] leading-[1.8] text-ink-800;
+  }
+  .article-body > :first-child { margin-top: 0; }
+  .article-body h1 { @apply mt-12 mb-5 font-display text-3xl font-semibold text-ink-900; }
+  .article-body h2 {
+    @apply mt-14 mb-4 scroll-mt-28 font-display text-[1.75rem] font-semibold leading-tight text-ink-900;
+  }
+  .article-body h2::after {
+    content: "";
+    display: block;
+    width: 3rem;
+    height: 3px;
+    margin-top: 0.6rem;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--color-laterite-500), var(--color-saffron-400));
+  }
+  .article-body h3 { @apply mt-10 mb-3 scroll-mt-28 font-display text-xl font-semibold text-ink-900; }
+  .article-body h4 { @apply mt-8 mb-2 font-sans text-base font-bold uppercase tracking-wide text-ink-700; }
+  .article-body p { @apply mb-5; }
+  .article-body strong { @apply font-semibold text-ink-900; }
+  .article-body em { @apply italic; }
+  .article-body a { @apply font-medium text-laterite-600 underline decoration-laterite-200 decoration-2 underline-offset-4 transition-colors hover:text-laterite-700 hover:decoration-laterite-500; }
+  .article-body ul { @apply mb-6 list-disc space-y-2 pl-6 marker:text-laterite-400; }
+  .article-body ol { @apply mb-6 list-decimal space-y-2 pl-6 marker:font-semibold marker:text-laterite-500; }
+  .article-body li > p { @apply mb-2; }
+  .article-body blockquote {
+    @apply my-8 rounded-r-xl border-l-4 border-saffron-400 bg-saffron-100/50 px-6 py-4 font-display text-lg italic text-ink-800;
+  }
+  .article-body blockquote p:last-child { @apply mb-0; }
+  .article-body hr { @apply my-12 border-sand-200; }
+  .article-body code { @apply rounded bg-sand-100 px-1.5 py-0.5 font-mono text-[0.9em] text-laterite-700; }
+  .article-body pre { @apply mb-8 overflow-x-auto rounded-xl bg-ink-900 p-5 text-sm text-sand-100; }
+  .article-body pre code { @apply bg-transparent p-0 text-inherit; }
+  .article-body table { @apply w-full border-collapse text-left text-[0.95rem]; }
+  .article-body .table-wrap { @apply my-8 overflow-x-auto rounded-xl border border-sand-200 bg-white; }
+  .article-body thead { @apply bg-sand-100; }
+  .article-body th { @apply px-4 py-3 font-semibold text-ink-900; }
+  .article-body td { @apply border-t border-sand-200 px-4 py-3 align-top text-ink-700; }
+  .article-body tbody tr:nth-child(even) { @apply bg-sand-50; }
+  .article-body img { @apply my-8 rounded-xl; }
 }
 
 @layer utilities {
+  .text-balance { text-wrap: balance; }
+  .text-pretty { text-wrap: pretty; }
+
   .animated-underline {
     position: relative;
     text-decoration: none;
   }
-
   .animated-underline::after {
-    content: '';
+    content: "";
     position: absolute;
     width: 100%;
     height: 2px;
@@ -47,95 +258,47 @@
     transform-origin: bottom right;
     transition: transform 0.3s ease-out;
   }
-
   .animated-underline:hover::after {
     transform: scaleX(1);
     transform-origin: bottom left;
   }
 
   .card-hover {
-    @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-teal-200;
+    @apply transition-all duration-300 hover:-translate-y-1 hover:border-laterite-200 hover:shadow-lg;
   }
 
-  .odia-text {
-    font-family: var(--font-noto-sans-oriya), sans-serif;
-  }
-
-  /* Subtle water ripple pattern */
+  /* Legacy utility kept for older pages */
   .bg-water {
-    background-image: radial-gradient(circle at 100% 50%, transparent 20%, rgba(20, 184, 166, 0.05) 21%, rgba(20, 184, 166, 0.05) 34%, transparent 35%, transparent),
-      radial-gradient(circle at 0% 50%, transparent 20%, rgba(20, 184, 166, 0.05) 21%, rgba(20, 184, 166, 0.05) 34%, transparent 35%, transparent);
+    background-image: radial-gradient(circle at 100% 50%, transparent 20%, rgba(184, 82, 43, 0.05) 21%, rgba(184, 82, 43, 0.05) 34%, transparent 35%, transparent),
+      radial-gradient(circle at 0% 50%, transparent 20%, rgba(184, 82, 43, 0.05) 21%, rgba(184, 82, 43, 0.05) 34%, transparent 35%, transparent);
     background-size: 100px 100px;
   }
+
+  /* Ikat-inspired diamond lattice (original pattern) */
+  .bg-ikat {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Cg fill='none' stroke='%23b8522b' stroke-opacity='0.14' stroke-width='1.5'%3E%3Cpath d='M24 2 46 24 24 46 2 24Z'/%3E%3Cpath d='M24 12 36 24 24 36 12 24Z'/%3E%3C/g%3E%3Ccircle cx='24' cy='24' r='2.5' fill='%23e08a1e' fill-opacity='0.25'/%3E%3C/svg%3E");
+    background-size: 48px 48px;
+  }
+  .bg-ikat-light {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='0.08' stroke-width='1.5'%3E%3Cpath d='M24 2 46 24 24 46 2 24Z'/%3E%3Cpath d='M24 12 36 24 24 36 12 24Z'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 48px 48px;
+  }
+
+  /* Temple-border zigzag band */
+  .border-temple {
+    height: 10px;
+    background-image: linear-gradient(135deg, var(--color-laterite-500) 25%, transparent 25%), linear-gradient(225deg, var(--color-laterite-500) 25%, transparent 25%);
+    background-size: 14px 14px;
+    background-position: 0 0;
+    opacity: 0.9;
+  }
+
+  .scrollbar-none::-webkit-scrollbar { display: none; }
+  .scrollbar-none { scrollbar-width: none; }
 }
 
-@layer base {
-  :root {
-    --background: #f8fafc;
-    /* slate-50 - Cool Breeze */
-    --foreground: #0f172a;
-    /* slate-900 - Deep Navy */
-    --card: #ffffff;
-    --card-foreground: #0f172a;
-    --popover: #ffffff;
-    --popover-foreground: #0f172a;
-    --primary: #0f766e;
-    /* teal-700 - Deep Ocean */
-    --primary-foreground: #ffffff;
-    --secondary: #e2e8f0;
-    /* slate-200 */
-    --secondary-foreground: #1e293b;
-    --muted: #f1f5f9;
-    /* slate-100 */
-    --muted-foreground: #64748b;
-    /* slate-500 */
-    --accent: #f0fdfa;
-    /* teal-50 */
-    --accent-foreground: #0f766e;
-    --destructive: #be123c;
-    /* rose-700 */
-    --destructive-foreground: #ffffff;
-    --border: #e2e8f0;
-    /* slate-200 */
-    --input: #e2e8f0;
-    --ring: #14b8a6;
-    /* teal-500 */
-    --radius: 0.75rem;
-    /* More rounded for organic feel */
-  }
-
-  body {
-    @apply bg-background text-foreground antialiased;
-    font-family: var(--font-geist-sans), sans-serif;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: var(--font-playfair), serif;
-    @apply tracking-wide text-slate-900;
-  }
-
-  * {
-    border-color: var(--border);
-  }
-}
-
-/* Custom Scrollbar */
-@layer utilities {
-  ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
-  }
-
-  ::-webkit-scrollbar-track {
-    @apply bg-transparent;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    @apply bg-zinc-300 rounded-full hover:bg-zinc-400 transition-colors;
-  }
-}
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--color-sand-300); border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-sand-400); }

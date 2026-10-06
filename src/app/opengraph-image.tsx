@@ -21,7 +21,7 @@ export default async function Image() {
                     alignItems: 'center',
                     justifyContent: 'center',
                     flexDirection: 'column',
-                    backgroundImage: 'linear-gradient(to bottom right, #f0fdfa, #f8fafc)', // teal-50 to slate-50
+                    backgroundImage: 'linear-gradient(to bottom right, #f7f1e7, #fcfaf6)', // teal-50 to slate-50
                     position: 'relative',
                 }}
             >
@@ -33,7 +33,7 @@ export default async function Image() {
                         left: 0,
                         right: 0,
                         bottom: 0,
-                        backgroundImage: 'radial-gradient(circle at 25px 25px, #ccfbf1 2%, transparent 0%), radial-gradient(circle at 75px 75px, #ccfbf1 2%, transparent 0%)',
+                        backgroundImage: 'radial-gradient(circle at 25px 25px, #ecb9a2 2%, transparent 0%), radial-gradient(circle at 75px 75px, #ecb9a2 2%, transparent 0%)',
                         backgroundSize: '100px 100px',
                         opacity: 0.5,
                     }}
@@ -48,7 +48,7 @@ export default async function Image() {
                         width: '120px',
                         height: '120px',
                         borderRadius: '50%',
-                        background: 'linear-gradient(135deg, #0d9488, #0f766e)', // teal-600 to teal-700
+                        background: 'linear-gradient(135deg, #b8522b, #9c4122)', // teal-600 to teal-700
                         boxShadow: '0 10px 30px -10px rgba(13, 148, 136, 0.5)',
                         fontSize: '60px',
                         marginBottom: '40px',
@@ -69,7 +69,7 @@ export default async function Image() {
                         style={{
                             fontSize: '80px',
                             fontWeight: 900,
-                            background: 'linear-gradient(to right, #134e4a, #0f766e)', // teal-900 to teal-700
+                            background: 'linear-gradient(to right, #121c33, #24365c)', // teal-900 to teal-700
                             backgroundClip: 'text',
                             color: 'transparent',
                             marginBottom: '20px',
@@ -102,7 +102,7 @@ export default async function Image() {
                         alignItems: 'center',
                         gap: '12px',
                         fontSize: '24px',
-                        color: '#0d9488', // teal-600
+                        color: '#b8522b', // teal-600
                         fontWeight: 600,
                     }}
                 >
@@ -110,8 +110,8 @@ export default async function Image() {
                 </div>
 
                 {/* Corner Accents */}
-                <div style={{ position: 'absolute', top: 0, left: 0, width: '200px', height: '200px', background: 'radial-gradient(circle at top left, #ccfbf1 0%, transparent 70%)', opacity: 0.8 }} />
-                <div style={{ position: 'absolute', bottom: 0, right: 0, width: '300px', height: '300px', background: 'radial-gradient(circle at bottom right, #ffe4e6 0%, transparent 70%)', opacity: 0.6 }} />
+                <div style={{ position: 'absolute', top: 0, left: 0, width: '200px', height: '200px', background: 'radial-gradient(circle at top left, #ecb9a2 0%, transparent 70%)', opacity: 0.8 }} />
+                <div style={{ position: 'absolute', bottom: 0, right: 0, width: '300px', height: '300px', background: 'radial-gradient(circle at bottom right, #fbdca1 0%, transparent 70%)', opacity: 0.6 }} />
             </div>
         ),
         {

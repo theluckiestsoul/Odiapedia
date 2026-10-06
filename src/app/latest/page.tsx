@@ -1,75 +1,60 @@
-
-import { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
-import { getLatestUpdates, UpdateItem } from "@/lib/updates";
+import PageHero from "@/components/PageHero";
+import Icon from "@/components/Icon";
+import { getLatestUpdates } from "@/lib/updates";
+import { hubMetadata } from "@/lib/seo";
+import { formatDate, categoryInfo } from "@/lib/site";
 
-export const metadata: Metadata = {
-    title: "Latest Updates - Odiapedia",
-    description: "Stay updated with the newest additions to Odiapedia - articles, movie reviews, and historical timelines.",
-};
-
-function UpdateCard({ item }: { item: UpdateItem }) {
-    return (
-        <Link
-            href={item.link}
-            className="group block bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300"
-        >
-            <div className="flex gap-4 md:gap-6 items-start">
-                <div className="shrink-0 relative w-20 h-20 md:w-24 md:h-24 rounded-xl overflow-hidden bg-slate-100 border border-slate-100">
-                    {item.image ? (
-                        <Image
-                            src={item.image}
-                            alt={item.title}
-                            fill
-                            className="object-cover group-hover:scale-105 transition-transform duration-500"
-                        />
-                    ) : (
-                        <div className="w-full h-full flex items-center justify-center text-2xl">
-                            {item.type === 'article' ? '📄' : '✨'}
-                        </div>
-                    )}
-                </div>
-                <div className="grow">
-                    <div className="flex items-center gap-2 mb-2">
-                        <span className={`text-xs font-bold uppercase tracking-wider px-2 py-1 rounded-md ${item.type === 'review' ? 'bg-amber-100 text-amber-700' :
-                                item.type === 'event' ? 'bg-purple-100 text-purple-700' :
-                                    'bg-teal-100 text-teal-700'
-                            }`}>
-                            {item.tag}
-                        </span>
-                        <span className="text-xs text-slate-400">{item.date}</span>
-                    </div>
-                    <h3 className="text-lg md:text-xl font-bold text-slate-900 group-hover:text-teal-700 transition-colors mb-1 font-display">
-                        {item.title}
-                    </h3>
-                    <p className="text-slate-600 text-sm line-clamp-2">
-                        {item.description}
-                    </p>
-                </div>
-            </div>
-        </Link>
-    );
-}
+export const metadata = hubMetadata({
+    title: "Latest Updates",
+    description: "Newly published and recently fact-checked Odiapedia articles on Odisha's language, history, culture, food, people and travel.",
+    path: "/latest",
+});
 
 export default function LatestPage() {
-    const updates = getLatestUpdates();
-
+    const updates = getLatestUpdates().slice(0, 120);
+    const groups = new Map<string, typeof updates>();
+    for (const u of updates) {
+        const key = formatDate(u.date).split(" ").slice(1).join(" "); // "October 2026"
+        groups.set(key, [...(groups.get(key) || []), u]);
+    }
     return (
-        <div className="min-h-screen bg-slate-50 py-12">
-            <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-                <header className="mb-12 text-center">
-                    <h1 className="text-4xl font-bold text-slate-900 font-display mb-4">What's New</h1>
-                    <p className="text-lg text-slate-600">
-                        Track the latest additions to the diary of Odisha.
-                    </p>
-                </header>
-
-                <div className="space-y-4">
-                    {updates.map(item => (
-                        <UpdateCard key={item.id} item={item} />
-                    ))}
-                </div>
+        <div>
+            <PageHero
+                title="What's new on Odiapedia"
+                odia="ନୂଆ କ'ଣ"
+                description="New articles and pages that have been reviewed against sources, newest first."
+                icon="sparkle"
+                eyebrow="Latest updates"
+                crumbs={[{ name: "Latest", href: "/latest" }]}
+            />
+            <div className="container-page max-w-4xl py-14">
+                {[...groups.entries()].map(([month, items]) => (
+                    <section key={month} className="mb-12">
+                        <h2 className="mb-4 font-display text-2xl font-semibold">{month}</h2>
+                        <ul className="divide-y divide-sand-200 rounded-2xl border border-sand-200 bg-white">
+                            {items.map((u) => {
+                                const cat = categoryInfo(u.link.split("/")[1]);
+                                return (
+                                    <li key={u.id}>
+                                        <Link href={u.link} className="group flex items-start gap-4 p-5 transition-colors hover:bg-sand-50">
+                                            <span className="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-laterite-50 text-laterite-600"><Icon name={cat.icon} className="h-4 w-4" /></span>
+                                            <span className="min-w-0 flex-1">
+                                                <span className="flex flex-wrap items-center gap-2 text-xs">
+                                                    <span className={`rounded-full px-2 py-0.5 font-semibold ${u.tag === "New" ? "bg-chilika-500/10 text-chilika-700" : "bg-saffron-100 text-saffron-600"}`}>{u.tag}</span>
+                                                    <span className="text-ink-500">{cat.label}</span>
+                                                    <time dateTime={u.date} className="text-ink-400">{formatDate(u.date)}</time>
+                                                </span>
+                                                <span className="mt-1 block font-semibold text-ink-900 group-hover:text-laterite-700">{u.title}</span>
+                                                <span className="line-clamp-1 text-sm text-ink-600">{u.description}</span>
+                                            </span>
+                                        </Link>
+                                    </li>
+                                );
+                            })}
+                        </ul>
+                    </section>
+                ))}
             </div>
         </div>
     );

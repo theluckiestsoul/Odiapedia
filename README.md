@@ -87,3 +87,21 @@ Contributions are welcome! Feel free to submit issues and pull requests.
 ---
 
 Made with ❤️ for Odisha | ଓଡ଼ିଶାକୁ ଭଲ ପାଇବା ସହିତ ତିଆରି
+
+## Deployment settings (environment variables)
+
+| Variable | Purpose |
+|---|---|
+| `TRIP_LEAD_WEBHOOK_URL` | Where trip-planner requests (`/travel/plan`) are delivered as JSON — e.g. a Google Apps Script web app that appends to a Google Sheet, a Zapier/Make webhook, Formspree or your CRM. If unset, the form falls back to opening a pre-filled email to contact@odiapedia.com. |
+| `TRIP_LEAD_WEBHOOK_SECRET` | Optional shared secret sent as the `X-Odiapedia-Secret` header. |
+| `NEXT_PUBLIC_GA_ID` | Google Analytics measurement ID (optional). |
+| `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` | Google Search Console verification token. |
+| `NEXT_PUBLIC_BING_SITE_VERIFICATION` | Bing Webmaster Tools verification token. |
+
+## Content conventions
+
+Articles live in `content/<category>/<slug>.mdx`. Frontmatter supports `title`, `description`, `date`, `updated`, `author`, `lang`, `alternates`, `odiaTitle`, `keywords`, `facts` (infobox), `sources` (shown as references), `faq` (shown on the page and as structured data), `changelog`, `image`, `imageCredit`, `noindex` and `mergedInto`. Do not start the body with a `# H1` (the template renders the title), and avoid `{ } < >` in prose — MDX treats them as code. Festival dates for the "Today in Odisha" panel live in `src/data/festival-dates.ts`; add only dates confirmed by an official holiday list or reliable panchang.
+
+## AI & search discoverability
+
+`/robots.txt` explicitly allows search and AI crawlers, `/sitemap.xml` uses real last-updated dates, and `/llms.txt` + `/llms-full.txt` give AI assistants a structured map of the site. Every article emits Article, BreadcrumbList and (when present) FAQPage JSON-LD.

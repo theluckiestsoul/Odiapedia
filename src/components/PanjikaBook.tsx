@@ -12,13 +12,13 @@ const jagannathPages = [
     {
         title: "ଜଗନ୍ନାଥ ପଞ୍ଜିକା",
         subtitle: "Jagannath Panjika",
-        year: "ଶକାବ୍ଦ ୧୯୪୭",
+        year: "ପ୍ରମୁଖ ପର୍ବପର୍ବାଣି",
         content: [
             "ଶ୍ରୀ ଜଗନ୍ନାଥ ମନ୍ଦିର, ପୁରୀ",
             "Shree Jagannath Temple, Puri",
             "",
-            "ପ୍ରକାଶକ: ଶ୍ରୀ ଜଗନ୍ନାଥ ମନ୍ଦିର ପ୍ରଶାସନ",
-            "Publisher: Shree Jagannath Temple Administration",
+            "ଓଡ଼ିଆପିଡ଼ିଆ ସାରାଂଶ — ମୂଳ ପଞ୍ଜିକା ନୁହେଁ",
+            "An Odiapedia overview of major festivals — not the official panjika",
         ],
         isTitle: true,
     },
@@ -198,13 +198,13 @@ const birajaPages = [
     {
         title: "ବିରଜା ପଞ୍ଜିକା",
         subtitle: "Biraja Panjika",
-        year: "ଶକାବ୍ଦ ୧୯୪୭",
+        year: "ପ୍ରମୁଖ ପର୍ବପର୍ବାଣି",
         content: [
             "ବିରଜା କ୍ଷେତ୍ର, ଯାଜପୁର",
             "Biraja Kshetra, Jajpur",
             "",
-            "ପ୍ରକାଶକ: ବିରଜା ମନ୍ଦିର ଟ୍ରଷ୍ଟ",
-            "Publisher: Biraja Temple Trust",
+            "ଓଡ଼ିଆପିଡ଼ିଆ ସାରାଂଶ — ମୂଳ ପଞ୍ଜିକା ନୁହେଁ",
+            "An Odiapedia overview of major festivals — not the official panjika",
         ],
         isTitle: true,
     },

@@ -120,12 +120,12 @@ export default function LanguageToggle() {
         <div className="relative inline-block text-left">
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-teal-100 bg-white/50 hover:bg-white hover:border-teal-200 transition-all text-sm font-medium text-slate-700 hover:text-teal-700 shadow-sm hover:shadow-md ring-1 ring-transparent hover:ring-teal-50"
+                className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-laterite-100 bg-white/50 hover:bg-white hover:border-laterite-200 transition-all text-sm font-medium text-slate-700 hover:text-laterite-700 shadow-sm hover:shadow-md ring-1 ring-transparent hover:ring-laterite-50"
                 aria-haspopup="true"
                 aria-expanded={isOpen}
                 aria-label={`Current language: ${currentLanguage.name}`}
             >
-                <span className="w-5 h-5 rounded-full bg-gradient-to-br from-teal-500 to-teal-600 text-white flex items-center justify-center text-[10px] shadow-sm">
+                <span className="w-5 h-5 rounded-full bg-gradient-to-br from-laterite-500 to-laterite-600 text-white flex items-center justify-center text-[10px] shadow-sm">
                     {currentLanguage.code.toUpperCase()}
                 </span>
                 <span className="hidden sm:inline">{currentLanguage.name}</span>
@@ -140,21 +140,21 @@ export default function LanguageToggle() {
             </button>
 
             {isOpen && (
-                <div className="absolute top-full right-0 mt-2 w-40 bg-white border border-teal-100 rounded-xl shadow-xl shadow-teal-900/10 py-1 z-50 overflow-hidden ring-1 ring-black/5 animate-in fade-in slide-in-from-top-2 duration-200">
+                <div className="absolute top-full right-0 mt-2 w-40 bg-white border border-laterite-100 rounded-xl shadow-xl shadow-laterite-900/10 py-1 z-50 overflow-hidden ring-1 ring-black/5 animate-in fade-in slide-in-from-top-2 duration-200">
                     {languages.map((lang) => (
                         <button
                             key={lang.code}
                             onClick={() => handleLanguageSelect(lang.code)}
-                            className={`w-full text-left px-4 py-2.5 text-sm transition-colors flex items-center gap-3 hover:bg-teal-50/50 ${language === lang.code
-                                ? 'text-teal-700 bg-teal-50 font-medium'
+                            className={`w-full text-left px-4 py-2.5 text-sm transition-colors flex items-center gap-3 hover:bg-laterite-50/50 ${language === lang.code
+                                ? 'text-laterite-700 bg-laterite-50 font-medium'
                                 : 'text-slate-600 hover:text-slate-900'
                                 }`}
                             role="menuitem"
                         >
-                            <span className={`w-2 h-2 rounded-full ${language === lang.code ? 'bg-teal-500' : 'bg-slate-200'}`}></span>
+                            <span className={`w-2 h-2 rounded-full ${language === lang.code ? 'bg-laterite-500' : 'bg-slate-200'}`}></span>
                             {lang.name}
                             {language === lang.code && (
-                                <svg className="w-4 h-4 ml-auto text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg className="w-4 h-4 ml-auto text-laterite-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                                 </svg>
                             )}

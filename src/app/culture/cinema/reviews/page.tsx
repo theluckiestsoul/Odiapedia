@@ -5,6 +5,7 @@ import ReviewCard from "@/components/cinema/ReviewCard";
 import { movieReviews } from "@/data/movie-reviews";
 
 export const metadata: Metadata = {
+    alternates: { canonical: "/culture/cinema/reviews" },
     title: "Latest Odia Movie Reviews - Ollywood",
     description: "Read the latest reviews of Odia movies in English and Odia. Honest ratings and verdicts for Ollywood's newest releases.",
 };
@@ -14,14 +15,14 @@ export default function MovieReviewsPage() {
         <div className="min-h-screen bg-slate-50">
             {/* Hero Section */}
             <section className="relative py-20 overflow-hidden bg-slate-900">
-                <div className="absolute inset-0 bg-gradient-to-br from-teal-900 to-slate-900 opacity-90"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-laterite-900 to-slate-900 opacity-90"></div>
                 <div className="absolute inset-0 opacity-20" style={{ backgroundImage: "url('/images/pattern-grid.png')" }}></div>
 
                 <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
                     <h1 className="text-4xl md:text-6xl font-bold font-display mb-4 tracking-tight">
                         Latest Movie Reviews
                     </h1>
-                    <p className="text-2xl text-teal-300 odia-text mb-6">
+                    <p className="text-2xl text-laterite-300 odia-text mb-6">
                         ନୂଆ ଓଡ଼ିଆ ସିନେମା ସମୀକ୍ଷା
                     </p>
                     <p className="text-slate-300 max-w-2xl mx-auto text-lg">

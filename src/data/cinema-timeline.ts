@@ -8,7 +8,7 @@ export const cinemaEvents: TimelineEvent[] = [
         era: "The Beginning",
         title: "Sita Bibaha",
         titleOdia: "ସୀତା ବିବାହ",
-        description: "The first Odia film, directed by Mohan Sundar Deb Goswami. Released at Lakshmi Talkies, Puri. Budget: ₹30,000.",
+        description: "The first Odia film, directed and produced by Mohan Sundar Deb Goswami, who also acted in it. Released on 28 April 1936 at Laxmi Talkies, Puri, it was made on a budget of about ₹30,000.",
         category: "ancient", // Mapping 'The Beginning' to 'ancient' color scheme for now
         image: "/images/cinema/sita_bibaha.png"
     },
@@ -17,7 +17,7 @@ export const cinemaEvents: TimelineEvent[] = [
         era: "The Beginning",
         title: "Lalita",
         titleOdia: "ଲଳିତା",
-        description: "The second Odia film, released 13 years after the first. Directed by Kali Charan Patnaik.",
+        description: "The second Odia film, released 13 years after the first. Directed by Kalyan Gupta.",
         category: "ancient"
     },
     {
@@ -25,7 +25,7 @@ export const cinemaEvents: TimelineEvent[] = [
         era: "The Beginning",
         title: "Saptashajya",
         titleOdia: "ସପ୍ତଶଯ୍ୟା",
-        description: "Third Odia film, focused on social issues. Directed by Kalyan Gupta.",
+        description: "One of the very few Odia films made in the years immediately after Lalita; sources differ on its exact release year.",
         category: "ancient"
     },
     {
@@ -33,7 +33,7 @@ export const cinemaEvents: TimelineEvent[] = [
         era: "The Beginning",
         title: "Roles to Eight",
         titleOdia: "ରୋଲ୍ସ ଟୁ ଏଇଟ୍",
-        description: "First Odia film with an English title. Directed by Kalyan Gupta.",
+        description: "Also written 'Roles - 28'. Cited as the first Odia film with an English title.",
         category: "ancient"
     },
 
@@ -43,7 +43,7 @@ export const cinemaEvents: TimelineEvent[] = [
         era: "Golden Era",
         title: "Sri Lokanath",
         titleOdia: "ଶ୍ରୀ ଲୋକନାଥ",
-        description: "First Odia film to win a National Award. Directed by Prafulla Sengupta.",
+        description: "First Odia film to win a National Film Award. Directed by Prafulla Sengupta.",
         category: "medieval" // Mapping 'Golden Era' to 'medieval' color scheme
     },
     {
@@ -51,15 +51,15 @@ export const cinemaEvents: TimelineEvent[] = [
         era: "Golden Era",
         title: "Nua Bou",
         titleOdia: "ନୂଆ ବୋଉ",
-        description: "A landmark social drama directed by Prabhat Mukherjee. Won National Award for Best Regional Film.",
+        description: "A social drama of village life directed by Prabhat Mukherjee, with Prashanta Nanda in his first lead role. The film was recognised at the National Film Awards.",
         category: "medieval"
     },
     {
-        year: "1967",
+        year: "1966",
         era: "Golden Era",
         title: "Matira Manisha",
         titleOdia: "ମାଟିର ମଣିଷ",
-        description: "Directed by legendary Mrinal Sen, based on Kalindi Charan Panigrahi's novel. A masterpiece of Indian parallel cinema.",
+        description: "Directed by Mrinal Sen, based on Kalindi Charan Panigrahi's novel about two brothers and their family land. It won the National Film Award for Best Odia Feature Film.",
         category: "medieval"
     },
     {
@@ -76,7 +76,7 @@ export const cinemaEvents: TimelineEvent[] = [
         era: "Golden Era",
         title: "Shesha Shrabana",
         titleOdia: "ଶେଷ ଶ୍ରାବଣ",
-        description: "Blockbuster hit directed by Prashant Nanda. Known for its iconic music and tragic storytelling.",
+        description: "Prashanta Nanda's directorial debut, with music by Prafulla Kar. It set a box-office record and is known for its music and tragic storytelling.",
         category: "medieval"
     },
 
@@ -86,7 +86,7 @@ export const cinemaEvents: TimelineEvent[] = [
         era: "Evolution",
         title: "Dora",
         titleOdia: "ଡୋରା",
-        description: "A massive commercial success directed by Prashant Nanda, marking a new wave of popularity.",
+        description: "A popular Odia film of the 1980s starring Prashanta Nanda and Mahasweta Ray.",
         category: "colonial" // Mapping 'Evolution' to 'colonial' color scheme
     },
     {
@@ -94,42 +94,34 @@ export const cinemaEvents: TimelineEvent[] = [
         era: "Evolution",
         title: "Maya Miriga",
         titleOdia: "ମାୟା ମିରିଗ",
-        description: "Directed by Nirad Mohapatra. Screened at Cannes Film Festival (Critics' Week). A poignant family drama.",
+        description: "Directed by Nirad N. Mohapatra. Screened in the Critics' Week section at Cannes in 1984 and won the National Film Award for Second Best Feature Film. A poignant family drama.",
         category: "colonial",
         image: "/images/cinema/maya_miriga.png"
     },
     {
-        year: "1994",
-        era: "Evolution",
+        year: "2004",
+        era: "Modern Era",
         title: "I Love You",
         titleOdia: "ଆଇ ଲଭ୍ ୟୁ",
-        description: "Directed by Hara Patnaik. Starring Anubhav Mohanty. Started the trend of remake-driven commercial cinema.",
-        category: "colonial"
+        description: "Directed by Hara Patnaik. The debut film of Anubhav Mohanty, opposite Namrata Thapa.",
+        category: "modern"
     },
 
     // Modern Era (2000s-Present)
-    {
-        year: "2002",
-        era: "Modern Era",
-        title: "Stree",
-        titleOdia: "ସ୍ତ୍ରୀ",
-        description: "Directed by Ravi Kinagi. Won the National Film Award for Best Feature Film in Odia.",
-        category: "modern" // Mapping 'Modern Era' to 'modern' color scheme
-    },
     {
         year: "2012",
         era: "Modern Era",
         title: "Sala Budha",
         titleOdia: "ଶଲା ବୁଢ଼ା",
-        description: "Directed by Sabyasachi Mohapatra. A critically acclaimed film in Sambalpuri dialect.",
+        description: "Directed by Sabyasachi Mohapatra. A critically acclaimed film in Sambalpuri (Kosli) that won seven Odisha State Film Awards and was selected for the Indian Panorama at IFFI.",
         category: "modern"
     },
     {
-        year: "2019",
+        year: "2020",
         era: "Modern Era",
         title: "Kalira Atita",
         titleOdia: "କାଲିର ଅତୀତ",
-        description: "Directed by Nila Madhab Panda. Dealing with climate change and rising sea levels. Oscar contender.",
+        description: "Directed by Nila Madhab Panda. Deals with climate change and coastal villages lost to the sea. The director submitted it for Academy Awards consideration.",
         category: "modern"
     },
     {
@@ -137,7 +129,7 @@ export const cinemaEvents: TimelineEvent[] = [
         era: "Modern Era",
         title: "Daman",
         titleOdia: "ଦମନ",
-        description: "Directed by Vishal Mourya & Debi Prasad Lenka. A massive pan-Indian success based on a true story of malaria eradication.",
+        description: "Directed by Vishal Mourya & Debi Prasad Lenka, starring Babushaan Mohanty. Inspired by Odisha's DAMaN malaria-control programme, it became the highest-grossing Odia film of its time, was released in a Hindi-dubbed version, and won the National Film Award for Best Odia Film.",
         category: "modern",
         image: "/images/cinema/daman.png"
     }

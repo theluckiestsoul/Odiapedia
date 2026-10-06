@@ -7,6 +7,8 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import { useMDXComponents } from "@/../mdx-components";
 import Link from "next/link";
 import remarkGfm from "remark-gfm";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import Icon from "@/components/Icon";
 
 interface PageProps {
     params: Promise<{ slug: string; tehsil: string; spot: string }>;
@@ -30,8 +32,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     }
 
     return {
-        title: `${spotData.title} - ${spotData.category} | Odiapedia`,
+        title: `${spotData.title}, ${tehsil.charAt(0).toUpperCase() + tehsil.slice(1)} – ${spotData.category}`,
         description: spotData.description,
+        alternates: { canonical: `/district/${slug}/${tehsil}/${spot}` },
     };
 }
 
@@ -47,6 +50,7 @@ export default async function SpotPage({ params }: PageProps) {
         notFound();
     }
 
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const components = useMDXComponents({});
 
     // Schema.org Structured Data for POI
@@ -68,114 +72,69 @@ export default async function SpotPage({ params }: PageProps) {
                     "@type": "AdministrativeArea",
                     "name": tehsilData?.title || tehsil
                 }
-            },
-            {
-                "@type": "BreadcrumbList",
-                "itemListElement": [
-                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://odiapedia.com" },
-                    { "@type": "ListItem", "position": 2, "name": "Districts", "item": "https://odiapedia.com/districts" },
-                    { "@type": "ListItem", "position": 3, "name": districtData?.title || slug, "item": `https://odiapedia.com/district/${slug}` },
-                    { "@type": "ListItem", "position": 4, "name": tehsilData?.title || tehsil, "item": `https://odiapedia.com/district/${slug}/${tehsil}` },
-                    { "@type": "ListItem", "position": 5, "name": spotData.title, "item": `https://odiapedia.com/district/${slug}/${tehsil}/${spot}` }
-                ]
             }
         ]
     };
 
+    const crumbs = [
+        { name: "Districts", href: "/districts" },
+        { name: districtData?.title || slug, href: `/district/${slug}` },
+        ...(tehsilData ? [{ name: tehsilData.title, href: `/district/${slug}/${tehsil}` }] : []),
+        { name: spotData.title, href: `/district/${slug}/${tehsil}/${spot}` },
+    ];
+
     return (
         <>
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-            />
-            <div className="min-h-screen bg-black text-amber-100">
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-                    {/* Visual Breadcrumb */}
-                    <nav className="flex flex-wrap items-center gap-2 text-sm mb-8 text-amber-500/60">
-                        <Link href="/" className="hover:text-amber-400">Home</Link>
-                        <span>/</span>
-                        <Link href="/districts" className="hover:text-amber-400">Districts</Link>
-                        <span>/</span>
-                        <Link href={`/district/${slug}`} className="hover:text-amber-400 capitalize">
-                            {districtData?.title || slug}
-                        </Link>
-                        <span>/</span>
-                        <Link href={`/district/${slug}/${tehsil}`} className="hover:text-amber-400 capitalize">
-                            {tehsilData?.title || tehsil}
-                        </Link>
-                        <span>/</span>
-                        <span className="text-amber-300">{spotData.title}</span>
-                    </nav>
-
-                    <header className="mb-10 border-b border-amber-900/30 pb-10">
-                        <div className="flex gap-3 mb-6">
-                            <span className="px-3 py-1 rounded-full bg-amber-900/30 border border-amber-800/30 text-amber-400 text-xs font-bold tracking-wide uppercase">
-                                {spotData.category}
-                            </span>
-                            {spotData.tags?.map(tag => (
-                                <span key={tag} className="px-2 py-1 rounded-full bg-neutral-900 border border-neutral-800 text-neutral-400 text-xs">
-                                    {tag}
-                                </span>
-                            ))}
-                        </div>
-
-                        <h1 className="text-4xl md:text-6xl font-bold mb-6 font-display text-amber-100">
-                            {spotData.title}
-                        </h1>
-
-                        <p className="text-xl text-amber-100/60 max-w-3xl leading-relaxed italic">
-                            "{spotData.description}"
-                        </p>
-                    </header>
-
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-                        {/* Main Narrative */}
-                        <div className="lg:col-span-2">
-                            <article className="prose prose-lg prose-invert prose-amber max-w-none">
-                                <MDXRemote
-                                    source={spotData.content}
-                                    components={components}
-                                    options={{ mdxOptions: { remarkPlugins: [remarkGfm] }, blockJS: false }}
-                                />
-                            </article>
-                        </div>
-
-                        {/* Sidebar Info */}
-                        <div className="space-y-6">
-                            <div className="bg-amber-950/20 border border-amber-900/40 rounded-xl p-6 backdrop-blur-sm sticky top-24">
-                                <h3 className="font-bold text-amber-500 mb-4 flex items-center gap-2">
-                                    <span>ℹ️</span> Visitor Info
-                                </h3>
-
-                                <dl className="space-y-4 text-sm">
-                                    {spotData.best_time && (
-                                        <div>
-                                            <dt className="text-amber-500/60 text-xs uppercase tracking-wider mb-1">Best Time to Visit</dt>
-                                            <dd className="text-amber-100 font-medium">{spotData.best_time}</dd>
-                                        </div>
-                                    )}
-
-                                    {spotData.coordinates && (
-                                        <div>
-                                            <dt className="text-amber-500/60 text-xs uppercase tracking-wider mb-1">Coordinates</dt>
-                                            <dd className="text-amber-100 font-mono text-xs">
-                                                {spotData.coordinates.lat.toFixed(4)}, {spotData.coordinates.lng.toFixed(4)}
-                                            </dd>
-                                            <a
-                                                href={`https://www.google.com/maps/search/?api=1&query=${spotData.coordinates.lat},${spotData.coordinates.lng}`}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="inline-block mt-2 text-amber-500 hover:text-amber-400 border-b border-amber-500/30 hover:border-amber-400"
-                                            >
-                                                View on Google Maps ↗
-                                            </a>
-                                        </div>
-                                    )}
-                                </dl>
-                            </div>
-                        </div>
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+            <header className="relative overflow-hidden border-b border-sand-200 bg-sand-100">
+                <div className="absolute inset-0 bg-ikat opacity-60" aria-hidden="true" />
+                <div className="container-page relative py-10 md:py-14">
+                    <Breadcrumbs items={crumbs} />
+                    <div className="mt-6 flex flex-wrap gap-2">
+                        <span className="eyebrow">{spotData.category}</span>
+                        {spotData.tags?.map((tag) => <span key={tag} className="chip">{tag}</span>)}
                     </div>
+                    <h1 className="mt-3 max-w-4xl text-balance font-display text-4xl font-semibold md:text-5xl">{spotData.title}</h1>
+                    <p className="mt-5 max-w-3xl text-lg leading-relaxed text-ink-600">{spotData.description}</p>
                 </div>
+            </header>
+            <div className="container-page grid gap-12 py-12 lg:grid-cols-[minmax(0,1fr)_320px]">
+                <article className="article-body min-w-0 max-w-[46rem]">
+                    <MDXRemote
+                        source={spotData.content.replace(/^\s*#\s+[^\n]+\n+/, "")}
+                        components={components}
+                        options={{ mdxOptions: { remarkPlugins: [remarkGfm] }, blockJS: false }}
+                    />
+                </article>
+                <aside className="space-y-6 lg:sticky lg:top-24 lg:h-fit">
+                    <div className="overflow-hidden rounded-2xl border border-sand-200 bg-white">
+                        <div className="flex items-center gap-2 border-b border-sand-200 bg-sand-100 px-5 py-3">
+                            <Icon name="info" className="h-4 w-4 text-laterite-600" />
+                            <h2 className="font-sans text-xs font-semibold uppercase tracking-[0.16em] text-ink-600">Visitor info</h2>
+                        </div>
+                        <dl className="space-y-4 p-5 text-sm">
+                            {spotData.best_time && (
+                                <div>
+                                    <dt className="text-xs uppercase tracking-wider text-ink-500">Best time to visit</dt>
+                                    <dd className="mt-1 font-medium text-ink-900">{spotData.best_time}</dd>
+                                </div>
+                            )}
+                            {spotData.coordinates && (
+                                <div>
+                                    <dt className="text-xs uppercase tracking-wider text-ink-500">Coordinates</dt>
+                                    <dd className="mt-1 font-mono text-xs text-ink-900">{spotData.coordinates.lat.toFixed(4)}, {spotData.coordinates.lng.toFixed(4)}</dd>
+                                    <a href={`https://www.google.com/maps/search/?api=1&query=${spotData.coordinates.lat},${spotData.coordinates.lng}`} target="_blank" rel="noopener noreferrer" className="mt-2 inline-flex items-center gap-1 text-laterite-600 hover:underline">
+                                        View on Google Maps <Icon name="external" className="h-3.5 w-3.5" />
+                                    </a>
+                                </div>
+                            )}
+                        </dl>
+                    </div>
+                    <Link href="/travel/plan" className="group block rounded-2xl bg-laterite-500 p-5 text-white hover:bg-laterite-600">
+                        <p className="font-display text-lg font-semibold">Planning a visit?</p>
+                        <p className="mt-1 text-sm text-laterite-50/90">Get a free custom Odisha itinerary.</p>
+                    </Link>
+                </aside>
             </div>
         </>
     );
