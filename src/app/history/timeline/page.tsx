@@ -4,7 +4,7 @@ import Icon from "@/components/Icon";
 import JsonLd from "@/components/JsonLd";
 import { ChariotWheel } from "@/components/Motifs";
 import HistoryTimeline from "@/components/history/HistoryTimeline";
-import { ERAS, ERA_COLOURS, TIMELINE } from "@/data/odisha-timeline";
+import { ERAS, ERA_COLOURS, THEMES, TIMELINE } from "@/data/odisha-timeline";
 import { hubMetadata } from "@/lib/seo";
 import { SITE } from "@/lib/site";
 
@@ -92,7 +92,7 @@ export default function TimelinePage() {
                 <div className="border-temple" aria-hidden="true" />
             </section>
 
-            <HistoryTimeline events={TIMELINE} />
+            <HistoryTimeline events={TIMELINE} eras={ERAS} colours={ERA_COLOURS} themes={THEMES} />
 
             {/* Sources & further reading */}
             <section className="border-t border-sand-200 bg-sand-50">

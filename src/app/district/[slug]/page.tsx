@@ -157,6 +157,10 @@ export default async function DistrictPage({ params }: PageProps) {
                                     </div>
                                 ))}
                             </dl>
+                            <Link href={`/map#d=${baseSlug}`} className="flex items-center justify-between border-t border-sand-200 bg-sand-50 px-5 py-3 text-sm font-semibold text-laterite-600 hover:bg-laterite-50">
+                                <span className="flex items-center gap-2"><Icon name="map" className="h-4 w-4" />Explore blocks &amp; villages on the map</span>
+                                <Icon name="arrow" className="h-4 w-4" />
+                            </Link>
                         </div>
                     </aside>
                 )}

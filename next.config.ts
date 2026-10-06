@@ -4,6 +4,12 @@ import createMDX from "@next/mdx";
 const nextConfig: NextConfig = {
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
 
+  // Files read with fs at request time (on-demand village pages and share images) must ship with the server functions.
+  outputFileTracingIncludes: {
+    "/district/**": ["./public/data/map/*-villages.json"],
+    "/**/opengraph-image*": ["./content/**/*"],
+  },
+
   // Duplicate English pages were merged into one canonical URL each (keeps link equity, avoids keyword cannibalisation).
   async redirects() {
     return [

@@ -3,11 +3,36 @@
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Icon from "@/components/Icon";
-import { ERAS, ERA_COLOURS, THEMES, type EraInfo, type HistoryEvent, type TimelineImage, type TimelineTheme } from "@/data/odisha-timeline";
+import type { TimelineImage } from "@/data/odisha-timeline";
+
+export interface TimelineItem {
+    id: string;
+    year: string;
+    era: string;
+    title: string;
+    titleOdia?: string;
+    description: string;
+    themes?: string[];
+    image?: TimelineImage;
+    links?: { label: string; href: string }[];
+}
+
+export interface TimelineEraInfo {
+    id: string;
+    name: string;
+    odia: string;
+    span: string;
+    summary: string;
+    highlights: string[];
+    cover?: TimelineImage;
+}
+
+type TimelineTheme = string;
 
 /* eslint-disable @next/next/no-img-element -- Wikimedia Commons images are hot-linked with attribution */
 
 function Credit({ img, className = "" }: { img: TimelineImage; className?: string }) {
+    if (!img.page) return <span className={className}>{img.credit}</span>;
     return (
         <a href={img.page} target="_blank" rel="noopener noreferrer" className={`hover:underline ${className}`}>
             {img.credit} · {img.licence} · Wikimedia Commons
@@ -35,7 +60,13 @@ function Photo({ img, className = "", onOpen }: { img: TimelineImage; className?
     );
 }
 
-export default function HistoryTimeline({ events }: { events: HistoryEvent[] }) {
+export default function HistoryTimeline({ events, eras: ERAS, colours: ERA_COLOURS, themes: THEMES = [], noun = "events" }: {
+    events: TimelineItem[];
+    eras: TimelineEraInfo[];
+    colours: Record<string, string>;
+    themes?: { id: string; label: string }[];
+    noun?: string;
+}) {
     const [themes, setThemes] = useState<TimelineTheme[]>([]);
     const [query, setQuery] = useState("");
     const [active, setActive] = useState<string>(events[0]?.id);
@@ -49,13 +80,13 @@ export default function HistoryTimeline({ events }: { events: HistoryEvent[] }) 
     const shown = useMemo(() => {
         const q = query.trim().toLowerCase();
         return events.filter((e) =>
-            (themes.length === 0 || e.themes.some((t) => themes.includes(t))) &&
+            (themes.length === 0 || (e.themes ?? []).some((t) => themes.includes(t))) &&
             (!q || `${e.title} ${e.titleOdia ?? ""} ${e.year} ${e.description}`.toLowerCase().includes(q)));
     }, [events, themes, query]);
 
     const byEra = useMemo(() => ERAS.map((era) => ({ era, items: shown.filter((e) => e.era === era.id) })), [shown]);
     const activeEvent = events.find((e) => e.id === active);
-    const activeEra = activeEvent?.era ?? "prehistoric";
+    const activeEra = activeEvent?.era ?? ERAS[0]?.id;
 
     /* scroll spy + reveal */
     useEffect(() => {
@@ -153,7 +184,7 @@ export default function HistoryTimeline({ events }: { events: HistoryEvent[] }) 
                             {hovered && (
                                 <div className="absolute left-0 right-0 top-full z-40 mt-3 hidden md:block">
                                     <div className="mx-auto flex max-w-2xl overflow-hidden rounded-2xl bg-white shadow-2xl ring-1 ring-sand-200 animate-fade-up">
-                                        <img src={hovered.cover.src} alt="" className={`h-auto w-48 shrink-0 ${hovered.cover.fit === "contain" ? "object-contain bg-ink-950" : "object-cover"}`} />
+                                        {hovered.cover && <img src={hovered.cover.src} alt="" className={`h-auto w-48 shrink-0 ${hovered.cover.fit === "contain" ? "object-contain bg-ink-950" : "object-cover"}`} />}
                                         <div className="p-5">
                                             <p className="text-xs font-bold uppercase tracking-wider" style={{ color: ERA_COLOURS[hovered.id] }}>{hovered.span}</p>
                                             <p className="mt-1 font-display text-2xl font-semibold text-ink-900">{hovered.name} <span className="font-odia text-lg text-ink-500">{hovered.odia}</span></p>
@@ -183,7 +214,7 @@ export default function HistoryTimeline({ events }: { events: HistoryEvent[] }) 
             {/* ---------- Filters ---------- */}
             <div className="container-page pt-8">
                 <div className="flex flex-col gap-4 rounded-2xl border border-sand-200 bg-white p-4 sm:p-5 lg:flex-row lg:items-center">
-                    <div className="scrollbar-none -mx-4 flex flex-1 gap-2 overflow-x-auto px-4 sm:mx-0 sm:flex-wrap sm:px-0 [&>button]:shrink-0">
+                    <div className={`${THEMES.length ? "" : "hidden "}scrollbar-none -mx-4 flex flex-1 gap-2 overflow-x-auto px-4 sm:mx-0 sm:flex-wrap sm:px-0 [&>button]:shrink-0`}>
                         <button type="button" onClick={() => setThemes([])} className={`rounded-full px-3.5 py-1.5 text-sm font-semibold transition-colors ${themes.length === 0 ? "bg-ink-900 text-white" : "bg-sand-100 text-ink-700 hover:bg-sand-200"}`}>All</button>
                         {THEMES.map((t) => (
                             <button key={t.id} type="button" aria-pressed={themes.includes(t.id)} onClick={() => toggleTheme(t.id)}
@@ -199,7 +230,7 @@ export default function HistoryTimeline({ events }: { events: HistoryEvent[] }) 
                             className="w-full rounded-full border border-sand-300 bg-sand-50 py-2 pl-9 pr-4 text-sm outline-none focus:border-laterite-400 focus:ring-2 focus:ring-laterite-100" />
                     </label>
                 </div>
-                <p className="mt-3 text-sm text-ink-500">{shown.length === events.length ? `${events.length} events across five eras` : `${shown.length} of ${events.length} events`}</p>
+                <p className="mt-3 text-sm text-ink-500">{shown.length === events.length ? `${events.length} ${noun} across ${ERAS.length} eras` : `${shown.length} of ${events.length} ${noun}`}</p>
             </div>
 
             {/* ---------- The timeline ---------- */}
@@ -212,7 +243,7 @@ export default function HistoryTimeline({ events }: { events: HistoryEvent[] }) 
 
                 {byEra.map(({ era, items }) => (items.length === 0 ? null : (
                     <section key={era.id} aria-labelledby={`era-${era.id}-title`} className="relative">
-                        <EraBanner era={era} count={items.length} onOpen={() => setLightbox({ img: era.cover, title: `${era.name} era` })} />
+                        <EraBanner era={era} colour={ERA_COLOURS[era.id]} count={items.length} onOpen={() => era.cover && setLightbox({ img: era.cover, title: `${era.name} era` })} />
 
                         <ol className="relative mt-10 space-y-10 lg:space-y-14">
                             {/* spine */}
@@ -250,7 +281,7 @@ export default function HistoryTimeline({ events }: { events: HistoryEvent[] }) 
                                             <div className="p-5 sm:p-6">
                                                 <div className="flex flex-wrap items-center gap-2">
                                                     <span className="rounded-full px-2.5 py-0.5 text-xs font-bold" style={{ background: `${c}1a`, color: c }}>{e.year}</span>
-                                                    {e.themes.slice(0, 2).map((t) => (
+                                                    {(e.themes ?? []).slice(0, 2).map((t) => (
                                                         <button key={t} type="button" onClick={() => toggleTheme(t)} className="rounded-full bg-sand-100 px-2.5 py-0.5 text-xs font-medium text-ink-600 hover:bg-sand-200">
                                                             {THEMES.find((x) => x.id === t)?.label}
                                                         </button>
@@ -301,11 +332,10 @@ export default function HistoryTimeline({ events }: { events: HistoryEvent[] }) 
     );
 }
 
-function EraBanner({ era, count, onOpen }: { era: EraInfo; count: number; onOpen: () => void }) {
-    const c = ERA_COLOURS[era.id];
+function EraBanner({ era, colour: c, count, onOpen }: { era: TimelineEraInfo; colour: string; count: number; onOpen: () => void }) {
     return (
         <header id={`era-${era.id}`} className="relative mt-16 scroll-mt-40 overflow-hidden rounded-3xl bg-ink-950 text-white first:mt-4">
-            <img src={era.cover.src} alt="" aria-hidden className={`absolute inset-0 h-full w-full ${era.cover.fit === "contain" ? "object-contain" : "object-cover"} opacity-45`} />
+            {era.cover ? <img src={era.cover.src} alt="" aria-hidden className={`absolute inset-0 h-full w-full ${era.cover.fit === "contain" ? "object-contain" : "object-cover"} opacity-45`} /> : <div className="absolute inset-0 bg-ikat-light opacity-50" aria-hidden />}
             <div className="absolute inset-0" style={{ background: `linear-gradient(100deg, #0b1222 20%, #0b1222cc 50%, ${c}55)` }} />
             <div className="relative grid gap-6 p-6 sm:p-10 md:grid-cols-[1.4fr_1fr] md:items-end">
                 <div>
@@ -322,9 +352,11 @@ function EraBanner({ era, count, onOpen }: { era: EraInfo; count: number; onOpen
                             <li key={h} className="flex gap-2"><span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: c }} />{h}</li>
                         ))}
                     </ul>
-                    <button type="button" onClick={onOpen} className="mt-4 text-left text-[11px] text-white/55 hover:text-white/80">
-                        Background: {era.cover.alt} ({era.cover.credit}, {era.cover.licence})
-                    </button>
+                    {era.cover && (
+                        <button type="button" onClick={onOpen} className="mt-4 text-left text-[11px] text-white/55 hover:text-white/80">
+                            Background: {era.cover.alt} ({era.cover.credit}, {era.cover.licence})
+                        </button>
+                    )}
                 </div>
             </div>
         </header>

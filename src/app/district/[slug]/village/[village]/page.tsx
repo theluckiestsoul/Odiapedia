@@ -7,6 +7,7 @@ import JsonLd from "@/components/JsonLd";
 import { ADMIN_SOURCE, getAdminDistrict, subdistrictSlug, villageId } from "@/lib/admin";
 import { districtName } from "@/lib/districts";
 import { SITE } from "@/lib/site";
+import { villageGeo } from "@/lib/village-geo";
 
 type Props = { params: Promise<{ slug: string; village: string }> };
 
@@ -57,6 +58,9 @@ export default async function VillagePage({ params }: Props) {
         { name: v.n, href: `/district/${slug}/village/${villageId(v)}` },
     ];
     const osm = `https://www.openstreetmap.org/search?query=${encodeURIComponent(`${v.n}, ${dName}, Odisha`)}`;
+    const g = villageGeo(slug, v.c);
+    const mapLink = `/map#d=${slug}${hasBlock ? `&b=${block!.code}&v=${v.c}` : ""}`;
+    const fills = ["#f7e1d5", "#fbeac4", "#dfe6f4", "#d5ece8", "#efe5d3", "#f1d3c7"];
 
     return (
         <div>
@@ -87,6 +91,39 @@ export default async function VillagePage({ params }: Props) {
 
             <div className="container-page grid gap-10 py-10 lg:grid-cols-[minmax(0,1fr)_340px]">
                 <div>
+                    {g && (
+                        <section className="mb-10">
+                            <h2 className="font-display text-2xl font-semibold">Map of {v.n}</h2>
+                            <figure className="mt-4 overflow-hidden rounded-2xl border border-sand-200 bg-[#f3eee4]">
+                                <svg viewBox={g.view.join(" ")} className="block h-auto w-full" role="img" aria-label={`Boundary of ${v.n} village and its neighbours`}>
+                                    {g.around.map((r) => (
+                                        <path key={r[0] || `${r[8]}-${r[9]}`} d={r[7]} fill={fills[r[6] % fills.length]} stroke="#a98a5c" strokeWidth={g.view[2] / 900} />
+                                    ))}
+                                    <path d={g.row[7]} fill="#cf6a43" fillOpacity={0.85} stroke="#5f281a" strokeWidth={g.view[2] / 300} />
+                                    {g.nearest.filter((r) => r[10] > g.view[2] / 40 && Math.hypot(r[8] - g.row[8], (r[9] - g.row[9]) * 3) > g.view[2] / 6).map((r) => (
+                                        <text key={`t${r[0]}${r[8]}`} x={r[8]} y={r[9]} textAnchor="middle" dominantBaseline="middle" fontSize={g.view[2] / 45} fill="#24365c"
+                                            style={{ paintOrder: "stroke", stroke: "#fff", strokeWidth: g.view[2] / 250 }}>{r[1]}</text>
+                                    ))}
+                                    <text x={g.row[8]} y={g.row[9]} textAnchor="middle" dominantBaseline="middle" fontSize={g.view[2] / 32} fontWeight={700} fill="#121c33"
+                                        style={{ paintOrder: "stroke", stroke: "#fff", strokeWidth: g.view[2] / 200 }}>{v.n}</text>
+                                </svg>
+                                <figcaption className="flex flex-wrap items-center justify-between gap-3 border-t border-sand-200 bg-white px-4 py-3 text-sm">
+                                    <span className="text-ink-600">Approximate area: <strong className="text-ink-900">{g.area < 1 ? `${Math.round(g.area * 100)} hectares` : `${g.area.toFixed(1)} km²`}</strong> · measured from the Census 2011 village boundary map</span>
+                                    <Link href={mapLink} className="font-semibold text-laterite-600 hover:underline">Open in the interactive map →</Link>
+                                </figcaption>
+                            </figure>
+                            {g.nearest.length > 0 && (
+                                <p className="mt-3 text-sm text-ink-600">
+                                    Nearby villages:{" "}
+                                    {g.nearest.map((r, i) => (
+                                        <span key={`n${r[0]}${r[8]}`}>{i > 0 && ", "}{r[0] ? <Link href={`/district/${slug}/village/${r[0]}-${r[1].toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")}`} className="text-laterite-600 hover:underline">{r[1]}</Link> : r[1]}</span>
+                                    ))}
+                                </p>
+                            )}
+                            <p className="mt-2 text-xs text-ink-500">Boundaries: DataMeet, Indian Village Boundaries (Census 2011), © DataMeet contributors, ODbL 1.0 — simplified and indicative.</p>
+                        </section>
+                    )}
+
                     <h2 className="font-display text-2xl font-semibold">Where {v.n} sits</h2>
                     <ol className="mt-5 space-y-2">
                         {[

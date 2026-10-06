@@ -25,8 +25,9 @@ export default function LanguagePage() {
             ]}
             heroChildren={
                 <div className="flex flex-wrap gap-3">
-                    <Link href="/learn" className="btn-primary"><Icon name="pen" className="h-4 w-4" />Start learning Odia</Link>
-                    <Link href="/learn/alphabet" className="btn-ghost">The alphabet</Link>
+                    <Link href="/language/odia-typing" className="btn-primary"><Icon name="pen" className="h-4 w-4" />Odia typing tool</Link>
+                    <Link href="/language/dictionary" className="btn-dark"><Icon name="book" className="h-4 w-4" />Odia dictionary</Link>
+                    <Link href="/learn" className="btn-ghost">Start learning Odia</Link>
                 </div>
             }
         />

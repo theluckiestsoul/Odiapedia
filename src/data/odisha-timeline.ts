@@ -31,6 +31,8 @@ export interface HistoryEvent {
     themes: TimelineTheme[];
     image?: TimelineImage;
     links?: { label: string; href: string }[];
+    /** Exact anniversary (MM-DD) for "On this day", only where the day is certain */
+    date?: string;
 }
 
 export interface EraInfo {
@@ -1131,6 +1133,7 @@ export const TIMELINE: HistoryEvent[] = [
         "year": "April 1, 1936",
         "era": "modern",
         "title": "Odisha State Formed",
+        "date": "04-01",
         "titleOdia": "ଉତ୍କଳ ଦିବସ",
         "description": "Odisha becomes a separate province, often described as the first in India formed on a linguistic basis. The day is celebrated as Utkal Divas.",
         "themes": [
@@ -1152,6 +1155,7 @@ export const TIMELINE: HistoryEvent[] = [
         "year": "1936 CE",
         "era": "modern",
         "title": "First Odia Film",
+        "date": "04-28",
         "description": "'Sita Bibaha' - the first Odia film is released, marking the birth of Ollywood.",
         "themes": [
             "culture"
@@ -1168,6 +1172,7 @@ export const TIMELINE: HistoryEvent[] = [
         "year": "1943 CE",
         "era": "modern",
         "title": "Utkal University",
+        "date": "11-27",
         "description": "Utkal University, the oldest university in Odisha, is established on 27 November 1943. Its Vani Vihar campus in Bhubaneswar was inaugurated in 1963.",
         "themes": [
             "culture"
@@ -1187,6 +1192,7 @@ export const TIMELINE: HistoryEvent[] = [
         "year": "1946 CE",
         "era": "modern",
         "title": "Hirakud Dam Foundation",
+        "date": "03-15",
         "description": "Governor Sir Hawthorne Lewis lays the foundation stone of the Hirakud Dam on 15 March 1946.",
         "themes": [
             "development"
@@ -1197,6 +1203,7 @@ export const TIMELINE: HistoryEvent[] = [
         "year": "1947 CE",
         "era": "modern",
         "title": "Independence",
+        "date": "08-15",
         "description": "India gains independence on 15 August 1947. Odisha's princely states merge with the province from 1 January 1948, a process completed with Mayurbhanj in 1949.",
         "themes": [
             "rulers"
@@ -1238,6 +1245,7 @@ export const TIMELINE: HistoryEvent[] = [
         "year": "1957 CE",
         "era": "modern",
         "title": "Hirakud Dam Inaugurated",
+        "date": "01-13",
         "description": "The Hirakud Dam on the Mahanadi, completed in 1953, is inaugurated by Prime Minister Jawaharlal Nehru on 13 January 1957. Including its dykes it is about 25.8 km long, among the longest earthen dams in the world.",
         "themes": [
             "development"
@@ -1257,6 +1265,7 @@ export const TIMELINE: HistoryEvent[] = [
         "year": "1959 CE",
         "era": "modern",
         "title": "Rourkela Steel Plant",
+        "date": "02-03",
         "titleOdia": "ରାଉରକେଲା ଇସ୍ପାତ କାରଖାନା",
         "description": "President Rajendra Prasad inaugurates the first blast furnace of Rourkela Steel Plant on 3 February 1959. Built with West German collaboration, it was India's first integrated public-sector steel plant.",
         "themes": [
@@ -1287,6 +1296,7 @@ export const TIMELINE: HistoryEvent[] = [
         "year": "1999 CE",
         "era": "modern",
         "title": "Super Cyclone",
+        "date": "10-29",
         "description": "A super cyclone strikes coastal Odisha on 29 October 1999, killing nearly 10,000 people. The disaster led to major changes in the state's disaster preparedness.",
         "themes": [
             "nature"
@@ -1328,6 +1338,7 @@ export const TIMELINE: HistoryEvent[] = [
         "year": "2011 CE",
         "era": "modern",
         "title": "Orissa Renamed Odisha",
+        "date": "11-01",
         "titleOdia": "ଓଡ଼ିଶା",
         "description": "From 1 November 2011 the state is officially renamed from Orissa to Odisha, and the language from Oriya to Odia, closer to the native pronunciation.",
         "themes": [
@@ -1339,7 +1350,8 @@ export const TIMELINE: HistoryEvent[] = [
         "year": "2013 CE",
         "era": "modern",
         "title": "Cyclone Phailin",
-        "description": "Very severe cyclonic storm Phailin strikes in October 2013. The evacuation of nearly a million people keeps the death toll low, and Odisha's disaster management is widely praised.",
+        "date": "10-12",
+        "description": "Very severe cyclonic storm Phailin makes landfall near Gopalpur on 12 October 2013. The evacuation of nearly a million people keeps the death toll low, and Odisha's disaster management is widely praised.",
         "themes": [
             "nature"
         ],
@@ -1399,6 +1411,7 @@ export const TIMELINE: HistoryEvent[] = [
         "year": "2019 CE",
         "era": "modern",
         "title": "Cyclone Fani",
+        "date": "05-03",
         "description": "Extremely severe cyclonic storm Fani makes landfall near Puri on 3 May 2019. The evacuation of more than a million people is praised internationally.",
         "themes": [
             "nature"
@@ -1419,6 +1432,7 @@ export const TIMELINE: HistoryEvent[] = [
         "year": "2023 CE",
         "era": "modern",
         "title": "Balasore Train Tragedy",
+        "date": "06-02",
         "description": "A three-train collision near Bahanaga Bazar station in Balasore district on 2 June 2023 kills 296 people and injures about 1,200, one of India's worst rail accidents.",
         "themes": [
             "nature"

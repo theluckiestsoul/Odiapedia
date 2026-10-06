@@ -80,7 +80,7 @@ export default function ShopPage() {
             <section className="container-page pb-14">
                 <div className="mb-6 flex flex-col justify-between gap-2 md:flex-row md:items-end">
                     <h2 className="font-display text-3xl font-semibold">Handloom</h2>
-                    <Link href="/culture/odisha-gi-tags" className="text-sm font-semibold text-laterite-600 hover:underline">Full list of Odisha GI tags →</Link>
+                    <span className="flex flex-wrap gap-4"><Link href="/culture/odisha-handloom-buying-guide" className="text-sm font-semibold text-laterite-600 hover:underline">How to spot genuine handloom →</Link><Link href="/culture/odisha-gi-tags" className="text-sm font-semibold text-laterite-600 hover:underline">Full list of Odisha GI tags →</Link></span>
                 </div>
                 <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">{HANDLOOM.map((s) => <Card key={s} category="culture" slug={s} />)}</div>
             </section>

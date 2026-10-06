@@ -28,6 +28,20 @@ export interface ArticleFaq {
     a: string;
 }
 
+export interface ArticleRecipe {
+    yield: string;
+    /** minutes */
+    prep: number;
+    cook: number;
+    rest?: number;
+    rest_label?: string;
+    course?: string;
+    diet?: string[];
+    ingredients: string[];
+    steps: string[];
+    tips?: string[];
+}
+
 export interface ArticleMeta {
     title: string;
     description: string;
@@ -55,6 +69,7 @@ export interface ArticleMeta {
     /** Duplicate page merged into another URL (served as a permanent redirect). */
     mergedInto?: string;
     readingMinutes: number;
+    recipe?: ArticleRecipe;
 }
 
 export interface Article extends ArticleMeta {
@@ -175,6 +190,7 @@ export function getArticleBySlug(category: string, slug: string): Article | null
             .filter((c) => c && c.note)
             .map((c) => ({ date: toIsoDate(c.date, date), note: String(c.note) })),
         readingMinutes: readingMinutes(body),
+        recipe: data.recipe && Array.isArray(data.recipe.ingredients) && Array.isArray(data.recipe.steps) ? (data.recipe as ArticleRecipe) : undefined,
         slug,
         content: body,
     };

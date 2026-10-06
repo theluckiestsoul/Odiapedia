@@ -33,10 +33,13 @@ const menuItems: MenuItem[] = [
         children: [
             { href: "/language", label: "Language", odia: "ଭାଷା", icon: "language", hint: "Script, dialects, literature" },
             { href: "/learn", label: "Learn Odia", odia: "ଓଡ଼ିଆ ଶିଖନ୍ତୁ", icon: "pen", hint: "Free lessons for beginners" },
+            { href: "/language/dictionary", label: "Dictionary", odia: "ଅଭିଧାନ", icon: "book", hint: "80,000+ Odia words" },
+            { href: "/language/odia-typing", label: "Odia Typing", odia: "ଟାଇପିଂ", icon: "pen", hint: "Type Odia in English letters" },
             { href: "/history", label: "History", odia: "ଇତିହାସ", icon: "scroll", hint: "Kalinga to modern Odisha" },
             { href: "/history/timeline", label: "Timeline", odia: "ସମୟରେଖା", icon: "hourglass", hint: "Key events, era by era" },
             { href: "/culture", label: "Culture & Festivals", odia: "ସଂସ୍କୃତି", icon: "mask", hint: "Festivals, dance, crafts" },
             { href: "/food", label: "Food", odia: "ଖାଦ୍ୟ", icon: "bowl", hint: "Mahaprasad, pithas, sweets" },
+            { href: "/food/recipes", label: "Recipes", odia: "ରୋଷେଇ", icon: "bowl", hint: "Step-by-step Odia recipes" },
             { href: "/people", label: "People", odia: "ବ୍ୟକ୍ତିତ୍ୱ", icon: "people", hint: "Poets, leaders, artists" },
             { href: "/library", label: "Library", odia: "ଗ୍ରନ୍ଥାଗାର", icon: "book", hint: "Free Odia books & PDFs" },
         ],

@@ -122,6 +122,31 @@ export function articleJsonLd(a: Article) {
         });
     }
 
+    if (a.recipe) {
+        const r = a.recipe;
+        const iso = (m: number) => `PT${Math.floor(m / 60) ? `${Math.floor(m / 60)}H` : ""}${m % 60 ? `${m % 60}M` : ""}` || "PT0M";
+        graph.push({
+            "@type": "Recipe",
+            "@id": `${url}#recipe`,
+            name: a.title.replace(/\s+[-—–:|]\s+.*$/, ""),
+            alternateName: a.odiaTitle,
+            description: a.description,
+            image: a.image ? absoluteUrl(a.image) : undefined,
+            author: { "@type": "Organization", name: SITE.name, url: SITE.url },
+            datePublished: a.date,
+            recipeCuisine: "Odia",
+            recipeCategory: r.course,
+            recipeYield: r.yield,
+            prepTime: iso(r.prep),
+            cookTime: iso(r.cook),
+            totalTime: iso(r.prep + r.cook + (r.rest || 0)),
+            keywords: a.keywords.join(", ") || undefined,
+            suitableForDiet: r.diet?.includes("Vegetarian") ? "https://schema.org/VegetarianDiet" : undefined,
+            recipeIngredient: r.ingredients,
+            recipeInstructions: r.steps.map((text, i) => ({ "@type": "HowToStep", position: i + 1, text, url: `${url}#recipe` })),
+        });
+    }
+
     if (a.faq.length) {
         graph.push({
             "@type": "FAQPage",

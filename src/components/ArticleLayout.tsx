@@ -5,6 +5,7 @@ import { articleJsonLd } from "@/lib/seo";
 import { SITE, categoryInfo, formatDate } from "@/lib/site";
 import ShareButtons from "./ShareButtons";
 import JsonLd from "./JsonLd";
+import RecipeCard from "./RecipeCard";
 import Breadcrumbs from "./Breadcrumbs";
 import Icon from "./Icon";
 import ArticleCard from "./ArticleCard";
@@ -69,6 +70,11 @@ export default function ArticleLayout({ meta, children }: ArticleLayoutProps) {
                                 </a>
                             )}
                             <span>By {meta.author}</span>
+                            {meta.recipe && (
+                                <a href="#recipe" className="inline-flex items-center gap-1.5 rounded-full bg-laterite-500 px-3 py-1 font-semibold text-white hover:bg-laterite-600">
+                                    <Icon name="bowl" className="h-4 w-4" />Jump to recipe
+                                </a>
+                            )}
                         </div>
                         <div className="mt-6">
                             <ShareButtons title={`${meta.title} – ${SITE.name}`} />
@@ -105,6 +111,8 @@ export default function ArticleLayout({ meta, children }: ArticleLayoutProps) {
                     )}
 
                     <div className="article-body max-w-[46rem]">{children}</div>
+
+                    {meta.recipe && <RecipeCard recipe={meta.recipe} title={meta.title} odia={meta.odiaTitle} />}
 
                     {meta.faq.length > 0 && (
                         <section aria-labelledby="faq-heading" className="mt-16 max-w-[46rem]">

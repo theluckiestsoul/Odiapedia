@@ -7,6 +7,7 @@ import { odishaDistricts, districtPageSlug } from "@/data/districts";
 import Icon from "@/components/Icon";
 import ArticleCard from "@/components/ArticleCard";
 import TodayInOdisha from "@/components/TodayInOdisha";
+import OnThisDay from "@/components/OnThisDay";
 import { ChariotWheel, OrnamentDivider } from "@/components/Motifs";
 
 export const metadata: Metadata = {
@@ -181,6 +182,9 @@ export default function Home() {
             <Link href="/calendar" className="hidden font-semibold text-laterite-600 hover:text-laterite-700 md:inline-flex md:items-center md:gap-2">Odia calendar <Icon name="arrow" className="h-4 w-4" /></Link>
           </div>
           <TodayInOdisha />
+          <div className="mt-6">
+            <OnThisDay />
+          </div>
         </div>
       </section>
 

@@ -41,6 +41,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         { path: "/culture/cinema/reviews", priority: 0.4, freq: "monthly" },
         { path: "/latest", priority: 0.5, freq: "weekly" },
         { path: "/library", priority: 0.8, freq: "weekly" },
+        { path: "/language/odia-typing", priority: 0.8, freq: "monthly" },
+        { path: "/language/dictionary", priority: 0.8, freq: "monthly" },
+        { path: "/food/recipes", category: "food", priority: 0.8, freq: "weekly" },
         { path: "/about", category: "about", priority: 0.5, freq: "monthly" },
     ];
 

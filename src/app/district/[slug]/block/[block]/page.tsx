@@ -77,6 +77,7 @@ export default async function BlockPage({ params }: Props) {
                     <Breadcrumbs items={[{ name: "Districts", href: "/districts" }, { name: dName, href: `/district/${slug}` }, { name: `${block.name} block`, href: `/district/${slug}/block/${blockSlug}` }]} />
                     <p className="eyebrow mt-6"><Icon name="list" className="h-4 w-4" />Community development block · {dName} district</p>
                     <h1 className="mt-3 font-display text-4xl font-semibold md:text-5xl">{block.name} block</h1>
+                    <Link href={`/map#d=${slug}&b=${block.code}`} className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-laterite-600 hover:underline"><Icon name="map" className="h-4 w-4" />See {block.name} and its villages on the map</Link>
                     <p className="mt-4 max-w-3xl text-lg text-ink-600">
                         {block.name} is a community development block of {dName} district, Odisha, with {gps.length} gram panchayats and {block.villages.toLocaleString("en-IN")} villages
                         {uninhabited ? ` (${uninhabited} of them uninhabited)` : ""}, as listed in the Government of India&apos;s Local Government Directory.
