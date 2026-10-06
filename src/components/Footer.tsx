@@ -1,127 +1,116 @@
 import Link from "next/link";
+import Image from "next/image";
+import { SITE } from "@/lib/site";
 
-const footerLinks = [
-    { href: "/language", label: "Language" },
-    { href: "/culture", label: "Culture" },
-    { href: "/history", label: "History" },
-    { href: "/districts", label: "Districts" },
-    { href: "/food", label: "Food" },
-    { href: "/people", label: "People" },
-    { href: "/about", label: "About" },
+const columns = [
+    {
+        title: "Encyclopedia",
+        links: [
+            { href: "/language", label: "Odia language" },
+            { href: "/learn", label: "Learn Odia" },
+            { href: "/history", label: "History" },
+            { href: "/history/timeline", label: "Timeline" },
+            { href: "/culture", label: "Culture & festivals" },
+            { href: "/food", label: "Food" },
+            { href: "/people", label: "People" },
+        ],
+    },
+    {
+        title: "Places & travel",
+        links: [
+            { href: "/districts", label: "30 districts" },
+            { href: "/map", label: "Interactive map" },
+            { href: "/travel", label: "Travel guides" },
+            { href: "/travel/odisha-3-day-itinerary", label: "3-day itinerary" },
+            { href: "/travel/best-time-to-visit-odisha", label: "Best time to visit" },
+            { href: "/travel/plan", label: "Plan a trip" },
+            { href: "/calendar", label: "Odia calendar" },
+        ],
+    },
+    {
+        title: "Odiapedia",
+        links: [
+            { href: "/about", label: "About us" },
+            { href: "/about/editorial-policy", label: "Editorial policy" },
+            { href: "/about/corrections-policy", label: "Corrections" },
+            { href: "/about/cite-odiapedia", label: "Cite Odiapedia" },
+            { href: "/shop", label: "Shop authentic Odisha" },
+            { href: "/partners", label: "Partner with us" },
+            { href: "/latest", label: "Latest updates" },
+        ],
+    },
+];
+
+const legal = [
+    { href: "/about/privacy-policy", label: "Privacy" },
+    { href: "/about/terms", label: "Terms" },
+    { href: "/about/sponsorship-policy", label: "Sponsorship & affiliate policy" },
+    { href: "/sitemap.xml", label: "Sitemap" },
+];
+
+const socials = [
+    { href: SITE.social.x, label: "X (Twitter)", path: "M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" },
+    { href: SITE.social.instagram, label: "Instagram", path: "M12 2.2c3.2 0 3.6 0 4.8.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2zm0 2.2c-3.1 0-3.5 0-4.7.1-1.1.1-1.7.2-2.1.4-.5.2-.9.4-1.3.8-.4.4-.6.8-.8 1.3-.2.4-.3 1-.4 2.1-.1 1.2-.1 1.6-.1 4.7s0 3.5.1 4.7c.1 1.1.2 1.7.4 2.1.2.5.4.9.8 1.3.4.4.8.6 1.3.8.4.2 1 .3 2.1.4 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c1.1-.1 1.7-.2 2.1-.4.5-.2.9-.4 1.3-.8.4-.4.6-.8.8-1.3.2-.4.3-1 .4-2.1.1-1.2.1-1.6.1-4.7s0-3.5-.1-4.7c-.1-1.1-.2-1.7-.4-2.1-.2-.5-.4-.9-.8-1.3-.4-.4-.8-.6-1.3-.8-.4-.2-1-.3-2.1-.4-1.2-.1-1.6-.1-4.7-.1zm0 3.4a4.2 4.2 0 1 1 0 8.4 4.2 4.2 0 0 1 0-8.4zm0 6.9a2.7 2.7 0 1 0 0-5.4 2.7 2.7 0 0 0 0 5.4zm5.3-7.1a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" },
+    { href: SITE.social.facebook, label: "Facebook", path: "M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" },
+    { href: SITE.social.youtube, label: "YouTube", path: "M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31.3 31.3 0 0 0 0 12a31.3 31.3 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.3 31.3 0 0 0 24 12a31.3 31.3 0 0 0-.5-5.8zM9.6 15.6V8.4l6.2 3.6z" },
 ];
 
 export default function Footer() {
-    const currentYear = new Date().getFullYear();
-
     return (
-        <footer className="bg-zinc-950 border-t border-zinc-900">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-                    {/* Brand */}
-                    <div className="space-y-6">
-                        <div className="flex items-center gap-2">
-                            <span className="text-2xl font-bold text-white tracking-tight">
-                                Odiapedia
+        <footer className="relative mt-auto bg-ink-950 text-sand-100">
+            <div className="border-temple" aria-hidden="true" />
+            <div className="absolute inset-0 overflow-hidden" aria-hidden="true"><div className="h-full w-full bg-ikat-light opacity-60" /></div>
+            <div className="container-page relative pb-10 pt-16">
+                <div className="grid gap-12 lg:grid-cols-[1.3fr_2fr]">
+                    <div>
+                        <Link href="/" className="inline-flex items-center gap-3">
+                            <span className="relative h-12 w-12 overflow-hidden rounded-xl bg-white">
+                                <Image src="/logo.png" alt="" fill sizes="48px" className="object-cover" />
                             </span>
-                        </div>
-                        <p className="text-zinc-400 text-sm leading-relaxed">
-                            Discover the rich heritage of Odisha - its language, culture,
-                            history, cuisine, and remarkable people.
+                            <span>
+                                <span className="block font-display text-2xl font-semibold text-white">Odiapedia</span>
+                                <span lang="or" className="block font-odia text-sm text-saffron-300">ଓଡ଼ିଆପିଡ଼ିଆ</span>
+                            </span>
+                        </Link>
+                        <p className="mt-5 max-w-sm leading-relaxed text-sand-200/80">
+                            A free, bilingual encyclopedia of Odisha and the Odia language — written from cited sources, reviewed, and corrected in the open.
                         </p>
-                        <p className="text-zinc-500 text-lg font-medium odia-text">
-                            ଓଡ଼ିଶାର ସମୃଦ୍ଧ ଐତିହ୍ୟ ଆବିଷ୍କାର କରନ୍ତୁ
-                        </p>
-                    </div>
-
-                    {/* Quick Links */}
-                    <div>
-                        <h3 className="text-sm font-semibold text-white uppercase tracking-wider mb-6">
-                            Explore
-                        </h3>
-                        <ul className="space-y-3">
-                            {footerLinks.map((link) => (
-                                <li key={link.href}>
-                                    <Link
-                                        href={link.href}
-                                        className="text-zinc-400 hover:text-white transition-colors text-sm animated-underline inline-block"
-                                    >
-                                        {link.label}
-                                    </Link>
-                                </li>
+                        <p lang="or" className="mt-3 font-odia text-sand-200/70">ଓଡ଼ିଶାର ଭାଷା, ଇତିହାସ ଓ ସଂସ୍କୃତିର ମୁକ୍ତ ବିଶ୍ୱକୋଷ</p>
+                        <div className="mt-6 flex gap-2">
+                            {socials.map((s) => (
+                                <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer me" aria-label={`Odiapedia on ${s.label}`} className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-sand-100 transition-colors hover:border-saffron-400 hover:text-saffron-300">
+                                    <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor" aria-hidden="true"><path d={s.path} /></svg>
+                                </a>
                             ))}
-                        </ul>
-                    </div>
-
-                    {/* About + Social */}
-                    <div>
-                        <h3 className="text-sm font-semibold text-white uppercase tracking-wider mb-6">
-                            Connect With Us
-                        </h3>
-                        <p className="text-zinc-400 text-sm leading-relaxed mb-6">
-                            Follow us on social media for daily Odia culture updates.
-                        </p>
-                        <div className="flex gap-3">
-                            {/* X/Twitter */}
-                            <a
-                                href="https://x.com/TheOdiaPedia"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center hover:bg-orange-600 hover:text-white transition-all group text-zinc-400"
-                                aria-label="Follow on X"
-                            >
-                                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                                </svg>
-                            </a>
-                            {/* Instagram */}
-                            <a
-                                href="https://www.instagram.com/odia.pedia/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-teal-600 hover:text-white transition-all group text-slate-400 ring-1 ring-slate-700 hover:ring-teal-500"
-                                aria-label="Follow on Instagram"
-                            >
-                                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-                                </svg>
-                            </a>
-                            {/* Facebook */}
-                            <a
-                                href="https://www.facebook.com/profile.php?id=61586243815755"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center hover:bg-orange-600 hover:text-white transition-all group text-zinc-400"
-                                aria-label="Follow on Facebook"
-                            >
-                                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-                                </svg>
-                            </a>
-                            {/* YouTube */}
-                            <a
-                                href="https://www.youtube.com/@TheOdiapedia"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center hover:bg-orange-600 hover:text-white transition-all group text-zinc-400"
-                                aria-label="Subscribe on YouTube"
-                            >
-                                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
-                                </svg>
-                            </a>
                         </div>
+                    </div>
+                    <div className="grid grid-cols-2 gap-8 sm:grid-cols-3">
+                        {columns.map((col) => (
+                            <div key={col.title}>
+                                <h2 className="font-sans text-xs font-semibold uppercase tracking-[0.18em] !text-saffron-300">{col.title}</h2>
+                                <ul className="mt-4 space-y-2.5">
+                                    {col.links.map((l) => (
+                                        <li key={l.href}>
+                                            <Link href={l.href} className="text-sm text-sand-100/80 transition-colors hover:text-white">{l.label}</Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        ))}
                     </div>
                 </div>
 
-                <div className="mt-16 pt-8 border-t border-zinc-900">
-                    <div className="text-center">
-                        <p className="text-zinc-500 text-sm">
-                            © {currentYear} Odiapedia. Made with ❤️ for Odisha
-                        </p>
-                        <p className="text-zinc-600 text-xs mt-2 odia-text">
-                            ଓଡ଼ିଶାକୁ ଭଲ ପାଇବା ସହିତ ତିଆରି
-                        </p>
-                    </div>
+                <div className="mt-14 flex flex-col gap-4 border-t border-white/10 pt-6 text-xs text-sand-200/60 md:flex-row md:items-center md:justify-between">
+                    <p>
+                        © {new Date().getFullYear()} Odiapedia. Independent and not affiliated with the Government of Odisha. Text is original unless cited; images marked “Illustration” are artistic renderings.
+                    </p>
+                    <ul className="flex flex-wrap gap-x-5 gap-y-2">
+                        {legal.map((l) => (
+                            <li key={l.href}>
+                                <Link href={l.href} className="hover:text-white">{l.label}</Link>
+                            </li>
+                        ))}
+                    </ul>
                 </div>
             </div>
         </footer>

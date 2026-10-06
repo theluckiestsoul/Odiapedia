@@ -7,6 +7,10 @@ import path from "path";
 import matter from "gray-matter";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { useMDXComponents } from "@/../mdx-components";
+import PageHero from "@/components/PageHero";
+import Icon from "@/components/Icon";
+import JsonLd from "@/components/JsonLd";
+import { SITE } from "@/lib/site";
 
 const lessonsDir = path.join(process.cwd(), "content/learn");
 
@@ -64,7 +68,7 @@ export async function generateMetadata({
     }
 
     return {
-        title: lesson.meta.title,
+        title: `${lesson.meta.title} – Learn Odia Lesson ${lesson.meta.lesson}`,
         description: lesson.meta.description,
         alternates: {
             canonical: `/learn/${slug}`,
@@ -84,123 +88,60 @@ export default async function LessonPage({
         notFound();
     }
 
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const components = useMDXComponents({});
+    // The hero renders the title; drop a duplicate leading "# Title" from the lesson body.
+    const content = lesson.content.replace(/^\s*#\s+[^\n]+\n+/, "");
 
     return (
-        <div className="min-h-screen bg-slate-50">
-            {/* Hero Section */}
-            <section className="relative py-16 overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-r from-teal-900 via-teal-800 to-blue-900"></div>
-                <div className="absolute inset-0 bg-water opacity-20 mix-blend-soft-light"></div>
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-slate-50/10"></div>
+        <div>
+            <JsonLd
+                data={{
+                    "@context": "https://schema.org",
+                    "@type": "LearningResource",
+                    name: lesson.meta.title,
+                    description: lesson.meta.description,
+                    url: `${SITE.url}/learn/${slug}`,
+                    inLanguage: "en",
+                    teaches: "Odia language",
+                    educationalLevel: "Beginner",
+                    learningResourceType: "Lesson",
+                    isAccessibleForFree: true,
+                    isPartOf: { "@type": "Course", name: "Learn Odia", url: `${SITE.url}/learn`, provider: { "@id": `${SITE.url}/#organization` } },
+                }}
+            />
+            <PageHero
+                title={lesson.meta.title}
+                description={lesson.meta.description}
+                icon="pen"
+                eyebrow={`Lesson ${lesson.meta.lesson}`}
+                crumbs={[{ name: "Learn Odia", href: "/learn" }, { name: `Lesson ${lesson.meta.lesson}`, href: `/learn/${slug}` }]}
+            />
 
-                <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                    {/* Breadcrumb */}
-                    <nav className="flex items-center gap-2 text-sm mb-8">
-                        <Link href="/" className="text-teal-100/70 hover:text-white transition-colors">
-                            Home
-                        </Link>
-                        <span className="text-teal-300">/</span>
-                        <Link href="/learn" className="text-teal-100/70 hover:text-white transition-colors">
-                            Learn
-                        </Link>
-                        <span className="text-teal-300">/</span>
-                        <span className="text-teal-200">Lesson {lesson.meta.lesson}</span>
-                    </nav>
-
-                    {/* Lesson Badge */}
-                    <div className="flex items-center gap-2 mb-6">
-                        <span className="text-2xl">📖</span>
-                        <span className="bg-white/10 text-teal-100 px-3 py-1 rounded-full text-sm font-medium border border-white/20 backdrop-blur-sm">
-                            Lesson {lesson.meta.lesson}
-                        </span>
-                    </div>
-
-                    {/* Title */}
-                    <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 font-display leading-tight">
-                        {lesson.meta.title}
-                    </h1>
-
-                    {/* Description */}
-                    <p className="text-xl text-teal-100 mb-6 leading-relaxed max-w-2xl">
-                        {lesson.meta.description}
-                    </p>
-
-                    {/* Decorative divider */}
-                    <div className="flex items-center gap-4 mt-10">
-                        <div className="h-px flex-1 bg-gradient-to-r from-transparent via-teal-400/50 to-transparent"></div>
-                    </div>
-                </div>
-            </section>
-
-            {/* Content */}
-            <article className="py-12 bg-slate-50 relative">
-                <div className="absolute inset-0 bg-water opacity-5 pointer-events-none"></div>
-
-                <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="bg-white rounded-2xl shadow-xl shadow-slate-200/50 p-8 md:p-12 border border-slate-100">
-                        <div className="prose prose-slate prose-lg max-w-none prose-headings:font-display prose-headings:text-slate-900 prose-p:text-slate-600 prose-a:text-teal-600 hover:prose-a:text-teal-500 prose-strong:text-slate-800 prose-code:text-teal-600 prose-code:bg-teal-50 prose-code:px-1 prose-code:rounded prose-code:before:content-[''] prose-code:after:content-['']">
-                            <MDXRemote
-                                source={lesson.content}
-                                components={components}
-                                options={{
-                                    mdxOptions: {
-                                        remarkPlugins: [remarkGfm],
-                                    }
-                                }}
-                            />
-                        </div>
-                    </div>
+            <article className="container-page py-12">
+                <div className="article-body mx-auto max-w-[46rem]">
+                    <MDXRemote
+                        source={content}
+                        components={components}
+                        options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
+                    />
                 </div>
             </article>
 
-            {/* Navigation */}
-            <section className="py-8 bg-white border-t border-slate-200">
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex justify-between items-center">
-                        {lesson.meta.prevLesson ? (
-                            <Link
-                                href={`/learn/${lesson.meta.prevLesson}`}
-                                className="inline-flex items-center gap-2 text-slate-600 hover:text-teal-600 transition-colors group font-medium"
-                            >
-                                <svg
-                                    className="w-5 h-5 transform group-hover:-translate-x-1 transition-transform text-teal-500"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
-                                >
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                                </svg>
-                                Previous Lesson
-                            </Link>
-                        ) : (
-                            <Link
-                                href="/learn"
-                                className="inline-flex items-center gap-2 text-slate-500 hover:text-teal-600 transition-colors font-medium"
-                            >
-                                ← Back to Learn
-                            </Link>
-                        )}
-
-                        {lesson.meta.nextLesson && (
-                            <Link
-                                href={`/learn/${lesson.meta.nextLesson}`}
-                                className="inline-flex items-center gap-2 text-slate-600 hover:text-teal-600 transition-colors group font-medium"
-                            >
-                                Next Lesson
-                                <svg
-                                    className="w-5 h-5 transform group-hover:translate-x-1 transition-transform text-teal-500"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
-                                >
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                </svg>
-                            </Link>
-                        )}
-                    </div>
+            <nav aria-label="Lessons" className="border-t border-sand-200 bg-sand-50 py-8">
+                <div className="mx-auto flex max-w-[46rem] items-center justify-between px-4">
+                    {lesson.meta.prevLesson ? (
+                        <Link href={`/learn/${lesson.meta.prevLesson}`} className="btn-ghost"><Icon name="arrowLeft" className="h-4 w-4" />Previous lesson</Link>
+                    ) : (
+                        <Link href="/learn" className="btn-ghost"><Icon name="arrowLeft" className="h-4 w-4" />All lessons</Link>
+                    )}
+                    {lesson.meta.nextLesson ? (
+                        <Link href={`/learn/${lesson.meta.nextLesson}`} className="btn-primary">Next lesson<Icon name="arrow" className="h-4 w-4" /></Link>
+                    ) : (
+                        <Link href="/language/odia-language" className="btn-primary">About the Odia language<Icon name="arrow" className="h-4 w-4" /></Link>
+                    )}
                 </div>
-            </section>
+            </nav>
         </div>
     );
 }

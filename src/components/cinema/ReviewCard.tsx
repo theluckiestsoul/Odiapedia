@@ -23,10 +23,10 @@ export default function ReviewCard({ review }: { review: MovieReview }) {
                 <div className="mb-4">
                     <div className="flex justify-between items-start mb-2">
                         <div>
-                            <h3 className="text-2xl font-bold text-slate-900 font-display group-hover:text-teal-700 transition-colors">
+                            <h3 className="text-2xl font-bold text-slate-900 font-display group-hover:text-laterite-700 transition-colors">
                                 {review.title}
                             </h3>
-                            <h4 className="text-xl text-teal-600 odia-text font-medium">
+                            <h4 className="text-xl text-laterite-600 odia-text font-medium">
                                 {review.titleOdia}
                             </h4>
                         </div>
@@ -54,7 +54,7 @@ export default function ReviewCard({ review }: { review: MovieReview }) {
                         </p>
                     </div>
                     {/* Odia Review */}
-                    <div className="relative pl-4 border-l-2 border-teal-200 bg-teal-50/30 py-2 rounded-r-lg">
+                    <div className="relative pl-4 border-l-2 border-laterite-200 bg-laterite-50/30 py-2 rounded-r-lg">
                         <p className="text-slate-700 odia-text leading-relaxed">
                             "{review.review.od}"
                         </p>
@@ -63,7 +63,7 @@ export default function ReviewCard({ review }: { review: MovieReview }) {
 
                 <div className="mt-auto pt-4 border-t border-slate-100">
                     <div className="flex flex-col gap-1">
-                        <span className="text-xs font-bold uppercase tracking-wider text-teal-600">Verdict</span>
+                        <span className="text-xs font-bold uppercase tracking-wider text-laterite-600">Verdict</span>
                         <p className="font-medium text-slate-900">{review.verdict.en}</p>
                         <p className="text-sm text-slate-600 odia-text">{review.verdict.od}</p>
                     </div>

@@ -20,7 +20,7 @@ function MapLoadingPlaceholder() {
         <div className="w-full h-[500px] md:h-[600px] bg-slate-100 rounded-xl flex items-center justify-center border border-slate-200">
             <div className="text-center">
                 <div className="text-4xl mb-4 animate-pulse">🗺️</div>
-                <div className="text-teal-600 font-medium">Loading map...</div>
+                <div className="text-laterite-600 font-medium">Loading map...</div>
             </div>
         </div>
     );
@@ -35,7 +35,7 @@ export default function MapPage() {
         <div className="min-h-screen bg-slate-50">
             {/* Hero Section */}
             <section className="relative py-16 overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-r from-teal-900 via-teal-800 to-blue-900"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-ink-950 via-ink-900 to-laterite-900"></div>
                 <div className="absolute inset-0 bg-water opacity-20 mix-blend-soft-light"></div>
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent to-slate-50/10"></div>
 
@@ -44,10 +44,10 @@ export default function MapPage() {
                     <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 font-display">
                         Map of Odisha
                     </h1>
-                    <p className="text-2xl text-teal-200 odia-text mb-4">
+                    <p className="text-2xl text-laterite-200 odia-text mb-4">
                         ଓଡ଼ିଶା ମାନଚିତ୍ର
                     </p>
-                    <p className="text-lg text-teal-50 max-w-2xl mx-auto text-shadow-sm">
+                    <p className="text-lg text-laterite-50 max-w-2xl mx-auto text-shadow-sm">
                         Explore all 30 districts of Odisha. Click on any district to see details.
                     </p>
                 </div>
@@ -186,7 +186,7 @@ export default function MapPage() {
                         </Link>
                         <Link
                             href="/culture"
-                            className="px-6 py-3 bg-teal-600 hover:bg-teal-700 rounded-xl text-white font-medium transition-colors shadow-md hover:shadow-lg"
+                            className="px-6 py-3 bg-laterite-600 hover:bg-laterite-700 rounded-xl text-white font-medium transition-colors shadow-md hover:shadow-lg"
                         >
                             🎭 Explore Culture
                         </Link>

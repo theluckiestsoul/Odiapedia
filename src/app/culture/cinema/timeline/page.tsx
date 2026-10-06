@@ -4,6 +4,7 @@ import TimelineView from "@/components/history/TimelineView";
 import { cinemaEvents, cinemaEraColors } from "@/data/cinema-timeline";
 
 export const metadata: Metadata = {
+    alternates: { canonical: "/culture/cinema/timeline" },
     title: "Timeline of Odia Cinema (Ollywood)",
     description: "Explore the journey of Odia Cinema from 1936 to present. Discover the milestones, classics, and modern hits of Ollywood.",
 };
@@ -13,7 +14,7 @@ export default function CinemaTimelinePage() {
         <div className="min-h-screen bg-slate-50">
             {/* Hero Section */}
             <section className="relative py-24 overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-r from-purple-900 via-violet-800 to-indigo-900"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-ink-950 via-ink-900 to-laterite-900"></div>
                 <div className="absolute inset-0 bg-water opacity-20 mix-blend-soft-light"></div>
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent to-slate-50/10"></div>
 

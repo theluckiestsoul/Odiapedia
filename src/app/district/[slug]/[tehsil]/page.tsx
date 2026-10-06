@@ -7,6 +7,8 @@ import { useMDXComponents } from "@/../mdx-components";
 import Link from "next/link";
 import { getSpotsByTehsil } from "@/lib/spots";
 import remarkGfm from "remark-gfm";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import Icon from "@/components/Icon";
 
 interface PageProps {
     params: Promise<{ slug: string; tehsil: string }>;
@@ -35,8 +37,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     }
 
     return {
-        title: `${tehsilData.title} - ${tehsilData.district} District | Odiapedia`,
+        title: `${tehsilData.title} Tehsil, ${tehsilData.district} District`,
         description: tehsilData.description,
+        alternates: { canonical: `/district/${slug}/${tehsil}` },
         openGraph: {
             title: tehsilData.title,
             description: tehsilData.description,
@@ -57,107 +60,65 @@ export default async function TehsilPage({ params }: PageProps) {
         notFound();
     }
 
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const components = useMDXComponents({});
 
+    const facts = [
+        { k: "District", v: districtData?.title || slug },
+        { k: "Population", v: tehsilData.population },
+        { k: "Villages", v: tehsilData.villages_count },
+    ].filter((f) => f.v);
+
     return (
-        <div className="min-h-screen bg-black text-amber-100">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-                <nav className="flex items-center gap-2 text-sm mb-8 text-amber-500/60">
-                    <Link href="/" className="hover:text-amber-400">Home</Link>
-                    <span>/</span>
-                    <Link href="/districts" className="hover:text-amber-400">Districts</Link>
-                    <span>/</span>
-                    <Link href={`/district/${slug}`} className="hover:text-amber-400">
-                        {districtData?.title || slug}
-                    </Link>
-                    <span>/</span>
-                    <span className="text-amber-300">{tehsilData.title}</span>
-                </nav>
+        <div>
+            <header className="relative overflow-hidden border-b border-sand-200 bg-sand-100">
+                <div className="absolute inset-0 bg-ikat opacity-60" aria-hidden="true" />
+                <div className="container-page relative py-10 md:py-14">
+                    <Breadcrumbs items={[{ name: "Districts", href: "/districts" }, { name: districtData?.title || slug, href: `/district/${slug}` }, { name: tehsilData.title, href: `/district/${slug}/${tehsil}` }]} />
+                    <p className="eyebrow mt-6"><Icon name="pin" className="h-4 w-4" />Tehsil (Tahasila)</p>
+                    <h1 className="mt-3 font-display text-5xl font-semibold">{tehsilData.title}</h1>
+                    <p className="mt-4 max-w-3xl text-lg text-ink-600">{tehsilData.description}</p>
+                    {facts.length > 0 && (
+                        <dl className="mt-8 grid max-w-2xl grid-cols-3 gap-3">
+                            {facts.map((f) => (
+                                <div key={f.k} className="rounded-2xl border border-sand-200 bg-white/80 p-4">
+                                    <dt className="text-xs uppercase tracking-wider text-ink-500">{f.k}</dt>
+                                    <dd className="mt-1 font-display text-lg font-semibold text-ink-900">{String(f.v)}</dd>
+                                </div>
+                            ))}
+                        </dl>
+                    )}
+                </div>
+            </header>
 
-                <header className="mb-12 text-center">
-                    <div className="inline-block px-3 py-1 mb-4 rounded-full bg-amber-900/30 border border-amber-800/30 text-amber-400 text-xs font-semibold tracking-wide uppercase">
-                        Tehsil (Tahasila)
-                    </div>
-                    <h1 className="text-5xl md:text-6xl font-bold mb-4 font-display text-transparent bg-clip-text bg-gradient-to-r from-amber-200 to-amber-500">
-                        {tehsilData.title}
-                    </h1>
-                    <p className="text-xl text-amber-100/60 max-w-2xl mx-auto">
-                        {tehsilData.description}
-                    </p>
-                </header>
-
-                {/* At a Glance Section */}
-                <section className="mb-12 bg-amber-950/20 border border-amber-900/40 rounded-2xl p-8 backdrop-blur-sm">
-                    <h2 className="text-2xl font-display font-bold text-amber-500 mb-6 flex items-center gap-2">
-                        <span>📍</span> Functional Facts
-                    </h2>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <div className="p-4 rounded-xl bg-black/40 border border-amber-900/20">
-                            <span className="block text-amber-500/60 text-xs uppercase tracking-wider mb-1">Parent District</span>
-                            <span className="text-lg font-semibold text-amber-100 capitalize">{districtData?.title || slug}</span>
-                        </div>
-                        <div className="p-4 rounded-xl bg-black/40 border border-amber-900/20">
-                            <span className="block text-amber-500/60 text-xs uppercase tracking-wider mb-1">Population</span>
-                            <span className="text-lg font-semibold text-amber-100">{tehsilData.population || "N/A"}</span>
-                        </div>
-                        <div className="p-4 rounded-xl bg-black/40 border border-amber-900/20">
-                            <span className="block text-amber-500/60 text-xs uppercase tracking-wider mb-1">Villages</span>
-                            <span className="text-lg font-semibold text-amber-100">{tehsilData.villages_count || "N/A"}</span>
-                        </div>
-                    </div>
-                </section>
-
-                {/* SPOTS SECTION (New in Phase 3) */}
+            <div className="container-page py-12">
                 {spots.length > 0 && (
                     <section className="mb-12">
-                        <h2 className="text-2xl font-display font-bold text-amber-500 mb-6 flex items-center gap-2">
-                            <span>🗺️</span> Places to Visit in {tehsilData.title}
-                        </h2>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <h2 className="mb-6 font-display text-3xl font-semibold">Places to visit in {tehsilData.title}</h2>
+                        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
                             {spots.map((spot) => (
-                                <Link
-                                    key={spot.slug}
-                                    href={`/district/${slug}/${tehsil}/${spot.slug}`}
-                                    className="group block bg-neutral-900/50 border border-amber-900/20 rounded-xl overflow-hidden hover:border-amber-500/50 transition-all"
-                                >
-                                    <div className="p-6">
-                                        <div className="flex justify-between items-start mb-2">
-                                            <span className="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-amber-900/40 text-amber-400 mb-2">
-                                                {spot.category}
-                                            </span>
-                                        </div>
-                                        <h3 className="text-xl font-bold text-amber-100 mb-2 group-hover:text-amber-400 transition-colors">
-                                            {spot.title}
-                                        </h3>
-                                        <p className="text-amber-100/60 text-sm line-clamp-2">
-                                            {spot.description}
-                                        </p>
-                                    </div>
+                                <Link key={spot.slug} href={`/district/${slug}/${tehsil}/${spot.slug}`} className="group card-link block p-6">
+                                    <span className="eyebrow">{spot.category}</span>
+                                    <h3 className="mt-2 font-display text-xl font-semibold group-hover:text-laterite-700">{spot.title}</h3>
+                                    <p className="mt-2 line-clamp-2 text-sm text-ink-600">{spot.description}</p>
                                 </Link>
                             ))}
                         </div>
                     </section>
                 )}
 
-                {/* Main Content */}
-                <article className="prose prose-lg prose-invert prose-amber max-w-none">
+                <article className="article-body max-w-[46rem]">
                     <MDXRemote
-                        source={tehsilData.content}
+                        source={tehsilData.content.replace(/^\s*#\s+[^\n]+\n+/, "")}
                         components={components}
                         options={{ mdxOptions: { remarkPlugins: [remarkGfm] }, blockJS: false }}
                     />
                 </article>
 
-                <section className="mt-16 pt-12 border-t border-amber-900/30">
-                    <div className="bg-gradient-to-br from-amber-950/30 to-black p-8 rounded-2xl border border-amber-900/20 text-center">
-                        <h3 className="text-2xl font-bold text-amber-100 mb-2 font-display">Are you from {tehsilData.title}?</h3>
-                        <p className="text-amber-100/60 mb-6">
-                            Help us preserve the history of your village. Add photos, local legends, or corrections.
-                        </p>
-                        <button className="px-6 py-3 bg-amber-600 hover:bg-amber-500 text-black font-semibold rounded-full transition-colors">
-                            Contribute Story (Coming Soon)
-                        </button>
-                    </div>
+                <section className="mt-16 max-w-[46rem] rounded-3xl border border-sand-200 bg-sand-100 p-8">
+                    <h2 className="font-display text-2xl font-semibold">Are you from {tehsilData.title}?</h2>
+                    <p className="mt-2 text-ink-600">Help us document local history: send rights-cleared photos, local legends (we label them as tradition) or corrections, with a source where possible.</p>
+                    <a href={`mailto:contact@odiapedia.com?subject=${encodeURIComponent(`Local knowledge: ${tehsilData.title}`)}`} className="btn-primary mt-5"><Icon name="mail" className="h-4 w-4" />Share what you know</a>
                 </section>
             </div>
         </div>

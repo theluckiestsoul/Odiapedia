@@ -83,11 +83,11 @@ export default function Countdown({
                     minutes: timeLeft.minutes,
                     seconds: timeLeft.seconds,
                 }).map(([unit, value]) => (
-                    <div key={unit} className="bg-white/80 backdrop-blur rounded-xl p-4 text-center border border-teal-100 shadow-sm hover:shadow-md transition-all group ring-1 ring-slate-50 hover:ring-teal-100">
-                        <div className="text-3xl md:text-4xl font-bold text-teal-700 mb-1 font-mono group-hover:scale-110 transition-transform duration-300">
+                    <div key={unit} className="bg-white/80 backdrop-blur rounded-xl p-4 text-center border border-laterite-100 shadow-sm hover:shadow-md transition-all group ring-1 ring-slate-50 hover:ring-laterite-100">
+                        <div className="text-3xl md:text-4xl font-bold text-laterite-700 mb-1 font-mono group-hover:scale-110 transition-transform duration-300">
                             {value.toString().padStart(2, '0')}
                         </div>
-                        <div className="text-xs uppercase tracking-wider text-slate-500 font-medium group-hover:text-teal-600">
+                        <div className="text-xs uppercase tracking-wider text-slate-500 font-medium group-hover:text-laterite-600">
                             {labels[unit as keyof typeof labels]}
                         </div>
                     </div>

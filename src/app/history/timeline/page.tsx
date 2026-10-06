@@ -3,6 +3,7 @@ import Link from "next/link";
 import TimelineView, { TimelineEvent } from "@/components/history/TimelineView";
 
 export const metadata: Metadata = {
+    alternates: { canonical: "/history/timeline" },
     title: "Timeline of Odisha History",
     description: "Explore the complete history of Odisha from prehistoric times to modern era - ancient civilizations, empires, dynasties, and major events.",
 };
@@ -10,146 +11,146 @@ export const metadata: Metadata = {
 const timelineEvents: TimelineEvent[] = [
     // Prehistoric Era
     {
-        year: "~1,000,000 BCE",
+        year: "Lower Palaeolithic",
         era: "Prehistoric",
         title: "Early Human Presence",
-        description: "Stone Age tools discovered in Mayurbhanj and Keonjhar districts indicate early human habitation.",
+        description: "Lower Palaeolithic (Acheulian) stone tools found in Mayurbhanj, Keonjhar, Sundargarh and Sambalpur districts show very early human presence; exact dates are uncertain.",
         category: "prehistoric",
     },
     {
-        year: "~30,000 BCE",
+        year: "Upper Palaeolithic",
         era: "Prehistoric",
-        title: "Paleolithic Settlements",
-        description: "Cave paintings and paleolithic artifacts found in Gudahandi (Kalahandi) and Vikramkhol (Jharsuguda).",
+        title: "Prehistoric Rock Art",
+        description: "Rock carvings and paintings attributed to the Upper Palaeolithic are reported from the Gudahandi hills in Kalahandi district.",
         category: "prehistoric",
     },
     {
-        year: "~10,000 BCE",
+        year: "Date debated",
         era: "Prehistoric",
-        title: "Vikramkhol Rock Inscriptions",
-        description: "Ancient rock inscriptions discovered - possibly one of the oldest human writings in the region.",
+        title: "Vikramkhol Rock Markings",
+        description: "Rock markings at Vikramkhol near Belpahar (Jharsuguda), studied by K. P. Jayaswal in the 1930s, were tentatively dated by him to about 1500 BCE. Scholars still debate their age and whether they are writing at all.",
         category: "prehistoric",
     },
     {
-        year: "~3000 BCE",
+        year: "Neolithic",
         era: "Prehistoric",
         title: "Neolithic Communities",
-        description: "Agricultural settlements emerge with evidence of rice cultivation and domesticated animals.",
+        description: "Neolithic tools such as hoes, chisels and grinding stones, along with pottery, are found at sites such as Kuchai near Baripada, pointing to early farming communities.",
         category: "prehistoric",
     },
     // Ancient Era
     {
-        year: "~1100 BCE",
+        year: "1st millennium BCE",
         era: "Ancient",
-        title: "Early Kalinga Dynasties",
+        title: "Kalinga in Early Literature",
         titleOdia: "କଳିଙ୍ଗ",
-        description: "Early Kalinga dynasties emerge. The region develops maritime trade with Southeast Asia.",
+        description: "Kalinga is named as a kingdom in early Sanskrit, Buddhist and Jain literature, including the Mahabharata. Its maritime links with Southeast Asia developed over the following centuries.",
         category: "ancient",
     },
     {
-        year: "~700 BCE",
+        year: "Legendary period",
         era: "Ancient",
-        title: "Suryavamsha of Kalinga",
-        description: "The Suryavamsha dynasty rules Kalinga, establishing it as a significant power.",
+        title: "Legendary Kings of Kalinga",
+        description: "According to tradition, epic and Buddhist texts name several early kings of Kalinga; these accounts are legendary and cannot be dated reliably.",
         category: "ancient",
     },
     {
-        year: "~600 BCE",
+        year: "c. 6th century BCE",
         era: "Ancient",
-        title: "Mahajanapada Period",
-        description: "Kalinga emerges as one of the 16 Mahajanapadas (great kingdoms) of ancient India.",
+        title: "Age of the Mahajanapadas",
+        description: "Kalinga is not among the sixteen Mahajanapadas listed in the Buddhist Anguttara Nikaya, but early Buddhist and Jain texts mention it as a distinct kingdom in this period.",
         category: "ancient",
     },
     {
-        year: "350 BCE",
+        year: "c. 350 BCE",
         era: "Ancient",
         title: "Nanda Empire Conquest",
-        description: "Kalinga is conquered by Mahapadmananda and integrated into the Nanda Empire.",
+        description: "Mahapadma Nanda of Magadha is presumed to have conquered Kalinga. Kharavela's Hathigumpha inscription later refers to a Nanda king who opened a canal and carried away a Jain image from Kalinga.",
         category: "ancient",
     },
     {
-        year: "322 BCE",
+        year: "Late 4th century BCE",
         era: "Ancient",
-        title: "Independence from Nanda",
-        description: "Kalinga breaks away from the Nanda Empire after Chandragupta Maurya's rebellion.",
+        title: "Kalinga Outside Mauryan Rule",
+        description: "After the fall of the Nandas, Kalinga appears to have remained independent of the Mauryas until Ashoka's conquest; how it left Nanda control is not recorded.",
         category: "ancient",
     },
     {
-        year: "261 BCE",
+        year: "c. 261 BCE",
         era: "Ancient",
         title: "Kalinga War",
         titleOdia: "କଳିଙ୍ଗ ଯୁଦ୍ଧ",
-        description: "Emperor Ashoka's brutal conquest kills 100,000+ warriors. The bloodshed transforms him to embrace Buddhism and non-violence. One of history's most significant wars.",
+        description: "Emperor Ashoka conquers Kalinga. His Rock Edict XIII records that 150,000 people were deported and 100,000 killed, and expresses his remorse; afterwards he turns to the policy of Dhamma and becomes a committed patron of Buddhism.",
         category: "ancient",
         image: "/images/timeline/kalinga-war.png"
     },
     {
-        year: "260 BCE",
+        year: "c. 3rd century BCE",
         era: "Ancient",
         title: "Dhauli Peace Edicts",
         titleOdia: "ଧଉଳି ଶିଳାଲେଖ",
-        description: "Ashoka erects rock edicts at Dhauli proclaiming his new policy of Dhamma (righteousness) and non-violence.",
+        description: "Ashoka's rock edicts are engraved at Dhauli near Bhubaneswar, including the two Separate Kalinga Edicts on the fair treatment of his subjects. Edict XIII, which describes the war, is not included there.",
         category: "ancient",
     },
     {
-        year: "224 BCE",
+        year: "Late 3rd century BCE",
         era: "Ancient",
         title: "Independence from Mauryas",
-        description: "Kalinga regains independence from the Mauryan Empire during the rule of Dasharatha.",
+        description: "Mauryan power declines after Ashoka's death (c. 232 BCE), and Kalinga regains its independence; the exact date is not known.",
         category: "ancient",
     },
     {
-        year: "~150 BCE",
+        year: "c. 2nd-1st century BCE",
         era: "Ancient",
         title: "Mahameghavahana Dynasty",
         description: "The Mahameghavahana (Chedi) dynasty is established in Kalinga.",
         category: "ancient",
     },
     {
-        year: "~100 BCE",
+        year: "c. 1st century BCE",
         era: "Ancient",
         title: "Reign of Kharavela",
         titleOdia: "ଖାରବେଳ",
-        description: "The great Jain king Kharavela rules Kalinga. Hathigumpha inscription at Udayagiri describes his conquests. He builds canals, patronizes arts, and defeats Greek invaders.",
+        description: "The Jain king Kharavela rules Kalinga (his dates are debated). The Hathigumpha inscription at Udayagiri records his campaigns, his extension of an old canal, his patronage of the arts and of Jain monks, and says a Yavana (Greek) king withdrew to Mathura on hearing of his advance.",
         category: "ancient",
     },
     {
-        year: "~100 CE",
+        year: "c. 1st-13th century CE",
         era: "Ancient",
         title: "Buddhist Diamond Triangle",
-        description: "Ratnagiri, Udayagiri, and Lalitgiri flourish as major Buddhist monasteries and learning centers.",
+        description: "Lalitgiri's Buddhist establishment goes back to around the early centuries CE; Ratnagiri and Udayagiri flourish later, especially from about the 5th-7th to the 12th-13th centuries, as major monasteries and centres of learning.",
         category: "ancient",
     },
     {
-        year: "350 CE",
+        year: "c. 350 CE",
         era: "Ancient",
-        title: "Gupta Conquest",
-        description: "Kalinga is conquered by Samudragupta and becomes part of the Gupta Empire.",
+        title: "Samudragupta's Southern Campaign",
+        description: "Samudragupta's Allahabad Pillar inscription records that he defeated kings of the region, including Mahendra of Kosala, on his southern campaign; they were released and reinstated rather than annexed.",
         category: "ancient",
     },
     {
-        year: "350-550 CE",
+        year: "c. 4th-5th century CE",
         era: "Ancient",
         title: "Mathara Dynasty",
-        description: "The Matharas rule coastal Odisha. Sanskrit literature and early temple architecture develop.",
+        description: "The Matharas rule southern Kalinga from Pishtapura; their kingdom probably extended between the Mahanadi and Godavari rivers.",
         category: "ancient",
     },
     {
-        year: "6th Century CE",
+        year: "c. 6th-8th century CE",
         era: "Ancient",
         title: "Shailodbhava Dynasty",
         description: "The Shailodbhava dynasty rules with capital at Kongoda. Shaivism flourishes.",
         category: "ancient",
     },
     {
-        year: "639 CE",
+        year: "c. 639 CE",
         era: "Ancient",
         title: "Hiuen-Tsang Visits Odra",
         description: "Chinese pilgrim Hiuen-Tsang visits Odra (Odisha), documenting its Buddhist monasteries and culture.",
         category: "ancient",
     },
     {
-        year: "650 CE",
+        year: "c. 650 CE",
         era: "Ancient",
         title: "Parashurameshvara Temple",
         description: "One of the oldest surviving temples in Bhubaneswar is built by Sailodbhava rulers.",
@@ -157,88 +158,88 @@ const timelineEvents: TimelineEvent[] = [
     },
     // Medieval Era
     {
-        year: "736-950 CE",
+        year: "c. 8th-10th century CE",
         era: "Medieval",
         title: "Bhaumakara Dynasty",
-        description: "Buddhist Bhaumakara kings rule Odisha. Notable for powerful queens and religious tolerance.",
+        description: "The Bhaumakara kings rule much of coastal Odisha. The early rulers were Buddhist, and the dynasty is notable for its several ruling queens.",
         category: "medieval",
     },
     {
-        year: "845 CE",
+        year: "c. 846 CE",
         era: "Medieval",
         title: "Queen Tribhuvana Mahadevi I",
         titleOdia: "ତ୍ରିଭୁବନ ମହାଦେବୀ",
-        description: "First female ruler of Odisha. She rules the Bhaumakara kingdom with distinction.",
+        description: "Tribhuvana Mahadevi I, widow of Shantikara I, rules the Bhaumakara kingdom; her Dhenkanal inscription records her reign. She is often described as one of the earliest women rulers in Odisha's history.",
         category: "medieval",
     },
     {
-        year: "882 CE",
+        year: "c. 882 CE",
         era: "Medieval",
         title: "Somavamshi Dynasty Founded",
         description: "Janmejaya I establishes the Somavamshi dynasty. Great temple-building era begins.",
         category: "medieval",
     },
     {
-        year: "900-1000 CE",
+        year: "10th-11th century CE",
         era: "Medieval",
         title: "Mukteshwar & Rajarani Temples",
-        description: "Exquisite temples built in Bhubaneswar, showcasing the 'Gem of Odishan architecture'.",
+        description: "The Mukteshwar Temple (10th century), often called the 'gem of Odishan architecture', and the Rajarani Temple (c. 11th century) are built in Bhubaneswar.",
         category: "medieval",
     },
     {
-        year: "1000 CE",
+        year: "11th century CE",
         era: "Medieval",
         title: "Lingaraj Temple Construction",
         titleOdia: "ଲିଙ୍ଗରାଜ ମନ୍ଦିର",
-        description: "The majestic Lingaraj Temple is completed - the largest and most important temple in Bhubaneswar.",
+        description: "The Lingaraj Temple, traditionally attributed to Somavamshi rulers, is built; it is the largest temple in Bhubaneswar.",
         category: "medieval",
     },
     {
-        year: "1038 CE",
+        year: "11th century CE",
         era: "Medieval",
-        title: "Eastern Ganga Dynasty",
+        title: "Rise of the Eastern Gangas",
         titleOdia: "ଗଙ୍ଗ ବଂଶ",
-        description: "The Eastern Ganga dynasty is established, beginning one of Odisha's most glorious periods.",
+        description: "The Eastern Gangas, rulers of Kalinga from Kalinganagara (near Mukhalingam) since about the 5th century, grow in power; under Anantavarman Chodaganga they extend their rule over Odisha.",
         category: "medieval",
         image: "/images/timeline/odissi-dance.png"
     },
     {
-        year: "1077-1147 CE",
+        year: "c. 1078-1147 CE",
         era: "Medieval",
         title: "Anantavarman Chodaganga",
         titleOdia: "ଅନନ୍ତବର୍ମନ ଚୋଡଗଙ୍ଗ",
-        description: "Greatest Ganga king. Begins construction of Jagannath Temple at Puri. Expands empire from Ganga to Godavari rivers.",
+        description: "Anantavarman Chodaganga conquers Utkala and rules from the Ganga to the Godavari. He is credited with beginning the present Jagannath Temple at Puri.",
         category: "medieval",
     },
     {
-        year: "1135 CE",
+        year: "12th century CE",
+        era: "Medieval",
+        title: "Jagannath Temple Built",
+        titleOdia: "ଜଗନ୍ନାଥ ମନ୍ଦିର",
+        description: "The present Jagannath Temple at Puri is built in the 12th century. Construction is credited to Anantavarman Chodaganga; sources differ on its completion date and on the role of his successors. It is one of the four Char Dham pilgrimage sites.",
+        category: "medieval",
+    },
+    {
+        year: "c. 1211 CE",
         era: "Medieval",
         title: "Capital Shifts to Cuttack",
         titleOdia: "କଟକ",
-        description: "Chodagangadeva shifts the capital from Kalinganagara to Kataka (Cuttack).",
-        category: "medieval",
-    },
-    {
-        year: "1174 CE",
-        era: "Medieval",
-        title: "Jagannath Temple Completed",
-        titleOdia: "ଜଗନ୍ନାଥ ମନ୍ଦିର",
-        description: "The Jagannath Temple at Puri is completed by Ananga Bhima Deva III. Becomes one of the four sacred Char Dhams.",
+        description: "Cuttack (Kataka) becomes the capital under the Eastern Ganga king Anangabhima Deva III (r. c. 1211-1238); a fort-settlement existed there earlier.",
         category: "medieval",
     },
     {
         year: "1238-1264 CE",
         era: "Medieval",
         title: "Narasimhadeva I",
-        description: "Great warrior king who builds the Konark Sun Temple and defeats the Delhi Sultanate's invasion attempts.",
+        description: "Eastern Ganga king who builds the Konark Sun Temple and campaigns successfully against the Turkic governors of Bengal.",
         category: "medieval",
     },
     {
-        year: "1250 CE",
+        year: "c. 1250 CE",
         era: "Medieval",
         title: "Konark Sun Temple Built",
         titleOdia: "କୋଣାର୍କ ସୂର୍ଯ୍ୟ ମନ୍ଦିର",
-        description: "The magnificent Sun Temple at Konark is built as a giant chariot with 24 wheels. Now a UNESCO World Heritage Site.",
+        description: "The Sun Temple at Konark is built in the form of a giant chariot with 24 wheels. It was inscribed as a UNESCO World Heritage Site in 1984.",
         category: "medieval",
         image: "/images/timeline/konark-wheel.png"
     },
@@ -246,15 +247,15 @@ const timelineEvents: TimelineEvent[] = [
         year: "1278 CE",
         era: "Medieval",
         title: "Ananta Vasudeva Temple",
-        description: "Built by Queen Chandrika. The only temple in Bhubaneswar dedicated to Vishnu.",
+        description: "Built by Chandrika Devi, daughter of Anangabhima Deva III. One of the few major Vaishnava temples in Bhubaneswar, a city dominated by Shiva temples.",
         category: "medieval",
     },
     {
-        year: "1434 CE",
+        year: "1434-35 CE",
         era: "Medieval",
-        title: "Gajapati Dynasty Founded",
+        title: "Suryavamsi Gajapati Dynasty Founded",
         titleOdia: "ଗଜପତି ରାଜବଂଶ",
-        description: "Kapilendra Deva overthrows the Gangas and establishes the Gajapati dynasty.",
+        description: "Kapilendra Deva takes the throne from the last Eastern Ganga king and founds the Suryavamsi Gajapati dynasty.",
         category: "medieval",
     },
     {
@@ -262,63 +263,63 @@ const timelineEvents: TimelineEvent[] = [
         era: "Medieval",
         title: "Kapilendra Deva's Conquests",
         titleOdia: "କପିଳେନ୍ଦ୍ର ଦେବ",
-        description: "Greatest Gajapati king. Expands empire from Ganga to Kaveri. Odisha reaches its maximum territorial extent.",
+        description: "Kapilendra Deva's campaigns extend the kingdom from the Ganga in the north deep into the Deccan and the south, close to the greatest territorial extent of any Odishan state.",
         category: "medieval",
     },
     {
-        year: "~1467 CE",
+        year: "15th century CE",
         era: "Medieval",
         title: "Sarala Mahabharata",
-        description: "Sarala Dasa writes the Odia Mahabharata, one of the earliest Mahabharata translations in any Indian language.",
+        description: "Sarala Dasa composes the Odia Mahabharata, a free retelling rather than a literal translation and a foundational work of Odia literature.",
         category: "medieval",
     },
     {
         year: "1513 CE",
         era: "Medieval",
         title: "Vijayanagara Invasion",
-        description: "Krishnadevaraya of Vijayanagara invades Udayagiri, weakening the Gajapatis.",
+        description: "Krishnadevaraya of Vijayanagara captures the Gajapati fort of Udayagiri (in present-day Andhra Pradesh) from Prataparudra Deva, beginning a long war that weakens the Gajapatis.",
         category: "medieval",
     },
     {
         year: "1541 CE",
         era: "Medieval",
         title: "Bhoi Dynasty",
-        description: "Govinda Vidyadhara founds the Bhoi dynasty after the decline of the Gajapatis.",
+        description: "Govinda Vidyadhara seizes the throne from the Suryavamsi Gajapatis and founds the Bhoi dynasty.",
         category: "medieval",
     },
     {
         year: "1568 CE",
         era: "Medieval",
         title: "Fall of Independent Odisha",
-        description: "Kalapahad, Afghan general from Bengal Sultanate, invades. Last king Mukunda Deva is killed. End of independent Odia rule.",
+        description: "Mukunda Deva, the last independent Hindu king of Odisha, is killed amid rebellion, and Afghan forces of Sulaiman Karrani of Bengal, with the general Kalapahad, take control of Odisha by the end of 1568.",
         category: "medieval",
     },
     {
         year: "1576 CE",
         era: "Medieval",
-        title: "Mughal Rule Begins",
-        description: "Battle of Raj Mahal. Odisha comes under Mughal rule, administered as part of Bengal Subah.",
+        title: "Battle of Rajmahal",
+        description: "The Mughals defeat Daud Khan Karrani at the Battle of Rajmahal. Afghan chiefs continue to hold Odisha for some years afterwards.",
         category: "medieval",
     },
     {
         year: "1592 CE",
         era: "Medieval",
         title: "Akbar Annexes Odisha",
-        description: "Emperor Akbar formally annexes Odisha into the Mughal Empire as part of Bengal Subah.",
+        description: "Akbar's general Man Singh defeats the Afghans, and Odisha is annexed to the Mughal Empire as part of the Bengal Subah.",
         category: "medieval",
     },
     {
-        year: "1606 CE",
+        year: "Early 17th century CE",
         era: "Medieval",
-        title: "Jahangir Separates Odisha",
-        description: "Emperor Jahangir separates Odisha from Bengal, giving it distinct administrative status.",
+        title: "Orissa Becomes a Separate Subah",
+        description: "Odisha is separated from Bengal as its own Mughal province (subah). Sources differ on the date, crediting either Jahangir or Shah Jahan.",
         category: "medieval",
     },
     {
         year: "1751 CE",
         era: "Medieval",
         title: "Maratha Control",
-        description: "Marathas defeat the Mughals and take control of Odisha. Period of economic hardship follows.",
+        description: "Unable to stop Maratha raids, Alivardi Khan, Nawab of Bengal, cedes Odisha to Raghoji I Bhonsle of Nagpur. Maratha rule lasts until 1803.",
         category: "medieval",
     },
     // Colonial Era
@@ -334,7 +335,7 @@ const timelineEvents: TimelineEvent[] = [
         era: "Colonial",
         title: "Jayi Rajguru's Revolt",
         titleOdia: "ଜୟୀ ରାଜଗୁରୁ",
-        description: "First uprising against British rule in Odisha. Jayi Rajguru tortured and killed by the British.",
+        description: "Jayi Rajguru, minister of the Raja of Khurda, leads an early armed resistance to British rule. He is captured and executed by the British in 1806.",
         category: "colonial",
     },
     {
@@ -342,7 +343,7 @@ const timelineEvents: TimelineEvent[] = [
         era: "Colonial",
         title: "Paika Rebellion",
         titleOdia: "ପାଇକ ବିଦ୍ରୋହ",
-        description: "Bakshi Jagabandhu leads the Paika militia uprising against the British - one of India's first organized rebellions.",
+        description: "Bakshi Jagabandhu leads the Paika militia uprising against the British, often described as one of the earliest organised armed rebellions against Company rule.",
         category: "colonial",
     },
     {
@@ -365,22 +366,22 @@ const timelineEvents: TimelineEvent[] = [
         era: "Colonial",
         title: "Great Odisha Famine",
         titleOdia: "ନଅଙ୍କ ଦୁର୍ଭିକ୍ଷ",
-        description: "Devastating Na'anka famine kills 1/3 of the population (1+ million). British policies blamed. 'Utkal Dipika' newspaper founded same year.",
+        description: "The Na'anka famine kills about one million people, roughly a third of the population of the Odisha division; failures of the colonial administration were widely blamed. The newspaper 'Utkal Dipika' is founded the same year.",
         category: "colonial",
     },
     {
-        year: "1875 CE",
+        year: "1868 CE",
         era: "Colonial",
         title: "Ravenshaw College Founded",
-        description: "Odisha's premier educational institution founded in Cuttack, named after T.E. Ravenshaw.",
+        description: "Founded in Cuttack with intermediate classes at the Cuttack Zilla School; it became a first-grade college in 1876 and was named Ravenshaw College in 1878 after Commissioner T. E. Ravenshaw.",
         category: "colonial",
     },
     {
-        year: "1882 CE",
+        year: "1898 CE",
         era: "Colonial",
         title: "Fakir Mohan Senapati",
         titleOdia: "ଫକୀରମୋହନ ସେନାପତି",
-        description: "Fakir Mohan Senapati publishes 'Rebati', the first Odia short story. Father of modern Odia literature.",
+        description: "Fakir Mohan Senapati publishes 'Rebati', considered the first Odia short story. He is regarded as the father of modern Odia literature.",
         category: "colonial",
     },
     {
@@ -402,7 +403,7 @@ const timelineEvents: TimelineEvent[] = [
         year: "1930 CE",
         era: "Colonial",
         title: "Salt Satyagraha at Inchudi",
-        description: "Gopabandhu Das leads the Salt March at Inchudi beach, Balasore, as part of Gandhi's Civil Disobedience Movement.",
+        description: "Satyagrahis march to Inchudi on the Balasore coast to make salt in defiance of the salt law, making it the main centre of the Salt Satyagraha in Odisha during the Civil Disobedience Movement.",
         category: "colonial",
     },
     // Modern Era
@@ -411,7 +412,7 @@ const timelineEvents: TimelineEvent[] = [
         era: "Modern",
         title: "Odisha State Formed",
         titleOdia: "ଉତ୍କଳ ଦିବସ",
-        description: "Odisha becomes a separate province - the first state in India formed on linguistic basis. This day is celebrated as Utkal Divas.",
+        description: "Odisha becomes a separate province, often described as the first in India formed on a linguistic basis. The day is celebrated as Utkal Divas.",
         category: "modern",
     },
     {
@@ -422,24 +423,31 @@ const timelineEvents: TimelineEvent[] = [
         category: "modern",
     },
     {
+        year: "1943 CE",
+        era: "Modern",
+        title: "Utkal University",
+        description: "Utkal University, the oldest university in Odisha, is established on 27 November 1943. Its Vani Vihar campus in Bhubaneswar was inaugurated in 1963.",
+        category: "modern",
+    },
+    {
         year: "1946 CE",
         era: "Modern",
         title: "Hirakud Dam Foundation",
-        description: "Foundation stone laid for Hirakud Dam - one of the world's longest earthen dams.",
+        description: "Governor Sir Hawthorne Lewis lays the foundation stone of the Hirakud Dam on 15 March 1946.",
         category: "modern",
     },
     {
         year: "1947 CE",
         era: "Modern",
         title: "Independence",
-        description: "India gains independence. 26 princely states of Odisha merge with the Indian Union.",
+        description: "India gains independence on 15 August 1947. Odisha's princely states merge with the province from 1 January 1948, a process completed with Mayurbhanj in 1949.",
         category: "modern",
     },
     {
         year: "1948 CE",
         era: "Modern",
         title: "All India Radio Cuttack",
-        description: "AIR establishes its station in Cuttack, bringing radio to Odisha.",
+        description: "All India Radio opens its Cuttack station, the first radio station in Odisha.",
         category: "modern",
     },
     {
@@ -450,47 +458,40 @@ const timelineEvents: TimelineEvent[] = [
         category: "modern",
     },
     {
-        year: "1956 CE",
+        year: "1950s",
         era: "Modern",
         title: "Odisha Board of Secondary Education",
-        description: "BSE Odisha is formed to regulate secondary education in the state.",
+        description: "The Board of Secondary Education, Odisha, constituted under a 1953 state education act, takes charge of secondary education and examinations.",
         category: "modern",
     },
     {
         year: "1957 CE",
         era: "Modern",
-        title: "Hirakud Dam Completed",
-        description: "Asia's longest dam is completed on Mahanadi River. Inaugurated by PM Jawaharlal Nehru.",
+        title: "Hirakud Dam Inaugurated",
+        description: "The Hirakud Dam on the Mahanadi, completed in 1953, is inaugurated by Prime Minister Jawaharlal Nehru on 13 January 1957. Including its dykes it is about 25.8 km long, among the longest earthen dams in the world.",
         category: "modern",
     },
     {
-        year: "1958 CE",
+        year: "1959 CE",
         era: "Modern",
         title: "Rourkela Steel Plant",
         titleOdia: "ରାଉରକେଲା ଇସ୍ପାତ କାରଖାନା",
-        description: "Rourkela Steel Plant (RSP) is established - first public sector steel plant with German collaboration.",
+        description: "President Rajendra Prasad inaugurates the first blast furnace of Rourkela Steel Plant on 3 February 1959. Built with West German collaboration, it was India's first integrated public-sector steel plant.",
         category: "modern",
         image: "/images/timeline/modern-odisha.png"
     },
     {
         year: "1961 CE",
         era: "Modern",
-        title: "Odisha Legislative Assembly",
-        description: "Bidhan Saudha building is inaugurated. Odisha State Electricity Board (OSEB) is set up.",
-        category: "modern",
-    },
-    {
-        year: "1975 CE",
-        era: "Modern",
-        title: "Utkal University",
-        description: "Utkal University becomes one of the major universities in Eastern India.",
+        title: "Orissa State Electricity Board",
+        description: "The Orissa State Electricity Board (OSEB) is set up to manage power generation and supply in the state.",
         category: "modern",
     },
     {
         year: "1999 CE",
         era: "Modern",
         title: "Super Cyclone",
-        description: "Devastating super cyclone hits coastal Odisha on October 29. Over 10,000 lives lost. Major reconstruction follows.",
+        description: "A super cyclone strikes coastal Odisha on 29 October 1999, killing nearly 10,000 people. The disaster led to major changes in the state's disaster preparedness.",
         category: "modern",
     },
     {
@@ -498,7 +499,7 @@ const timelineEvents: TimelineEvent[] = [
         era: "Modern",
         title: "Naveen Patnaik Era Begins",
         titleOdia: "ନବୀନ ପଟ୍ଟନାୟକ",
-        description: "Naveen Patnaik becomes Chief Minister, beginning two decades of BJD rule and transformation.",
+        description: "Naveen Patnaik becomes Chief Minister in March 2000 and leads BJD governments for 24 years, until June 2024.",
         category: "modern",
     },
     {
@@ -506,21 +507,21 @@ const timelineEvents: TimelineEvent[] = [
         era: "Modern",
         title: "Orissa Renamed Odisha",
         titleOdia: "ଓଡ଼ିଶା",
-        description: "The state is officially renamed from Orissa to Odisha. Oriya renamed to Odia (closer to original pronunciation).",
+        description: "From 1 November 2011 the state is officially renamed from Orissa to Odisha, and the language from Oriya to Odia, closer to the native pronunciation.",
         category: "modern",
     },
     {
         year: "2013 CE",
         era: "Modern",
         title: "Cyclone Phailin",
-        description: "Extremely severe cyclone. Massive evacuation of 1 million people saves lives. Odisha's disaster management praised.",
+        description: "Very severe cyclonic storm Phailin strikes in October 2013. The evacuation of nearly a million people keeps the death toll low, and Odisha's disaster management is widely praised.",
         category: "modern",
     },
     {
         year: "2014 CE",
         era: "Modern",
         title: "Odia - Classical Language",
-        description: "Odia becomes the 6th language to receive Classical Language status in India, recognizing its 1000+ year literary heritage.",
+        description: "Odia becomes the sixth language to receive Classical Language status in India (February 2014), recognising its long and independent literary tradition.",
         category: "modern",
     },
     {
@@ -528,28 +529,28 @@ const timelineEvents: TimelineEvent[] = [
         era: "Modern",
         title: "Men's Hockey World Cup",
         titleOdia: "ହକି ବିଶ୍ୱକପ",
-        description: "Bhubaneswar hosts the Men's Hockey World Cup at Kalinga Stadium. Odisha becomes India's hockey hub.",
+        description: "Bhubaneswar hosts the Men's Hockey World Cup at Kalinga Stadium. The same year the Odisha government begins sponsoring India's national hockey teams.",
         category: "modern",
     },
     {
         year: "2019 CE",
         era: "Modern",
         title: "Cyclone Fani",
-        description: "Extremely severe cyclone Fani causes massive destruction in May. Odisha's evacuation of 1.5 million people praised globally.",
+        description: "Extremely severe cyclonic storm Fani makes landfall near Puri on 3 May 2019. The evacuation of more than a million people is praised internationally.",
         category: "modern",
     },
     {
         year: "2023 CE",
         era: "Modern",
         title: "Balasore Train Tragedy",
-        description: "One of India's worst train accidents occurs near Balasore. 296 lives lost, 1200 injured.",
+        description: "A three-train collision near Bahanaga Bazar station in Balasore district on 2 June 2023 kills 296 people and injures about 1,200, one of India's worst rail accidents.",
         category: "modern",
     },
     {
         year: "2024 CE",
         era: "Modern",
         title: "New Government",
-        description: "Political change after 24 years. BJP-led government takes charge in Odisha.",
+        description: "After 24 years of BJD rule, the BJP forms the government in Odisha, with Mohan Charan Majhi as Chief Minister (June 2024).",
         category: "modern",
     },
 ];
@@ -569,7 +570,7 @@ export default function TimelinePage() {
         <div className="min-h-screen bg-slate-50">
             {/* Hero Section */}
             <section className="relative py-24 overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-r from-teal-900 via-teal-800 to-blue-900"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-ink-950 via-ink-900 to-laterite-900"></div>
                 <div className="absolute inset-0 bg-water opacity-20 mix-blend-soft-light"></div>
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent to-slate-50/10"></div>
 
@@ -578,14 +579,14 @@ export default function TimelinePage() {
                     <h1 className="text-5xl md:text-6xl font-bold text-white mb-4 font-display">
                         Timeline of Odisha
                     </h1>
-                    <p className="text-3xl text-teal-200 odia-text mb-8">
+                    <p className="text-3xl text-laterite-200 odia-text mb-8">
                         ଓଡ଼ିଶାର ଇତିହାସ
                     </p>
-                    <p className="text-xl text-teal-100/90 max-w-2xl mx-auto leading-relaxed mb-4 font-light">
+                    <p className="text-xl text-laterite-100/90 max-w-2xl mx-auto leading-relaxed mb-4 font-light">
                         From prehistoric caves to modern achievements — explore the rich and tumultuous
-                        history of Kalinga/Odisha spanning over a million years.
+                        history of Kalinga and Odisha, from the Stone Age to the present day.
                     </p>
-                    <p className="text-teal-300 text-sm font-medium tracking-wide uppercase">
+                    <p className="text-laterite-300 text-sm font-medium tracking-wide uppercase">
                         {eventCount} historical events documented
                     </p>
                 </div>
@@ -638,7 +639,7 @@ export default function TimelinePage() {
                         </Link>
                         <Link
                             href="/history"
-                            className="px-6 py-3 bg-teal-600 hover:bg-teal-700 rounded-xl text-white font-bold transition-colors shadow-lg shadow-teal-600/20"
+                            className="px-6 py-3 bg-laterite-600 hover:bg-laterite-700 rounded-xl text-white font-bold transition-colors shadow-lg shadow-laterite-600/20"
                         >
                             View All History →
                         </Link>
