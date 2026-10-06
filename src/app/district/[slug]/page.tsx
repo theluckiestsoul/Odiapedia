@@ -190,9 +190,9 @@ export default async function DistrictPage({ params }: PageProps) {
             <div>
                 <div className="mb-6 flex flex-col justify-between gap-4 md:flex-row md:items-end">
                     <div>
-                        <h2 className="font-display text-3xl font-semibold">Blocks, tahasils, panchayats &amp; villages</h2>
+                        <h2 className="font-display text-3xl font-semibold">Blocks, sub-districts, panchayats &amp; villages</h2>
                         <p className="mt-2 max-w-2xl text-ink-600">
-                            Choose a block, tahasil or town to see its details and its gram panchayats and villages. Open any village for its own page.
+                            Choose a block, sub-district or town to see its details and its gram panchayats and villages. Open any village for its own page.
                         </p>
                     </div>
                     <dl className="grid grid-cols-4 gap-2 text-center">
@@ -222,7 +222,7 @@ export default async function DistrictPage({ params }: PageProps) {
                         </ul>
                     </div>
                     <div>
-                        <h3 className="font-display text-xl font-semibold">All tahasils / sub-districts</h3>
+                        <h3 className="font-display text-xl font-semibold">All census sub-districts</h3>
                         <ul className="mt-3 grid grid-cols-2 gap-x-4 gap-y-1.5 text-sm">
                             {admin.subdistricts.map((s) => (
                                 <li key={s.code}><Link href={`/district/${baseSlug}/tahasil/${subdistrictSlug(s)}`} className="text-laterite-600 hover:underline">{s.name}</Link> <span className="text-ink-400">({s.villages})</span></li>
@@ -247,7 +247,7 @@ export default async function DistrictPage({ params }: PageProps) {
                     </div>
                 </div>
                 <p className="mt-8 text-xs text-ink-500">
-                    Source: {ADMIN_SOURCE}. Tahasil/sub-district units follow the Local Government Directory, which in some districts of Odisha lists more sub-districts than revenue tahasils. Boundaries and names change over time; check the district administration for current status.
+                    Source: {ADMIN_SOURCE}. Sub-districts follow the Local Government Directory, which for Odisha uses the Census sub-districts (police-station areas) — these are not the same as revenue tahasils. Boundaries and names change over time; check the district administration for current status.
                 </p>
             </div>
         );

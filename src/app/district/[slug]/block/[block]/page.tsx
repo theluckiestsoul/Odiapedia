@@ -85,7 +85,7 @@ export default async function BlockPage({ params }: Props) {
                         {[
                             ["Gram panchayats", gps.length.toLocaleString("en-IN")],
                             ["Villages", block.villages.toLocaleString("en-IN")],
-                            ["Tahasils covered", String(subdistricts.length)],
+                            ["Sub-districts covered", String(subdistricts.length)],
                             ["LGD block code", block.code],
                         ].map(([k, v]) => (
                             <div key={k} className="rounded-2xl border border-sand-200 bg-white/80 p-4">
@@ -96,7 +96,7 @@ export default async function BlockPage({ params }: Props) {
                     </dl>
                     {subdistricts.length > 0 && (
                         <p className="mt-5 text-sm text-ink-600">
-                            Tahasils: {subdistricts.map((s, i) => (
+                            Sub-districts: {subdistricts.map((s, i) => (
                                 <span key={s.code}>{i ? ", " : ""}<Link href={`/district/${slug}/tahasil/${subdistrictSlug(s)}`} className="text-laterite-600 hover:underline">{s.name}</Link></span>
                             ))}
                         </p>

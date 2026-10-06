@@ -12,9 +12,9 @@ import { SITE } from "@/lib/site";
 
 export const metadata = hubMetadata({
     title: "Map of Odisha – Interactive District Map (30 Districts)",
-    description: "Interactive map of Odisha with accurate boundaries of all 30 districts. See each district's headquarters, population, area, density, literacy, blocks and villages, coloured by region or Census 2011 data.",
+    description: "Interactive map of Odisha: zoom from the state into all 30 districts, 314 blocks and 50,000+ villages. See headquarters, population, literacy, gram panchayats and village names.",
     path: "/map",
-    keywords: ["odisha map", "map of odisha", "odisha district map", "odisha political map", "odisha districts map", "ଓଡ଼ିଶା ମାନଚିତ୍ର"],
+    keywords: ["odisha map", "map of odisha", "odisha district map", "odisha block map", "odisha village map", "odisha political map", "odisha districts map", "ଓଡ଼ିଶା ମାନଚିତ୍ର"],
 });
 
 const REGION_NOTES: Record<"coastal" | "central" | "northern" | "southern", string> = {
@@ -65,7 +65,7 @@ export default function MapPage() {
             <PageHero
                 title="Map of Odisha"
                 odia="ଓଡ଼ିଶା ମାନଚିତ୍ର"
-                description="An interactive district map of Odisha. Hover or tap any of the 30 districts to see its headquarters, population, literacy and number of blocks and villages — then open its full guide."
+                description="An interactive map of Odisha you can zoom from the whole state into any district, its blocks and sub-districts, and right down to individual villages — with links to every district, block and village page."
                 icon="map"
                 eyebrow="Districts"
                 crumbs={crumbs}
@@ -74,8 +74,10 @@ export default function MapPage() {
             <section className="container-page py-10 md:py-14">
                 <OdishaDistrictMap districts={districts} />
                 <p className="mt-4 text-xs leading-relaxed text-ink-500">
-                    District boundaries: DataMeet, <em>Districts of India</em> (Census 2011), CC BY 2.5 India, simplified for display. Population, area, density and literacy: Census of India 2011.
-                    Blocks, gram panchayats and villages: Local Government Directory, Government of India (December 2022). Boundaries are indicative and not an authoritative depiction of borders.
+                    District boundaries: DataMeet, <em>Districts of India</em> (Census 2011), CC BY 2.5 India. Village boundaries: DataMeet,{" "}
+                    <em>Indian Village Boundaries</em> (Census 2011), © DataMeet contributors, ODbL 1.0; block and sub-district shapes are derived from them, and the derived map data
+                    is available under the same licence. Blocks, gram panchayats and village names: Local Government Directory, Government of India (December 2022).
+                    Population, area, density and literacy: Census of India 2011. All boundaries are simplified and indicative, not an authoritative depiction of borders.
                 </p>
             </section>
 

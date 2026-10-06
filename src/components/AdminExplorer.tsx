@@ -85,7 +85,7 @@ export default function AdminExplorer({ summary }: { summary: Summary }) {
                 {(
                     [
                         ["blocks", `Blocks (${summary.blocks.filter((b) => b.code !== "0").length})`],
-                        ["subdistricts", `Tahasils / sub-districts (${summary.subdistricts.length})`],
+                        ["subdistricts", `Sub-districts (${summary.subdistricts.length})`],
                         ["towns", `Towns (${summary.ulbs.length})`],
                     ] as [Mode, string][]
                 ).map(([m, label]) => (
@@ -131,7 +131,7 @@ export default function AdminExplorer({ summary }: { summary: Summary }) {
                         <TownDetails ulb={summary.ulbs.find((u) => u.code === selected)} district={summary.districtName} />
                     ) : (
                         <>
-                            <p className="eyebrow">{mode === "blocks" ? "Community development block" : "Tahasil / sub-district"}</p>
+                            <p className="eyebrow">{mode === "blocks" ? "Community development block" : "Census sub-district (police-station area)"}</p>
                             <h3 className="mt-2 font-display text-3xl font-semibold">{selName}</h3>
                             <dl className="mt-5 grid grid-cols-2 gap-3 text-sm">
                                 {mode === "blocks" && blockSummary && (
@@ -154,7 +154,7 @@ export default function AdminExplorer({ summary }: { summary: Summary }) {
 
                             {mode === "subdistricts" && sdBlocks.length > 0 && (
                                 <div className="mt-5">
-                                    <p className="text-xs font-semibold uppercase tracking-wider text-ink-500">Blocks in this tahasil</p>
+                                    <p className="text-xs font-semibold uppercase tracking-wider text-ink-500">Blocks in this sub-district</p>
                                     <div className="mt-2 flex flex-wrap gap-2">
                                         {sdBlocks.map((b) => (
                                             <Link key={b.code} href={`/district/${summary.district}/block/${b.slug}`} className="chip hover:border-laterite-300">{b.name}</Link>
@@ -181,7 +181,7 @@ export default function AdminExplorer({ summary }: { summary: Summary }) {
                                 href={mode === "blocks" ? `/district/${summary.district}/block/${blockSummary?.slug}` : `/district/${summary.district}/tahasil/${sdSummary ? `${slugify(sdSummary.name)}-${sdSummary.code}` : ""}`}
                                 className="btn-dark mt-6"
                             >
-                                Open full {mode === "blocks" ? "block" : "tahasil"} page <Icon name="arrow" className="h-4 w-4" />
+                                Open full {mode === "blocks" ? "block" : "sub-district"} page <Icon name="arrow" className="h-4 w-4" />
                             </Link>
                         </>
                     )}

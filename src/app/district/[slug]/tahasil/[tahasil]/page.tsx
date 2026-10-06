@@ -30,8 +30,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     if (!r) return { title: "Not found", robots: { index: false } };
     const d = districtName(slug) || r.admin.lgdName;
     return {
-        title: `${r.sd.name} Tahasil, ${d} – Villages List`,
-        description: `${r.sd.name} sub-district (tahasil) of ${d} district, Odisha: ${r.sd.villages} villages grouped by block and gram panchayat, from the Local Government Directory.`,
+        title: `${r.sd.name} Sub-district, ${d} – Villages List`,
+        description: `${r.sd.name} census sub-district of ${d} district, Odisha: ${r.sd.villages} villages grouped by block and gram panchayat, from the Local Government Directory.`,
         alternates: { canonical: `/district/${slug}/tahasil/${tahasil}` },
     };
 }
@@ -58,7 +58,7 @@ export default async function TahasilPage({ params }: Props) {
                 <div className="absolute inset-0 bg-ikat opacity-60" aria-hidden="true" />
                 <div className="container-page relative py-10 md:py-12">
                     <Breadcrumbs items={[{ name: "Districts", href: "/districts" }, { name: dName, href: `/district/${slug}` }, { name: `${sd.name} tahasil`, href: `/district/${slug}/tahasil/${tahasil}` }]} />
-                    <p className="eyebrow mt-6"><Icon name="pin" className="h-4 w-4" />Tahasil / sub-district · {dName} district</p>
+                    <p className="eyebrow mt-6"><Icon name="pin" className="h-4 w-4" />Census sub-district · {dName} district</p>
                     <h1 className="mt-3 font-display text-4xl font-semibold md:text-5xl">{sd.name}</h1>
                     <p className="mt-4 max-w-3xl text-lg text-ink-600">
                         {sd.name} is a sub-district of {dName} district, Odisha, with {sd.villages.toLocaleString("en-IN")} villages in the Local Government Directory, spread across {blocks.filter((b) => b.code !== "0").length} block{blocks.length === 1 ? "" : "s"}.
@@ -71,7 +71,7 @@ export default async function TahasilPage({ params }: Props) {
             <section className="container-page py-10">
                 <h2 className="mb-6 font-display text-3xl font-semibold">Villages of {sd.name}</h2>
                 <VillageDirectory groups={groups} groupLabel="Gram panchayat" />
-                <p className="mt-8 text-xs text-ink-500">Source: {ADMIN_SOURCE}. In some Odisha districts the Directory&apos;s sub-districts differ from today&apos;s revenue tahasils.</p>
+                <p className="mt-8 text-xs text-ink-500">Source: {ADMIN_SOURCE}. For Odisha the Directory&apos;s sub-districts are the Census sub-districts (police-station areas), which differ from revenue tahasils.</p>
             </section>
         </div>
     );

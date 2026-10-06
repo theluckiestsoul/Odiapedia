@@ -92,7 +92,7 @@ export default async function VillagePage({ params }: Props) {
                         {[
                             ["State", "Odisha", "/history/odisha-at-a-glance"],
                             ["District", dName, `/district/${slug}`],
-                            ...(sd ? [["Tahasil / sub-district", sd.name, `/district/${slug}/tahasil/${subdistrictSlug(sd)}`]] : []),
+                            ...(sd ? [["Sub-district", sd.name, `/district/${slug}/tahasil/${subdistrictSlug(sd)}`]] : []),
                             ...(hasBlock ? [["Block", block!.name, `/district/${slug}/block/${block!.slug}`]] : []),
                             ...(hasGp ? [["Gram panchayat", gp!.name + (gp!.odia ? ` (${gp!.odia})` : ""), hasBlock ? `/district/${slug}/block/${block!.slug}` : ""]] : []),
                             ["Village", v.n, ""],
@@ -132,7 +132,7 @@ export default async function VillagePage({ params }: Props) {
                             ["Status", v.u ? "Uninhabited" : "Inhabited"],
                             ["Gram panchayat", hasGp ? gp!.name : "Not mapped"],
                             ["Block", hasBlock ? block!.name : "Not mapped"],
-                            ["Tahasil", sd?.name || ""],
+                            ["Sub-district", sd?.name || ""],
                             ["District", dName],
                         ].filter(([, x]) => x).map(([k, x]) => (
                             <div key={k} className="grid grid-cols-[8rem_1fr] gap-3 border-b border-sand-100 px-5 py-3 last:border-0">
