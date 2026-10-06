@@ -6,6 +6,7 @@ import { getAllSpots } from "@/lib/spots";
 import { SITE } from "@/lib/site";
 import { LIBRARY } from "@/data/library";
 import { ADMIN_DISTRICTS, getAdminDistrict, subdistrictSlug } from "@/lib/admin";
+import { FILMS, PEOPLE, YEARS } from "@/lib/cinema";
 
 /**
  * XML sitemap. lastModified uses each article's real "updated" date — never "now" —
@@ -44,6 +45,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         { path: "/language/odia-typing", priority: 0.8, freq: "monthly" },
         { path: "/language/dictionary", priority: 0.8, freq: "monthly" },
         { path: "/food/recipes", category: "food", priority: 0.8, freq: "weekly" },
+        { path: "/cinema", priority: 0.8, freq: "weekly" },
+        { path: "/cinema/people", priority: 0.6, freq: "weekly" },
+        { path: "/odia", priority: 0.7, freq: "weekly" },
         { path: "/about", category: "about", priority: 0.5, freq: "monthly" },
     ];
 
@@ -113,5 +117,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         for (const s of a.subdistricts) adminPages.push({ url: `${base}/district/${d}/tahasil/${subdistrictSlug(s)}`, changeFrequency: "yearly", priority: 0.4 });
     }
 
-    return [...hubPages, ...libraryPages, ...adminPages, ...articlePages, ...districtPages, ...tehsilPages, ...spotPages];
+    const cinemaPages: MetadataRoute.Sitemap = [
+        ...YEARS.map((y) => ({ url: `${base}/cinema/year/${y}`, changeFrequency: "yearly" as const, priority: 0.5 })),
+        ...FILMS.map((f) => ({ url: `${base}/cinema/film/${f.id}`, changeFrequency: "yearly" as const, priority: 0.4 })),
+        ...PEOPLE.filter((p) => Object.values(p.roles).reduce((a, b) => a + (b ?? 0), 0) >= 2 || p.wp).map((p) => ({ url: `${base}/cinema/people/${p.id}`, changeFrequency: "yearly" as const, priority: 0.4 })),
+    ];
+
+    return [...hubPages, ...cinemaPages, ...libraryPages, ...adminPages, ...articlePages, ...districtPages, ...tehsilPages, ...spotPages];
 }

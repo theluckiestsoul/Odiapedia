@@ -41,6 +41,7 @@ const menuItems: MenuItem[] = [
             { href: "/food", label: "Food", odia: "ଖାଦ୍ୟ", icon: "bowl", hint: "Mahaprasad, pithas, sweets" },
             { href: "/food/recipes", label: "Recipes", odia: "ରୋଷେଇ", icon: "bowl", hint: "Step-by-step Odia recipes" },
             { href: "/people", label: "People", odia: "ବ୍ୟକ୍ତିତ୍ୱ", icon: "people", hint: "Poets, leaders, artists" },
+            { href: "/cinema", label: "Odia Cinema", odia: "ଓଡ଼ିଆ ଚଳଚ୍ଚିତ୍ର", icon: "star", hint: "Every Odia film since 1936" },
             { href: "/library", label: "Library", odia: "ଗ୍ରନ୍ଥାଗାର", icon: "book", hint: "Free Odia books & PDFs" },
         ],
     },
@@ -128,7 +129,7 @@ function DropdownMenu({ item, language, active }: { item: MenuItem; language: st
     );
 }
 
-export default function Navbar({ searchIndex = [] }: { searchIndex?: SearchEntry[] }) {
+export default function Navbar({ searchIndex = [], languagePairs = {} }: { searchIndex?: SearchEntry[]; languagePairs?: Record<string, string> }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
@@ -192,7 +193,7 @@ export default function Navbar({ searchIndex = [] }: { searchIndex?: SearchEntry
                                 <kbd className="ml-2 rounded border border-sand-200 bg-sand-50 px-1.5 text-[10px] font-medium text-ink-400">⌘K</kbd>
                             </button>
                             <div className="hidden lg:block">
-                                <LanguageToggle />
+                                <LanguageToggle pairs={languagePairs} />
                             </div>
                             <Link href="/travel/plan" className="btn-primary hidden !px-4 !py-2 xl:inline-flex">
                                 Plan a trip
@@ -245,7 +246,7 @@ export default function Navbar({ searchIndex = [] }: { searchIndex?: SearchEntry
                             </div>
                             <div className="flex items-center justify-between border-t border-sand-200 pt-5">
                                 <span className="text-sm text-ink-500">{language === "od" ? "ଭାଷା" : "Language"}</span>
-                                <LanguageToggle />
+                                <LanguageToggle pairs={languagePairs} />
                             </div>
                             <Link href="/travel/plan" className="btn-primary w-full">Plan a trip to Odisha</Link>
                         </nav>

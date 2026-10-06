@@ -1,165 +1,104 @@
 "use client";
 
-import { useLanguage } from '@/contexts/LanguageContext';
-import { useRouter, usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
-// Map language codes to URL suffixes
-const LANG_SUFFIXES: Record<string, string> = {
-    en: '-en',
-    od: '-od',
-    hi: '-hi',
-};
+const LANGS = [
+    { code: "en" as const, name: "English", native: "English" },
+    { code: "od" as const, name: "Odia", native: "ଓଡ଼ିଆ" },
+];
 
-export default function LanguageToggle() {
-    const { language, toggleLanguage, setLanguage } = useLanguage();
+/**
+ * Language switcher. It only navigates to a translated page that really exists (from the server-built
+ * `pairs` map); otherwise it switches the site's menus to the chosen language, stays on the page and
+ * says plainly that this page has no translation yet — never a 404.
+ */
+export default function LanguageToggle({ pairs = {} }: { pairs?: Record<string, string> }) {
+    const { language, setLanguage } = useLanguage();
     const router = useRouter();
-    const pathname = usePathname();
-    const [alternates, setAlternates] = useState<Record<string, string>>({});
-    const [isOpen, setIsOpen] = useState(false);
+    const pathname = usePathname() || "/";
+    const [open, setOpen] = useState(false);
+    const [notice, setNotice] = useState<null | "od" | "en">(null);
+    const box = useRef<HTMLDivElement>(null);
 
-    const languages = [
-        { code: 'en', name: 'English', flag: '🇺🇸' },
-        { code: 'od', name: 'Odia', flag: '🇮🇳' }
-    ];
+    const isOdiaPage = /-od$/.test(pathname);
+    const current = LANGS.find((l) => l.code === language) ?? LANGS[0];
 
-    const currentLanguage = languages.find(l => l.code === language) || languages[0];
-
-    // Check for alternate language links in the page head
+    // Keep the switcher in step with the page being read (an Odia article shows "Odia").
     useEffect(() => {
-        const checkAlternates = () => {
-            const altLinks: Record<string, string> = {};
-
-            // Look for alternate links in the document head
-            const links = document.querySelectorAll('link[rel="alternate"][hreflang]');
-            links.forEach((link) => {
-                const hreflang = link.getAttribute('hreflang');
-                const href = link.getAttribute('href');
-                if (hreflang && href) {
-                    // Map hreflang codes to our language codes
-                    const langCode = hreflang === 'or' ? 'od' : hreflang;
-                    altLinks[langCode] = href;
-                }
-            });
-
-            // Also check URL patterns for language suffixes
-            if (Object.keys(altLinks).length === 0) {
-                // Check if current URL has a language suffix
-                const currentPath = pathname;
-                for (const [lang, suffix] of Object.entries(LANG_SUFFIXES)) {
-                    if (currentPath.endsWith(suffix)) {
-                        // This is a multi-language article
-                        const basePath = currentPath.slice(0, -suffix.length);
-                        // Add all possible alternates
-                        for (const [altLang, altSuffix] of Object.entries(LANG_SUFFIXES)) {
-                            altLinks[altLang] = basePath + altSuffix;
-                        }
-                        break;
-                    }
-                }
-            }
-
-            setAlternates(altLinks);
-        };
-
-        checkAlternates();
-
-        // Re-check when pathname changes
+        if (/-od$/.test(pathname) && language !== "od") setLanguage("od");
+        setNotice(null);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [pathname]);
 
-    const handleLanguageSelect = (newLangCode: string) => {
-        if (newLangCode === currentLanguage.code) {
-            setIsOpen(false);
+    useEffect(() => {
+        if (!open) return;
+        const close = (e: MouseEvent) => { if (!box.current?.contains(e.target as Node)) setOpen(false); };
+        document.addEventListener("click", close);
+        return () => document.removeEventListener("click", close);
+    }, [open]);
+
+    const choose = (code: "en" | "od") => {
+        setOpen(false);
+        setLanguage(code);
+        const alt = pairs[pathname];
+        const wantOdia = code === "od";
+        if (alt && wantOdia !== isOdiaPage) {
+            router.push(alt);
             return;
         }
-
-        // Update the language in the context
-        setLanguage(newLangCode as 'en' | 'od');
-
-        // Check for specific alternate link first (e.g., article-slug-en -> article-slug-od)
-        if (alternates[newLangCode]) {
-            router.push(alternates[newLangCode]);
-            setIsOpen(false);
-            return;
-        }
-
-        const currentPath = pathname;
-
-        // Special handling for districts
-        if (currentPath.startsWith('/district/')) {
-            const parts = currentPath.split('/');
-            const slug = parts[parts.length - 1]; // Get the last part
-
-            if (newLangCode === 'od' && !slug.endsWith('-od')) {
-                // Switch to Odia: append -od
-                router.push(`${currentPath}-od`);
-                setIsOpen(false);
-                return;
-            } else if (newLangCode === 'en' && slug.endsWith('-od')) {
-                // Switch to English: remove -od
-                router.push(currentPath.replace(/-od$/, ''));
-                setIsOpen(false);
-                return;
-            }
-        }
-
-        // Basic logic: if switching to 'od', prefix with /od if not already there.
-        // If switching to 'en', remove /od prefix.
-        let newPath = currentPath;
-        if (newLangCode === 'od' && !currentPath.startsWith('/od')) {
-            newPath = `/od${currentPath}`;
-        } else if (newLangCode === 'en' && currentPath.startsWith('/od')) {
-            newPath = currentPath.replace(/^\/od/, '') || '/';
-        }
-
-        router.push(newPath);
-        setIsOpen(false);
+        if (wantOdia !== isOdiaPage) setNotice(code);
     };
 
     return (
-        <div className="relative inline-block text-left">
+        <div ref={box} className="relative inline-block text-left">
             <button
-                onClick={() => setIsOpen(!isOpen)}
-                className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-laterite-100 bg-white/50 hover:bg-white hover:border-laterite-200 transition-all text-sm font-medium text-slate-700 hover:text-laterite-700 shadow-sm hover:shadow-md ring-1 ring-transparent hover:ring-laterite-50"
-                aria-haspopup="true"
-                aria-expanded={isOpen}
-                aria-label={`Current language: ${currentLanguage.name}`}
+                type="button"
+                onClick={() => setOpen((o) => !o)}
+                className="flex items-center gap-2 rounded-full border border-sand-300 bg-white/70 px-3 py-1.5 text-sm font-medium text-ink-700 shadow-sm transition-colors hover:border-laterite-200 hover:bg-white"
+                aria-haspopup="menu"
+                aria-expanded={open}
+                aria-label={`Language: ${current.name}`}
             >
-                <span className="w-5 h-5 rounded-full bg-gradient-to-br from-laterite-500 to-laterite-600 text-white flex items-center justify-center text-[10px] shadow-sm">
-                    {currentLanguage.code.toUpperCase()}
-                </span>
-                <span className="hidden sm:inline">{currentLanguage.name}</span>
-                <svg
-                    className={`w-4 h-4 text-slate-400 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
+                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-laterite-500 text-[10px] font-bold text-white">{current.code.toUpperCase()}</span>
+                <span className="hidden sm:inline" lang={current.code === "od" ? "or" : "en"}>{current.native}</span>
+                <svg className={`h-4 w-4 text-ink-400 transition-transform ${open ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
             </button>
 
-            {isOpen && (
-                <div className="absolute top-full right-0 mt-2 w-40 bg-white border border-laterite-100 rounded-xl shadow-xl shadow-laterite-900/10 py-1 z-50 overflow-hidden ring-1 ring-black/5 animate-in fade-in slide-in-from-top-2 duration-200">
-                    {languages.map((lang) => (
-                        <button
-                            key={lang.code}
-                            onClick={() => handleLanguageSelect(lang.code)}
-                            className={`w-full text-left px-4 py-2.5 text-sm transition-colors flex items-center gap-3 hover:bg-laterite-50/50 ${language === lang.code
-                                ? 'text-laterite-700 bg-laterite-50 font-medium'
-                                : 'text-slate-600 hover:text-slate-900'
-                                }`}
-                            role="menuitem"
-                        >
-                            <span className={`w-2 h-2 rounded-full ${language === lang.code ? 'bg-laterite-500' : 'bg-slate-200'}`}></span>
-                            {lang.name}
-                            {language === lang.code && (
-                                <svg className="w-4 h-4 ml-auto text-laterite-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                </svg>
-                            )}
-                        </button>
-                    ))}
+            {open && (
+                <div role="menu" className="absolute right-0 top-full z-50 mt-2 w-56 overflow-hidden rounded-xl border border-sand-200 bg-white py-1 shadow-xl">
+                    {LANGS.map((l) => {
+                        const target = pairs[pathname];
+                        const available = (l.code === "od") === isOdiaPage || !!target;
+                        return (
+                            <button key={l.code} type="button" role="menuitem" onClick={() => choose(l.code)}
+                                className={`flex w-full items-center gap-3 px-4 py-2.5 text-left text-sm hover:bg-sand-50 ${language === l.code ? "font-semibold text-laterite-700" : "text-ink-700"}`}>
+                                <span className={`h-2 w-2 rounded-full ${language === l.code ? "bg-laterite-500" : "bg-sand-300"}`} />
+                                <span lang={l.code === "od" ? "or" : "en"}>{l.native}</span>
+                                {!available && <span className="ml-auto text-[11px] font-normal text-ink-400">menus only</span>}
+                            </button>
+                        );
+                    })}
+                    <Link href="/odia" onClick={() => setOpen(false)} className="block border-t border-sand-100 px-4 py-2.5 text-xs text-laterite-600 hover:bg-sand-50" lang="or">
+                        ଓଡ଼ିଆରେ ଉପଲବ୍ଧ ସମସ୍ତ ଲେଖା →
+                    </Link>
+                </div>
+            )}
+
+            {notice && (
+                <div role="status" className="fixed inset-x-3 bottom-4 z-[70] mx-auto max-w-md rounded-2xl bg-ink-900 p-4 text-sm text-white shadow-2xl sm:inset-x-auto sm:right-6">
+                    {notice === "od" ? (
+                        <p lang="or" className="font-odia leading-relaxed">
+                            ଏହି ପୃଷ୍ଠାର ଓଡ଼ିଆ ସଂସ୍କରଣ ଏବେ ପ୍ରସ୍ତୁତ ହେଉଛି। ମେନୁ ଓଡ଼ିଆରେ ଦେଖାଯିବ।{" "}
+                            <Link href="/odia" className="font-semibold text-saffron-300 underline">ଓଡ଼ିଆରେ ଉପଲବ୍ଧ ଲେଖା ଦେଖନ୍ତୁ</Link>
+                            <span className="mt-1 block font-sans text-xs text-ink-200">This page is not available in Odia yet — the menus are now in Odia.</span>
+                        </p>
+                    ) : (
+                        <p>This page is only available in Odia for now. The menus are now in English. <Link href="/" className="font-semibold text-saffron-300 underline">Go to the English home page</Link></p>
+                    )}
+                    <button type="button" onClick={() => setNotice(null)} className="absolute right-2 top-2 rounded-full px-2 text-ink-300 hover:text-white" aria-label="Dismiss">×</button>
                 </div>
             )}
         </div>
