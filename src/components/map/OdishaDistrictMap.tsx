@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useMemo, useRef, useState, type MouseEvent } from "react";
 import geo from "@/data/odisha-map.json";
 import Icon from "@/components/Icon";
+import { REGION_STYLE } from "@/data/map-regions";
 
 export interface MapDistrict {
     /** District page slug (same id as in odisha-map.json) */
@@ -29,13 +30,6 @@ const GEO = geo as unknown as { width: number; height: number; bounds: number[];
 const kx = Math.cos((GEO.lat0 * Math.PI) / 180);
 const proj = (lng: number, lat: number) => [(lng - GEO.bounds[0]) * kx * GEO.scale + GEO.pad, (GEO.bounds[3] - lat) * GEO.scale + GEO.pad] as const;
 
-export const REGION_STYLE: Record<MapDistrict["region"], { label: string; fill: string }> = {
-    coastal: { label: "Coastal", fill: "#2a9d8f" },
-    central: { label: "Central", fill: "#e9b44c" },
-    northern: { label: "Northern & western", fill: "#7389bf" },
-    southern: { label: "Southern", fill: "#d9774f" },
-    western: { label: "Western", fill: "#a98a5c" },
-};
 
 const MODES: { id: Mode; label: string; unit: string; ramp: string[] }[] = [
     { id: "region", label: "Regions", unit: "", ramp: [] },
