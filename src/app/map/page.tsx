@@ -1,196 +1,147 @@
-"use client";
+import Link from "next/link";
+import PageHero from "@/components/PageHero";
+import Icon from "@/components/Icon";
+import JsonLd from "@/components/JsonLd";
+import OdishaDistrictMap, { REGION_STYLE, type MapDistrict } from "@/components/map/OdishaDistrictMap";
+import { odishaDistricts, districtPageSlug } from "@/data/districts";
+import { districtName } from "@/lib/districts";
+import { ADMIN_SUMMARY } from "@/lib/admin";
+import { breadcrumbJsonLd, hubMetadata } from "@/lib/seo";
+import { SITE } from "@/lib/site";
 
-import dynamic from 'next/dynamic';
-import Link from 'next/link';
-import { odishaDistricts, regionColors } from '@/data/districts';
+export const metadata = hubMetadata({
+    title: "Map of Odisha – Interactive District Map (30 Districts)",
+    description: "Interactive map of Odisha with accurate boundaries of all 30 districts. See each district's headquarters, population, area, density, literacy, blocks and villages, coloured by region or Census 2011 data.",
+    path: "/map",
+    keywords: ["odisha map", "map of odisha", "odisha district map", "odisha political map", "odisha districts map", "ଓଡ଼ିଶା ମାନଚିତ୍ର"],
+});
 
-// Dynamically import map component (no SSR for Leaflet)
-const OdishaMap = dynamic(
-    () => import('@/components/map/OdishaMap'),
-    { ssr: false, loading: () => <MapLoadingPlaceholder /> }
-);
+const REGION_NOTES: Record<"coastal" | "central" | "northern" | "southern", string> = {
+    coastal: "The Mahanadi–Brahmani–Baitarani deltas and the Bay of Bengal shore: Puri, Konark, Chilika, Bhitarkanika and the old cities of Cuttack and Bhubaneswar.",
+    central: "The middle Mahanadi basin — Angul, Dhenkanal, Nayagarh, Boudh and the Sambalpuri-weaving belt around Balangir and Subarnapur.",
+    northern: "The mineral-rich Chota Nagpur fringe and the upper Mahanadi: Sundargarh, Kendujhar, Mayurbhanj (Similipal), Sambalpur and Hirakud.",
+    southern: "The Eastern Ghats and their foothills — Koraput, Rayagada, Malkangiri, Kandhamal and Kalahandi, home to many of Odisha's tribal communities.",
+};
 
-const DistrictListPanel = dynamic(
-    () => import('@/components/map/OdishaMap').then(mod => ({ default: mod.DistrictListPanel })),
-    { ssr: false }
-);
-
-function MapLoadingPlaceholder() {
-    return (
-        <div className="w-full h-[500px] md:h-[600px] bg-slate-100 rounded-xl flex items-center justify-center border border-slate-200">
-            <div className="text-center">
-                <div className="text-4xl mb-4 animate-pulse">🗺️</div>
-                <div className="text-laterite-600 font-medium">Loading map...</div>
-            </div>
-        </div>
-    );
+function buildDistricts(): MapDistrict[] {
+    return odishaDistricts.map((d) => {
+        const id = districtPageSlug(d.id);
+        const admin = ADMIN_SUMMARY[id];
+        return {
+            id,
+            name: districtName(id) ?? d.name_en,
+            odia: d.name_od,
+            hq: d.headquarters,
+            region: d.region,
+            population: d.population,
+            area: d.area_sq_km,
+            density: d.density,
+            literacy: d.literacy,
+            ...(admin ? { blocks: admin.blocks, gps: admin.gps, villages: admin.villages } : {}),
+        };
+    });
 }
 
 export default function MapPage() {
-    // Calculate totals
-    const totalPopulation = odishaDistricts.reduce((sum, d) => sum + d.population, 0);
-    const totalArea = odishaDistricts.reduce((sum, d) => sum + d.area_sq_km, 0);
+    const districts = buildDistricts();
+    const sorted = [...districts].sort((a, b) => a.name.localeCompare(b.name));
+    const crumbs = [{ name: "Districts", href: "/districts" }, { name: "Map", href: "/map" }];
 
     return (
-        <div className="min-h-screen bg-slate-50">
-            {/* Hero Section */}
-            <section className="relative py-16 overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-r from-ink-950 via-ink-900 to-laterite-900"></div>
-                <div className="absolute inset-0 bg-water opacity-20 mix-blend-soft-light"></div>
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-slate-50/10"></div>
+        <div>
+            <JsonLd data={breadcrumbJsonLd([{ name: "Home", href: "/" }, ...crumbs])} />
+            <JsonLd
+                data={{
+                    "@context": "https://schema.org",
+                    "@type": "Map",
+                    name: "District map of Odisha",
+                    url: `${SITE.url}/map`,
+                    mapType: "https://schema.org/VenueMap",
+                    about: { "@type": "AdministrativeArea", name: "Odisha", containedInPlace: { "@type": "Country", name: "India" } },
+                    hasPart: sorted.map((d) => ({ "@type": "AdministrativeArea", name: `${d.name} district`, url: `${SITE.url}/district/${d.id}` })),
+                }}
+            />
+            <PageHero
+                title="Map of Odisha"
+                odia="ଓଡ଼ିଶା ମାନଚିତ୍ର"
+                description="An interactive district map of Odisha. Hover or tap any of the 30 districts to see its headquarters, population, literacy and number of blocks and villages — then open its full guide."
+                icon="map"
+                eyebrow="Districts"
+                crumbs={crumbs}
+            />
 
-                <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <span className="text-6xl mb-4 block animate-float">🗺️</span>
-                    <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 font-display">
-                        Map of Odisha
-                    </h1>
-                    <p className="text-2xl text-laterite-200 odia-text mb-4">
-                        ଓଡ଼ିଶା ମାନଚିତ୍ର
-                    </p>
-                    <p className="text-lg text-laterite-50 max-w-2xl mx-auto text-shadow-sm">
-                        Explore all 30 districts of Odisha. Click on any district to see details.
-                    </p>
-                </div>
+            <section className="container-page py-10 md:py-14">
+                <OdishaDistrictMap districts={districts} />
+                <p className="mt-4 text-xs leading-relaxed text-ink-500">
+                    District boundaries: DataMeet, <em>Districts of India</em> (Census 2011), CC BY 2.5 India, simplified for display. Population, area, density and literacy: Census of India 2011.
+                    Blocks, gram panchayats and villages: Local Government Directory, Government of India (December 2022). Boundaries are indicative and not an authoritative depiction of borders.
+                </p>
             </section>
 
-            {/* Quick Stats */}
-            <section className="py-8 border-y border-slate-200 bg-slate-100">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        <div className="bg-white rounded-xl p-4 text-center border border-slate-200 shadow-sm">
-                            <p className="text-3xl font-bold text-slate-800">30</p>
-                            <p className="text-slate-500 text-sm font-medium">Districts</p>
-                        </div>
-                        <div className="bg-white rounded-xl p-4 text-center border border-slate-200 shadow-sm">
-                            <p className="text-3xl font-bold text-slate-800">{(totalPopulation / 10000000).toFixed(1)}Cr</p>
-                            <p className="text-slate-500 text-sm font-medium">Population</p>
-                        </div>
-                        <div className="bg-white rounded-xl p-4 text-center border border-slate-200 shadow-sm">
-                            <p className="text-3xl font-bold text-slate-800">{(totalArea / 1000).toFixed(0)}K</p>
-                            <p className="text-slate-500 text-sm font-medium">Area (sq km)</p>
-                        </div>
-                        <div className="bg-white rounded-xl p-4 text-center border border-slate-200 shadow-sm">
-                            <p className="text-3xl font-bold text-slate-800">4</p>
-                            <p className="text-slate-500 text-sm font-medium">Regions</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* Map + District List */}
-            <section className="py-12 bg-slate-50">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid lg:grid-cols-3 gap-6">
-                        {/* Map */}
-                        <div className="lg:col-span-2">
-                            <OdishaMap showLabels={true} />
-
-                            {/* Legend below map */}
-                            <div className="mt-4 flex flex-wrap gap-4 justify-center">
-                                {[
-                                    { name: 'Coastal', color: regionColors.coastal },
-                                    { name: 'Central', color: regionColors.central },
-                                    { name: 'Northern', color: regionColors.northern },
-                                    { name: 'Southern', color: regionColors.southern },
-                                ].map((region) => (
-                                    <div key={region.name} className="flex items-center gap-2 px-3 py-1 bg-white rounded-full shadow-sm border border-slate-200">
-                                        <div
-                                            className="w-3 h-3 rounded-full"
-                                            style={{ backgroundColor: region.color }}
-                                        />
-                                        <span className="text-slate-700 text-sm font-medium">{region.name}</span>
+            <section className="border-t border-sand-200 bg-sand-50">
+                <div className="container-page py-14">
+                    <div className="eyebrow mb-3"><Icon name="compass" className="h-4 w-4" />Regions</div>
+                    <h2 className="mb-8 font-display text-3xl font-semibold text-ink-900">Four broad regions</h2>
+                    <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+                        {(["coastal", "central", "northern", "southern"] as const).map((r) => {
+                            const members = sorted.filter((d) => d.region === r);
+                            return (
+                                <div key={r} className="card relative overflow-hidden p-6 pt-7">
+                                    <span className="absolute inset-x-0 top-0 h-1.5" style={{ background: REGION_STYLE[r].fill }} />
+                                    <h3 className="font-display text-xl font-semibold text-ink-900">{REGION_STYLE[r].label}</h3>
+                                    <p className="mt-2 text-sm leading-relaxed text-ink-600">{REGION_NOTES[r]}</p>
+                                    <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-ink-500">{members.length} districts</p>
+                                    <div className="mt-2 flex flex-wrap gap-1.5">
+                                        {members.map((d) => (
+                                            <Link key={d.id} href={`/district/${d.id}`} className="chip hover:bg-sand-200">{d.name}</Link>
+                                        ))}
                                     </div>
-                                ))}
-                            </div>
-                        </div>
-
-                        {/* District List */}
-                        <div>
-                            <DistrictListPanel />
-                        </div>
+                                </div>
+                            );
+                        })}
                     </div>
+                    <p className="mt-4 text-xs text-ink-500">Regional grouping is informal and used here only to colour the map.</p>
                 </div>
             </section>
 
-            {/* Region Overview */}
-            <section className="py-12 bg-white border-t border-slate-200">
-                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <h2 className="text-2xl font-bold text-slate-900 mb-8 text-center font-display">
-                        Regions of Odisha
-                    </h2>
-
-                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-                        {/* Coastal */}
-                        <div className="bg-blue-50/50 rounded-xl p-5 border border-blue-100 hover:shadow-md transition-shadow">
-                            <h3 className="text-lg font-bold text-blue-700 mb-2">🌊 Coastal</h3>
-                            <p className="text-slate-600 text-sm mb-3">
-                                Stretches along the Bay of Bengal. Home to major cities and rich cultural heritage.
-                            </p>
-                            <p className="text-blue-600 text-xs font-medium">
-                                Puri, Cuttack, Khurda, Bhadrak, Balasore, Jajpur, Kendrapara, Jagatsinghpur
-                            </p>
-                        </div>
-
-                        {/* Central */}
-                        <div className="bg-green-50/50 rounded-xl p-5 border border-green-100 hover:shadow-md transition-shadow">
-                            <h3 className="text-lg font-bold text-green-700 mb-2">🌲 Central</h3>
-                            <p className="text-slate-600 text-sm mb-3">
-                                Forest-rich interior with mineral resources and agricultural lands.
-                            </p>
-                            <p className="text-green-600 text-xs font-medium">
-                                Angul, Dhenkanal, Bolangir, Boudh, Deogarh, Nayagarh, Sonepur
-                            </p>
-                        </div>
-
-                        {/* Northern */}
-                        <div className="bg-amber-50/50 rounded-xl p-5 border border-amber-100 hover:shadow-md transition-shadow">
-                            <h3 className="text-lg font-bold text-amber-700 mb-2">⛏️ Northern</h3>
-                            <p className="text-slate-600 text-sm mb-3">
-                                Industrial heartland with rich iron ore and coal reserves.
-                            </p>
-                            <p className="text-amber-600 text-xs font-medium">
-                                Sundargarh, Sambalpur, Jharsuguda, Bargarh, Mayurbhanj, Keonjhar
-                            </p>
-                        </div>
-
-                        {/* Southern */}
-                        <div className="bg-pink-50/50 rounded-xl p-5 border border-pink-100 hover:shadow-md transition-shadow">
-                            <h3 className="text-lg font-bold text-pink-700 mb-2">🏔️ Southern</h3>
-                            <p className="text-slate-600 text-sm mb-3">
-                                Eastern Ghats region with tribal heritage and natural beauty.
-                            </p>
-                            <p className="text-pink-600 text-xs font-medium">
-                                Ganjam, Koraput, Kalahandi, Kandhamal, Rayagada, Malkangiri, and more
-                            </p>
-                        </div>
-                    </div>
+            <section className="container-page py-14">
+                <div className="eyebrow mb-3"><Icon name="list" className="h-4 w-4" />At a glance</div>
+                <h2 className="mb-6 font-display text-3xl font-semibold text-ink-900">Districts of Odisha — key figures</h2>
+                <div className="overflow-x-auto rounded-2xl border border-sand-200 bg-white">
+                    <table className="w-full min-w-[44rem] text-left text-sm">
+                        <thead className="bg-sand-100 text-xs uppercase tracking-wide text-ink-600">
+                            <tr>
+                                <th className="px-4 py-3">District</th>
+                                <th className="px-4 py-3">Headquarters</th>
+                                <th className="px-4 py-3 text-right">Population (2011)</th>
+                                <th className="px-4 py-3 text-right">Area (km²)</th>
+                                <th className="px-4 py-3 text-right">Literacy</th>
+                                <th className="px-4 py-3 text-right">Blocks</th>
+                                <th className="px-4 py-3 text-right">Villages</th>
+                            </tr>
+                        </thead>
+                        <tbody className="divide-y divide-sand-100">
+                            {sorted.map((d) => (
+                                <tr key={d.id} className="hover:bg-sand-50">
+                                    <td className="px-4 py-2.5">
+                                        <Link href={`/district/${d.id}`} className="font-semibold text-ink-900 hover:text-laterite-600">{d.name}</Link>
+                                        <span className="ml-2 font-odia text-ink-500">{d.odia}</span>
+                                    </td>
+                                    <td className="px-4 py-2.5 text-ink-700">{d.hq}</td>
+                                    <td className="px-4 py-2.5 text-right tabular-nums">{d.population.toLocaleString("en-IN")}</td>
+                                    <td className="px-4 py-2.5 text-right tabular-nums">{d.area.toLocaleString("en-IN")}</td>
+                                    <td className="px-4 py-2.5 text-right tabular-nums">{d.literacy}%</td>
+                                    <td className="px-4 py-2.5 text-right tabular-nums">{d.blocks ?? "—"}</td>
+                                    <td className="px-4 py-2.5 text-right tabular-nums">{d.villages?.toLocaleString("en-IN") ?? "—"}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
                 </div>
-            </section>
-
-            {/* Explore Related */}
-            <section className="py-12 bg-slate-50 border-t border-slate-200">
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h3 className="text-xl font-bold text-slate-900 mb-6">Explore More</h3>
-                    <div className="flex flex-wrap justify-center gap-4">
-                        <Link
-                            href="/history/timeline"
-                            className="px-6 py-3 bg-white hover:bg-slate-50 border border-slate-200 rounded-xl text-slate-700 font-medium transition-colors shadow-sm hover:shadow-md"
-                        >
-                            📜 History Timeline
-                        </Link>
-                        <Link
-                            href="/calendar"
-                            className="px-6 py-3 bg-white hover:bg-slate-50 border border-slate-200 rounded-xl text-slate-700 font-medium transition-colors shadow-sm hover:shadow-md"
-                        >
-                            🗓️ Odia Calendar
-                        </Link>
-                        <Link
-                            href="/culture"
-                            className="px-6 py-3 bg-laterite-600 hover:bg-laterite-700 rounded-xl text-white font-medium transition-colors shadow-md hover:shadow-lg"
-                        >
-                            🎭 Explore Culture
-                        </Link>
-                    </div>
+                <div className="mt-10 flex flex-wrap gap-3">
+                    <Link href="/districts" className="btn-dark"><Icon name="pin" className="h-4 w-4" />All district guides</Link>
+                    <Link href="/travel/plan" className="btn-ghost"><Icon name="suitcase" className="h-4 w-4" />Plan a trip</Link>
+                    <Link href="/history/timeline" className="btn-ghost"><Icon name="hourglass" className="h-4 w-4" />History timeline</Link>
                 </div>
             </section>
         </div>
