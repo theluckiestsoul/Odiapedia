@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { getSearchIndex } from "@/lib/mdx";
 import { SITE } from "@/lib/site";
+import { Analytics } from '@vercel/analytics/next';
 
 const fraunces = Fraunces({
   variable: "--font-fraunces",
@@ -171,6 +172,7 @@ export default function RootLayout({
           </main>
           <Footer />
         </LanguageProvider>
+        <Analytics />
       </body>
     </html>
   );
