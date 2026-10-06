@@ -15,7 +15,7 @@ export const metadata = hubMetadata({
 
 const lessons: { slug: string; number: number; title: string; odia: string; description: string; icon: IconName }[] = [
     { slug: "alphabet", number: 1, title: "The Odia alphabet", odia: "ଓଡ଼ିଆ ବର୍ଣ୍ଣମାଳା", description: "Vowels and consonants, with pronunciation.", icon: "pen" },
-    { slug: "numbers", number: 2, title: "Odia numbers", odia: "ଓଡ଼ିଆ ସଂଖ୍ୟା", description: "Odia digits and counting from one to twenty.", icon: "list" },
+    { slug: "numbers", number: 2, title: "Odia numbers", odia: "ଓଡ଼ିଆ ସଂଖ୍ୟା", description: "Odia digits, counting to a hundred, and lakh and crore.", icon: "list" },
     { slug: "greetings", number: 3, title: "Essential greetings", odia: "ଅଭିବାଦନ", description: "Say hello, thank you and goodbye politely.", icon: "people" },
     { slug: "phrases", number: 4, title: "Everyday phrases", odia: "ଦୈନନ୍ଦିନ ବାକ୍ୟ", description: "Practical expressions for travel and daily life.", icon: "language" },
 ];

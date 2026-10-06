@@ -13,6 +13,7 @@ const columns = [
             { href: "/culture", label: "Culture & festivals" },
             { href: "/food", label: "Food" },
             { href: "/people", label: "People" },
+            { href: "/library", label: "Library (free PDFs)" },
         ],
     },
     {

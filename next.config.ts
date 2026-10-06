@@ -11,6 +11,10 @@ const nextConfig: NextConfig = {
       { source: "/food/pakhala-en", destination: "/food/pakhala-bhata", permanent: true },
       { source: "/people/biju-patnaik-en", destination: "/people/biju-patnaik", permanent: true },
       { source: "/panchanga", destination: "/calendar", permanent: true },
+      // Old or mistyped URLs that Google Search Console still reports
+      { source: "/culture/durga-pooja", destination: "/culture/durga-puja", permanent: true },
+      { source: "/learning", destination: "/learn", permanent: true },
+      { source: "/learning/:slug", destination: "/learn/:slug", permanent: true },
       { source: "/panjika/today", destination: "/calendar", permanent: true },
     ];
   },
