@@ -5,12 +5,13 @@ import { getAllTehsilsForDistrict } from "@/lib/tehsils";
 import { getAllSpots } from "@/lib/spots";
 import { SITE } from "@/lib/site";
 import { LIBRARY } from "@/data/library";
+import { ADMIN_DISTRICTS, getAdminDistrict, subdistrictSlug } from "@/lib/admin";
 
 /**
  * XML sitemap. lastModified uses each article's real "updated" date — never "now" —
  * so search engines can trust it (Google ignores lastmod values that are always fresh).
  */
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const base = SITE.url;
     const articles = getAllArticlesMetadata().filter((a) => !a.noindex);
     const latestIn = (pred: (a: ArticleMeta) => boolean) =>
@@ -100,5 +101,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.6,
     }));
 
-    return [...hubPages, ...libraryPages, ...articlePages, ...districtPages, ...tehsilPages, ...spotPages];
+    // Block and tahasil directory pages (village pages are generated on demand and not indexed)
+    const adminPages: MetadataRoute.Sitemap = [];
+    for (const d of ADMIN_DISTRICTS) {
+        const a = await getAdminDistrict(d);
+        if (!a) continue;
+        for (const b of a.blocks) if (b.code !== "0") adminPages.push({ url: `${base}/district/${d}/block/${b.slug}`, changeFrequency: "yearly", priority: 0.5 });
+        for (const s of a.subdistricts) adminPages.push({ url: `${base}/district/${d}/tahasil/${subdistrictSlug(s)}`, changeFrequency: "yearly", priority: 0.4 });
+    }
+
+    return [...hubPages, ...libraryPages, ...adminPages, ...articlePages, ...districtPages, ...tehsilPages, ...spotPages];
 }

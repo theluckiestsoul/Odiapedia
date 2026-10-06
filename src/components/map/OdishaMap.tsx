@@ -4,7 +4,9 @@ import { useEffect, useState, useCallback } from 'react';
 import { MapContainer, TileLayer, useMap, GeoJSON, Popup } from 'react-leaflet';
 import { District, odishaDistricts, odishaCentroid, regionColors, districtPageSlug } from '@/data/districts';
 import { getDistrictGeoJSON } from '@/data/districtPolygons';
-import { getBlocksByDistrictId } from '@/data/blocks';
+import adminSummary from '@/data/admin/_summary.json';
+
+const BLOCK_COUNTS = (adminSummary as { summary: Record<string, { blocks: number }> }).summary;
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import 'leaflet/dist/leaflet.css';
@@ -173,7 +175,7 @@ export default function OdishaMap({
                 const district = odishaDistricts.find(d => d.id === props.id);
                 if (district) {
                     setHoveredDistrictData(district);
-                    setHoveredBlocks(getBlocksByDistrictId(props.id).length);
+                    setHoveredBlocks(BLOCK_COUNTS[districtPageSlug(props.id)]?.blocks ?? 0);
                 }
                 e.target.bringToFront();
                 e.target.setStyle({

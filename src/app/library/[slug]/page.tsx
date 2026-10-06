@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const { slug } = await params;
     const item = getLibraryItem(slug);
     if (!item) return { title: "Not found", robots: { index: false } };
-    const base = item.title.length > 40 ? item.title.replace(/\s*[:(—–].*$/, "").trim() : item.title;
+    const base = item.title.length > 40 ? item.title.replace(/\s*[(—–].*$/, "").trim() : item.title;
     const withAuthor = `${base} by ${item.author} – PDF`;
     const title = withAuthor.length <= 58 ? withAuthor : base.length <= 52 ? `${base} – PDF` : base.slice(0, 55).replace(/\s+\S*$/, "") + "…";
     const description = `${item.description} Free ${item.language} PDF, ${item.year}. ${item.rights}.`.slice(0, 300);

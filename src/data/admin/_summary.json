@@ -1,0 +1,215 @@
+{
+ "source": "Local Government Directory (lgdirectory.gov.in), Government of India \u2014 data dump of December 2022 via github.com/planemad/india-local-government-directory",
+ "summary": {
+  "angul": {
+   "villages": 1896,
+   "blocks": 8,
+   "gps": 226,
+   "subdistricts": 22,
+   "ulbs": 3
+  },
+  "balangir": {
+   "villages": 1790,
+   "blocks": 14,
+   "gps": 319,
+   "subdistricts": 12,
+   "ulbs": 5
+  },
+  "balasore": {
+   "villages": 2976,
+   "blocks": 12,
+   "gps": 386,
+   "subdistricts": 22,
+   "ulbs": 4
+  },
+  "bargarh": {
+   "villages": 1215,
+   "blocks": 12,
+   "gps": 253,
+   "subdistricts": 15,
+   "ulbs": 5
+  },
+  "bhadrak": {
+   "villages": 1324,
+   "blocks": 7,
+   "gps": 220,
+   "subdistricts": 12,
+   "ulbs": 4
+  },
+  "boudh": {
+   "villages": 1187,
+   "blocks": 3,
+   "gps": 69,
+   "subdistricts": 6,
+   "ulbs": 1
+  },
+  "cuttack": {
+   "villages": 2300,
+   "blocks": 14,
+   "gps": 374,
+   "subdistricts": 26,
+   "ulbs": 4
+  },
+  "deogarh": {
+   "villages": 900,
+   "blocks": 3,
+   "gps": 82,
+   "subdistricts": 4,
+   "ulbs": 1
+  },
+  "dhenkanal": {
+   "villages": 1210,
+   "blocks": 8,
+   "gps": 212,
+   "subdistricts": 13,
+   "ulbs": 4
+  },
+  "gajapati": {
+   "villages": 1627,
+   "blocks": 7,
+   "gps": 149,
+   "subdistricts": 10,
+   "ulbs": 2
+  },
+  "ganjam": {
+   "villages": 3229,
+   "blocks": 22,
+   "gps": 503,
+   "subdistricts": 29,
+   "ulbs": 18
+  },
+  "jagatsinghpur": {
+   "villages": 1302,
+   "blocks": 8,
+   "gps": 198,
+   "subdistricts": 10,
+   "ulbs": 2
+  },
+  "jajpur": {
+   "villages": 1798,
+   "blocks": 10,
+   "gps": 311,
+   "subdistricts": 18,
+   "ulbs": 2
+  },
+  "jharsuguda": {
+   "villages": 353,
+   "blocks": 5,
+   "gps": 78,
+   "subdistricts": 10,
+   "ulbs": 3
+  },
+  "kalahandi": {
+   "villages": 2257,
+   "blocks": 13,
+   "gps": 310,
+   "subdistricts": 13,
+   "ulbs": 4
+  },
+  "kandhamal": {
+   "villages": 2599,
+   "blocks": 12,
+   "gps": 171,
+   "subdistricts": 17,
+   "ulbs": 3
+  },
+  "kendrapara": {
+   "villages": 1571,
+   "blocks": 9,
+   "gps": 249,
+   "subdistricts": 12,
+   "ulbs": 2
+  },
+  "kendujhar": {
+   "villages": 2128,
+   "blocks": 13,
+   "gps": 297,
+   "subdistricts": 24,
+   "ulbs": 5
+  },
+  "khordha": {
+   "villages": 1569,
+   "blocks": 10,
+   "gps": 190,
+   "subdistricts": 22,
+   "ulbs": 5
+  },
+  "koraput": {
+   "villages": 2127,
+   "blocks": 14,
+   "gps": 240,
+   "subdistricts": 21,
+   "ulbs": 4
+  },
+  "malkangiri": {
+   "villages": 1069,
+   "blocks": 7,
+   "gps": 111,
+   "subdistricts": 12,
+   "ulbs": 2
+  },
+  "mayurbhanj": {
+   "villages": 3966,
+   "blocks": 26,
+   "gps": 408,
+   "subdistricts": 31,
+   "ulbs": 4
+  },
+  "nabarangpur": {
+   "villages": 896,
+   "blocks": 10,
+   "gps": 189,
+   "subdistricts": 12,
+   "ulbs": 2
+  },
+  "nayagarh": {
+   "villages": 1742,
+   "blocks": 8,
+   "gps": 194,
+   "subdistricts": 12,
+   "ulbs": 5
+  },
+  "nuapada": {
+   "villages": 669,
+   "blocks": 5,
+   "gps": 131,
+   "subdistricts": 6,
+   "ulbs": 3
+  },
+  "puri": {
+   "villages": 1715,
+   "blocks": 11,
+   "gps": 268,
+   "subdistricts": 15,
+   "ulbs": 4
+  },
+  "rayagada": {
+   "villages": 2673,
+   "blocks": 11,
+   "gps": 182,
+   "subdistricts": 15,
+   "ulbs": 3
+  },
+  "sambalpur": {
+   "villages": 1318,
+   "blocks": 9,
+   "gps": 138,
+   "subdistricts": 20,
+   "ulbs": 3
+  },
+  "subarnapur": {
+   "villages": 963,
+   "blocks": 6,
+   "gps": 109,
+   "subdistricts": 8,
+   "ulbs": 3
+  },
+  "sundargarh": {
+   "villages": 1776,
+   "blocks": 17,
+   "gps": 279,
+   "subdistricts": 30,
+   "ulbs": 4
+  }
+ }
+}

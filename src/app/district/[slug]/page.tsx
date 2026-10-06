@@ -1,24 +1,26 @@
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
+import Link from "next/link";
+import { MDXRemote } from "next-mdx-remote/rsc";
+import remarkGfm from "remark-gfm";
 import { getDistrictBySlug, getAllDistrictSlugs } from "@/lib/districts";
 import { getDistrictById } from "@/data/districts";
-import { getBlocksByDistrictId } from "@/data/blocks";
-import { MDXRemote } from "next-mdx-remote/rsc";
-import { useMDXComponents } from "../../../../mdx-components";
-import Link from "next/link";
 import { getAllTehsilsForDistrict } from "@/lib/tehsils";
-import remarkGfm from "remark-gfm";
+import { getAdminDistrict, ADMIN_SOURCE, subdistrictSlug } from "@/lib/admin";
+import { useMDXComponents } from "../../../../mdx-components";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Icon from "@/components/Icon";
 import ArticleCard from "@/components/ArticleCard";
+import DistrictTabs, { type DistrictTab } from "@/components/DistrictTabs";
+import AdminExplorer from "@/components/AdminExplorer";
 import { ChariotWheel } from "@/components/Motifs";
 import { getAllArticlesMetadata } from "@/lib/mdx";
-import { SITE } from "@/lib/site";
+import { SITE, formatDate } from "@/lib/site";
+import type { IconName } from "@/lib/site";
 
 interface PageProps {
     params: Promise<{ slug: string }>;
 }
-
 
 export async function generateStaticParams() {
     const slugs = getAllDistrictSlugs();
@@ -35,8 +37,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
     const isOdia = slug.endsWith("-od");
     const base = slug.replace(/-od$/, "");
-    const data = getDistrictById(base);
-    const nameEn = data?.name_en || district.title;
+    const nameEn = getDistrictBySlug(base)?.title || getDistrictById(base)?.name_en || district.title;
     const title = isOdia ? `${district.title} ଜିଲ୍ଲା – ${nameEn} District, Odisha (ଓଡ଼ିଆ)` : `${district.title} District, Odisha: Places, History & Facts`;
     const description =
         district.description ||
@@ -46,6 +47,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return {
         title,
         description,
+        keywords: district.keywords.length ? district.keywords : undefined,
         alternates: {
             canonical: `/district/${slug}`,
             ...(hasOdia
@@ -62,78 +64,196 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
 }
 
-function TehsilList({ districtSlug }: { districtSlug: string }) {
-    const tehsils = getAllTehsilsForDistrict(districtSlug);
-    const blocks = getBlocksByDistrictId(districtSlug);
+/** H2 headings used by the English district pages, grouped into tabs. */
+const TAB_GROUPS: { id: string; label: string; icon: IconName; headings: string[] }[] = [
+    { id: "overview", label: "Overview", icon: "info", headings: ["overview"] },
+    { id: "history", label: "History", icon: "scroll", headings: ["history"] },
+    { id: "places", label: "Places & travel", icon: "compass", headings: ["places to visit", "how to reach"] },
+    { id: "culture", label: "Culture & food", icon: "mask", headings: ["culture and festivals", "food"] },
+    { id: "land", label: "Land & economy", icon: "leaf", headings: ["geography and climate", "economy"] },
+    { id: "people", label: "People", icon: "people", headings: ["notable people"] },
+];
 
-    // Check if we have any administrative content
-    if (tehsils.length === 0 && blocks.length === 0) {
-        return (
-            <div className="py-2 text-sm italic text-ink-500">
-                Administrative details are being added.
-            </div>
-        );
+interface Section {
+    heading: string;
+    body: string;
+}
+
+/** Split MDX into the intro and H2 sections (code fences respected). */
+function splitSections(content: string): { intro: string; sections: Section[] } {
+    const lines = content.replace(/^\s*#\s+[^\n]+\n+/, "").split("\n");
+    let inCode = false;
+    let intro: string[] = [];
+    const sections: Section[] = [];
+    for (const line of lines) {
+        if (/^\s*```/.test(line)) inCode = !inCode;
+        const m = !inCode && line.match(/^##\s+(.+?)\s*$/);
+        if (m) {
+            sections.push({ heading: m[1].trim(), body: "" });
+            continue;
+        }
+        if (sections.length) sections[sections.length - 1].body += line + "\n";
+        else intro.push(line);
     }
-
-    return (
-        <div className="contents">
-            {/* MDX Tehsils (Rich Content) */}
-            {tehsils.map((tehsil) => (
-                <Link
-                    key={tehsil.slug}
-                    href={`/district/${districtSlug}/${tehsil.slug}`}
-                    className="group block rounded-xl border border-sand-200 bg-white p-3 transition-colors hover:border-laterite-300"
-                >
-                    <div className="flex justify-between items-center mb-1">
-                        <span className="font-semibold text-ink-900 group-hover:text-laterite-700">{tehsil.title}</span>
-                        <span className="text-laterite-500 transition-transform group-hover:translate-x-1">→</span>
-                    </div>
-                    <div className="text-xs font-medium uppercase tracking-wider text-ink-500">Tehsil</div>
-                </Link>
-            ))}
-
-            {/* Data Blocks (Data Only) */}
-            {blocks.map((block) => {
-                return (
-                    <div
-                        key={block.id}
-                        className="rounded-xl border border-sand-200 bg-sand-50 p-3"
-                    >
-                        <div className="flex justify-between items-center mb-1">
-                            <span className="font-medium text-ink-800">{block.name_en}</span>
-                        </div>
-                        <div lang="or" className="font-odia text-xs text-ink-500">{block.name_od}</div>
-                        <div className="flex gap-2 text-xs uppercase tracking-wider text-ink-400">
-                            <span>Block</span>
-                            <span>•</span>
-                            <span>{block.gps_count} GPs</span>
-                        </div>
-                    </div>
-                );
-            })}
-        </div>
-    );
+    return { intro: intro.join("\n").trim(), sections };
 }
 
 export default async function DistrictPage({ params }: PageProps) {
     const { slug } = await params;
 
-    // Fetch from both sources
-    const districtContent = getDistrictBySlug(slug); // MDX Content
+    const districtContent = getDistrictBySlug(slug);
     const baseSlug = slug.replace(/-od$/, "");
     const isOdia = slug !== baseSlug;
-    const districtData = getDistrictById(baseSlug);  // Map Data
+    const districtData = getDistrictById(baseSlug);
 
     if (!districtContent) {
         notFound();
     }
 
+    const admin = await getAdminDistrict(baseSlug);
+    const mdxTehsils = getAllTehsilsForDistrict(baseSlug);
+
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const components = useMDXComponents({});
-    const body = districtContent.content.replace(/^\s*#\s+[^\n]+\n+/, "");
+    const { intro, sections } = splitSections(districtContent.content);
 
-    // Related Odiapedia articles that mention this district (internal linking)
-    const nameEn = districtData?.name_en || districtContent.title;
+    // Build tabs from the content's H2 sections
+    const used = new Set<number>();
+    const tabs: DistrictTab[] = [];
+    const panels: React.ReactNode[] = [];
+    const renderMdx = (src: string) => (
+        <MDXRemote source={src} components={components} options={{ mdxOptions: { remarkPlugins: [remarkGfm] }, blockJS: false }} />
+    );
+    const nameEn = (isOdia ? getDistrictBySlug(baseSlug)?.title : districtContent.title) || districtData?.name_en || districtContent.title;
+
+    for (const g of TAB_GROUPS) {
+        const idx = sections.map((s, i) => (g.headings.includes(s.heading.toLowerCase()) ? i : -1)).filter((i) => i >= 0);
+        if (!idx.length && !(g.id === "overview" && intro)) continue;
+        idx.forEach((i) => used.add(i));
+        const src = [
+            g.id === "overview" ? intro : "",
+            ...idx.map((i) => (idx.length > 1 || g.id !== "overview" ? `## ${sections[i].heading}\n\n${sections[i].body}` : sections[i].body)),
+        ]
+            .filter(Boolean)
+            .join("\n\n");
+        tabs.push({ id: g.id, label: g.label, icon: g.icon });
+        panels.push(
+            <div className={g.id === "overview" ? "grid gap-10 lg:grid-cols-[minmax(0,1fr)_320px]" : ""}>
+                <div className="article-body min-w-0 max-w-[46rem]" lang={isOdia ? "or" : "en"}>
+                    {renderMdx(src)}
+                </div>
+                {g.id === "overview" && districtContent.facts.length > 0 && (
+                    <aside>
+                        <div className="overflow-hidden rounded-2xl border border-sand-200 bg-white lg:sticky lg:top-40">
+                            <div className="flex items-center gap-2 border-b border-sand-200 bg-sand-100 px-5 py-3">
+                                <Icon name="info" className="h-4 w-4 text-laterite-600" />
+                                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-ink-600">Quick facts</p>
+                            </div>
+                            <dl className="divide-y divide-sand-100">
+                                {districtContent.facts.map((f) => (
+                                    <div key={f.label} className="grid grid-cols-[7rem_1fr] gap-3 px-5 py-3 text-sm">
+                                        <dt className="font-medium text-ink-500">{f.label}</dt>
+                                        <dd className="text-ink-900">{f.value}</dd>
+                                    </div>
+                                ))}
+                            </dl>
+                        </div>
+                    </aside>
+                )}
+            </div>
+        );
+    }
+    // Any section not in a known group (e.g. Odia-language pages) gets its own tab
+    sections.forEach((s, i) => {
+        if (used.has(i)) return;
+        tabs.push({ id: `section-${i + 1}`, label: s.heading.replace(/[*_]/g, "").slice(0, 28), icon: "book" });
+        panels.push(
+            <div className="article-body max-w-[46rem]" lang={isOdia ? "or" : "en"}>
+                {renderMdx(`## ${s.heading}\n\n${s.body}`)}
+            </div>
+        );
+    });
+
+    // Administration tab (Government data)
+    if (admin) {
+        const summary = {
+            district: baseSlug,
+            districtName: nameEn,
+            blocks: admin.blocks.map((b) => ({ code: b.code, name: b.name, slug: b.slug, gps: b.gps.filter((g) => g.code !== "0").length, villages: b.villages })),
+            subdistricts: admin.subdistricts.map((s) => ({ code: s.code, name: s.name, slug: subdistrictSlug(s), villages: s.villages })),
+            ulbs: admin.ulbs.map((u) => ({ code: u.code, name: u.name, type: u.type })),
+        };
+        const realBlocks = admin.blocks.filter((b) => b.code !== "0");
+        const gpCount = realBlocks.reduce((n, b) => n + b.gps.filter((g) => g.code !== "0").length, 0);
+        tabs.push({ id: "administration", label: "Blocks & villages", icon: "list" });
+        panels.push(
+            <div>
+                <div className="mb-6 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+                    <div>
+                        <h2 className="font-display text-3xl font-semibold">Blocks, tahasils, panchayats &amp; villages</h2>
+                        <p className="mt-2 max-w-2xl text-ink-600">
+                            Choose a block, tahasil or town to see its details and its gram panchayats and villages. Open any village for its own page.
+                        </p>
+                    </div>
+                    <dl className="grid grid-cols-4 gap-2 text-center">
+                        {[
+                            ["Blocks", realBlocks.length],
+                            ["Sub-districts", admin.subdistricts.length],
+                            ["GPs", gpCount],
+                            ["Villages", admin.villages.length],
+                        ].map(([k, v]) => (
+                            <div key={k} className="rounded-xl border border-sand-200 bg-white px-3 py-2">
+                                <dt className="text-[11px] uppercase tracking-wider text-ink-500">{k}</dt>
+                                <dd className="font-display text-lg font-semibold">{Number(v).toLocaleString("en-IN")}</dd>
+                            </div>
+                        ))}
+                    </dl>
+                </div>
+                <AdminExplorer summary={summary} />
+
+                {/* Crawlable index of blocks and tahasils */}
+                <div className="mt-10 grid gap-8 md:grid-cols-2">
+                    <div>
+                        <h3 className="font-display text-xl font-semibold">All blocks in {nameEn}</h3>
+                        <ul className="mt-3 grid grid-cols-2 gap-x-4 gap-y-1.5 text-sm">
+                            {realBlocks.map((b) => (
+                                <li key={b.code}><Link href={`/district/${baseSlug}/block/${b.slug}`} className="text-laterite-600 hover:underline">{b.name}</Link> <span className="text-ink-400">({b.villages})</span></li>
+                            ))}
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 className="font-display text-xl font-semibold">All tahasils / sub-districts</h3>
+                        <ul className="mt-3 grid grid-cols-2 gap-x-4 gap-y-1.5 text-sm">
+                            {admin.subdistricts.map((s) => (
+                                <li key={s.code}><Link href={`/district/${baseSlug}/tahasil/${subdistrictSlug(s)}`} className="text-laterite-600 hover:underline">{s.name}</Link> <span className="text-ink-400">({s.villages})</span></li>
+                            ))}
+                        </ul>
+                        {admin.ulbs.length > 0 && (
+                            <>
+                                <h3 className="mt-6 font-display text-xl font-semibold">Towns (urban local bodies)</h3>
+                                <ul className="mt-3 space-y-1 text-sm text-ink-700">
+                                    {admin.ulbs.map((u) => <li key={u.code}>{u.name} <span className="text-ink-400">· {u.type || "Urban local body"}</span></li>)}
+                                </ul>
+                            </>
+                        )}
+                        {mdxTehsils.length > 0 && (
+                            <>
+                                <h3 className="mt-6 font-display text-xl font-semibold">Tehsil guides</h3>
+                                <ul className="mt-3 space-y-1 text-sm">
+                                    {mdxTehsils.map((t) => <li key={t.slug}><Link href={`/district/${baseSlug}/${t.slug}`} className="text-laterite-600 hover:underline">{t.title}</Link></li>)}
+                                </ul>
+                            </>
+                        )}
+                    </div>
+                </div>
+                <p className="mt-8 text-xs text-ink-500">
+                    Source: {ADMIN_SOURCE}. Tahasil/sub-district units follow the Local Government Directory, which in some districts of Odisha lists more sub-districts than revenue tahasils. Boundaries and names change over time; check the district administration for current status.
+                </p>
+            </div>
+        );
+    }
+
+    // Related articles that mention the district (internal linking)
     const escaped = nameEn.replace(/[.*+?^$()|[\]\\{}]/g, "\\$&");
     const nameRe = new RegExp("\\b" + escaped + "\\b", "i");
     const related = isOdia
@@ -143,43 +263,32 @@ export default async function DistrictPage({ params }: PageProps) {
               .filter((a) => a.facts.some((f) => /district|location|region|where/i.test(f.label) && nameRe.test(f.value)) || nameRe.test(a.title))
               .slice(0, 6);
 
-    // Schema.org Structured Data
+    const stats = [
+        { k: "Headquarters", v: districtContent.headquarters || districtData?.headquarters },
+        { k: "Population (2011)", v: districtContent.population || (districtData ? districtData.population.toLocaleString("en-IN") : undefined) },
+        { k: "Area", v: districtContent.area || (districtData ? `${districtData.area_sq_km.toLocaleString("en-IN")} sq km` : undefined) },
+        { k: "Villages", v: admin ? admin.villages.length.toLocaleString("en-IN") : undefined },
+    ].filter((x) => x.v);
+
     const jsonLd = {
         "@context": "https://schema.org",
         "@graph": [
             {
                 "@type": "AdministrativeArea",
-                "name": districtContent.title,
-                "description": districtContent.description,
-                "containedInPlace": {
-                    "@type": "State",
-                    "name": "Odisha"
-                },
-                ...(districtData && {
-                    "geo": {
-                        "@type": "GeoCoordinates",
-                        "latitude": districtData.centroid[0],
-                        "longitude": districtData.centroid[1]
-                    }
-                })
+                name: `${nameEn} district`,
+                alternateName: districtData?.name_od,
+                description: districtContent.description,
+                url: `${SITE.url}/district/${slug}`,
+                containedInPlace: { "@type": "State", name: "Odisha", containedInPlace: { "@type": "Country", name: "India" } },
+                ...(districtData ? { geo: { "@type": "GeoCoordinates", latitude: districtData.centroid[0], longitude: districtData.centroid[1] } } : {}),
+                ...(admin ? { identifier: [{ "@type": "PropertyValue", propertyID: "LGD district code", value: admin.lgdCode }, { "@type": "PropertyValue", propertyID: "Census 2011 code", value: admin.census2011 }] } : {}),
             },
-            {
-                "@type": "BreadcrumbList",
-                "itemListElement": [
-                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://odiapedia.com" },
-                    { "@type": "ListItem", "position": 2, "name": "Districts", "item": "https://odiapedia.com/districts" },
-                    { "@type": "ListItem", "position": 3, "name": districtContent.title, "item": `https://odiapedia.com/district/${slug}` }
-                ]
-            }
-        ]
+            ...(districtContent.faq.length
+                ? [{ "@type": "FAQPage", mainEntity: districtContent.faq.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) }]
+                : []),
+        ],
     };
-
-    const stats = [
-        { k: "Headquarters", v: districtContent.headquarters || districtData?.headquarters },
-        { k: "Population (2011)", v: districtContent.population || (districtData ? districtData.population.toLocaleString("en-IN") : undefined) },
-        { k: "Area", v: districtContent.area || (districtData ? `${districtData.area_sq_km.toLocaleString("en-IN")} sq km` : undefined) },
-        { k: "Literacy (2011)", v: districtData ? `${districtData.literacy}%` : undefined },
-    ].filter((x) => x.v);
+    const reportHref = `mailto:${SITE.correctionsEmail}?subject=${encodeURIComponent(`Correction: ${nameEn} district`)}&body=${encodeURIComponent(`Page: ${SITE.url}/district/${slug}\n\nWhat is incorrect or missing?\n\nSource:\n`)}`;
 
     return (
         <>
@@ -215,46 +324,47 @@ export default async function DistrictPage({ params }: PageProps) {
                 </div>
             </header>
 
-            <div className="container-page grid gap-12 py-12 lg:grid-cols-[minmax(0,1fr)_340px]">
-                <article className="article-body min-w-0 max-w-[46rem]" lang={isOdia ? "or" : "en"}>
-                    <MDXRemote source={body} components={components} options={{ mdxOptions: { remarkPlugins: [remarkGfm] }, blockJS: false }} />
-                </article>
+            <div className="container-page pb-12">
+                <DistrictTabs tabs={tabs} panels={panels} />
 
-                <aside className="space-y-6 lg:sticky lg:top-24 lg:h-fit">
-                    {districtData && (
-                        <div className="overflow-hidden rounded-2xl border border-sand-200 bg-white">
-                            <div className="flex items-center gap-2 border-b border-sand-200 bg-sand-100 px-5 py-3">
-                                <Icon name="map" className="h-4 w-4 text-laterite-600" />
-                                <h2 className="font-sans text-xs font-semibold uppercase tracking-[0.16em] text-ink-600">Location</h2>
-                            </div>
-                            <div className="relative h-[240px]">
-                                <iframe
-                                    src={`https://www.openstreetmap.org/export/embed.html?bbox=${districtData.bounds[0][1] - 0.5},${districtData.bounds[0][0] - 0.5},${districtData.bounds[1][1] + 0.5},${districtData.bounds[1][0] + 0.5}&layer=mapnik&marker=${districtData.centroid[0]},${districtData.centroid[1]}`}
-                                    style={{ width: "100%", height: "100%", border: 0 }}
-                                    loading="lazy"
-                                    title={`Map of ${districtData.name_en} district`}
-                                />
-                            </div>
-                            <div className="flex gap-2 p-4">
-                                <Link href="/map" className="btn-ghost flex-1 !py-2">Odisha map</Link>
-                                <a href={`https://www.google.com/maps/search/${encodeURIComponent(districtData.name_en + " district Odisha")}/@${districtData.centroid[0]},${districtData.centroid[1]},9z`} target="_blank" rel="noopener noreferrer" className="btn-ghost flex-1 !py-2">Google Maps <Icon name="external" className="h-3.5 w-3.5" /></a>
-                            </div>
+                {districtContent.faq.length > 0 && (
+                    <section className="mt-16 max-w-[46rem]">
+                        <h2 className="font-display text-[1.75rem] font-semibold">Frequently asked questions</h2>
+                        <div className="mt-6 divide-y divide-sand-200 rounded-2xl border border-sand-200 bg-white">
+                            {districtContent.faq.map((f, i) => (
+                                <details key={i} className="group p-5" open={i === 0}>
+                                    <summary className="flex cursor-pointer list-none items-start justify-between gap-4 font-semibold text-ink-900">
+                                        <h3 className="font-sans text-base font-semibold">{f.q}</h3>
+                                        <Icon name="chevron" className="mt-0.5 h-5 w-5 shrink-0 text-laterite-500 transition-transform group-open:rotate-180" />
+                                    </summary>
+                                    <p className="mt-3 leading-relaxed text-ink-700">{f.a}</p>
+                                </details>
+                            ))}
                         </div>
-                    )}
+                    </section>
+                )}
 
-                    <div className="rounded-2xl border border-sand-200 bg-white p-5">
-                        <h2 className="mb-4 flex items-center gap-2 font-sans text-xs font-semibold uppercase tracking-[0.16em] text-ink-600"><Icon name="list" className="h-4 w-4 text-laterite-600" />Tehsils &amp; blocks</h2>
-                        <div className="flex max-h-[460px] flex-col gap-2 overflow-y-auto pr-1">
-                            <TehsilList districtSlug={baseSlug} />
-                        </div>
-                    </div>
+                {districtContent.sources.length > 0 && (
+                    <section id="sources" className="mt-14 max-w-[46rem]">
+                        <h2 className="font-display text-[1.75rem] font-semibold">Sources &amp; references</h2>
+                        <ol className="mt-5 space-y-3 text-sm">
+                            {districtContent.sources.map((s, i) => (
+                                <li key={s.url} className="flex gap-3">
+                                    <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-sand-100 text-xs font-semibold text-ink-600">{i + 1}</span>
+                                    <span>
+                                        <a href={s.url} target="_blank" rel="noopener noreferrer" className="font-medium text-ink-900 underline decoration-sand-300 underline-offset-4 hover:text-laterite-600">{s.title}</a>
+                                        {s.publisher && <span className="text-ink-500"> — {s.publisher}</span>}
+                                    </span>
+                                </li>
+                            ))}
+                        </ol>
+                    </section>
+                )}
 
-                    <Link href="/travel/plan" className="group block rounded-2xl bg-laterite-500 p-5 text-white transition-colors hover:bg-laterite-600">
-                        <p className="font-display text-lg font-semibold">Visiting {districtData?.name_en || districtContent.title}?</p>
-                        <p className="mt-1 text-sm text-laterite-50/90">Get a free custom Odisha itinerary.</p>
-                        <span className="mt-3 inline-flex items-center gap-1 text-sm font-semibold">Plan a trip <Icon name="arrow" className="h-4 w-4 transition-transform group-hover:translate-x-1" /></span>
-                    </Link>
-                </aside>
+                <div className="mt-10 flex max-w-[46rem] flex-col gap-4 rounded-2xl border border-sand-200 bg-sand-50 p-5 text-sm text-ink-600 sm:flex-row sm:items-center sm:justify-between">
+                    <p>{districtContent.updated ? <>Last reviewed <time dateTime={districtContent.updated}>{formatDate(districtContent.updated)}</time>. </> : null}<Link href="/about/editorial-policy" className="underline underline-offset-4 hover:text-laterite-600">How we check articles</Link></p>
+                    <a href={reportHref} className="btn-ghost shrink-0 !py-2"><Icon name="flag" className="h-4 w-4" />Report an error</a>
+                </div>
             </div>
 
             {related.length > 0 && (
