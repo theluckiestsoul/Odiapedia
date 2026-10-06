@@ -20,6 +20,7 @@ interface LessonFrontmatter {
     lesson: number;
     prevLesson?: string;
     nextLesson?: string;
+    faq?: { q: string; a: string }[];
 }
 
 function getLessonBySlug(slug: string) {
@@ -127,6 +128,26 @@ export default async function LessonPage({
                     />
                 </div>
             </article>
+
+            {lesson.meta.faq && lesson.meta.faq.length > 0 && (
+                <section className="container-page pb-12">
+                    <JsonLd data={{ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: lesson.meta.faq.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) }} />
+                    <div className="mx-auto max-w-[46rem]">
+                        <h2 className="font-display text-[1.75rem] font-semibold">Frequently asked questions</h2>
+                        <div className="mt-6 divide-y divide-sand-200 rounded-2xl border border-sand-200 bg-white">
+                            {lesson.meta.faq.map((f, i) => (
+                                <details key={i} className="group p-5" open={i === 0}>
+                                    <summary className="flex cursor-pointer list-none items-start justify-between gap-4 font-semibold text-ink-900">
+                                        <h3 className="font-sans text-base font-semibold">{f.q}</h3>
+                                        <Icon name="chevron" className="mt-0.5 h-5 w-5 shrink-0 text-laterite-500 transition-transform group-open:rotate-180" />
+                                    </summary>
+                                    <p className="mt-3 leading-relaxed text-ink-700">{f.a}</p>
+                                </details>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            )}
 
             <nav aria-label="Lessons" className="border-t border-sand-200 bg-sand-50 py-8">
                 <div className="mx-auto flex max-w-[46rem] items-center justify-between px-4">

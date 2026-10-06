@@ -38,6 +38,7 @@ const menuItems: MenuItem[] = [
             { href: "/culture", label: "Culture & Festivals", odia: "ସଂସ୍କୃତି", icon: "mask", hint: "Festivals, dance, crafts" },
             { href: "/food", label: "Food", odia: "ଖାଦ୍ୟ", icon: "bowl", hint: "Mahaprasad, pithas, sweets" },
             { href: "/people", label: "People", odia: "ବ୍ୟକ୍ତିତ୍ୱ", icon: "people", hint: "Poets, leaders, artists" },
+            { href: "/library", label: "Library", odia: "ଗ୍ରନ୍ଥାଗାର", icon: "book", hint: "Free Odia books & PDFs" },
         ],
     },
     {

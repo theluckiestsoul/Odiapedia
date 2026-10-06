@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { slugifyHeading } from "./slug";
+import { LIBRARY } from "@/data/library";
 
 export { slugifyHeading };
 
@@ -272,5 +273,16 @@ export function getSearchIndex(): SearchEntry[] {
             href: `/${a.category}/${a.slug}`,
             odiaTitle: a.odiaTitle,
             keywords: a.keywords?.slice(0, 8),
-        }));
+        }))
+        .concat(
+            LIBRARY.map((i) => ({
+                title: i.title,
+                description: `${i.author} · ${i.year} · ${i.language} PDF`,
+                category: "library",
+                slug: i.slug,
+                href: `/library/${i.slug}`,
+                odiaTitle: i.titleOdia,
+                keywords: [i.author, i.category, "pdf", "book"],
+            }))
+        );
 }

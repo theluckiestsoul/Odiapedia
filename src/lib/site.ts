@@ -77,6 +77,10 @@ export const CATEGORIES: Record<string, CategoryInfo> = {
         blurb: "Destination guides, itineraries and practical planning for visiting Odisha.",
         image: "/images/konark-sun-temple.png",
     },
+    library: {
+        key: "library", href: "/library", label: "Library", odia: "ଗ୍ରନ୍ଥାଗାର", icon: "book",
+        blurb: "Free, legal PDFs of Odia literature and books about Odisha — classics, dictionaries, gazetteers.",
+    },
     calendar: {
         key: "calendar", href: "/calendar", label: "Odia Calendar", odia: "ପଞ୍ଜିକା", icon: "calendar",
         blurb: "Today's panchanga — tithi, nakshatra, Odia month, sunrise — and the festival year.",

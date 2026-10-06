@@ -261,6 +261,7 @@ export default function Home() {
             <div className="mt-8 flex flex-wrap gap-3">
               <Link href="/learn/alphabet" className="btn-primary">Start with the alphabet <Icon name="arrow" className="h-4 w-4" /></Link>
               <Link href="/language/odia-language" className="btn-ghost">About the Odia language</Link>
+              <Link href="/library" className="btn-ghost"><Icon name="book" className="h-4 w-4" />Free Odia books (PDF)</Link>
             </div>
           </div>
           <div className="grid grid-cols-4 gap-3 sm:grid-cols-6">

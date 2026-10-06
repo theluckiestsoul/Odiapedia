@@ -4,6 +4,7 @@ import { getAllDistrictSlugs } from "@/lib/districts";
 import { getAllTehsilsForDistrict } from "@/lib/tehsils";
 import { getAllSpots } from "@/lib/spots";
 import { SITE } from "@/lib/site";
+import { LIBRARY } from "@/data/library";
 
 /**
  * XML sitemap. lastModified uses each article's real "updated" date — never "now" —
@@ -38,6 +39,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         { path: "/culture/cinema/timeline", priority: 0.5, freq: "monthly" },
         { path: "/culture/cinema/reviews", priority: 0.4, freq: "monthly" },
         { path: "/latest", priority: 0.5, freq: "weekly" },
+        { path: "/library", priority: 0.8, freq: "weekly" },
         { path: "/about", category: "about", priority: 0.5, freq: "monthly" },
     ];
 
@@ -91,5 +93,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.6,
     }));
 
-    return [...hubPages, ...articlePages, ...districtPages, ...tehsilPages, ...spotPages];
+    const libraryPages: MetadataRoute.Sitemap = LIBRARY.map((i) => ({
+        url: `${base}/library/${i.slug}`,
+        lastModified: i.checked,
+        changeFrequency: "yearly" as const,
+        priority: 0.6,
+    }));
+
+    return [...hubPages, ...libraryPages, ...articlePages, ...districtPages, ...tehsilPages, ...spotPages];
 }

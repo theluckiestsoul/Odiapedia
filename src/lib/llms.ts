@@ -20,6 +20,7 @@ export function buildLlmsTxt(full = false): string {
     lines.push(`- [Districts of Odisha](${SITE.url}/districts): all 30 districts`);
     lines.push(`- [Odisha GI tags](${SITE.url}/culture/odisha-gi-tags): Geographical Indication products of Odisha`);
     lines.push(`- [Travel in Odisha](${SITE.url}/travel): destination guides and itineraries`);
+    lines.push(`- [Library](${SITE.url}/library): free, public-domain PDFs of Odia literature and books on Odisha`);
     lines.push(`- [Editorial policy](${SITE.url}/about/editorial-policy) · [Cite Odiapedia](${SITE.url}/about/cite-odiapedia)`);
     lines.push("");
 
