@@ -7,7 +7,7 @@ import { REGION_STYLE } from "@/data/map-regions";
 import { odishaDistricts, districtPageSlug } from "@/data/districts";
 import { districtName } from "@/lib/districts";
 import { ADMIN_SUMMARY } from "@/lib/admin";
-import { breadcrumbJsonLd, hubMetadata } from "@/lib/seo";
+import { hubMetadata } from "@/lib/seo";
 import { SITE } from "@/lib/site";
 
 export const metadata = hubMetadata({
@@ -50,7 +50,6 @@ export default function MapPage() {
 
     return (
         <div>
-            <JsonLd data={breadcrumbJsonLd([{ name: "Home", href: "/" }, ...crumbs])} />
             <JsonLd
                 data={{
                     "@context": "https://schema.org",
