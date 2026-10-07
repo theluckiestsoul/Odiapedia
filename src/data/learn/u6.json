@@ -1,0 +1,716 @@
+{
+ "id": "u6",
+ "title": "Food & drink",
+ "odia": "ଖାଦ୍ଯ ଓ ପାନୀୟ",
+ "summary": "Name everyday Odia foods and drinks, talk about food at a meal, and order politely in a restaurant.",
+ "lessons": [
+  {
+   "id": "u6-l1",
+   "title": "Everyday food",
+   "odia": "ଘରର ଖାଦ୍ଯ",
+   "goal": "Name the everyday foods and drinks on an Odia table.",
+   "context": "You are staying with an Odia family and want to know what is being cooked today.",
+   "items": [
+    {
+     "id": "u6-bhata",
+     "kind": "word",
+     "od": "ଭାତ",
+     "tr": "bhata",
+     "en": "cooked rice; a meal",
+     "accept_en": [
+      "rice",
+      "cooked rice",
+      "meal",
+      "a meal"
+     ],
+     "register": "neutral",
+     "emoji": "🍚"
+    },
+    {
+     "id": "u6-dali",
+     "kind": "word",
+     "od": "ଡାଲି",
+     "tr": "dali",
+     "en": "dal; lentils",
+     "accept_en": [
+      "dal",
+      "lentils",
+      "daal",
+      "lentil soup"
+     ],
+     "register": "neutral"
+    },
+    {
+     "id": "u6-tarakari",
+     "kind": "word",
+     "od": "ତରକାରୀ",
+     "tr": "tarakari",
+     "en": "curry; cooked vegetable dish",
+     "accept_en": [
+      "curry",
+      "vegetable curry",
+      "vegetables",
+      "cooked vegetable dish"
+     ],
+     "register": "neutral",
+     "emoji": "🍛"
+    },
+    {
+     "id": "u6-machha",
+     "kind": "word",
+     "od": "ମାଛ",
+     "tr": "machha",
+     "en": "fish",
+     "accept_en": [
+      "fish"
+     ],
+     "register": "neutral",
+     "emoji": "🐟"
+    },
+    {
+     "id": "u6-chura",
+     "kind": "word",
+     "od": "ଚୁଡ଼ା",
+     "tr": "chura",
+     "en": "flattened rice (poha)",
+     "accept_en": [
+      "flattened rice",
+      "poha",
+      "beaten rice",
+      "rice flakes"
+     ],
+     "register": "neutral"
+    },
+    {
+     "id": "u6-pakhala",
+     "kind": "word",
+     "od": "ପଖାଳ",
+     "tr": "pakhala",
+     "en": "pakhala, rice soaked in water",
+     "accept_en": [
+      "pakhala",
+      "water rice",
+      "watered rice",
+      "fermented rice"
+     ],
+     "register": "neutral",
+     "note": "Cooked rice soaked in water, often slightly fermented; a much-loved summer meal in Odisha."
+    },
+    {
+     "id": "u6-ruti",
+     "kind": "word",
+     "od": "ରୁଟି",
+     "tr": "ruti",
+     "en": "flatbread; roti",
+     "accept_en": [
+      "roti",
+      "flatbread",
+      "chapati",
+      "bread"
+     ],
+     "register": "neutral"
+    },
+    {
+     "id": "u6-cha",
+     "kind": "word",
+     "od": "ଚା",
+     "tr": "cha",
+     "en": "tea",
+     "accept_en": [
+      "tea",
+      "chai"
+     ],
+     "register": "neutral",
+     "emoji": "☕"
+    },
+    {
+     "id": "u6-pani",
+     "kind": "word",
+     "od": "ପାଣି",
+     "tr": "pani",
+     "en": "water",
+     "accept_en": [
+      "water"
+     ],
+     "register": "neutral",
+     "emoji": "💧"
+    },
+    {
+     "id": "u6-khira",
+     "kind": "word",
+     "od": "କ୍ଷୀର",
+     "tr": "khira",
+     "en": "milk",
+     "accept_en": [
+      "milk"
+     ],
+     "register": "neutral",
+     "note": "କ୍ଷ is said like 'kh' in everyday speech.",
+     "emoji": "🥛"
+    }
+   ],
+   "examples": [
+    {
+     "od": "ମୁଁ ଭାତ ଡାଲି ଖାଏ।",
+     "tr": "mun bhata dali khae.",
+     "en": "I eat rice and dal.",
+     "uses": [
+      "mun",
+      "u6-bhata",
+      "u6-dali"
+     ]
+    },
+    {
+     "od": "ସକାଳେ ଚୁଡ଼ା ଓ ଚା।",
+     "tr": "sakale chura o cha.",
+     "en": "Flattened rice and tea in the morning.",
+     "uses": [
+      "u5-sakala",
+      "u6-chura",
+      "u6-cha"
+     ]
+    },
+    {
+     "od": "ଆଜି ମାଛ ତରକାରୀ ଅଛି।",
+     "tr": "aji machha tarakari achhi.",
+     "en": "There's fish curry today.",
+     "uses": [
+      "u5-aji",
+      "u6-tarakari",
+      "u6-machha"
+     ]
+    },
+    {
+     "od": "ଖରାଦିନେ ପଖାଳ ଭଲ ଲାଗେ।",
+     "tr": "kharadine pakhala bhala lage.",
+     "en": "Pakhala is lovely in summer.",
+     "uses": [
+      "u6-pakhala"
+     ]
+    },
+    {
+     "od": "ମୁଁ ରାତିରେ ରୁଟି ଖାଏ।",
+     "tr": "mun ratire ruti khae.",
+     "en": "I eat roti at night.",
+     "uses": [
+      "mun",
+      "u5-rati",
+      "u6-ruti"
+     ]
+    },
+    {
+     "od": "ଚା, ପାଣି ନା କ୍ଷୀର?",
+     "tr": "cha, pani na khira?",
+     "en": "Tea, water or milk?",
+     "uses": [
+      "pani",
+      "u6-cha",
+      "u6-pani",
+      "u6-khira"
+     ]
+    }
+   ],
+   "dialogue": {
+    "scene": "What's for lunch?",
+    "lines": [
+     {
+      "who": "Arun",
+      "od": "ଲିପି, ଆଜି କ'ଣ ଖାଇବା?",
+      "tr": "Lipi, aji kana khaiba?",
+      "en": "Lipi, what are we eating today?"
+     },
+     {
+      "who": "Lipi",
+      "od": "ଭାତ, ଡାଲି ଆଉ ମାଛ ତରକାରୀ।",
+      "tr": "bhata, dali au machha tarakari.",
+      "en": "Rice, dal and fish curry."
+     },
+     {
+      "who": "Arun",
+      "od": "ପଖାଳ ନାହିଁ?",
+      "tr": "pakhala nahin?",
+      "en": "No pakhala?"
+     },
+     {
+      "who": "Lipi",
+      "od": "ଆଜି ନାହିଁ, କାଲି ପଖାଳ।",
+      "tr": "aji nahin, kali pakhala.",
+      "en": "Not today, pakhala tomorrow."
+     },
+     {
+      "who": "Arun",
+      "od": "ଠିକ୍ ଅଛି। ଗୋଟେ ଚା ମିଳିବ?",
+      "tr": "thik achhi. gote cha miliba?",
+      "en": "OK. Can I get a tea?"
+     },
+     {
+      "who": "Lipi",
+      "od": "ହଁ, ଚା ଆଉ ଚୁଡ଼ା ଭଜା ଅଛି।",
+      "tr": "han, cha au chura bhaja achhi.",
+      "en": "Yes, there's tea and fried flattened rice."
+     }
+    ]
+   },
+   "tip": {
+    "title": "ଭାତ means more than rice",
+    "text": "ଭାତ is cooked rice, and since rice is at the centre of most Odia meals it often just means 'a meal'. ଭାତ ଖାଇଲ? (lit. 'did you eat rice?') is a friendly way to ask whether someone has had lunch or dinner. Uncooked rice has its own word: ଚାଉଳ."
+   }
+  },
+  {
+   "id": "u6-l2",
+   "title": "At the table",
+   "odia": "ଖାଇବା ବେଳେ",
+   "goal": "Say you are hungry or thirsty, ask for more, comment on the taste and say you are full.",
+   "context": "You are eating lunch at a relative's home, and the host keeps offering you more.",
+   "items": [
+    {
+     "id": "u6-mote-bhoka-laguchhi",
+     "kind": "phrase",
+     "od": "ମୋତେ ଭୋକ ଲାଗୁଛି",
+     "tr": "mote bhoka laguchhi",
+     "en": "I'm hungry",
+     "accept_en": [
+      "im hungry",
+      "i am hungry",
+      "hungry"
+     ],
+     "lit": "hunger is touching me",
+     "register": "neutral",
+     "note": "Often said ଭୋକ ଲାଗୁଚି in casual speech."
+    },
+    {
+     "id": "u6-sosa-laguchhi",
+     "kind": "phrase",
+     "od": "ଶୋଷ ଲାଗୁଛି",
+     "tr": "sosa laguchhi",
+     "en": "(I'm) thirsty",
+     "accept_en": [
+      "im thirsty",
+      "i am thirsty",
+      "thirsty"
+     ],
+     "lit": "thirst is touching (me)",
+     "register": "neutral"
+    },
+    {
+     "id": "u6-au-tike-diantu",
+     "kind": "phrase",
+     "od": "ଆଉ ଟିକେ ଦିଅନ୍ତୁ",
+     "tr": "au tike diantu",
+     "en": "Please give a little more.",
+     "accept_en": [
+      "a little more please",
+      "give a little more",
+      "some more please"
+     ],
+     "lit": "more a-little give",
+     "register": "formal",
+     "note": "To a friend or younger person: ଆଉ ଟିକେ ଦିଅ (au tike dia)."
+    },
+    {
+     "id": "u6-basa",
+     "kind": "word",
+     "od": "ବସ",
+     "tr": "basa",
+     "en": "sit (down)",
+     "accept_en": [
+      "sit",
+      "sit down"
+     ],
+     "register": "familiar",
+     "note": "Polite form: ବସନ୍ତୁ (basantu)."
+    },
+    {
+     "id": "u6-khaantu",
+     "kind": "word",
+     "od": "ଖାଆନ୍ତୁ",
+     "tr": "khaantu",
+     "en": "please eat",
+     "accept_en": [
+      "please eat",
+      "eat"
+     ],
+     "register": "formal",
+     "note": "Familiar form: ଖାଅ (khaa), to friends and younger people."
+    },
+    {
+     "id": "u6-bahuta-suadia",
+     "kind": "phrase",
+     "od": "ବହୁତ ସୁଆଦିଆ",
+     "tr": "bahut suadia",
+     "en": "very tasty",
+     "accept_en": [
+      "very tasty",
+      "delicious",
+      "very delicious"
+     ],
+     "register": "neutral",
+     "emoji": "😋"
+    },
+    {
+     "id": "u6-jhala",
+     "kind": "word",
+     "od": "ଝାଲ",
+     "tr": "jhala",
+     "en": "spicy (hot)",
+     "accept_en": [
+      "spicy",
+      "hot"
+     ],
+     "register": "neutral",
+     "emoji": "🌶️"
+    },
+    {
+     "id": "u6-mitha",
+     "kind": "word",
+     "od": "ମିଠା",
+     "tr": "mitha",
+     "en": "sweet; a sweet dish",
+     "accept_en": [
+      "sweet",
+      "sweets",
+      "dessert",
+      "a sweet dish"
+     ],
+     "register": "neutral"
+    },
+    {
+     "id": "u6-peta-purigala",
+     "kind": "phrase",
+     "od": "ପେଟ ପୂରିଗଲା",
+     "tr": "peta purigala",
+     "en": "I'm full",
+     "accept_en": [
+      "im full",
+      "i am full",
+      "full",
+      "my stomach is full"
+     ],
+     "lit": "stomach has filled",
+     "register": "neutral"
+    }
+   ],
+   "examples": [
+    {
+     "od": "ମୋତେ ବହୁତ ଭୋକ ଲାଗୁଛି।",
+     "tr": "mote bahut bhoka laguchhi.",
+     "en": "I'm very hungry.",
+     "uses": [
+      "u6-mote-bhoka-laguchhi"
+     ]
+    },
+    {
+     "od": "ମୋତେ ଶୋଷ ଲାଗୁଛି, ପାଣି ଦିଅ।",
+     "tr": "mote sosa laguchhi, pani dia.",
+     "en": "I'm thirsty, give me some water.",
+     "uses": [
+      "pani",
+      "u6-pani",
+      "u6-sosa-laguchhi"
+     ]
+    },
+    {
+     "od": "ବସନ୍ତୁ, ଖାଆନ୍ତୁ।",
+     "tr": "basantu, khaantu.",
+     "en": "Please sit and eat.",
+     "uses": [
+      "basantu",
+      "u6-khaantu"
+     ]
+    },
+    {
+     "od": "ତରକାରୀ ବହୁତ ଝାଲ।",
+     "tr": "tarakari bahut jhala.",
+     "en": "The curry is very spicy.",
+     "uses": [
+      "u6-tarakari",
+      "u6-jhala"
+     ]
+    },
+    {
+     "od": "ଡାଲି ବହୁତ ସୁଆଦିଆ।",
+     "tr": "dali bahut suadia.",
+     "en": "The dal is very tasty.",
+     "uses": [
+      "u6-dali",
+      "u6-bahuta-suadia"
+     ]
+    },
+    {
+     "od": "ଆଉ ଟିକେ ମିଠା ଦିଅନ୍ତୁ।",
+     "tr": "au tike mitha diantu.",
+     "en": "A little more of the sweet, please.",
+     "uses": [
+      "diantu",
+      "u6-au-tike-diantu",
+      "u6-mitha"
+     ]
+    }
+   ],
+   "dialogue": {
+    "scene": "Lunch at Uncle's",
+    "lines": [
+     {
+      "who": "Mama",
+      "od": "ଆସ ପ୍ରକାଶ, ବସ, ଖାଅ।",
+      "tr": "asa Prakash, basa, khaa.",
+      "en": "Come, Prakash, sit down and eat."
+     },
+     {
+      "who": "Prakash",
+      "od": "ଧନ୍ଯବାଦ ମାମୁଁ, ମୋତେ ବହୁତ ଭୋକ ଲାଗୁଛି।",
+      "tr": "dhanyabada mamun, mote bahut bhoka laguchhi.",
+      "en": "Thank you, Uncle, I'm very hungry."
+     },
+     {
+      "who": "Mama",
+      "od": "ମାଛ ତରକାରୀ କେମିତି ହୋଇଛି?",
+      "tr": "machha tarakari kemiti hoichhi?",
+      "en": "How is the fish curry?"
+     },
+     {
+      "who": "Prakash",
+      "od": "ବହୁତ ସୁଆଦିଆ, କିନ୍ତୁ ଟିକେ ଝାଲ।",
+      "tr": "bahut suadia, kintu tike jhala.",
+      "en": "Very tasty, but a bit spicy."
+     },
+     {
+      "who": "Mama",
+      "od": "ଆଉ ଟିକେ ଭାତ ନିଅ।",
+      "tr": "au tike bhata nia.",
+      "en": "Take a little more rice."
+     },
+     {
+      "who": "Prakash",
+      "od": "ନା ମାମୁଁ, ପେଟ ପୂରିଗଲା।",
+      "tr": "na mamun, peta purigala.",
+      "en": "No, Uncle, I'm full."
+     }
+    ]
+   },
+   "tip": {
+    "title": "Polite requests end in -ନ୍ତୁ",
+    "text": "To tell someone to do something, use the bare verb with friends and children: ବସ, ଖାଅ, ଦିଅ. With elders, guests and strangers add -ନ୍ତୁ: ବସନ୍ତୁ, ଖାଆନ୍ତୁ, ଦିଅନ୍ତୁ. Uncle says ବସ, ଖାଅ to his nephew; the nephew would say ଖାଆନ୍ତୁ to him."
+   }
+  },
+  {
+   "id": "u6-l3",
+   "title": "Ordering at a restaurant",
+   "odia": "ହୋଟେଲରେ",
+   "goal": "Ask for a seat and the menu, order food and drinks, and ask for the bill.",
+   "context": "You walk into a small eatery in Bhubaneswar for lunch and order from the waiter.",
+   "items": [
+    {
+     "id": "u6-menu",
+     "kind": "word",
+     "od": "ମେନୁ",
+     "tr": "menu",
+     "en": "menu",
+     "accept_en": [
+      "menu"
+     ],
+     "register": "neutral"
+    },
+    {
+     "id": "u6-mote-darakara",
+     "kind": "phrase",
+     "od": "ମୋତେ ପାଣି ଦରକାର",
+     "tr": "mote pani darakara",
+     "en": "I need water; I want water",
+     "accept_en": [
+      "i need water",
+      "i want water"
+     ],
+     "lit": "to me water needed",
+     "register": "neutral",
+     "note": "Pattern: ମୋତେ + thing + ଦରକାର."
+    },
+    {
+     "id": "u6-gote-cha-diantu",
+     "kind": "phrase",
+     "od": "ଗୋଟେ ଚା ଦିଅନ୍ତୁ",
+     "tr": "gote cha diantu",
+     "en": "One tea, please.",
+     "accept_en": [
+      "one tea please",
+      "a tea please",
+      "give me a tea"
+     ],
+     "lit": "one tea give",
+     "register": "formal"
+    },
+    {
+     "id": "u6-sakahari",
+     "kind": "word",
+     "od": "ଶାକାହାରୀ",
+     "tr": "sakahari",
+     "en": "vegetarian",
+     "accept_en": [
+      "vegetarian",
+      "veg"
+     ],
+     "register": "neutral",
+     "note": "In eateries people also simply say ଭେଜ୍ (veg)."
+    },
+    {
+     "id": "u6-amisa",
+     "kind": "word",
+     "od": "ଆମିଷ",
+     "tr": "amisa",
+     "en": "non-vegetarian (fish, meat, egg)",
+     "accept_en": [
+      "non vegetarian",
+      "non veg",
+      "nonveg"
+     ],
+     "register": "neutral",
+     "note": "In eateries people also say ନନ୍-ଭେଜ୍ (non-veg)."
+    },
+    {
+     "id": "u6-jhala-kam",
+     "kind": "phrase",
+     "od": "ଝାଲ କମ୍",
+     "tr": "jhala kam",
+     "en": "less spicy",
+     "accept_en": [
+      "less spicy",
+      "not too spicy",
+      "mild"
+     ],
+     "lit": "spice less",
+     "register": "neutral"
+    },
+    {
+     "id": "u6-bil-diantu",
+     "kind": "phrase",
+     "od": "ବିଲ୍ ଦିଅନ୍ତୁ",
+     "tr": "bill diantu",
+     "en": "The bill, please.",
+     "accept_en": [
+      "the bill please",
+      "bill please",
+      "give the bill"
+     ],
+     "register": "formal"
+    },
+    {
+     "id": "u6-ethi-basiparibi",
+     "kind": "phrase",
+     "od": "ଏଠି ବସିପାରିବି?",
+     "tr": "ethi basiparibi?",
+     "en": "Can I sit here?",
+     "accept_en": [
+      "can i sit here",
+      "may i sit here"
+     ],
+     "lit": "here sit-can-I?",
+     "register": "neutral"
+    }
+   ],
+   "examples": [
+    {
+     "od": "ମେନୁ ଦିଅନ୍ତୁ।",
+     "tr": "menu diantu.",
+     "en": "The menu, please.",
+     "uses": [
+      "diantu",
+      "u6-menu"
+     ]
+    },
+    {
+     "od": "ମୋତେ ଶାକାହାରୀ ଖାଦ୍ଯ ଦରକାର।",
+     "tr": "mote sakahari khadya darakara.",
+     "en": "I want vegetarian food.",
+     "uses": [
+      "u6-mote-darakara",
+      "u6-sakahari"
+     ]
+    },
+    {
+     "od": "ଭାଇ, ଗୋଟେ ଚା ଦିଅନ୍ତୁ।",
+     "tr": "bhai, gote cha diantu.",
+     "en": "One tea, please.",
+     "uses": [
+      "diantu",
+      "u3-bhai",
+      "u6-cha",
+      "u6-gote-cha-diantu"
+     ]
+    },
+    {
+     "od": "ଆମିଷ କ'ଣ ଅଛି?",
+     "tr": "amisa kana achhi?",
+     "en": "What non-veg dishes are there?",
+     "uses": [
+      "kana",
+      "u6-amisa"
+     ]
+    },
+    {
+     "od": "ଝାଲ କମ୍ ଦେବେ।",
+     "tr": "jhala kam debe.",
+     "en": "Please make it less spicy.",
+     "uses": [
+      "u6-jhala",
+      "u6-jhala-kam"
+     ]
+    },
+    {
+     "od": "ଦୟାକରି ବିଲ୍ ଦିଅନ୍ତୁ।",
+     "tr": "dayakari bill diantu.",
+     "en": "The bill, please.",
+     "uses": [
+      "dayakari",
+      "diantu",
+      "u6-bil-diantu"
+     ]
+    }
+   ],
+   "dialogue": {
+    "scene": "Lunch at a small eatery",
+    "lines": [
+     {
+      "who": "Sita",
+      "od": "ଏଠି ବସିପାରିବି?",
+      "tr": "ethi basiparibi?",
+      "en": "Can I sit here?"
+     },
+     {
+      "who": "Bapi",
+      "od": "ହଁ, ବସନ୍ତୁ। ଏଇ ମେନୁ ନିଅନ୍ତୁ।",
+      "tr": "han, basantu. ei menu niantu.",
+      "en": "Yes, please sit. Here's the menu."
+     },
+     {
+      "who": "Sita",
+      "od": "ମୋତେ ଶାକାହାରୀ ଥାଳି ଦରକାର, ଝାଲ କମ୍।",
+      "tr": "mote sakahari thali darakara, jhala kam.",
+      "en": "I'd like a vegetarian thali, less spicy."
+     },
+     {
+      "who": "Bapi",
+      "od": "ଠିକ୍ ଅଛି। ଆଉ କିଛି?",
+      "tr": "thik achhi. au kichhi?",
+      "en": "Okay. Anything else?"
+     },
+     {
+      "who": "Sita",
+      "od": "ଗୋଟେ ଚା ବି ଦିଅନ୍ତୁ।",
+      "tr": "gote cha bi diantu.",
+      "en": "A tea too, please."
+     },
+     {
+      "who": "Sita",
+      "od": "ବିଲ୍ ଦିଅନ୍ତୁ, ଧନ୍ଯବାଦ।",
+      "tr": "bill diantu, dhanyabada.",
+      "en": "(Later) The bill, please. Thank you."
+     }
+    ]
+   },
+   "tip": {
+    "title": "ମୋତେ … ଦରକାର",
+    "text": "A very common way to say 'I want' or 'I need' is ମୋତେ (to me) + thing + ଦରକାର (needed): ମୋତେ ପାଣି ଦରକାର. It works just like ମୋତେ ଭୋକ ଲାଗୁଛି. For a polite order, name the item and add ଦିଅନ୍ତୁ; ଦୟାକରି (please) is optional."
+   }
+  }
+ ]
+}

@@ -1,0 +1,650 @@
+{
+ "id": "u8",
+ "title": "Shopping & market",
+ "odia": "କିଣାବିକା",
+ "summary": "Name colours, buy vegetables by the kilo and ask politely to see, compare and choose items in a shop.",
+ "lessons": [
+  {
+   "id": "u8-l1",
+   "title": "Colours",
+   "odia": "ରଙ୍ଗ",
+   "goal": "Name basic colours and ask what colour something is.",
+   "context": "You are choosing flowers and cloth at a market stall and want to talk about colours.",
+   "items": [
+    {
+     "id": "u8-lala",
+     "kind": "word",
+     "od": "ନାଲି",
+     "tr": "nali",
+     "en": "red",
+     "accept_en": [
+      "red"
+     ],
+     "register": "neutral",
+     "note": "ଲାଲ (lala) is also used; you will hear both.",
+     "emoji": "🔴"
+    },
+    {
+     "id": "u8-nila",
+     "kind": "word",
+     "od": "ନୀଳ",
+     "tr": "nila",
+     "en": "blue",
+     "accept_en": [
+      "blue"
+     ],
+     "register": "neutral",
+     "emoji": "🔵"
+    },
+    {
+     "id": "u8-haladia",
+     "kind": "word",
+     "od": "ହଳଦିଆ",
+     "tr": "haladia",
+     "en": "yellow",
+     "accept_en": [
+      "yellow"
+     ],
+     "register": "neutral",
+     "note": "Related to ହଳଦୀ (haladi), turmeric.",
+     "emoji": "🟡"
+    },
+    {
+     "id": "u8-sabuja",
+     "kind": "word",
+     "od": "ସବୁଜ",
+     "tr": "sabuja",
+     "en": "green",
+     "accept_en": [
+      "green"
+     ],
+     "register": "neutral",
+     "emoji": "🟢"
+    },
+    {
+     "id": "u8-dhala",
+     "kind": "word",
+     "od": "ଧଳା",
+     "tr": "dhala",
+     "en": "white",
+     "accept_en": [
+      "white"
+     ],
+     "register": "neutral",
+     "emoji": "⚪"
+    },
+    {
+     "id": "u8-kala",
+     "kind": "word",
+     "od": "କଳା",
+     "tr": "kala",
+     "en": "black",
+     "accept_en": [
+      "black"
+     ],
+     "register": "neutral",
+     "note": "The same word also means \"art\"; context makes it clear.",
+     "emoji": "⚫"
+    },
+    {
+     "id": "u8-golapi",
+     "kind": "word",
+     "od": "ଗୋଲାପୀ",
+     "tr": "golapi",
+     "en": "pink",
+     "accept_en": [
+      "pink",
+      "rose pink"
+     ],
+     "lit": "rose-coloured",
+     "register": "neutral",
+     "emoji": "🩷"
+    },
+    {
+     "id": "u8-eita-keun-ranga",
+     "kind": "phrase",
+     "od": "ଏଇଟା କେଉଁ ରଙ୍ଗ?",
+     "tr": "eita keun ranga?",
+     "en": "what colour is this?",
+     "accept_en": [
+      "what colour is this",
+      "what color is this",
+      "which colour is this"
+     ],
+     "lit": "this-one which colour?",
+     "register": "neutral"
+    }
+   ],
+   "examples": [
+    {
+     "od": "ଏଇଟା ନୀଳ ରଙ୍ଗ।",
+     "tr": "eita nila ranga.",
+     "en": "This is blue.",
+     "uses": [
+      "eita",
+      "u8-nila"
+     ]
+    },
+    {
+     "od": "ଆକାଶ ନୀଳ।",
+     "tr": "akasa nila.",
+     "en": "The sky is blue.",
+     "uses": [
+      "u8-nila"
+     ]
+    },
+    {
+     "od": "ଏଇଟା ଧଳା ନା କଳା?",
+     "tr": "eita dhala na kala?",
+     "en": "Is this white or black?",
+     "uses": [
+      "eita",
+      "u8-dhala",
+      "u8-kala"
+     ]
+    },
+    {
+     "od": "ମୋତେ ଗୋଲାପୀ ଫୁଲ ଦରକାର।",
+     "tr": "mote golapi phula darakara.",
+     "en": "I need pink flowers.",
+     "uses": [
+      "u6-mote-darakara",
+      "u8-golapi"
+     ]
+    },
+    {
+     "od": "ହଳଦିଆ ଫୁଲ ଦିଅନ୍ତୁ।",
+     "tr": "haladia phula diantu.",
+     "en": "Give me the yellow flowers, please.",
+     "uses": [
+      "diantu",
+      "u8-haladia"
+     ]
+    },
+    {
+     "od": "ନାଲି ନା ସବୁଜ?",
+     "tr": "nali na sabuja?",
+     "en": "Red or green?",
+     "uses": [
+      "u8-lala",
+      "u8-sabuja"
+     ]
+    }
+   ],
+   "dialogue": {
+    "scene": "Two friends at a flower stall",
+    "lines": [
+     {
+      "who": "Lipi",
+      "od": "ଏଇଟା କେଉଁ ରଙ୍ଗ?",
+      "tr": "eita keun ranga?",
+      "en": "What colour is this?"
+     },
+     {
+      "who": "Sita",
+      "od": "ଏଇଟା ଗୋଲାପୀ।",
+      "tr": "eita golapi.",
+      "en": "This is pink."
+     },
+     {
+      "who": "Lipi",
+      "od": "ଆଉ ଏଇଟା?",
+      "tr": "au eita?",
+      "en": "And this one?"
+     },
+     {
+      "who": "Sita",
+      "od": "ଏଇଟା ହଳଦିଆ। ତୁମକୁ କେଉଁ ରଙ୍ଗ ଭଲ ଲାଗେ?",
+      "tr": "eita haladia. tumaku keun ranga bhala lage?",
+      "en": "This is yellow. Which colour do you like?"
+     },
+     {
+      "who": "Lipi",
+      "od": "ମୋତେ ନୀଳ ଭଲ ଲାଗେ।",
+      "tr": "mote nila bhala lage.",
+      "en": "I like blue."
+     }
+    ]
+   },
+   "tip": {
+    "title": "Colour before the noun",
+    "text": "Colour words go before the thing they describe and never change form: ନାଲି ଫୁଲ \"red flower\", ନାଲି ଫୁଲ ସବୁ \"red flowers\". To say \"it is blue\" you can use the colour alone (ଏଇଟା ନୀଳ) or add ରଙ୍ଗ, \"colour\" (ଏଇଟା ନୀଳ ରଙ୍ଗ)."
+   }
+  },
+  {
+   "id": "u8-l2",
+   "title": "At the vegetable market",
+   "odia": "ପରିବା ବଜାରରେ",
+   "goal": "Ask prices, buy vegetables by the kilo and ask for the total.",
+   "context": "It is morning at the local vegetable market. You need potatoes, onions and tomatoes for the week.",
+   "items": [
+    {
+     "id": "u8-pariba",
+     "kind": "word",
+     "od": "ପରିବା",
+     "tr": "pariba",
+     "en": "vegetables",
+     "accept_en": [
+      "vegetables",
+      "vegetable",
+      "veg",
+      "veggies"
+     ],
+     "register": "neutral",
+     "emoji": "🥦"
+    },
+    {
+     "id": "u8-alu",
+     "kind": "word",
+     "od": "ଆଳୁ",
+     "tr": "alu",
+     "en": "potato",
+     "accept_en": [
+      "potato",
+      "potatoes"
+     ],
+     "register": "neutral",
+     "emoji": "🥔"
+    },
+    {
+     "id": "u8-piaja",
+     "kind": "word",
+     "od": "ପିଆଜ",
+     "tr": "piaja",
+     "en": "onion",
+     "accept_en": [
+      "onion",
+      "onions"
+     ],
+     "register": "neutral",
+     "emoji": "🧅"
+    },
+    {
+     "id": "u8-tamato",
+     "kind": "word",
+     "od": "ଟମାଟୋ",
+     "tr": "tomato",
+     "en": "tomato",
+     "accept_en": [
+      "tomato",
+      "tomatoes"
+     ],
+     "register": "neutral",
+     "emoji": "🍅"
+    },
+    {
+     "id": "u8-kilo",
+     "kind": "word",
+     "od": "କିଲୋ",
+     "tr": "kilo",
+     "en": "kilo; kilogram",
+     "accept_en": [
+      "kilo",
+      "kilogram",
+      "kg"
+     ],
+     "register": "neutral",
+     "note": "Prices are asked per kilo: ଆଳୁ କିଲୋ କେତେ? \"How much a kilo for potatoes?\""
+    },
+    {
+     "id": "u8-adha-kilo",
+     "kind": "phrase",
+     "od": "ଅଧ କିଲୋ",
+     "tr": "adha kilo",
+     "en": "half a kilo",
+     "accept_en": [
+      "half a kilo",
+      "half kilo",
+      "half kg",
+      "500 grams"
+     ],
+     "lit": "half kilo",
+     "register": "neutral"
+    },
+    {
+     "id": "u8-taja",
+     "kind": "word",
+     "od": "ତାଜା",
+     "tr": "taja",
+     "en": "fresh",
+     "accept_en": [
+      "fresh"
+     ],
+     "register": "neutral"
+    },
+    {
+     "id": "u8-mota-kete-hela",
+     "kind": "phrase",
+     "od": "ମୋଟ କେତେ ହେଲା?",
+     "tr": "mota kete hela?",
+     "en": "how much is the total?",
+     "accept_en": [
+      "how much is the total",
+      "what is the total",
+      "how much altogether",
+      "how much in total"
+     ],
+     "lit": "total how-much became?",
+     "register": "neutral"
+    }
+   ],
+   "examples": [
+    {
+     "od": "ଆଳୁ କିଲୋ କେତେ?",
+     "tr": "alu kilo kete?",
+     "en": "How much is a kilo of potatoes?",
+     "uses": [
+      "u4-kete",
+      "u8-alu",
+      "u8-kilo"
+     ]
+    },
+    {
+     "od": "ଏକ କିଲୋ ପିଆଜ ଦିଅନ୍ତୁ।",
+     "tr": "eka kilo piaja diantu.",
+     "en": "One kilo of onions, please.",
+     "uses": [
+      "diantu",
+      "u4-eka",
+      "u8-piaja",
+      "u8-kilo"
+     ]
+    },
+    {
+     "od": "ଅଧ କିଲୋ ଟମାଟୋ ଦିଅନ୍ତୁ।",
+     "tr": "adha kilo tomato diantu.",
+     "en": "Half a kilo of tomatoes, please.",
+     "uses": [
+      "diantu",
+      "u8-tamato",
+      "u8-kilo",
+      "u8-adha-kilo"
+     ]
+    },
+    {
+     "od": "ପରିବା ତାଜା ଅଛି କି?",
+     "tr": "pariba taja achhi ki?",
+     "en": "Are the vegetables fresh?",
+     "uses": [
+      "ki",
+      "u8-pariba",
+      "u8-taja"
+     ]
+    },
+    {
+     "od": "ଟମାଟୋ ବହୁତ ତାଜା।",
+     "tr": "tomato bahut taja.",
+     "en": "The tomatoes are very fresh.",
+     "uses": [
+      "u8-tamato",
+      "u8-taja"
+     ]
+    },
+    {
+     "od": "ମୋଟ କେତେ ହେଲା?",
+     "tr": "mota kete hela?",
+     "en": "How much is it altogether?",
+     "uses": [
+      "u4-kete",
+      "u8-mota-kete-hela"
+     ]
+    }
+   ],
+   "dialogue": {
+    "scene": "Buying vegetables",
+    "lines": [
+     {
+      "who": "Sita",
+      "od": "ଆଳୁ କିଲୋ କେତେ?",
+      "tr": "alu kilo kete?",
+      "en": "How much are potatoes a kilo?"
+     },
+     {
+      "who": "Prakash",
+      "od": "ତିରିଶ ଟଙ୍କା।",
+      "tr": "tirisa tanka.",
+      "en": "Thirty rupees."
+     },
+     {
+      "who": "Sita",
+      "od": "ଦୁଇ କିଲୋ ଆଳୁ ଆଉ ଅଧ କିଲୋ ପିଆଜ ଦିଅନ୍ତୁ।",
+      "tr": "dui kilo alu au adha kilo piaja diantu.",
+      "en": "Two kilos of potatoes and half a kilo of onions, please."
+     },
+     {
+      "who": "Prakash",
+      "od": "ନିଅନ୍ତୁ। ଟମାଟୋ ବି ତାଜା ଅଛି।",
+      "tr": "niantu. tomato bi taja achhi.",
+      "en": "Here you are. The tomatoes are fresh too."
+     },
+     {
+      "who": "Sita",
+      "od": "ନା, ଆଜି ନୁହେଁ। ମୋଟ କେତେ ହେଲା?",
+      "tr": "na, aji nuhen. mota kete hela?",
+      "en": "No, not today. What's the total?"
+     },
+     {
+      "who": "Prakash",
+      "od": "ଅଶୀ ଟଙ୍କା।",
+      "tr": "asi tanka.",
+      "en": "Eighty rupees."
+     }
+    ]
+   },
+   "tip": {
+    "title": "Amount first, then the item",
+    "text": "Say the quantity before the vegetable, then the verb: ଅଧ କିଲୋ ଟମାଟୋ ଦିଅନ୍ତୁ, lit. \"half kilo tomato give\". The vegetable name stays the same for one or many: ଆଳୁ is both \"potato\" and \"potatoes\"."
+   }
+  },
+  {
+   "id": "u8-l3",
+   "title": "Asking politely",
+   "odia": "ଭଦ୍ର ଭାବେ ପଚାରିବା",
+   "goal": "Ask if a shop has something, ask to see it, compare size and colour, and accept or decline politely.",
+   "context": "You are in a small shop looking for a bag. The first one isn't quite right, so you ask to see others.",
+   "items": [
+    {
+     "id": "u8-achhi-ki",
+     "kind": "phrase",
+     "od": "… ଅଛି କି?",
+     "tr": "… achhi ki?",
+     "en": "do you have …?; is there …?",
+     "accept_en": [
+      "do you have",
+      "is there",
+      "have you got"
+     ],
+     "lit": "(thing) is (question)?",
+     "register": "neutral"
+    },
+    {
+     "id": "u8-dekhai-paribe",
+     "kind": "phrase",
+     "od": "ଦେଖାଇ ପାରିବେ?",
+     "tr": "dekhai paribe?",
+     "en": "could you show me?",
+     "accept_en": [
+      "could you show me",
+      "can you show me",
+      "can you show"
+     ],
+     "lit": "show can-you?",
+     "register": "formal"
+    },
+    {
+     "id": "u8-anya-ranga",
+     "kind": "phrase",
+     "od": "ଅନ୍ଯ ରଙ୍ଗ",
+     "tr": "anya ranga",
+     "en": "another colour",
+     "accept_en": [
+      "another colour",
+      "another color",
+      "other colour",
+      "a different colour"
+     ],
+     "lit": "other colour",
+     "register": "neutral"
+    },
+    {
+     "id": "u8-bara",
+     "kind": "word",
+     "od": "ବଡ଼",
+     "tr": "bara",
+     "en": "big; large",
+     "accept_en": [
+      "big",
+      "large",
+      "bigger"
+     ],
+     "register": "neutral",
+     "note": "\"The big one\" is ବଡ଼ଟା (barata)."
+    },
+    {
+     "id": "u8-chhota",
+     "kind": "word",
+     "od": "ଛୋଟ",
+     "tr": "chhota",
+     "en": "small",
+     "accept_en": [
+      "small",
+      "little",
+      "smaller"
+     ],
+     "register": "neutral",
+     "note": "\"The small one\" is ଛୋଟଟା (chhotata)."
+    },
+    {
+     "id": "u8-mun-eita-nebi",
+     "kind": "phrase",
+     "od": "ମୁଁ ଏଇଟା ନେବି",
+     "tr": "mun eita nebi",
+     "en": "I'll take this one",
+     "accept_en": [
+      "i will take this",
+      "ill take this one",
+      "i will take this one",
+      "ill take this"
+     ],
+     "lit": "I this-one will-take",
+     "register": "neutral"
+    },
+    {
+     "id": "u8-mote-darakara-nahin",
+     "kind": "phrase",
+     "od": "ମୋତେ ଦରକାର ନାହିଁ",
+     "tr": "mote darakara nahin",
+     "en": "I don't need it; no thanks",
+     "accept_en": [
+      "i dont need it",
+      "i do not need it",
+      "no thanks",
+      "i dont need"
+     ],
+     "lit": "to-me need is-not",
+     "register": "neutral"
+    }
+   ],
+   "examples": [
+    {
+     "od": "ଅନ୍ଯ ରଙ୍ଗ ଅଛି କି?",
+     "tr": "anya ranga achhi ki?",
+     "en": "Do you have another colour?",
+     "uses": [
+      "ki",
+      "u8-achhi-ki",
+      "u8-anya-ranga"
+     ]
+    },
+    {
+     "od": "ସବୁଜ ରଙ୍ଗ ଦେଖାଇ ପାରିବେ?",
+     "tr": "sabuja ranga dekhai paribe?",
+     "en": "Could you show me the green one?",
+     "uses": [
+      "u8-sabuja",
+      "u8-dekhai-paribe"
+     ]
+    },
+    {
+     "od": "ଏଇଟା ବହୁତ ବଡ଼।",
+     "tr": "eita bahut bara.",
+     "en": "This one is too big.",
+     "uses": [
+      "eita",
+      "u8-bara"
+     ]
+    },
+    {
+     "od": "ଛୋଟ ସାଇଜ୍ ଅଛି କି?",
+     "tr": "chhota size achhi ki?",
+     "en": "Is there a small size?",
+     "uses": [
+      "ki",
+      "u8-achhi-ki",
+      "u8-chhota"
+     ]
+    },
+    {
+     "od": "ଠିକ୍ ଅଛି, ମୁଁ ଏଇଟା ନେବି।",
+     "tr": "thik achhi, mun eita nebi.",
+     "en": "Okay, I'll take this one.",
+     "uses": [
+      "thik-achhi",
+      "mun",
+      "eita",
+      "u8-mun-eita-nebi"
+     ]
+    },
+    {
+     "od": "ନା, ମୋତେ ଦରକାର ନାହିଁ।",
+     "tr": "na, mote darakara nahin.",
+     "en": "No, I don't need it.",
+     "uses": [
+      "na",
+      "nahin",
+      "u8-mote-darakara-nahin"
+     ]
+    }
+   ],
+   "dialogue": {
+    "scene": "Choosing a bag",
+    "lines": [
+     {
+      "who": "Lipi",
+      "od": "ନାଲି ବ୍ଯାଗ୍ ଅଛି କି?",
+      "tr": "nali bag achhi ki?",
+      "en": "Do you have a red bag?"
+     },
+     {
+      "who": "Arun",
+      "od": "ହଁ, ଅଛି। ଏଇଟା ଦେଖନ୍ତୁ।",
+      "tr": "han, achhi. eita dekhantu.",
+      "en": "Yes, we do. Have a look at this one."
+     },
+     {
+      "who": "Lipi",
+      "od": "ଏଇଟା ଟିକେ ଛୋଟ। ବଡ଼ଟା ଦେଖାଇ ପାରିବେ?",
+      "tr": "eita tike chhota. barata dekhai paribe?",
+      "en": "This is a bit small. Could you show me the big one?"
+     },
+     {
+      "who": "Arun",
+      "od": "ଏଇଟା ବଡ଼। ଆଉ କିଛି ଦରକାର?",
+      "tr": "eita bara. au kichhi darakara?",
+      "en": "This is the big one. Need anything else?"
+     },
+     {
+      "who": "Lipi",
+      "od": "ନା, ଆଉ କିଛି ଦରକାର ନାହିଁ। ମୁଁ ଏଇଟା ନେବି।",
+      "tr": "na, au kichhi darakara nahin. mun eita nebi.",
+      "en": "No, nothing else. I'll take this one."
+     }
+    ]
+   },
+   "tip": {
+    "title": "Add କି to ask yes/no",
+    "text": "Put କି at the end of a statement to turn it into a yes/no question: ଅଛି \"there is\" becomes ଅଛି କି? \"is there?/do you have?\". The word order stays the same, so ଅନ୍ଯ ରଙ୍ଗ ଅଛି କି? is simply \"other colour is?\" — polite and very common in shops."
+   }
+  }
+ ]
+}

@@ -1,0 +1,698 @@
+{
+ "id": "u4",
+ "title": "Numbers & money",
+ "odia": "ସଂଖ୍ଯା ଓ ଟଙ୍କା",
+ "summary": "Count to ten, use the tens up to a hundred, and ask and bargain over prices in rupees.",
+ "lessons": [
+  {
+   "id": "u4-l1",
+   "title": "Numbers 1–10",
+   "odia": "ଏକ ରୁ ଦଶ",
+   "goal": "Count from one to ten and say how many things or people there are.",
+   "context": "A child is counting mangoes in a basket with her uncle, one by one.",
+   "items": [
+    {
+     "id": "u4-eka",
+     "kind": "word",
+     "od": "ଏକ",
+     "tr": "eka",
+     "en": "one",
+     "accept_en": [
+      "one",
+      "1"
+     ],
+     "register": "neutral",
+     "note": "Digit ୧. When counting objects, 'one' is usually ଗୋଟିଏ (gotie)."
+    },
+    {
+     "id": "u4-dui",
+     "kind": "word",
+     "od": "ଦୁଇ",
+     "tr": "dui",
+     "en": "two",
+     "accept_en": [
+      "two",
+      "2"
+     ],
+     "register": "neutral",
+     "note": "Digit ୨. ଦୁଇଟା (duita) = two (things)."
+    },
+    {
+     "id": "u4-tini",
+     "kind": "word",
+     "od": "ତିନି",
+     "tr": "tini",
+     "en": "three",
+     "accept_en": [
+      "three",
+      "3"
+     ],
+     "register": "neutral",
+     "note": "Digit ୩."
+    },
+    {
+     "id": "u4-chari",
+     "kind": "word",
+     "od": "ଚାରି",
+     "tr": "chari",
+     "en": "four",
+     "accept_en": [
+      "four",
+      "4"
+     ],
+     "register": "neutral",
+     "note": "Digit ୪."
+    },
+    {
+     "id": "u4-pancha",
+     "kind": "word",
+     "od": "ପାଞ୍ଚ",
+     "tr": "pancha",
+     "en": "five",
+     "accept_en": [
+      "five",
+      "5"
+     ],
+     "register": "neutral",
+     "note": "Digit ୫."
+    },
+    {
+     "id": "u4-chhaa",
+     "kind": "word",
+     "od": "ଛଅ",
+     "tr": "chhaa",
+     "en": "six",
+     "accept_en": [
+      "six",
+      "6"
+     ],
+     "register": "neutral",
+     "note": "Digit ୬."
+    },
+    {
+     "id": "u4-sata",
+     "kind": "word",
+     "od": "ସାତ",
+     "tr": "sata",
+     "en": "seven",
+     "accept_en": [
+      "seven",
+      "7"
+     ],
+     "register": "neutral",
+     "note": "Digit ୭."
+    },
+    {
+     "id": "u4-atha",
+     "kind": "word",
+     "od": "ଆଠ",
+     "tr": "atha",
+     "en": "eight",
+     "accept_en": [
+      "eight",
+      "8"
+     ],
+     "register": "neutral",
+     "note": "Digit ୮."
+    },
+    {
+     "id": "u4-naa",
+     "kind": "word",
+     "od": "ନଅ",
+     "tr": "naa",
+     "en": "nine",
+     "accept_en": [
+      "nine",
+      "9"
+     ],
+     "register": "neutral",
+     "note": "Digit ୯."
+    },
+    {
+     "id": "u4-dasa",
+     "kind": "word",
+     "od": "ଦଶ",
+     "tr": "dasa",
+     "en": "ten",
+     "accept_en": [
+      "ten",
+      "10"
+     ],
+     "register": "neutral",
+     "note": "Written ୧୦ — Odia digits use place value just like 1, 2, 3; zero is ୦."
+    }
+   ],
+   "examples": [
+    {
+     "od": "ଏକ, ଦୁଇ, ତିନି, ଚାରି, ପାଞ୍ଚ।",
+     "tr": "eka, dui, tini, chari, pancha.",
+     "en": "One, two, three, four, five.",
+     "uses": [
+      "u4-eka",
+      "u4-dui",
+      "u4-tini",
+      "u4-chari",
+      "u4-pancha"
+     ]
+    },
+    {
+     "od": "ଛଅ, ସାତ, ଆଠ, ନଅ, ଦଶ।",
+     "tr": "chhaa, sata, atha, naa, dasa.",
+     "en": "Six, seven, eight, nine, ten.",
+     "uses": [
+      "u4-chhaa",
+      "u4-sata",
+      "u4-atha",
+      "u4-naa",
+      "u4-dasa"
+     ]
+    },
+    {
+     "od": "ମୋ ଘରେ ଛଅ ଜଣ ଅଛନ୍ତି।",
+     "tr": "mo ghare chhaa jana achhanti.",
+     "en": "There are six people in my home.",
+     "uses": [
+      "u3-ghara",
+      "u4-chhaa"
+     ]
+    },
+    {
+     "od": "ଦୁଇଟା ଚା ଦିଅନ୍ତୁ।",
+     "tr": "duita cha diantu.",
+     "en": "Two teas, please.",
+     "uses": [
+      "diantu",
+      "u4-dui"
+     ]
+    },
+    {
+     "od": "ମୋ ଝିଅର ବୟସ ଦଶ ବର୍ଷ।",
+     "tr": "mo jhiara bayasa dasa barsa.",
+     "en": "My daughter is ten years old.",
+     "uses": [
+      "u3-jhia",
+      "u4-dasa"
+     ]
+    },
+    {
+     "od": "ମୋର ତିନି ଭଉଣୀ ଅଛନ୍ତି।",
+     "tr": "mora tini bhauni achhanti.",
+     "en": "I have three sisters.",
+     "uses": [
+      "u3-bhauni",
+      "u3-mora-achhanti",
+      "u4-tini"
+     ]
+    }
+   ],
+   "dialogue": {
+    "scene": "Counting mangoes",
+    "lines": [
+     {
+      "who": "Mama",
+      "od": "ଲିପି, ଆମ୍ବ ଗଣ ତ!",
+      "tr": "Lipi, amba gana ta!",
+      "en": "Lipi, count the mangoes!"
+     },
+     {
+      "who": "Lipi",
+      "od": "ଏକ, ଦୁଇ, ତିନି, ଚାରି, ପାଞ୍ଚ…",
+      "tr": "eka, dui, tini, chari, pancha…",
+      "en": "One, two, three, four, five…"
+     },
+     {
+      "who": "Lipi",
+      "od": "ଛଅ, ସାତ, ଆଠ। ଆଠଟି ଆମ୍ବ!",
+      "tr": "chhaa, sata, atha. athati amba!",
+      "en": "Six, seven, eight. Eight mangoes!"
+     },
+     {
+      "who": "Mama",
+      "od": "ନା, ଆଉ ଥରେ ଗଣ।",
+      "tr": "na, au thare gana.",
+      "en": "No, count again."
+     },
+     {
+      "who": "Lipi",
+      "od": "… ନଅ, ଦଶ! ଦଶଟି ଆମ୍ବ।",
+      "tr": "… naa, dasa! dasati amba.",
+      "en": "… nine, ten! Ten mangoes."
+     },
+     {
+      "who": "Mama",
+      "od": "ବହୁତ ଭଲ!",
+      "tr": "bahut bhala!",
+      "en": "Very good!"
+     }
+    ]
+   },
+   "tip": {
+    "title": "Counting things and people",
+    "text": "When you count things, add ଟି or ଟା to the number: ଦୁଇଟା ଚା (two teas), ଦଶଟି ଆମ୍ବ (ten mangoes). For people, use ଜଣ: ଛଅ ଜଣ (six people). 'One thing' is ଗୋଟିଏ, and 'one person' is ଜଣେ. You will also see Odia digits ୧ ୨ ୩ … on signs and calendars."
+   }
+  },
+  {
+   "id": "u4-l2",
+   "title": "Tens up to 100",
+   "odia": "କୋଡ଼ିଏ ରୁ ଶହେ",
+   "goal": "Say the tens from twenty to a hundred and use them for ages and amounts.",
+   "context": "A young neighbour chats with an older woman about how old everyone in her family is.",
+   "items": [
+    {
+     "id": "u4-korie",
+     "kind": "word",
+     "od": "କୋଡ଼ିଏ",
+     "tr": "korie",
+     "en": "twenty",
+     "accept_en": [
+      "twenty",
+      "20"
+     ],
+     "register": "neutral",
+     "note": "Digits ୨୦."
+    },
+    {
+     "id": "u4-tirisa",
+     "kind": "word",
+     "od": "ତିରିଶ",
+     "tr": "tirisa",
+     "en": "thirty",
+     "accept_en": [
+      "thirty",
+      "30"
+     ],
+     "register": "neutral",
+     "note": "Digits ୩୦."
+    },
+    {
+     "id": "u4-chalisa",
+     "kind": "word",
+     "od": "ଚାଳିଶ",
+     "tr": "chalisa",
+     "en": "forty",
+     "accept_en": [
+      "forty",
+      "40"
+     ],
+     "register": "neutral",
+     "note": "Digits ୪୦. Note the ଳ (retroflex l)."
+    },
+    {
+     "id": "u4-pachasa",
+     "kind": "word",
+     "od": "ପଚାଶ",
+     "tr": "pachasa",
+     "en": "fifty",
+     "accept_en": [
+      "fifty",
+      "50"
+     ],
+     "register": "neutral",
+     "note": "Digits ୫୦. Don't mix up with ପଚିଶ (pachisa) = 25."
+    },
+    {
+     "id": "u4-sathie",
+     "kind": "word",
+     "od": "ଷାଠିଏ",
+     "tr": "sathie",
+     "en": "sixty",
+     "accept_en": [
+      "sixty",
+      "60"
+     ],
+     "register": "neutral",
+     "note": "Digits ୬୦."
+    },
+    {
+     "id": "u4-saturi",
+     "kind": "word",
+     "od": "ସତୁରୀ",
+     "tr": "saturi",
+     "en": "seventy",
+     "accept_en": [
+      "seventy",
+      "70"
+     ],
+     "register": "neutral",
+     "note": "Digits ୭୦."
+    },
+    {
+     "id": "u4-asi",
+     "kind": "word",
+     "od": "ଅଶୀ",
+     "tr": "asi",
+     "en": "eighty",
+     "accept_en": [
+      "eighty",
+      "80"
+     ],
+     "register": "neutral",
+     "note": "Digits ୮୦."
+    },
+    {
+     "id": "u4-nabe",
+     "kind": "word",
+     "od": "ନବେ",
+     "tr": "nabe",
+     "en": "ninety",
+     "accept_en": [
+      "ninety",
+      "90"
+     ],
+     "register": "neutral",
+     "note": "Digits ୯୦."
+    },
+    {
+     "id": "u4-sahe",
+     "kind": "word",
+     "od": "ଶହେ",
+     "tr": "sahe",
+     "en": "a hundred",
+     "accept_en": [
+      "hundred",
+      "a hundred",
+      "one hundred",
+      "100"
+     ],
+     "register": "neutral",
+     "note": "Digits ୧୦୦. In larger numbers it becomes ଶହ: ଦୁଇ ଶହ (200), ପାଞ୍ଚ ଶହ (500)."
+    }
+   ],
+   "examples": [
+    {
+     "od": "କୋଡ଼ିଏ, ତିରିଶ, ଚାଳିଶ, ପଚାଶ।",
+     "tr": "korie, tirisa, chalisa, pachasa.",
+     "en": "Twenty, thirty, forty, fifty.",
+     "uses": [
+      "u4-korie",
+      "u4-tirisa",
+      "u4-chalisa",
+      "u4-pachasa"
+     ]
+    },
+    {
+     "od": "ଷାଠିଏ, ସତୁରୀ, ଅଶୀ, ନବେ, ଶହେ।",
+     "tr": "sathie, saturi, asi, nabe, sahe.",
+     "en": "Sixty, seventy, eighty, ninety, a hundred.",
+     "uses": [
+      "u4-sathie",
+      "u4-saturi",
+      "u4-asi",
+      "u4-nabe",
+      "u4-sahe"
+     ]
+    },
+    {
+     "od": "ମୋ ବାପାଙ୍କ ବୟସ ଷାଠିଏ ବର୍ଷ।",
+     "tr": "mo bapanka bayasa sathie barsa.",
+     "en": "My father is sixty.",
+     "uses": [
+      "u3-bapa",
+      "u4-sathie"
+     ]
+    },
+    {
+     "od": "ଜେଜେ ମାଆଙ୍କ ବୟସ ଅଶୀ ବର୍ଷ।",
+     "tr": "jeje maanka bayasa asi barsa.",
+     "en": "Grandma is eighty.",
+     "uses": [
+      "u3-jeje-maa",
+      "u4-asi"
+     ]
+    },
+    {
+     "od": "ମୋ ଭାଇନାଙ୍କ ବୟସ ତିରିଶ ବର୍ଷ।",
+     "tr": "mo bhainanka bayasa tirisa barsa.",
+     "en": "My elder brother is thirty.",
+     "uses": [
+      "u3-bhaina",
+      "u4-tirisa"
+     ]
+    },
+    {
+     "od": "ଶହେ ଜଣ ଆସିଥିଲେ।",
+     "tr": "sahe jana asithile.",
+     "en": "A hundred people came.",
+     "uses": [
+      "u4-sahe"
+     ]
+    }
+   ],
+   "dialogue": {
+    "scene": "Chatting with a neighbour",
+    "lines": [
+     {
+      "who": "Arun",
+      "od": "ଆପଣଙ୍କ ଜେଜେ ମାଆଙ୍କ ବୟସ କେତେ?",
+      "tr": "apananka jeje maanka bayasa kete?",
+      "en": "How old is your grandmother?"
+     },
+     {
+      "who": "Sita",
+      "od": "ଅଶୀ ବର୍ଷ। ଜେଜେ ବାପାଙ୍କ ବୟସ ନବେ।",
+      "tr": "asi barsa. jeje bapanka bayasa nabe.",
+      "en": "Eighty. My grandfather is ninety."
+     },
+     {
+      "who": "Arun",
+      "od": "ନବେ! ବହୁତ ଭଲ।",
+      "tr": "nabe! bahut bhala.",
+      "en": "Ninety! That's wonderful."
+     },
+     {
+      "who": "Sita",
+      "od": "ଆଉ ତୁମ ବୟସ?",
+      "tr": "au tuma bayasa?",
+      "en": "And how old are you?"
+     },
+     {
+      "who": "Arun",
+      "od": "ମୋ ବୟସ ପଚିଶ ବର୍ଷ।",
+      "tr": "mo bayasa pachisa barsa.",
+      "en": "I'm twenty-five."
+     },
+     {
+      "who": "Sita",
+      "od": "ମୋ ପୁଅ ବି ପଚିଶ।",
+      "tr": "mo pua bi pachisa.",
+      "en": "My son is twenty-five too."
+     }
+    ]
+   },
+   "tip": {
+    "title": "Numbers like 25",
+    "text": "Numbers from 11 to 99 are single words you learn one by one, not built like 'twenty-five': ପଚିଶ (pachisa) = 25, ପଚାଶ (pachasa) = 50. Learn the tens first, then the in-between numbers you meet most. Ages use ବୟସ (age): ମୋ ବୟସ ପଚିଶ ବର୍ଷ = I'm twenty-five."
+   }
+  },
+  {
+   "id": "u4-l3",
+   "title": "How much is it?",
+   "odia": "ଏହାର ଦାମ୍ କେତେ?",
+   "goal": "Ask the price of something, understand the answer in rupees and politely ask for a lower price.",
+   "context": "You are buying vegetables at a busy market stall where light bargaining is normal.",
+   "items": [
+    {
+     "id": "u4-kete",
+     "kind": "word",
+     "od": "କେତେ?",
+     "tr": "kete?",
+     "en": "how much?; how many?",
+     "accept_en": [
+      "how much",
+      "how many"
+     ],
+     "register": "neutral",
+     "note": "Also asks age or quantity: ବୟସ କେତେ? = how old?"
+    },
+    {
+     "id": "u4-ehara-dam-kete",
+     "kind": "phrase",
+     "od": "ଏହାର ଦାମ୍ କେତେ?",
+     "tr": "ehara dam kete?",
+     "en": "How much does this cost?",
+     "accept_en": [
+      "how much is this",
+      "how much does this cost",
+      "what is the price of this",
+      "what does this cost"
+     ],
+     "lit": "this-of price how much?",
+     "register": "neutral",
+     "note": "Colloquially ଏଇଟାର ଦାମ୍ କେତେ? (eitara dam kete?)."
+    },
+    {
+     "id": "u4-tanka",
+     "kind": "word",
+     "od": "ଟଙ୍କା",
+     "tr": "tanka",
+     "en": "rupee; rupees; money",
+     "accept_en": [
+      "rupee",
+      "rupees",
+      "money"
+     ],
+     "register": "neutral",
+     "note": "The Indian rupee (₹). ଟଙ୍କା also means money in general.",
+     "emoji": "💰"
+    },
+    {
+     "id": "u4-tanka-price",
+     "kind": "phrase",
+     "od": "… ଟଙ୍କା",
+     "tr": "… tanka",
+     "en": "… rupees (stating a price)",
+     "accept_en": [
+      "rupees"
+     ],
+     "register": "neutral",
+     "note": "Put the number first: ପଚାଶ ଟଙ୍କା (50 rupees), ଦୁଇ ଶହ ଟଙ୍କା (200 rupees)."
+    },
+    {
+     "id": "u4-sasta",
+     "kind": "word",
+     "od": "ଶସ୍ତା",
+     "tr": "sasta",
+     "en": "cheap; inexpensive",
+     "accept_en": [
+      "cheap",
+      "inexpensive",
+      "low price"
+     ],
+     "register": "neutral"
+    },
+    {
+     "id": "u4-mahanga",
+     "kind": "word",
+     "od": "ମହଙ୍ଗା",
+     "tr": "mahanga",
+     "en": "expensive; costly",
+     "accept_en": [
+      "expensive",
+      "costly",
+      "dear"
+     ],
+     "register": "neutral"
+    },
+    {
+     "id": "u4-tike-kam-karantu",
+     "kind": "phrase",
+     "od": "ଟିକେ କମ୍ କରନ୍ତୁ।",
+     "tr": "tike kam karantu.",
+     "en": "Please lower the price a little.",
+     "accept_en": [
+      "please reduce it a little",
+      "reduce the price",
+      "make it a bit less",
+      "lower the price"
+     ],
+     "lit": "a little less do (please)",
+     "register": "formal",
+     "note": "Polite request form. Friendly familiar version: ଟିକେ କମ୍ କର।"
+    }
+   ],
+   "examples": [
+    {
+     "od": "ଏହାର ଦାମ୍ କେତେ?",
+     "tr": "ehara dam kete?",
+     "en": "How much is this?",
+     "uses": [
+      "u4-kete",
+      "u4-ehara-dam-kete"
+     ]
+    },
+    {
+     "od": "ପଚାଶ ଟଙ୍କା।",
+     "tr": "pachasa tanka.",
+     "en": "Fifty rupees.",
+     "uses": [
+      "u4-pachasa",
+      "u4-tanka",
+      "u4-tanka-price"
+     ]
+    },
+    {
+     "od": "ଆମ୍ବ କିଲୋ କେତେ?",
+     "tr": "amba kilo kete?",
+     "en": "How much are mangoes a kilo?",
+     "uses": [
+      "u4-kete"
+     ]
+    },
+    {
+     "od": "ଏଇଟା ବହୁତ ମହଙ୍ଗା।",
+     "tr": "eita bahut mahanga.",
+     "en": "This is very expensive.",
+     "uses": [
+      "eita",
+      "u4-mahanga"
+     ]
+    },
+    {
+     "od": "ଭାଇ, ଟିକେ କମ୍ କରନ୍ତୁ।",
+     "tr": "bhai, tike kam karantu.",
+     "en": "Brother, please lower the price a little.",
+     "uses": [
+      "u3-bhai",
+      "u4-tike-kam-karantu"
+     ]
+    },
+    {
+     "od": "କୋଡ଼ିଏ ଟଙ୍କା, ବହୁତ ଶସ୍ତା।",
+     "tr": "korie tanka, bahut sasta.",
+     "en": "Twenty rupees, very cheap.",
+     "uses": [
+      "u4-korie",
+      "u4-tanka",
+      "u4-tanka-price",
+      "u4-sasta"
+     ]
+    }
+   ],
+   "dialogue": {
+    "scene": "At the vegetable market",
+    "lines": [
+     {
+      "who": "Rina",
+      "od": "ଭାଇ, ଟମାଟୋ କିଲୋ କେତେ?",
+      "tr": "bhai, tomato kilo kete?",
+      "en": "How much are tomatoes a kilo?"
+     },
+     {
+      "who": "Prakash",
+      "od": "ଚାଳିଶ ଟଙ୍କା, ଅପା।",
+      "tr": "chalisa tanka, apa.",
+      "en": "Forty rupees, madam."
+     },
+     {
+      "who": "Rina",
+      "od": "ଏତେ ମହଙ୍ଗା! ଟିକେ କମ୍ କରନ୍ତୁ।",
+      "tr": "ete mahanga! tike kam karantu.",
+      "en": "So expensive! Please make it a bit less."
+     },
+     {
+      "who": "Prakash",
+      "od": "ଠିକ୍ ଅଛି, ତିରିଶ ଟଙ୍କା ଦିଅନ୍ତୁ।",
+      "tr": "thik achhi, tirisa tanka diantu.",
+      "en": "All right, thirty rupees then."
+     },
+     {
+      "who": "Rina",
+      "od": "ହଉ, ଦୁଇ କିଲୋ ଦିଅନ୍ତୁ।",
+      "tr": "hau, dui kilo diantu.",
+      "en": "OK, give me two kilos."
+     },
+     {
+      "who": "Prakash",
+      "od": "ଷାଠିଏ ଟଙ୍କା ହେଲା।",
+      "tr": "sathie tanka hela.",
+      "en": "That comes to sixty rupees."
+     }
+    ]
+   },
+   "tip": {
+    "title": "Bargaining politely",
+    "text": "At markets and street stalls a little bargaining is normal; in fixed-price shops it isn't. Keep it friendly: call the seller ଭାଇ or ଅପା and use the polite -ନ୍ତୁ ending — ଟିକେ କମ୍ କରନ୍ତୁ, ଦୁଇ କିଲୋ ଦିଅନ୍ତୁ. Sellers often address customers the same way."
+   }
+  }
+ ]
+}

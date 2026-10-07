@@ -1,0 +1,1946 @@
+{
+ "categories": [
+  {
+   "id": "essentials",
+   "title": "Essentials",
+   "odia": "ଦରକାରୀ କଥା",
+   "icon": "⭐",
+   "intro": "The basic words you will reach for in almost every conversation.",
+   "phrases": [
+    {
+     "id": "essentials-namaskara",
+     "od": "ନମସ୍କାର",
+     "tr": "namaskara",
+     "en": "Hello; greetings",
+     "intents": [
+      "hello",
+      "hi",
+      "greeting",
+      "namaste"
+     ],
+     "note": "Said any time of day, usually with palms joined."
+    },
+    {
+     "id": "essentials-yes",
+     "od": "ହଁ",
+     "tr": "han",
+     "en": "Yes",
+     "intents": [
+      "yes",
+      "agree",
+      "okay yes"
+     ],
+     "note": "To an elder, ହଁ ଆଜ୍ଞା (han agyan) is more respectful."
+    },
+    {
+     "id": "essentials-no",
+     "od": "ନା",
+     "tr": "na",
+     "en": "No",
+     "intents": [
+      "no",
+      "disagree",
+      "refuse"
+     ]
+    },
+    {
+     "id": "essentials-please",
+     "od": "ଦୟାକରି",
+     "tr": "dayakari",
+     "en": "Please",
+     "intents": [
+      "please",
+      "kindly",
+      "polite request"
+     ],
+     "note": "Often unnecessary: the polite verb ending -ନ୍ତୁ already sounds like 'please'."
+    },
+    {
+     "id": "essentials-thank-you",
+     "od": "ଧନ୍ଯବାଦ",
+     "tr": "dhanyabada",
+     "en": "Thank you",
+     "intents": [
+      "thank you",
+      "thanks",
+      "grateful"
+     ]
+    },
+    {
+     "id": "essentials-sorry",
+     "od": "ମାଫ କରିବେ",
+     "tr": "maph karibe",
+     "en": "Sorry; excuse me",
+     "intents": [
+      "sorry",
+      "excuse me",
+      "apologise",
+      "pardon"
+     ],
+     "note": "More formal: କ୍ଷମା କରିବେ (khyama karibe)."
+    },
+    {
+     "id": "essentials-dont-understand",
+     "od": "ମୁଁ ବୁଝିପାରିଲି ନାହିଁ",
+     "tr": "mun bujhiparili nahin",
+     "en": "I didn't understand",
+     "intents": [
+      "i don't understand",
+      "didn't understand",
+      "confused",
+      "what do you mean"
+     ]
+    },
+    {
+     "id": "essentials-speak-english",
+     "od": "ଆପଣ ଇଂରାଜୀ କହିପାରିବେ କି?",
+     "tr": "apana ingraji kahiparibe ki?",
+     "en": "Can you speak English?",
+     "intents": [
+      "do you speak english",
+      "english please",
+      "speak english"
+     ]
+    },
+    {
+     "id": "essentials-speak-hindi",
+     "od": "ଆପଣ ହିନ୍ଦୀ କହିପାରିବେ କି?",
+     "tr": "apana hindi kahiparibe ki?",
+     "en": "Can you speak Hindi?",
+     "intents": [
+      "do you speak hindi",
+      "hindi please",
+      "speak hindi"
+     ]
+    },
+    {
+     "id": "essentials-slowly",
+     "od": "ଟିକିଏ ଧୀରେ କୁହନ୍ତୁ",
+     "tr": "tikie dhire kuhantu",
+     "en": "Please speak a little slowly",
+     "intents": [
+      "speak slowly",
+      "slow down",
+      "too fast",
+      "slowly please"
+     ]
+    },
+    {
+     "id": "essentials-say-again",
+     "od": "ପୁଣି ଥରେ କୁହନ୍ତୁ",
+     "tr": "puni thare kuhantu",
+     "en": "Please say that again",
+     "intents": [
+      "repeat",
+      "say again",
+      "pardon",
+      "once more"
+     ]
+    },
+    {
+     "id": "essentials-what-in-odia",
+     "od": "ଏଇଟାକୁ ଓଡ଼ିଆରେ କ'ଣ କହନ୍ତି?",
+     "tr": "eitaku Odiare kana kahanti?",
+     "en": "What is this called in Odia?",
+     "intents": [
+      "what is this called",
+      "how do you say in odia",
+      "odia word for",
+      "name in odia"
+     ]
+    },
+    {
+     "id": "essentials-ok",
+     "od": "ଠିକ୍ ଅଛି",
+     "tr": "thik achhi",
+     "en": "OK; fine; alright",
+     "intents": [
+      "ok",
+      "okay",
+      "fine",
+      "alright",
+      "all right"
+     ]
+    },
+    {
+     "id": "essentials-little-odia",
+     "od": "ମୁଁ ଅଳ୍ପ ଅଳ୍ପ ଓଡ଼ିଆ ଜାଣେ",
+     "tr": "mun alpa alpa Odia jane",
+     "en": "I know a little Odia",
+     "intents": [
+      "i speak a little odia",
+      "little odia",
+      "learning odia"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "auto-taxi",
+   "title": "Auto & taxi",
+   "odia": "ଅଟୋ ଓ ଟାକ୍ସି",
+   "icon": "🛺",
+   "intro": "For agreeing a fare, giving directions and getting dropped off in an auto-rickshaw or taxi.",
+   "phrases": [
+    {
+     "id": "auto-taxi-how-much-to",
+     "od": "… ଯିବା ପାଇଁ କେତେ ନେବେ?",
+     "tr": "… jiba pain kete nebe?",
+     "en": "How much will you charge to go to …?",
+     "intents": [
+      "fare",
+      "price",
+      "how much",
+      "cost to go"
+     ],
+     "note": "Put the place name in the blank, e.g. ଷ୍ଟେସନ (station)."
+    },
+    {
+     "id": "auto-taxi-will-you-go",
+     "od": "… ଯିବେ କି?",
+     "tr": "… jibe ki?",
+     "en": "Will you go to …?",
+     "intents": [
+      "will you go",
+      "are you free",
+      "take me to",
+      "hire auto"
+     ]
+    },
+    {
+     "id": "auto-taxi-too-much",
+     "od": "ଏତେ ବେଶି! ଟିକିଏ କମ୍ କରନ୍ତୁ",
+     "tr": "ete besi! tikie kam karantu",
+     "en": "That's too much! Please lower it a bit",
+     "intents": [
+      "too expensive",
+      "reduce fare",
+      "bargain",
+      "lower the price"
+     ]
+    },
+    {
+     "id": "auto-taxi-i-will-give",
+     "od": "… ଟଙ୍କା ଦେବି",
+     "tr": "… tanka debi",
+     "en": "I'll give … rupees",
+     "intents": [
+      "i will pay",
+      "offer price",
+      "rupees",
+      "counter offer"
+     ]
+    },
+    {
+     "id": "auto-taxi-meter",
+     "od": "ମିଟରରେ ଯିବେ କି?",
+     "tr": "meterre jibe ki?",
+     "en": "Will you go by the meter?",
+     "intents": [
+      "meter",
+      "use the meter",
+      "metered fare"
+     ]
+    },
+    {
+     "id": "auto-taxi-drop-me",
+     "od": "ମୋତେ …ରେ ଛାଡ଼ିଦିଅନ୍ତୁ",
+     "tr": "mote …re chharidiantu",
+     "en": "Please drop me at …",
+     "intents": [
+      "drop me",
+      "drop off",
+      "leave me at",
+      "destination"
+     ]
+    },
+    {
+     "id": "auto-taxi-stop-here",
+     "od": "ଏଇଠି ରଖନ୍ତୁ",
+     "tr": "eithi rakhantu",
+     "en": "Stop here, please",
+     "intents": [
+      "stop here",
+      "stop",
+      "pull over",
+      "get down here"
+     ]
+    },
+    {
+     "id": "auto-taxi-straight",
+     "od": "ସିଧା ଯାଆନ୍ତୁ",
+     "tr": "sidha jaantu",
+     "en": "Go straight",
+     "intents": [
+      "go straight",
+      "straight ahead",
+      "keep going"
+     ]
+    },
+    {
+     "id": "auto-taxi-right",
+     "od": "ଡାହାଣ ପଟକୁ ଯାଆନ୍ତୁ",
+     "tr": "dahana pataku jaantu",
+     "en": "Go to the right",
+     "intents": [
+      "turn right",
+      "right side",
+      "go right"
+     ]
+    },
+    {
+     "id": "auto-taxi-left",
+     "od": "ବାଁ ପଟକୁ ଯାଆନ୍ତୁ",
+     "tr": "ban pataku jaantu",
+     "en": "Go to the left",
+     "intents": [
+      "turn left",
+      "left side",
+      "go left"
+     ]
+    },
+    {
+     "id": "auto-taxi-wait",
+     "od": "ଟିକିଏ ରୁହନ୍ତୁ",
+     "tr": "tikie ruhantu",
+     "en": "Wait a moment, please",
+     "intents": [
+      "wait",
+      "wait for me",
+      "one minute",
+      "hold on"
+     ]
+    },
+    {
+     "id": "auto-taxi-slowly",
+     "od": "ଟିକିଏ ଧୀରେ ଚଳାନ୍ତୁ",
+     "tr": "tikie dhire chalantu",
+     "en": "Please drive a little slowly",
+     "intents": [
+      "drive slowly",
+      "slow down",
+      "too fast",
+      "careful"
+     ]
+    },
+    {
+     "id": "auto-taxi-how-far",
+     "od": "ଆଉ କେତେ ବାଟ?",
+     "tr": "au kete bata?",
+     "en": "How much farther is it?",
+     "intents": [
+      "how far",
+      "how much longer",
+      "are we there",
+      "distance left"
+     ]
+    },
+    {
+     "id": "auto-taxi-upi",
+     "od": "UPIରେ ଦେଇପାରିବି କି?",
+     "tr": "UPIre deiparibi ki?",
+     "en": "Can I pay by UPI?",
+     "intents": [
+      "pay online",
+      "upi",
+      "phone payment",
+      "no cash"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "train-bus",
+   "title": "Train & bus",
+   "odia": "ଟ୍ରେନ ଓ ବସ୍",
+   "icon": "🚆",
+   "intro": "For stations and bus stands: tickets, platforms, seats and knowing where to get off.",
+   "phrases": [
+    {
+     "id": "train-bus-which-bus",
+     "od": "… ଯିବା ବସ୍ କେଉଁଠୁ ମିଳିବ?",
+     "tr": "… jiba bus keunthu miliba?",
+     "en": "Where do I get the bus to …?",
+     "intents": [
+      "which bus",
+      "bus to",
+      "where to catch bus",
+      "bus stop for"
+     ]
+    },
+    {
+     "id": "train-bus-does-this-go",
+     "od": "ଏ ବସ୍ … ଯିବ କି?",
+     "tr": "e bus … jiba ki?",
+     "en": "Does this bus go to …?",
+     "intents": [
+      "does this bus go",
+      "right bus",
+      "is this the bus to"
+     ]
+    },
+    {
+     "id": "train-bus-ticket-counter",
+     "od": "ଟିକେଟ୍ କାଉଣ୍ଟର କେଉଁଠି?",
+     "tr": "ticket counter keunthi?",
+     "en": "Where is the ticket counter?",
+     "intents": [
+      "ticket counter",
+      "buy ticket",
+      "booking office",
+      "where to get tickets"
+     ]
+    },
+    {
+     "id": "train-bus-one-ticket",
+     "od": "… ପାଇଁ ଗୋଟିଏ ଟିକେଟ୍ ଦିଅନ୍ତୁ",
+     "tr": "… pain gotie ticket diantu",
+     "en": "One ticket to …, please",
+     "intents": [
+      "one ticket",
+      "buy ticket",
+      "ticket to",
+      "single ticket"
+     ],
+     "note": "For two, say ଦୁଇଟି (duiti) instead of ଗୋଟିଏ."
+    },
+    {
+     "id": "train-bus-platform",
+     "od": "… ଟ୍ରେନ କେଉଁ ପ୍ଲାଟଫର୍ମରେ ଆସିବ?",
+     "tr": "… train keun platformre asiba?",
+     "en": "Which platform does the … train come to?",
+     "intents": [
+      "platform",
+      "which platform",
+      "where does the train come"
+     ]
+    },
+    {
+     "id": "train-bus-when-leave",
+     "od": "ଟ୍ରେନ କେତେବେଳେ ଛାଡ଼ିବ?",
+     "tr": "train ketebele chhariba?",
+     "en": "When does the train leave?",
+     "intents": [
+      "departure time",
+      "when does it leave",
+      "train time",
+      "what time"
+     ]
+    },
+    {
+     "id": "train-bus-late",
+     "od": "ଟ୍ରେନ ଡେରି ହେଉଛି କି?",
+     "tr": "train deri heuchhi ki?",
+     "en": "Is the train running late?",
+     "intents": [
+      "train late",
+      "delay",
+      "delayed",
+      "on time"
+     ]
+    },
+    {
+     "id": "train-bus-next-bus",
+     "od": "ଆଉ ବସ୍ କେତେବେଳେ ଆସିବ?",
+     "tr": "au bus ketebele asiba?",
+     "en": "When is the next bus coming?",
+     "intents": [
+      "next bus",
+      "when is the bus",
+      "bus timing"
+     ]
+    },
+    {
+     "id": "train-bus-seat-free",
+     "od": "ଏ ସିଟ୍ ଖାଲି ଅଛି କି?",
+     "tr": "e seat khali achhi ki?",
+     "en": "Is this seat free?",
+     "intents": [
+      "is this seat taken",
+      "seat free",
+      "can i sit here",
+      "empty seat"
+     ]
+    },
+    {
+     "id": "train-bus-my-seat",
+     "od": "ଏଇଟା ମୋ ସିଟ୍",
+     "tr": "eita mo seat",
+     "en": "This is my seat",
+     "intents": [
+      "my seat",
+      "reserved seat",
+      "you are in my seat"
+     ]
+    },
+    {
+     "id": "train-bus-tell-me-when",
+     "od": "… ଆସିଲେ ମୋତେ କହିବେ କି?",
+     "tr": "… asile mote kahibe ki?",
+     "en": "Could you tell me when we reach …?",
+     "intents": [
+      "tell me when we arrive",
+      "my stop",
+      "when we reach",
+      "let me know"
+     ]
+    },
+    {
+     "id": "train-bus-which-station",
+     "od": "ଏଇଟା କେଉଁ ଷ୍ଟେସନ?",
+     "tr": "eita keun station?",
+     "en": "Which station is this?",
+     "intents": [
+      "which station",
+      "where are we",
+      "station name"
+     ]
+    },
+    {
+     "id": "train-bus-get-off-here",
+     "od": "ମୁଁ ଏଇଠି ଓହ୍ଲାଇବି",
+     "tr": "mun eithi ohlaibi",
+     "en": "I'll get off here",
+     "intents": [
+      "get off",
+      "my stop",
+      "stop here",
+      "getting down"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "directions",
+   "title": "Asking the way",
+   "odia": "ବାଟ ପଚାରିବା",
+   "icon": "🧭",
+   "intro": "For finding places on foot or checking you are heading the right way.",
+   "phrases": [
+    {
+     "id": "directions-where-is",
+     "od": "… କେଉଁଠି?",
+     "tr": "… keunthi?",
+     "en": "Where is …?",
+     "intents": [
+      "where is",
+      "find a place",
+      "location of"
+     ]
+    },
+    {
+     "id": "directions-how-to-get",
+     "od": "…କୁ କେମିତି ଯିବି?",
+     "tr": "…ku kemiti jibi?",
+     "en": "How do I get to …?",
+     "intents": [
+      "how do i get to",
+      "way to",
+      "directions to",
+      "route"
+     ]
+    },
+    {
+     "id": "directions-how-far",
+     "od": "ଏଠୁ କେତେ ଦୂର?",
+     "tr": "ethu kete dura?",
+     "en": "How far is it from here?",
+     "intents": [
+      "how far",
+      "distance",
+      "is it far",
+      "near or far"
+     ]
+    },
+    {
+     "id": "directions-walk",
+     "od": "ଚାଲିକି ଯାଇହେବ କି?",
+     "tr": "chaliki jaiheba ki?",
+     "en": "Can I walk there?",
+     "intents": [
+      "walking distance",
+      "can i walk",
+      "on foot"
+     ]
+    },
+    {
+     "id": "directions-help",
+     "od": "ଆପଣ ଟିକିଏ ସାହାଯ୍ଯ କରିବେ କି?",
+     "tr": "apana tikie sahajya karibe ki?",
+     "en": "Could you help me a little?",
+     "intents": [
+      "can you help",
+      "excuse me",
+      "need help",
+      "ask a stranger"
+     ]
+    },
+    {
+     "id": "directions-map",
+     "od": "ମୋତେ ମ୍ଯାପରେ ଦେଖାଇଦେବେ କି?",
+     "tr": "mote mapre dekhaidebe ki?",
+     "en": "Could you show me on the map?",
+     "intents": [
+      "show on map",
+      "map",
+      "point it out"
+     ]
+    },
+    {
+     "id": "directions-right-or-left",
+     "od": "ଡାହାଣକୁ ନା ବାଁକୁ?",
+     "tr": "dahanaku na banku?",
+     "en": "Right or left?",
+     "intents": [
+      "right or left",
+      "which way",
+      "which side",
+      "turn"
+     ]
+    },
+    {
+     "id": "directions-this-road",
+     "od": "ଏଇ ରାସ୍ତା …କୁ ଯାଇଛି କି?",
+     "tr": "ei rasta …ku jaichhi ki?",
+     "en": "Does this road go to …?",
+     "intents": [
+      "right road",
+      "does this road go",
+      "am i going the right way"
+     ]
+    },
+    {
+     "id": "directions-toilet",
+     "od": "ବାଥରୁମ କେଉଁଠି ଅଛି?",
+     "tr": "bathroom keunthi achhi?",
+     "en": "Where is the toilet?",
+     "intents": [
+      "toilet",
+      "bathroom",
+      "restroom",
+      "washroom"
+     ]
+    },
+    {
+     "id": "directions-atm",
+     "od": "ପାଖରେ ଏଟିଏମ୍ ଅଛି କି?",
+     "tr": "pakhare ATM achhi ki?",
+     "en": "Is there an ATM nearby?",
+     "intents": [
+      "atm",
+      "cash machine",
+      "withdraw money",
+      "bank nearby"
+     ]
+    },
+    {
+     "id": "directions-bus-stop",
+     "od": "ପାଖରେ ବସ୍ ଷ୍ଟପ୍ କେଉଁଠି ଅଛି?",
+     "tr": "pakhare bus stop keunthi achhi?",
+     "en": "Where is the nearest bus stop?",
+     "intents": [
+      "bus stop",
+      "nearest bus stop",
+      "where to catch bus"
+     ]
+    },
+    {
+     "id": "directions-what-place",
+     "od": "ଏଇଟା କେଉଁ ଜାଗା?",
+     "tr": "eita keun jaga?",
+     "en": "What place is this?",
+     "intents": [
+      "where am i",
+      "what is this place",
+      "name of this area"
+     ]
+    },
+    {
+     "id": "directions-lost",
+     "od": "ମୁଁ ବାଟ ଭୁଲିଗଲି",
+     "tr": "mun bata bhuligali",
+     "en": "I've lost my way",
+     "intents": [
+      "i am lost",
+      "lost my way",
+      "wrong way",
+      "can't find"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "food",
+   "title": "Eating out & food",
+   "odia": "ଖାଇବା ପିଇବା",
+   "icon": "🍛",
+   "intro": "For ordering at a restaurant, dhaba or roadside stall, and saying what you can or can't eat.",
+   "phrases": [
+    {
+     "id": "food-menu",
+     "od": "ମେନୁ ଟିକିଏ ଦେବେ?",
+     "tr": "menu tikie debe?",
+     "en": "Could I see the menu?",
+     "intents": [
+      "menu",
+      "see the menu",
+      "what do you have"
+     ]
+    },
+    {
+     "id": "food-what-is-there",
+     "od": "ଖାଇବାକୁ କ'ଣ ଅଛି?",
+     "tr": "khaibaku kana achhi?",
+     "en": "What is there to eat?",
+     "intents": [
+      "what food",
+      "what is available",
+      "what can i eat"
+     ]
+    },
+    {
+     "id": "food-give-me",
+     "od": "ମୋତେ … ଦିଅନ୍ତୁ",
+     "tr": "mote … diantu",
+     "en": "Please give me …",
+     "intents": [
+      "i want",
+      "order",
+      "i'll have",
+      "give me"
+     ]
+    },
+    {
+     "id": "food-thali",
+     "od": "ଗୋଟିଏ ଥାଳି ଦିଅନ୍ତୁ",
+     "tr": "gotie thali diantu",
+     "en": "One thali, please",
+     "intents": [
+      "thali",
+      "meal",
+      "set meal",
+      "lunch plate"
+     ]
+    },
+    {
+     "id": "food-vegetarian",
+     "od": "ମୁଁ ଶାକାହାରୀ",
+     "tr": "mun sakahari",
+     "en": "I'm vegetarian",
+     "intents": [
+      "vegetarian",
+      "no meat",
+      "veg only"
+     ]
+    },
+    {
+     "id": "food-meat-fish",
+     "od": "ଏଥିରେ ମାଛ ବା ମାଂସ ଅଛି କି?",
+     "tr": "ethire machha ba mamsa achhi ki?",
+     "en": "Does this have fish or meat?",
+     "intents": [
+      "has meat",
+      "has fish",
+      "is it veg",
+      "non veg"
+     ],
+     "note": "ମାଂସ is usually pronounced 'mansa'."
+    },
+    {
+     "id": "food-spicy",
+     "od": "ବହୁତ ଝାଲ ହେବ କି?",
+     "tr": "bahut jhala heba ki?",
+     "en": "Is it very spicy?",
+     "intents": [
+      "spicy",
+      "is it hot",
+      "chilli"
+     ]
+    },
+    {
+     "id": "food-less-spicy",
+     "od": "ଝାଲ କମ୍ କରିବେ",
+     "tr": "jhala kam karibe",
+     "en": "Please make it less spicy",
+     "intents": [
+      "less spicy",
+      "not spicy",
+      "mild",
+      "no chilli"
+     ]
+    },
+    {
+     "id": "food-water",
+     "od": "ପିଇବା ପାଣି ମିଳିବ କି?",
+     "tr": "piiba pani miliba ki?",
+     "en": "Can I get drinking water?",
+     "intents": [
+      "water",
+      "drinking water",
+      "thirsty"
+     ]
+    },
+    {
+     "id": "food-more-rice",
+     "od": "ଆଉ ଟିକିଏ ଭାତ ଦିଅନ୍ତୁ",
+     "tr": "au tikie bhata diantu",
+     "en": "A little more rice, please",
+     "intents": [
+      "more rice",
+      "more food",
+      "second helping",
+      "refill"
+     ]
+    },
+    {
+     "id": "food-local-special",
+     "od": "ଏଠିକାର ବିଶେଷ ଖାଦ୍ଯ କ'ଣ?",
+     "tr": "ethikara bisesa khadya kana?",
+     "en": "What's the local speciality here?",
+     "intents": [
+      "local food",
+      "speciality",
+      "recommend",
+      "famous dish"
+     ]
+    },
+    {
+     "id": "food-tasty",
+     "od": "ବହୁତ ସୁଆଦ ହୋଇଛି",
+     "tr": "bahut suada hoichhi",
+     "en": "It's very tasty",
+     "intents": [
+      "delicious",
+      "tasty",
+      "good food",
+      "compliment food"
+     ]
+    },
+    {
+     "id": "food-parcel",
+     "od": "ପାର୍ସଲ କରିଦିଅନ୍ତୁ",
+     "tr": "parcel karidiantu",
+     "en": "Please pack it to take away",
+     "intents": [
+      "takeaway",
+      "parcel",
+      "pack it",
+      "to go"
+     ]
+    },
+    {
+     "id": "food-bill",
+     "od": "ବିଲ୍ ଆଣନ୍ତୁ",
+     "tr": "bill anantu",
+     "en": "Please bring the bill",
+     "intents": [
+      "bill",
+      "check please",
+      "pay",
+      "how much total"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "shopping",
+   "title": "Shopping & bargaining",
+   "odia": "କିଣାକିଣି ଓ ଦରଦାମ",
+   "icon": "🛍️",
+   "intro": "For markets and shops, especially where prices are open to friendly bargaining.",
+   "phrases": [
+    {
+     "id": "shopping-how-much",
+     "od": "ଏଇଟାର ଦାମ୍ କେତେ?",
+     "tr": "eitara dam kete?",
+     "en": "How much is this?",
+     "intents": [
+      "price",
+      "how much",
+      "cost",
+      "what is the price"
+     ]
+    },
+    {
+     "id": "shopping-too-expensive",
+     "od": "ବହୁତ ମହଙ୍ଗା",
+     "tr": "bahut mahanga",
+     "en": "That's too expensive",
+     "intents": [
+      "too expensive",
+      "too costly",
+      "too much"
+     ]
+    },
+    {
+     "id": "shopping-final-price",
+     "od": "ଶେଷ ଦାମ୍ କେତେ?",
+     "tr": "sesa dam kete?",
+     "en": "What's your final price?",
+     "intents": [
+      "final price",
+      "best price",
+      "last price",
+      "bargain"
+     ]
+    },
+    {
+     "id": "shopping-for-amount",
+     "od": "… ଟଙ୍କାରେ ଦେବେ କି?",
+     "tr": "… tankare debe ki?",
+     "en": "Will you give it for … rupees?",
+     "intents": [
+      "counter offer",
+      "will you take",
+      "for rupees",
+      "bargain"
+     ]
+    },
+    {
+     "id": "shopping-just-looking",
+     "od": "ମୁଁ ଖାଲି ଦେଖୁଛି",
+     "tr": "mun khali dekhuchhi",
+     "en": "I'm just looking",
+     "intents": [
+      "just looking",
+      "browsing",
+      "not buying"
+     ],
+     "note": "Colloquially ଦେଖୁଚି."
+    },
+    {
+     "id": "shopping-show-me",
+     "od": "ଏଇଟା ଟିକିଏ ଦେଖାନ୍ତୁ",
+     "tr": "eita tikie dekhantu",
+     "en": "Please show me this one",
+     "intents": [
+      "show me",
+      "can i see",
+      "let me see"
+     ]
+    },
+    {
+     "id": "shopping-other-colour",
+     "od": "ଅନ୍ଯ ରଙ୍ଗ ଅଛି କି?",
+     "tr": "anya ranga achhi ki?",
+     "en": "Do you have another colour?",
+     "intents": [
+      "other colour",
+      "different color",
+      "another colour"
+     ]
+    },
+    {
+     "id": "shopping-bigger-size",
+     "od": "ଏଇଟାଠୁ ବଡ଼ ସାଇଜ୍ ଅଛି କି?",
+     "tr": "eitathu bara size achhi ki?",
+     "en": "Do you have a bigger size?",
+     "intents": [
+      "bigger size",
+      "larger",
+      "size",
+      "smaller size"
+     ],
+     "note": "For smaller, replace ବଡ଼ with ଛୋଟ (chhota)."
+    },
+    {
+     "id": "shopping-handmade",
+     "od": "ଏଇଟା ହାତ ତିଆରି କି?",
+     "tr": "eita hata tiari ki?",
+     "en": "Is this handmade?",
+     "intents": [
+      "handmade",
+      "handloom",
+      "authentic",
+      "made by hand"
+     ]
+    },
+    {
+     "id": "shopping-take-this",
+     "od": "ମୁଁ ଏଇଟା ନେବି",
+     "tr": "mun eita nebi",
+     "en": "I'll take this one",
+     "intents": [
+      "i'll take it",
+      "buy this",
+      "i want this"
+     ]
+    },
+    {
+     "id": "shopping-card",
+     "od": "କାର୍ଡ ନେବେ କି?",
+     "tr": "card nebe ki?",
+     "en": "Do you take cards?",
+     "intents": [
+      "card payment",
+      "credit card",
+      "debit card",
+      "pay by card"
+     ]
+    },
+    {
+     "id": "shopping-bag",
+     "od": "ଗୋଟିଏ ବ୍ଯାଗ୍ ଦେବେ କି?",
+     "tr": "gotie bag debe ki?",
+     "en": "Could you give me a bag?",
+     "intents": [
+      "bag",
+      "carry bag",
+      "packet"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "hotel",
+   "title": "Hotel & stay",
+   "odia": "ହୋଟେଲ ଓ ରହଣି",
+   "icon": "🏨",
+   "intro": "For checking in, asking about the room and sorting out small problems during your stay.",
+   "phrases": [
+    {
+     "id": "hotel-room-free",
+     "od": "ରୁମ ଖାଲି ଅଛି କି?",
+     "tr": "room khali achhi ki?",
+     "en": "Do you have a room free?",
+     "intents": [
+      "room available",
+      "vacancy",
+      "free room",
+      "need a room"
+     ]
+    },
+    {
+     "id": "hotel-booked",
+     "od": "ମୋ ନାଁରେ ରୁମ ବୁକ୍ ହୋଇଛି",
+     "tr": "mo nanre room book hoichhi",
+     "en": "A room is booked in my name",
+     "intents": [
+      "reservation",
+      "booking",
+      "check in",
+      "booked room"
+     ]
+    },
+    {
+     "id": "hotel-rate",
+     "od": "ଗୋଟିଏ ରାତି ପାଇଁ ଭଡ଼ା କେତେ?",
+     "tr": "gotie rati pain bhara kete?",
+     "en": "How much is it for one night?",
+     "intents": [
+      "room rate",
+      "price per night",
+      "tariff",
+      "how much"
+     ]
+    },
+    {
+     "id": "hotel-early-checkin",
+     "od": "ଟିକିଏ ଆଗରୁ ଚେକ୍-ଇନ୍ କରିହେବ କି?",
+     "tr": "tikie agaru check-in kariheba ki?",
+     "en": "Can I check in a little early?",
+     "intents": [
+      "early check in",
+      "arrive early",
+      "check in"
+     ]
+    },
+    {
+     "id": "hotel-checkout",
+     "od": "ଚେକ୍-ଆଉଟ୍ କେତେବେଳେ?",
+     "tr": "check-out ketebele?",
+     "en": "What time is check-out?",
+     "intents": [
+      "check out time",
+      "checkout",
+      "leave room"
+     ]
+    },
+    {
+     "id": "hotel-breakfast",
+     "od": "ଜଳଖିଆ ମିଳିବ କି?",
+     "tr": "jalakhia miliba ki?",
+     "en": "Is breakfast available?",
+     "intents": [
+      "breakfast",
+      "morning food",
+      "included breakfast"
+     ]
+    },
+    {
+     "id": "hotel-wifi",
+     "od": "ୱାଇଫାଇ ପାସୱାର୍ଡ କ'ଣ?",
+     "tr": "wifi password kana?",
+     "en": "What's the Wi-Fi password?",
+     "intents": [
+      "wifi",
+      "password",
+      "internet"
+     ]
+    },
+    {
+     "id": "hotel-hot-water",
+     "od": "ଗରମ ପାଣି ଆସୁନାହିଁ",
+     "tr": "garama pani asunahin",
+     "en": "There's no hot water",
+     "intents": [
+      "no hot water",
+      "shower",
+      "geyser",
+      "water problem"
+     ]
+    },
+    {
+     "id": "hotel-ac",
+     "od": "ଏସି କାମ କରୁନାହିଁ",
+     "tr": "AC kama karunahin",
+     "en": "The AC isn't working",
+     "intents": [
+      "ac not working",
+      "air conditioner",
+      "too hot",
+      "broken"
+     ]
+    },
+    {
+     "id": "hotel-towel",
+     "od": "ଆଉ ଗୋଟିଏ ଟାୱେଲ ଦେବେ କି?",
+     "tr": "au gotie towel debe ki?",
+     "en": "Could I have another towel?",
+     "intents": [
+      "towel",
+      "extra towel",
+      "need towel"
+     ]
+    },
+    {
+     "id": "hotel-clean-room",
+     "od": "ରୁମ ସଫା କରିଦେବେ କି?",
+     "tr": "room sapha karidebe ki?",
+     "en": "Could you clean the room?",
+     "intents": [
+      "clean room",
+      "housekeeping",
+      "room service"
+     ]
+    },
+    {
+     "id": "hotel-leave-bag",
+     "od": "ମୋ ବ୍ଯାଗ୍ ଏଠି ଟିକିଏ ରଖିପାରିବି କି?",
+     "tr": "mo bag ethi tikie rakhiparibi ki?",
+     "en": "Can I leave my bag here for a while?",
+     "intents": [
+      "leave luggage",
+      "store bag",
+      "keep my bag"
+     ]
+    },
+    {
+     "id": "hotel-lost-key",
+     "od": "ରୁମ ଚାବି ହଜିଗଲା",
+     "tr": "room chabi hajigala",
+     "en": "I've lost the room key",
+     "intents": [
+      "lost key",
+      "key",
+      "locked out"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "temple",
+   "title": "Temples",
+   "odia": "ମନ୍ଦିର",
+   "icon": "🛕",
+   "intro": "For visiting temples such as Puri's Jagannath or Bhubaneswar's Lingaraj and asking before you act.",
+   "phrases": [
+    {
+     "id": "temple-shoes",
+     "od": "ଜୋତା କେଉଁଠି ରଖିବି?",
+     "tr": "jota keunthi rakhibi?",
+     "en": "Where do I leave my shoes?",
+     "intents": [
+      "shoes",
+      "where to leave shoes",
+      "footwear",
+      "chappal"
+     ]
+    },
+    {
+     "id": "temple-go-inside",
+     "od": "ମୁଁ ଭିତରକୁ ଯାଇପାରିବି କି?",
+     "tr": "mun bhitaraku jaiparibi ki?",
+     "en": "Can I go inside?",
+     "intents": [
+      "can i enter",
+      "go inside",
+      "entry allowed"
+     ]
+    },
+    {
+     "id": "temple-non-hindus",
+     "od": "ଅଣହିନ୍ଦୁମାନେ ଭିତରକୁ ଯାଇପାରିବେ କି?",
+     "tr": "anahindumane bhitaraku jaiparibe ki?",
+     "en": "Can non-Hindus go inside?",
+     "intents": [
+      "non hindu",
+      "foreigner entry",
+      "who can enter"
+     ]
+    },
+    {
+     "id": "temple-mahaprasad",
+     "od": "ମହାପ୍ରସାଦ କେଉଁଠି ମିଳେ?",
+     "tr": "mahaprasad keunthi mile?",
+     "en": "Where can I get Mahaprasad?",
+     "intents": [
+      "mahaprasad",
+      "prasad",
+      "temple food",
+      "offering food"
+     ]
+    },
+    {
+     "id": "temple-photo",
+     "od": "ଏଠି ଫଟୋ ଉଠାଇପାରିବି କି?",
+     "tr": "ethi photo uthaiparibi ki?",
+     "en": "Can I take photos here?",
+     "intents": [
+      "photography",
+      "take photo",
+      "camera allowed",
+      "pictures"
+     ]
+    },
+    {
+     "id": "temple-phone",
+     "od": "ମୋବାଇଲ କେଉଁଠି ଜମା ରଖିବି?",
+     "tr": "mobile keunthi jama rakhibi?",
+     "en": "Where do I deposit my phone?",
+     "intents": [
+      "phone deposit",
+      "mobile",
+      "cloak room",
+      "leave phone"
+     ]
+    },
+    {
+     "id": "temple-leather",
+     "od": "ଚମଡ଼ା ବେଲ୍ଟ ପିନ୍ଧି ଭିତରକୁ ଯାଇହେବ କି?",
+     "tr": "chamara belt pindhi bhitaraku jaiheba ki?",
+     "en": "Can I go in wearing a leather belt?",
+     "intents": [
+      "leather",
+      "belt",
+      "what not to wear",
+      "dress code"
+     ]
+    },
+    {
+     "id": "temple-queue",
+     "od": "ଦର୍ଶନ ପାଇଁ ଧାଡ଼ି କେଉଁଠି?",
+     "tr": "darsana pain dhari keunthi?",
+     "en": "Where is the queue for darshan?",
+     "intents": [
+      "queue",
+      "line",
+      "darshan",
+      "see the deity"
+     ]
+    },
+    {
+     "id": "temple-opening",
+     "od": "ମନ୍ଦିର କେତେବେଳେ ଖୋଲେ?",
+     "tr": "mandira ketebele khole?",
+     "en": "When does the temple open?",
+     "intents": [
+      "opening time",
+      "temple timing",
+      "when open"
+     ]
+    },
+    {
+     "id": "temple-flowers",
+     "od": "ପୂଜା ପାଇଁ ଫୁଲ କେଉଁଠି ମିଳିବ?",
+     "tr": "puja pain phula keunthi miliba?",
+     "en": "Where can I get flowers for the offering?",
+     "intents": [
+      "flowers",
+      "puja items",
+      "offering",
+      "buy flowers"
+     ]
+    },
+    {
+     "id": "temple-which-deity",
+     "od": "ଏ ମନ୍ଦିରରେ କେଉଁ ଦେବତା ପୂଜା ପାଆନ୍ତି?",
+     "tr": "e mandirare keun debata puja paanti?",
+     "en": "Which deity is worshipped in this temple?",
+     "intents": [
+      "which god",
+      "deity",
+      "whose temple"
+     ]
+    },
+    {
+     "id": "temple-no-guide",
+     "od": "ମୋତେ ପଣ୍ଡା ଦରକାର ନାହିଁ, ଧନ୍ଯବାଦ",
+     "tr": "mote panda darakara nahin, dhanyabada",
+     "en": "I don't need a priest-guide, thank you",
+     "intents": [
+      "no guide",
+      "no thanks",
+      "don't need panda",
+      "refuse priest"
+     ],
+     "note": "A ପଣ୍ଡା is a temple priest who may offer to guide visitors."
+    },
+    {
+     "id": "temple-jay-jagannath",
+     "od": "ଜୟ ଜଗନ୍ନାଥ",
+     "tr": "jay Jagannath",
+     "en": "Glory to Lord Jagannath",
+     "intents": [
+      "jay jagannath",
+      "temple greeting",
+      "religious greeting"
+     ],
+     "note": "Widely used in Odisha as a greeting or exclamation."
+    }
+   ]
+  },
+  {
+   "id": "health",
+   "title": "Doctor & pharmacy",
+   "odia": "ଡାକ୍ତର ଓ ଔଷଧ ଦୋକାନ",
+   "icon": "💊",
+   "intro": "For describing how you feel to a doctor or pharmacist and asking about medicine.",
+   "phrases": [
+    {
+     "id": "health-need-doctor",
+     "od": "ମୋତେ ଡାକ୍ତର ଦରକାର",
+     "tr": "mote daktara darakara",
+     "en": "I need a doctor",
+     "intents": [
+      "need a doctor",
+      "doctor",
+      "sick",
+      "unwell"
+     ]
+    },
+    {
+     "id": "health-pharmacy",
+     "od": "ପାଖରେ ଔଷଧ ଦୋକାନ କେଉଁଠି?",
+     "tr": "pakhare ousadha dokana keunthi?",
+     "en": "Where is the nearest pharmacy?",
+     "intents": [
+      "pharmacy",
+      "chemist",
+      "medical shop",
+      "medicine shop"
+     ]
+    },
+    {
+     "id": "health-hospital",
+     "od": "ଡାକ୍ତରଖାନା କେଉଁଠି?",
+     "tr": "daktarakhana keunthi?",
+     "en": "Where is the hospital?",
+     "intents": [
+      "hospital",
+      "clinic",
+      "where is hospital"
+     ]
+    },
+    {
+     "id": "health-fever",
+     "od": "ମୋର ଜ୍ୱର ହୋଇଛି",
+     "tr": "mora jwara hoichhi",
+     "en": "I have a fever",
+     "intents": [
+      "fever",
+      "temperature",
+      "feel hot"
+     ]
+    },
+    {
+     "id": "health-headache",
+     "od": "ମୋ ମୁଣ୍ଡ ବିନ୍ଧୁଛି",
+     "tr": "mo munda bindhuchhi",
+     "en": "I have a headache",
+     "intents": [
+      "headache",
+      "head hurts",
+      "head pain"
+     ]
+    },
+    {
+     "id": "health-stomach-ache",
+     "od": "ପେଟ ବିନ୍ଧୁଛି",
+     "tr": "peta bindhuchhi",
+     "en": "I have a stomach ache",
+     "intents": [
+      "stomach ache",
+      "stomach pain",
+      "tummy hurts"
+     ]
+    },
+    {
+     "id": "health-upset-stomach",
+     "od": "ମୋର ପେଟ ଖରାପ ହୋଇଛି",
+     "tr": "mora peta kharapa hoichhi",
+     "en": "I have an upset stomach",
+     "intents": [
+      "upset stomach",
+      "diarrhoea",
+      "loose motion",
+      "food poisoning"
+     ]
+    },
+    {
+     "id": "health-nausea",
+     "od": "ମୋତେ ବାନ୍ତି ଲାଗୁଛି",
+     "tr": "mote banti laguchhi",
+     "en": "I feel like vomiting",
+     "intents": [
+      "nausea",
+      "vomit",
+      "feel sick",
+      "throw up"
+     ]
+    },
+    {
+     "id": "health-hurts-here",
+     "od": "ଏଠି ବିନ୍ଧୁଛି",
+     "tr": "ethi bindhuchhi",
+     "en": "It hurts here",
+     "intents": [
+      "it hurts",
+      "pain here",
+      "where it hurts"
+     ],
+     "note": "Point to the place as you say it."
+    },
+    {
+     "id": "health-allergy",
+     "od": "ମୋର …ରେ ଆଲର୍ଜି ଅଛି",
+     "tr": "mora …re allergy achhi",
+     "en": "I'm allergic to …",
+     "intents": [
+      "allergy",
+      "allergic",
+      "reaction"
+     ]
+    },
+    {
+     "id": "health-diabetes",
+     "od": "ମୋର ସୁଗାର ଅଛି",
+     "tr": "mora sugar achhi",
+     "en": "I have diabetes",
+     "intents": [
+      "diabetes",
+      "diabetic",
+      "blood sugar"
+     ],
+     "note": "ସୁଗାର is the everyday word; the formal term is ମଧୁମେହ."
+    },
+    {
+     "id": "health-have-medicine",
+     "od": "ଏଇ ଔଷଧଟି ଅଛି କି?",
+     "tr": "ei ousadhati achhi ki?",
+     "en": "Do you have this medicine?",
+     "intents": [
+      "do you have this medicine",
+      "prescription",
+      "buy medicine"
+     ],
+     "note": "Show the strip or prescription as you ask."
+    },
+    {
+     "id": "health-how-often",
+     "od": "ଏ ଔଷଧ ଦିନକୁ କେତେ ଥର ଖାଇବି?",
+     "tr": "e ousadha dinaku kete thara khaibi?",
+     "en": "How many times a day should I take this medicine?",
+     "intents": [
+      "dosage",
+      "how often",
+      "how many times",
+      "when to take"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "emergency",
+   "title": "Emergencies",
+   "odia": "ଜରୁରୀ ଅବସ୍ଥା",
+   "icon": "🚨",
+   "intro": "For when something goes wrong and you need help quickly.",
+   "phrases": [
+    {
+     "id": "emergency-help",
+     "od": "ସାହାଯ୍ଯ କରନ୍ତୁ!",
+     "tr": "sahajya karantu!",
+     "en": "Help, please!",
+     "intents": [
+      "help",
+      "emergency",
+      "please help"
+     ]
+    },
+    {
+     "id": "emergency-save-me",
+     "od": "ବଞ୍ଚାଅ!",
+     "tr": "banchaa!",
+     "en": "Help! Save me!",
+     "intents": [
+      "help",
+      "save me",
+      "shout for help",
+      "danger"
+     ],
+     "register": "familiar",
+     "note": "A shout for help, used in real danger."
+    },
+    {
+     "id": "emergency-police",
+     "od": "ପୋଲିସ ଡାକନ୍ତୁ",
+     "tr": "police dakantu",
+     "en": "Call the police",
+     "intents": [
+      "call police",
+      "police",
+      "report crime"
+     ]
+    },
+    {
+     "id": "emergency-ambulance",
+     "od": "ଆମ୍ବୁଲାନ୍ସ ଡାକନ୍ତୁ",
+     "tr": "ambulance dakantu",
+     "en": "Call an ambulance",
+     "intents": [
+      "ambulance",
+      "medical emergency",
+      "injured"
+     ]
+    },
+    {
+     "id": "emergency-fire",
+     "od": "ନିଆଁ ଲାଗିଛି!",
+     "tr": "nian lagichhi!",
+     "en": "Fire!",
+     "intents": [
+      "fire",
+      "something is burning",
+      "smoke"
+     ]
+    },
+    {
+     "id": "emergency-come-quickly",
+     "od": "ଶୀଘ୍ର ଆସନ୍ତୁ",
+     "tr": "sighra asantu",
+     "en": "Come quickly, please",
+     "intents": [
+      "hurry",
+      "come fast",
+      "quickly"
+     ]
+    },
+    {
+     "id": "emergency-accident",
+     "od": "ଦୁର୍ଘଟଣା ହୋଇଛି",
+     "tr": "durghatana hoichhi",
+     "en": "There's been an accident",
+     "intents": [
+      "accident",
+      "crash",
+      "someone is hurt"
+     ],
+     "note": "In everyday speech people also say ଆକ୍ସିଡେଣ୍ଟ ହୋଇଛି."
+    },
+    {
+     "id": "emergency-lost-phone",
+     "od": "ମୋ ଫୋନ ହଜିଗଲା",
+     "tr": "mo phone hajigala",
+     "en": "I've lost my phone",
+     "intents": [
+      "lost phone",
+      "lost mobile",
+      "phone missing"
+     ]
+    },
+    {
+     "id": "emergency-lost-wallet",
+     "od": "ମୋ ପର୍ସ ହଜିଗଲା",
+     "tr": "mo purse hajigala",
+     "en": "I've lost my wallet",
+     "intents": [
+      "lost wallet",
+      "lost purse",
+      "lost money"
+     ],
+     "note": "Also ମନିବ୍ଯାଗ୍ (moneybag) for a wallet."
+    },
+    {
+     "id": "emergency-bag-stolen",
+     "od": "ମୋ ବ୍ଯାଗ୍ ଚୋରି ହୋଇଗଲା",
+     "tr": "mo bag chori hoigala",
+     "en": "My bag has been stolen",
+     "intents": [
+      "stolen",
+      "theft",
+      "robbed",
+      "bag stolen"
+     ]
+    },
+    {
+     "id": "emergency-thief",
+     "od": "ଚୋର! ଚୋର!",
+     "tr": "chora! chora!",
+     "en": "Thief! Thief!",
+     "intents": [
+      "thief",
+      "stop thief",
+      "pickpocket"
+     ]
+    },
+    {
+     "id": "emergency-police-station",
+     "od": "ପାଖରେ ପୋଲିସ ଥାନା କେଉଁଠି?",
+     "tr": "pakhare police thana keunthi?",
+     "en": "Where is the nearest police station?",
+     "intents": [
+      "police station",
+      "report",
+      "thana"
+     ]
+    },
+    {
+     "id": "emergency-i-am-lost",
+     "od": "ମୁଁ ବାଟ ଭୁଲିଯାଇଛି",
+     "tr": "mun bata bhulijaichhi",
+     "en": "I am lost",
+     "intents": [
+      "i am lost",
+      "lost",
+      "don't know where i am"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "family",
+   "title": "Meeting family & elders",
+   "odia": "ପରିବାର ଓ ଗୁରୁଜନ",
+   "icon": "👪",
+   "intro": "For visiting an Odia home as a guest or new in-law and speaking respectfully to elders.",
+   "phrases": [
+    {
+     "id": "family-how-are-you",
+     "od": "ନମସ୍କାର, ଆପଣ କେମିତି ଅଛନ୍ତି?",
+     "tr": "namaskara, apana kemiti achhanti?",
+     "en": "Hello, how are you?",
+     "intents": [
+      "how are you",
+      "greet elder",
+      "hello"
+     ]
+    },
+    {
+     "id": "family-bless-me",
+     "od": "ଆଶୀର୍ବାଦ କରନ୍ତୁ",
+     "tr": "asirbada karantu",
+     "en": "Please bless me",
+     "intents": [
+      "blessing",
+      "bless me",
+      "touch feet"
+     ],
+     "note": "Commonly said while bowing or touching an elder's feet."
+    },
+    {
+     "id": "family-nice-to-meet",
+     "od": "ଆପଣଙ୍କୁ ଭେଟି ବହୁତ ଖୁସି ଲାଗିଲା",
+     "tr": "apananku bheti bahut khusi lagila",
+     "en": "I'm very happy to meet you",
+     "intents": [
+      "nice to meet you",
+      "pleased to meet",
+      "glad to meet"
+     ]
+    },
+    {
+     "id": "family-what-to-call",
+     "od": "ଆପଣଙ୍କୁ କ'ଣ ବୋଲି ଡାକିବି?",
+     "tr": "apananku kana boli dakibi?",
+     "en": "What should I call you?",
+     "intents": [
+      "what should i call you",
+      "how to address",
+      "relation name"
+     ]
+    },
+    {
+     "id": "family-friend-of",
+     "od": "ମୁଁ …ର ସାଙ୍ଗ",
+     "tr": "mun …ra sanga",
+     "en": "I'm …'s friend",
+     "intents": [
+      "i am a friend of",
+      "introduce myself",
+      "friend"
+     ]
+    },
+    {
+     "id": "family-please-sit",
+     "od": "ଆପଣ ବସନ୍ତୁ",
+     "tr": "apana basantu",
+     "en": "Please sit down",
+     "intents": [
+      "please sit",
+      "take a seat",
+      "sit"
+     ]
+    },
+    {
+     "id": "family-everyone-well",
+     "od": "ଘରେ ସମସ୍ତେ ଭଲରେ ଅଛନ୍ତି ତ?",
+     "tr": "ghare samaste bhalare achhanti ta?",
+     "en": "Is everyone at home well?",
+     "intents": [
+      "how is the family",
+      "everyone well",
+      "family doing well"
+     ]
+    },
+    {
+     "id": "family-brought-sweets",
+     "od": "ଆପଣଙ୍କ ପାଇଁ ଟିକିଏ ମିଠା ଆଣିଛି",
+     "tr": "apananka pain tikie mitha anichhi",
+     "en": "I've brought some sweets for you",
+     "intents": [
+      "gift",
+      "brought sweets",
+      "present"
+     ]
+    },
+    {
+     "id": "family-beautiful-home",
+     "od": "ଆପଣଙ୍କ ଘର ବହୁତ ସୁନ୍ଦର",
+     "tr": "apananka ghara bahut sundara",
+     "en": "Your home is very beautiful",
+     "intents": [
+      "nice house",
+      "compliment home",
+      "beautiful home"
+     ]
+    },
+    {
+     "id": "family-food-delicious",
+     "od": "ଖାଇବା ବହୁତ ସୁଆଦ ହୋଇଥିଲା",
+     "tr": "khaiba bahut suada hoithila",
+     "en": "The food was delicious",
+     "intents": [
+      "thank for food",
+      "delicious meal",
+      "compliment cooking"
+     ]
+    },
+    {
+     "id": "family-im-full",
+     "od": "ଆଉ ଦରକାର ନାହିଁ, ପେଟ ପୂରିଗଲା",
+     "tr": "au darakara nahin, peta purigala",
+     "en": "No more, thank you, I'm full",
+     "intents": [
+      "i'm full",
+      "no more food",
+      "enough",
+      "decline food"
+     ]
+    },
+    {
+     "id": "family-taking-leave",
+     "od": "ଏବେ ମୁଁ ଆସୁଛି",
+     "tr": "ebe mun asuchhi",
+     "en": "I'll take my leave now",
+     "intents": [
+      "goodbye",
+      "leaving",
+      "i have to go",
+      "take leave"
+     ],
+     "register": "neutral",
+     "note": "Odias say 'I'm coming' (ଆସୁଛି) rather than 'I'm going' when leaving."
+    },
+    {
+     "id": "family-come-again",
+     "od": "ପୁଣି ଆସିବି",
+     "tr": "puni asibi",
+     "en": "I'll come again",
+     "intents": [
+      "come again",
+      "visit again",
+      "see you again"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "work",
+   "title": "At work & office",
+   "odia": "କାମ ଓ ଅଫିସ",
+   "icon": "💼",
+   "intro": "For your first weeks in an Odisha office: introductions, meetings, leave and small talk.",
+   "phrases": [
+    {
+     "id": "work-my-name",
+     "od": "ମୋ ନାଁ …",
+     "tr": "mo nan …",
+     "en": "My name is …",
+     "intents": [
+      "my name is",
+      "introduce myself",
+      "name"
+     ]
+    },
+    {
+     "id": "work-newly-joined",
+     "od": "ମୁଁ ଏଠି ନୂଆ ଯୋଗ ଦେଇଛି",
+     "tr": "mun ethi nua joga deichhi",
+     "en": "I've just joined here",
+     "intents": [
+      "new joiner",
+      "first day",
+      "just joined",
+      "new here"
+     ]
+    },
+    {
+     "id": "work-explain",
+     "od": "ମୋତେ ଟିକିଏ ବୁଝାଇଦେବେ କି?",
+     "tr": "mote tikie bujhaidebe ki?",
+     "en": "Could you explain it to me?",
+     "intents": [
+      "explain",
+      "help me understand",
+      "how does this work"
+     ]
+    },
+    {
+     "id": "work-talk-sir",
+     "od": "ସାର୍, ଆପଣଙ୍କ ସହ ଟିକିଏ କଥା ହୋଇପାରିବି କି?",
+     "tr": "sir, apananka saha tikie katha hoiparibi ki?",
+     "en": "Sir, could I talk to you for a minute?",
+     "intents": [
+      "can i talk to you",
+      "quick word",
+      "speak to boss"
+     ],
+     "note": "For a woman, use ମାଡାମ୍ (madam)."
+    },
+    {
+     "id": "work-meeting-when",
+     "od": "ମିଟିଂ କେତେବେଳେ?",
+     "tr": "meeting ketebele?",
+     "en": "When is the meeting?",
+     "intents": [
+      "meeting time",
+      "when is the meeting",
+      "schedule"
+     ]
+    },
+    {
+     "id": "work-deadline",
+     "od": "ଏ କାମ କେବେ ସୁଦ୍ଧା ଦରକାର?",
+     "tr": "e kama kebe suddha darakara?",
+     "en": "By when is this work needed?",
+     "intents": [
+      "deadline",
+      "by when",
+      "due date"
+     ]
+    },
+    {
+     "id": "work-finish-today",
+     "od": "ମୁଁ ଆଜି ଶେଷ କରିଦେବି",
+     "tr": "mun aji sesa karidebi",
+     "en": "I'll finish it today",
+     "intents": [
+      "finish today",
+      "complete",
+      "will be done"
+     ]
+    },
+    {
+     "id": "work-late-today",
+     "od": "ମୁଁ ଆଜି ଟିକିଏ ଡେରିରେ ଆସିବି",
+     "tr": "mun aji tikie derire asibi",
+     "en": "I'll come in a bit late today",
+     "intents": [
+      "running late",
+      "come late",
+      "delayed"
+     ]
+    },
+    {
+     "id": "work-leave-today",
+     "od": "ମୁଁ ଆଜି ଛୁଟି ନେବି",
+     "tr": "mun aji chhuti nebi",
+     "en": "I'll take leave today",
+     "intents": [
+      "day off",
+      "leave",
+      "holiday",
+      "not coming"
+     ]
+    },
+    {
+     "id": "work-wfh",
+     "od": "ମୁଁ ଘରୁ କାମ କରୁଛି",
+     "tr": "mun gharu kama karuchhi",
+     "en": "I'm working from home",
+     "intents": [
+      "work from home",
+      "wfh",
+      "remote"
+     ]
+    },
+    {
+     "id": "work-laptop",
+     "od": "ମୋ ଲ୍ଯାପଟପ କାମ କରୁନାହିଁ",
+     "tr": "mo laptop kama karunahin",
+     "en": "My laptop isn't working",
+     "intents": [
+      "laptop broken",
+      "computer problem",
+      "it support"
+     ]
+    },
+    {
+     "id": "work-tea",
+     "od": "ଚା ପିଇବାକୁ ଯିବା କି?",
+     "tr": "cha piibaku jiba ki?",
+     "en": "Shall we go for tea?",
+     "intents": [
+      "tea break",
+      "coffee break",
+      "shall we go"
+     ],
+     "note": "Friendly invitation to colleagues."
+    },
+    {
+     "id": "work-see-you-tomorrow",
+     "od": "ଆସୁଛି, କାଲି ଦେଖା ହେବ",
+     "tr": "asuchhi, kali dekha heba",
+     "en": "I'm off, see you tomorrow",
+     "intents": [
+      "see you tomorrow",
+      "goodbye",
+      "leaving office",
+      "bye"
+     ]
+    }
+   ]
+  }
+ ]
+}

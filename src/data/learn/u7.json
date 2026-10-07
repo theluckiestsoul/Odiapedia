@@ -1,0 +1,679 @@
+{
+ "id": "u7",
+ "title": "Getting around",
+ "odia": "ବାଟଘାଟ",
+ "summary": "Ask where places are, follow simple directions and take an auto, taxi or bus around town.",
+ "lessons": [
+  {
+   "id": "u7-l1",
+   "title": "Where is…?",
+   "odia": "କେଉଁଠି?",
+   "goal": "Ask where common places are and understand whether they are near or far.",
+   "context": "You have just arrived in a new town and need the station, a toilet and the market. You stop a passer-by to ask.",
+   "items": [
+    {
+     "id": "u7-stesana",
+     "kind": "word",
+     "od": "ଷ୍ଟେସନ",
+     "tr": "station",
+     "en": "station (railway)",
+     "accept_en": [
+      "station",
+      "railway station",
+      "train station"
+     ],
+     "register": "neutral",
+     "emoji": "🚉"
+    },
+    {
+     "id": "u7-bas-standa",
+     "kind": "word",
+     "od": "ବସ୍ ଷ୍ଟାଣ୍ଡ",
+     "tr": "bus stand",
+     "en": "bus stand; bus station",
+     "accept_en": [
+      "bus stand",
+      "bus station",
+      "bus stop"
+     ],
+     "register": "neutral",
+     "emoji": "🚌"
+    },
+    {
+     "id": "u7-daktarakhana",
+     "kind": "word",
+     "od": "ଡାକ୍ତରଖାନା",
+     "tr": "daktarakhana",
+     "en": "hospital",
+     "accept_en": [
+      "hospital",
+      "clinic"
+     ],
+     "lit": "doctor-house",
+     "register": "neutral",
+     "emoji": "🏥"
+    },
+    {
+     "id": "u7-mandira",
+     "kind": "word",
+     "od": "ମନ୍ଦିର",
+     "tr": "mandira",
+     "en": "temple",
+     "accept_en": [
+      "temple"
+     ],
+     "register": "neutral",
+     "emoji": "🛕"
+    },
+    {
+     "id": "u7-bajara",
+     "kind": "word",
+     "od": "ବଜାର",
+     "tr": "bajara",
+     "en": "market",
+     "accept_en": [
+      "market",
+      "bazaar",
+      "marketplace"
+     ],
+     "register": "neutral",
+     "emoji": "🛒"
+    },
+    {
+     "id": "u7-souchalaya",
+     "kind": "word",
+     "od": "ଶୌଚାଳୟ",
+     "tr": "souchalaya",
+     "en": "toilet",
+     "accept_en": [
+      "toilet",
+      "restroom",
+      "bathroom",
+      "washroom"
+     ],
+     "register": "neutral",
+     "note": "The standard word you will see on signs. In speech many people simply say ଟଏଲେଟ୍ (toilet) or ବାଥରୁମ (bathroom).",
+     "emoji": "🚻"
+    },
+    {
+     "id": "u7-nikatare",
+     "kind": "word",
+     "od": "ନିକଟରେ",
+     "tr": "nikatare",
+     "en": "nearby; close to",
+     "accept_en": [
+      "nearby",
+      "near",
+      "close by",
+      "near here",
+      "close to"
+     ],
+     "lit": "in nearness",
+     "register": "neutral"
+    },
+    {
+     "id": "u7-dura",
+     "kind": "word",
+     "od": "ଦୂର",
+     "tr": "dura",
+     "en": "far",
+     "accept_en": [
+      "far",
+      "far away",
+      "distant"
+     ],
+     "register": "neutral",
+     "note": "କେତେ ଦୂର? (kete dura?) means \"how far?\""
+    }
+   ],
+   "examples": [
+    {
+     "od": "ଷ୍ଟେସନ କେଉଁଠି?",
+     "tr": "station keunthi?",
+     "en": "Where is the station?",
+     "uses": [
+      "keunthi",
+      "u7-stesana"
+     ]
+    },
+    {
+     "od": "ଶୌଚାଳୟ କେଉଁଠି ଅଛି?",
+     "tr": "souchalaya keunthi achhi?",
+     "en": "Where is the toilet?",
+     "uses": [
+      "keunthi",
+      "u7-souchalaya"
+     ]
+    },
+    {
+     "od": "ବଜାର ନିକଟରେ ଅଛି।",
+     "tr": "bajara nikatare achhi.",
+     "en": "The market is nearby.",
+     "uses": [
+      "u7-bajara",
+      "u7-nikatare"
+     ]
+    },
+    {
+     "od": "ମନ୍ଦିର ବହୁତ ଦୂର।",
+     "tr": "mandira bahut dura.",
+     "en": "The temple is very far.",
+     "uses": [
+      "u7-mandira",
+      "u7-dura"
+     ]
+    },
+    {
+     "od": "ବସ୍ ଷ୍ଟାଣ୍ଡ କେତେ ଦୂର?",
+     "tr": "bus stand kete dura?",
+     "en": "How far is the bus stand?",
+     "uses": [
+      "u4-kete",
+      "u7-bas-standa",
+      "u7-dura"
+     ]
+    },
+    {
+     "od": "ନିକଟରେ ଡାକ୍ତରଖାନା ଅଛି କି?",
+     "tr": "nikatare daktarakhana achhi ki?",
+     "en": "Is there a hospital nearby?",
+     "uses": [
+      "ki",
+      "u7-daktarakhana",
+      "u7-nikatare"
+     ]
+    }
+   ],
+   "dialogue": {
+    "scene": "Asking a passer-by",
+    "lines": [
+     {
+      "who": "Arun",
+      "od": "ନମସ୍କାର, ବସ୍ ଷ୍ଟାଣ୍ଡ କେଉଁଠି?",
+      "tr": "namaskara, bus stand keunthi?",
+      "en": "Hello, where is the bus stand?"
+     },
+     {
+      "who": "Sita",
+      "od": "ବସ୍ ଷ୍ଟାଣ୍ଡ ଟିକେ ଦୂର।",
+      "tr": "bus stand tike dura.",
+      "en": "The bus stand is a bit far."
+     },
+     {
+      "who": "Arun",
+      "od": "ନିକଟରେ ଶୌଚାଳୟ ଅଛି କି?",
+      "tr": "nikatare souchalaya achhi ki?",
+      "en": "Is there a toilet nearby?"
+     },
+     {
+      "who": "Sita",
+      "od": "ହଁ, ମନ୍ଦିର ନିକଟରେ ଅଛି।",
+      "tr": "han, mandira nikatare achhi.",
+      "en": "Yes, there's one near the temple."
+     },
+     {
+      "who": "Arun",
+      "od": "ବହୁତ ଧନ୍ଯବାଦ।",
+      "tr": "bahut dhanyabada.",
+      "en": "Thank you very much."
+     }
+    ]
+   },
+   "tip": {
+    "title": "Place first, question last",
+    "text": "To ask \"Where is X?\", say the place first and put କେଉଁଠି at the end: ଷ୍ଟେସନ କେଉଁଠି? You can add ଅଛି (\"is\"): ଶୌଚାଳୟ କେଉଁଠି ଅଛି? Question words in Odia usually sit just before the verb, not at the start of the sentence as in English."
+   }
+  },
+  {
+   "id": "u7-l2",
+   "title": "Directions",
+   "odia": "ବାଟ ବତାଇବା",
+   "goal": "Understand and give simple directions: straight, left, right, ahead, behind, next to.",
+   "context": "Someone points the way to the hospital. You need to catch \"straight\", \"left\", \"right\" and \"junction\" to get there.",
+   "items": [
+    {
+     "id": "u7-sidha-jaantu",
+     "kind": "phrase",
+     "od": "ସିଧା ଯାଆନ୍ତୁ",
+     "tr": "sidha jaantu",
+     "en": "go straight (please)",
+     "accept_en": [
+      "go straight",
+      "go straight ahead",
+      "keep going straight"
+     ],
+     "lit": "straight go",
+     "register": "formal",
+     "note": "With a friend: ସିଧା ଯାଅ (sidha jaa).",
+     "emoji": "⬆️"
+    },
+    {
+     "id": "u7-dahanaku",
+     "kind": "word",
+     "od": "ଡାହାଣକୁ",
+     "tr": "dahanaku",
+     "en": "to the right",
+     "accept_en": [
+      "right",
+      "to the right",
+      "towards the right"
+     ],
+     "lit": "right-to",
+     "register": "neutral",
+     "note": "You will also hear ଡାହାଣ ପଟକୁ (dahana pataku), \"to the right side\".",
+     "emoji": "➡️"
+    },
+    {
+     "id": "u7-bamaku",
+     "kind": "word",
+     "od": "ବାମକୁ",
+     "tr": "bamaku",
+     "en": "to the left",
+     "accept_en": [
+      "left",
+      "to the left",
+      "towards the left"
+     ],
+     "lit": "left-to",
+     "register": "neutral",
+     "note": "In casual speech you will also hear ବାଁ ପଟକୁ (ban pataku), \"to the left side\".",
+     "emoji": "⬅️"
+    },
+    {
+     "id": "u7-bulantu",
+     "kind": "word",
+     "od": "ବୁଲନ୍ତୁ",
+     "tr": "bulantu",
+     "en": "turn (please)",
+     "accept_en": [
+      "turn",
+      "please turn",
+      "take a turn"
+     ],
+     "register": "formal",
+     "note": "ମୋଡ଼ନ୍ତୁ (morantu) also means \"turn\". Both are heard: ଡାହାଣକୁ ବୁଲନ୍ତୁ / ଡାହାଣକୁ ମୋଡ଼ନ୍ତୁ."
+    },
+    {
+     "id": "u7-agare",
+     "kind": "word",
+     "od": "ଆଗରେ",
+     "tr": "agare",
+     "en": "ahead; in front",
+     "accept_en": [
+      "ahead",
+      "in front",
+      "in front of",
+      "further on"
+     ],
+     "register": "neutral"
+    },
+    {
+     "id": "u7-pachhare",
+     "kind": "word",
+     "od": "ପଛରେ",
+     "tr": "pachhare",
+     "en": "behind",
+     "accept_en": [
+      "behind",
+      "at the back",
+      "in the back"
+     ],
+     "register": "neutral"
+    },
+    {
+     "id": "u7-pakhare",
+     "kind": "word",
+     "od": "ପାଖରେ",
+     "tr": "pakhare",
+     "en": "next to; near",
+     "accept_en": [
+      "next to",
+      "near",
+      "beside",
+      "close to"
+     ],
+     "register": "neutral",
+     "note": "Everyday word for \"near\"; more common in speech than ନିକଟରେ."
+    },
+    {
+     "id": "u7-chhaka",
+     "kind": "word",
+     "od": "ଛକ",
+     "tr": "chhaka",
+     "en": "junction; crossroads; square",
+     "accept_en": [
+      "junction",
+      "crossroads",
+      "intersection",
+      "square"
+     ],
+     "register": "neutral",
+     "note": "Busy junctions are everyday landmarks, so ଛକ is very useful when asking or giving directions."
+    }
+   ],
+   "examples": [
+    {
+     "od": "ଛକ ଯାଏଁ ସିଧା ଯାଆନ୍ତୁ।",
+     "tr": "chhaka jaen sidha jaantu.",
+     "en": "Go straight up to the junction.",
+     "uses": [
+      "u7-sidha-jaantu",
+      "u7-chhaka"
+     ]
+    },
+    {
+     "od": "ଛକରେ ଡାହାଣକୁ ବୁଲନ୍ତୁ।",
+     "tr": "chhakare dahanaku bulantu.",
+     "en": "Turn right at the junction.",
+     "uses": [
+      "u7-dahanaku",
+      "u7-bulantu",
+      "u7-chhaka"
+     ]
+    },
+    {
+     "od": "ତା'ପରେ ବାମକୁ ବୁଲନ୍ତୁ।",
+     "tr": "tapare bamaku bulantu.",
+     "en": "Then turn left.",
+     "uses": [
+      "u7-bamaku",
+      "u7-bulantu"
+     ]
+    },
+    {
+     "od": "ମନ୍ଦିର ବଜାର ପାଖରେ ଅଛି।",
+     "tr": "mandira bajara pakhare achhi.",
+     "en": "The temple is next to the market.",
+     "uses": [
+      "u7-mandira",
+      "u7-bajara",
+      "u7-pakhare"
+     ]
+    },
+    {
+     "od": "ଷ୍ଟେସନ ଡାକ୍ତରଖାନା ପଛରେ।",
+     "tr": "station daktarakhana pachhare.",
+     "en": "The station is behind the hospital.",
+     "uses": [
+      "u7-stesana",
+      "u7-daktarakhana",
+      "u7-pachhare"
+     ]
+    },
+    {
+     "od": "ବସ୍ ଷ୍ଟାଣ୍ଡ ଟିକେ ଆଗରେ ଅଛି।",
+     "tr": "bus stand tike agare achhi.",
+     "en": "The bus stand is a little further ahead.",
+     "uses": [
+      "u7-bas-standa",
+      "u7-agare"
+     ]
+    }
+   ],
+   "dialogue": {
+    "scene": "The way to the hospital",
+    "lines": [
+     {
+      "who": "Lipi",
+      "od": "ଭାଇ, ଡାକ୍ତରଖାନା କେଉଁଠି?",
+      "tr": "bhai, daktarakhana keunthi?",
+      "en": "Excuse me (brother), where is the hospital?"
+     },
+     {
+      "who": "Prakash",
+      "od": "ସିଧା ଯାଆନ୍ତୁ, ତା'ପରେ ଛକରେ ବାମକୁ ବୁଲନ୍ତୁ।",
+      "tr": "sidha jaantu, tapare chhakare bamaku bulantu.",
+      "en": "Go straight, then turn left at the junction."
+     },
+     {
+      "who": "Lipi",
+      "od": "ଛକରେ ବାମକୁ?",
+      "tr": "chhakare bamaku?",
+      "en": "Left at the junction?"
+     },
+     {
+      "who": "Prakash",
+      "od": "ହଁ। ଡାକ୍ତରଖାନା ମନ୍ଦିର ପାଖରେ।",
+      "tr": "han. daktarakhana mandira pakhare.",
+      "en": "Yes. The hospital is next to the temple."
+     },
+     {
+      "who": "Lipi",
+      "od": "ବହୁତ ଧନ୍ଯବାଦ।",
+      "tr": "bahut dhanyabada.",
+      "en": "Thanks a lot."
+     }
+    ]
+   },
+   "tip": {
+    "title": "-କୁ \"to\" and -ରେ \"at\"",
+    "text": "Odia uses endings where English uses prepositions. -କୁ means \"to/towards\": ଡାହାଣକୁ, ବାମକୁ. -ରେ means \"at/in\": ଛକରେ, ପାଖରେ. Words like ପାଖରେ and ପଛରେ come after the noun: ବଜାର ପାଖରେ = \"next to the market\" (lit. market near-at)."
+   }
+  },
+  {
+   "id": "u7-l3",
+   "title": "Auto, taxi and bus",
+   "odia": "ଅଟୋ, ଟାକ୍ସି ଓ ବସ୍",
+   "goal": "Hire an auto or taxi, agree a fare, tell the driver where to stop and find the right bus.",
+   "context": "You flag down an auto-rickshaw outside the market to get to the station, then later need a bus to Puri.",
+   "items": [
+    {
+     "id": "u7-ato",
+     "kind": "word",
+     "od": "ଅଟୋ",
+     "tr": "auto",
+     "en": "auto-rickshaw",
+     "accept_en": [
+      "auto",
+      "autorickshaw",
+      "auto rickshaw",
+      "rickshaw"
+     ],
+     "register": "neutral",
+     "note": "Calling out \"ଅଟୋ!\" is how you hail one.",
+     "emoji": "🛺"
+    },
+    {
+     "id": "u7-taksi",
+     "kind": "word",
+     "od": "ଟାକ୍ସି",
+     "tr": "taxi",
+     "en": "taxi; cab",
+     "accept_en": [
+      "taxi",
+      "cab"
+     ],
+     "register": "neutral",
+     "emoji": "🚕"
+    },
+    {
+     "id": "u7-jibe",
+     "kind": "phrase",
+     "od": "… ଯିବେ?",
+     "tr": "… jibe?",
+     "en": "will you go to …?",
+     "accept_en": [
+      "will you go",
+      "will you go to",
+      "can you go to"
+     ],
+     "lit": "(place) will-go?",
+     "register": "formal",
+     "note": "Say the place first: ଷ୍ଟେସନ ଯିବେ? No word for \"to\" is needed."
+    },
+    {
+     "id": "u7-jiba-paain-kete-nebe",
+     "kind": "phrase",
+     "od": "… ଯିବା ପାଇଁ କେତେ ନେବେ?",
+     "tr": "… jiba pain kete nebe?",
+     "en": "how much will you charge to go to …?",
+     "accept_en": [
+      "how much to go to",
+      "how much will you charge",
+      "how much to"
+     ],
+     "lit": "(place) going for how-much will-take?",
+     "register": "formal"
+    },
+    {
+     "id": "u7-ethi-rakhantu",
+     "kind": "phrase",
+     "od": "ଏଠି ରଖନ୍ତୁ",
+     "tr": "ethi rakhantu",
+     "en": "stop here (please)",
+     "accept_en": [
+      "stop here",
+      "please stop here",
+      "drop me here"
+     ],
+     "lit": "here keep",
+     "register": "formal"
+    },
+    {
+     "id": "u7-dhire-chalantu",
+     "kind": "phrase",
+     "od": "ଧୀରେ ଚଳାନ୍ତୁ",
+     "tr": "dhire chalantu",
+     "en": "drive slowly (please)",
+     "accept_en": [
+      "drive slowly",
+      "slow down",
+      "please drive slowly",
+      "go slowly"
+     ],
+     "lit": "slowly drive",
+     "register": "formal"
+    },
+    {
+     "id": "u7-tiket",
+     "kind": "word",
+     "od": "ଟିକେଟ୍",
+     "tr": "ticket",
+     "en": "ticket",
+     "accept_en": [
+      "ticket",
+      "tickets"
+     ],
+     "register": "neutral",
+     "emoji": "🎫"
+    },
+    {
+     "id": "u7-keun-bas-jiba",
+     "kind": "phrase",
+     "od": "କେଉଁ ବସ୍ … ଯିବ?",
+     "tr": "keun bus … jiba?",
+     "en": "which bus goes to …?",
+     "accept_en": [
+      "which bus goes to",
+      "which bus goes",
+      "which bus will go to"
+     ],
+     "lit": "which bus (place) will-go?",
+     "register": "neutral"
+    }
+   ],
+   "examples": [
+    {
+     "od": "ଷ୍ଟେସନ ଯିବେ?",
+     "tr": "station jibe?",
+     "en": "Will you go to the station?",
+     "uses": [
+      "u7-stesana",
+      "u7-jibe"
+     ]
+    },
+    {
+     "od": "ବଜାର ଯିବା ପାଇଁ କେତେ ନେବେ?",
+     "tr": "bajara jiba pain kete nebe?",
+     "en": "How much to go to the market?",
+     "uses": [
+      "u4-kete",
+      "u7-bajara",
+      "u7-jiba-paain-kete-nebe"
+     ]
+    },
+    {
+     "od": "ଭାଇ, ଏଠି ରଖନ୍ତୁ।",
+     "tr": "bhai, ethi rakhantu.",
+     "en": "Stop here, please.",
+     "uses": [
+      "u3-bhai",
+      "u7-ethi-rakhantu"
+     ]
+    },
+    {
+     "od": "ଟିକେ ଧୀରେ ଚଳାନ୍ତୁ।",
+     "tr": "tike dhire chalantu.",
+     "en": "Please drive a bit more slowly.",
+     "uses": [
+      "u7-dhire-chalantu"
+     ]
+    },
+    {
+     "od": "କେଉଁ ବସ୍ ପୁରୀ ଯିବ?",
+     "tr": "keun bus Puri jiba?",
+     "en": "Which bus goes to Puri?",
+     "uses": [
+      "puri",
+      "u7-keun-bas-jiba"
+     ]
+    },
+    {
+     "od": "ଦୁଇଟା ଟିକେଟ୍ ଦିଅନ୍ତୁ।",
+     "tr": "duita ticket diantu.",
+     "en": "Two tickets, please.",
+     "uses": [
+      "diantu",
+      "u4-dui",
+      "u7-tiket"
+     ]
+    }
+   ],
+   "dialogue": {
+    "scene": "Taking an auto to the station",
+    "lines": [
+     {
+      "who": "Rina",
+      "od": "ଅଟୋ! ଷ୍ଟେସନ ଯିବେ?",
+      "tr": "auto! station jibe?",
+      "en": "Auto! Will you go to the station?"
+     },
+     {
+      "who": "Bapi",
+      "od": "ହଁ, ଯିବି।",
+      "tr": "han, jibi.",
+      "en": "Yes, I'll go."
+     },
+     {
+      "who": "Rina",
+      "od": "ଷ୍ଟେସନ ଯିବା ପାଇଁ କେତେ ନେବେ?",
+      "tr": "station jiba pain kete nebe?",
+      "en": "How much will you charge to the station?"
+     },
+     {
+      "who": "Bapi",
+      "od": "ଶହେ ଟଙ୍କା।",
+      "tr": "sahe tanka.",
+      "en": "A hundred rupees."
+     },
+     {
+      "who": "Rina",
+      "od": "ବହୁତ ମହଙ୍ଗା! ଅଶୀ ଟଙ୍କା ନିଅନ୍ତୁ।",
+      "tr": "bahut mahanga! asi tanka niantu.",
+      "en": "That's too expensive! Take eighty rupees."
+     },
+     {
+      "who": "Bapi",
+      "od": "ଠିକ୍ ଅଛି, ବସନ୍ତୁ।",
+      "tr": "thik achhi, basantu.",
+      "en": "Okay, get in."
+     }
+    ]
+   },
+   "tip": {
+    "title": "ଯିବେ, ଯିବି, ଯିବ",
+    "text": "The future of ଯିବା (to go) changes with the person: ଯିବେ? \"will you go?\" (polite ଆପଣ), ଯିବି \"I will go\", ଯିବ \"it/he will go\" (for a bus: କେଉଁ ବସ୍ ପୁରୀ ଯିବ?). With autos it is common to agree the fare before the ride starts."
+   }
+  }
+ ]
+}

@@ -1,0 +1,629 @@
+{
+ "id": "u5",
+ "title": "Time & days",
+ "odia": "ସମୟ ଓ ଦିନ",
+ "summary": "Name the days of the week, talk about today, tomorrow and yesterday, and ask and tell the time.",
+ "lessons": [
+  {
+   "id": "u5-l1",
+   "title": "Days of the week",
+   "odia": "ସପ୍ତାହର ସାତ ଦିନ",
+   "goal": "Name the seven days of the week and ask what day it is.",
+   "context": "You are planning a trip to the market with a friend and need to agree on a day.",
+   "items": [
+    {
+     "id": "u5-somabara",
+     "kind": "word",
+     "od": "ସୋମବାର",
+     "tr": "somabara",
+     "en": "Monday",
+     "accept_en": [
+      "monday"
+     ],
+     "lit": "moon-day",
+     "register": "neutral"
+    },
+    {
+     "id": "u5-mangalabara",
+     "kind": "word",
+     "od": "ମଙ୍ଗଳବାର",
+     "tr": "mangalabara",
+     "en": "Tuesday",
+     "accept_en": [
+      "tuesday"
+     ],
+     "lit": "Mars-day",
+     "register": "neutral"
+    },
+    {
+     "id": "u5-budhabara",
+     "kind": "word",
+     "od": "ବୁଧବାର",
+     "tr": "budhabara",
+     "en": "Wednesday",
+     "accept_en": [
+      "wednesday"
+     ],
+     "lit": "Mercury-day",
+     "register": "neutral"
+    },
+    {
+     "id": "u5-gurubara",
+     "kind": "word",
+     "od": "ଗୁରୁବାର",
+     "tr": "gurubara",
+     "en": "Thursday",
+     "accept_en": [
+      "thursday"
+     ],
+     "lit": "Jupiter-day",
+     "register": "neutral",
+     "note": "Thursdays of the month Margasira are kept as Manabasa Gurubara, when many homes worship Goddess Lakshmi."
+    },
+    {
+     "id": "u5-sukrabara",
+     "kind": "word",
+     "od": "ଶୁକ୍ରବାର",
+     "tr": "sukrabara",
+     "en": "Friday",
+     "accept_en": [
+      "friday"
+     ],
+     "lit": "Venus-day",
+     "register": "neutral"
+    },
+    {
+     "id": "u5-sanibara",
+     "kind": "word",
+     "od": "ଶନିବାର",
+     "tr": "sanibara",
+     "en": "Saturday",
+     "accept_en": [
+      "saturday"
+     ],
+     "lit": "Saturn-day",
+     "register": "neutral"
+    },
+    {
+     "id": "u5-rabibara",
+     "kind": "word",
+     "od": "ରବିବାର",
+     "tr": "rabibara",
+     "en": "Sunday",
+     "accept_en": [
+      "sunday"
+     ],
+     "lit": "sun-day",
+     "register": "neutral"
+    },
+    {
+     "id": "u5-aji-ki-bara",
+     "kind": "phrase",
+     "od": "ଆଜି କି ବାର?",
+     "tr": "aji ki bara?",
+     "en": "What day is it today?",
+     "accept_en": [
+      "what day is it today",
+      "what day is today",
+      "what day is it"
+     ],
+     "lit": "today which day?",
+     "register": "neutral",
+     "note": "No verb is needed. Answer the same way: ଆଜି ସୋମବାର (today Monday)."
+    }
+   ],
+   "examples": [
+    {
+     "od": "ଆଜି ସୋମବାର।",
+     "tr": "aji somabara.",
+     "en": "Today is Monday.",
+     "uses": [
+      "u5-somabara"
+     ]
+    },
+    {
+     "od": "ମଙ୍ଗଳବାର ନା ବୁଧବାର?",
+     "tr": "mangalabara na budhabara?",
+     "en": "Tuesday or Wednesday?",
+     "uses": [
+      "u5-mangalabara",
+      "u5-budhabara"
+     ]
+    },
+    {
+     "od": "ଶନିବାର ଓ ରବିବାର ଛୁଟି।",
+     "tr": "sanibara o rabibara chhuti.",
+     "en": "Saturday and Sunday are holidays.",
+     "uses": [
+      "u5-sanibara",
+      "u5-rabibara"
+     ]
+    },
+    {
+     "od": "ଆଜି ଗୁରୁବାର ନୁହେଁ, ଶୁକ୍ରବାର।",
+     "tr": "aji gurubara nuhen, sukrabara.",
+     "en": "Today isn't Thursday, it's Friday.",
+     "uses": [
+      "u5-gurubara",
+      "u5-sukrabara"
+     ]
+    },
+    {
+     "od": "ଆଜି କି ବାର? ବୁଧବାର।",
+     "tr": "aji ki bara? budhabara.",
+     "en": "What day is it today? Wednesday.",
+     "uses": [
+      "u5-budhabara",
+      "u5-aji-ki-bara"
+     ]
+    }
+   ],
+   "dialogue": {
+    "scene": "Planning a day off",
+    "lines": [
+     {
+      "who": "Rina",
+      "od": "ଅରୁଣ, ଆଜି କି ବାର?",
+      "tr": "Arun, aji ki bara?",
+      "en": "Arun, what day is it today?"
+     },
+     {
+      "who": "Arun",
+      "od": "ଆଜି ବୁଧବାର।",
+      "tr": "aji budhabara.",
+      "en": "Today is Wednesday."
+     },
+     {
+      "who": "Rina",
+      "od": "ବୁଧବାର? ମୁଁ ଭାବିଲି ଗୁରୁବାର।",
+      "tr": "budhabara? mun bhabili gurubara.",
+      "en": "Wednesday? I thought it was Thursday."
+     },
+     {
+      "who": "Arun",
+      "od": "ନା, ଆଜି ବୁଧବାର।",
+      "tr": "na, aji budhabara.",
+      "en": "No, today is Wednesday."
+     },
+     {
+      "who": "Rina",
+      "od": "ଛୁଟି କେବେ?",
+      "tr": "chhuti kebe?",
+      "en": "When is the holiday?"
+     },
+     {
+      "who": "Arun",
+      "od": "ଶନିବାର ଓ ରବିବାର।",
+      "tr": "sanibara o rabibara.",
+      "en": "Saturday and Sunday."
+     }
+    ]
+   },
+   "tip": {
+    "title": "Every day ends in -ବାର",
+    "text": "ବାର (bara) means 'day of the week'. The days are named after the sun, moon and planets: ରବି sun, ସୋମ moon, ମଙ୍ଗଳ Mars, ବୁଧ Mercury, ଗୁରୁ Jupiter, ଶୁକ୍ର Venus, ଶନି Saturn. Learn the first part and just add -ବାର."
+   }
+  },
+  {
+   "id": "u5-l2",
+   "title": "Today, tomorrow, yesterday",
+   "odia": "ଆଜି, କାଲି",
+   "goal": "Say when something happens: today, tomorrow, yesterday, and the time of day.",
+   "context": "A friend wants to visit and you need to fix a day and a time that suits you both.",
+   "items": [
+    {
+     "id": "u5-aji",
+     "kind": "word",
+     "od": "ଆଜି",
+     "tr": "aji",
+     "en": "today",
+     "accept_en": [
+      "today"
+     ],
+     "register": "neutral"
+    },
+    {
+     "id": "u5-kali",
+     "kind": "word",
+     "od": "କାଲି",
+     "tr": "kali",
+     "en": "tomorrow; yesterday",
+     "accept_en": [
+      "tomorrow",
+      "yesterday"
+     ],
+     "register": "neutral",
+     "note": "One word for both. The verb's tense tells you which: future = tomorrow, past = yesterday."
+    },
+    {
+     "id": "u5-paaradina",
+     "kind": "word",
+     "od": "ପରଶୁ",
+     "tr": "parasu",
+     "en": "the day after tomorrow",
+     "accept_en": [
+      "day after tomorrow",
+      "the day after tomorrow"
+     ],
+     "register": "neutral",
+     "note": "ପଅରଦିନ (paaradina) is also heard."
+    },
+    {
+     "id": "u5-sakala",
+     "kind": "word",
+     "od": "ସକାଳ",
+     "tr": "sakala",
+     "en": "morning",
+     "accept_en": [
+      "morning"
+     ],
+     "register": "neutral",
+     "note": "ସକାଳେ = in the morning.",
+     "emoji": "🌅"
+    },
+    {
+     "id": "u5-dina",
+     "kind": "word",
+     "od": "ଦିନ",
+     "tr": "dina",
+     "en": "day; daytime",
+     "accept_en": [
+      "day",
+      "daytime"
+     ],
+     "register": "neutral",
+     "note": "ଦିନରେ = in the daytime. Midday is ମଧ୍ଯାହ୍ନ (madhyahna) in formal Odia."
+    },
+    {
+     "id": "u5-sanja",
+     "kind": "word",
+     "od": "ସଞ୍ଜ",
+     "tr": "sanja",
+     "en": "evening; dusk",
+     "accept_en": [
+      "evening",
+      "dusk"
+     ],
+     "register": "neutral",
+     "note": "ସଞ୍ଜରେ = in the evening. ସନ୍ଧ୍ଯା (sandhya) is the more formal word."
+    },
+    {
+     "id": "u5-rati",
+     "kind": "word",
+     "od": "ରାତି",
+     "tr": "rati",
+     "en": "night",
+     "accept_en": [
+      "night"
+     ],
+     "register": "neutral",
+     "note": "ରାତିରେ = at night.",
+     "emoji": "🌙"
+    }
+   ],
+   "examples": [
+    {
+     "od": "ଆଜି ରବିବାର, କାଲି ସୋମବାର।",
+     "tr": "aji rabibara, kali somabara.",
+     "en": "Today is Sunday, tomorrow is Monday.",
+     "uses": [
+      "u5-somabara",
+      "u5-rabibara",
+      "u5-aji",
+      "u5-kali"
+     ]
+    },
+    {
+     "od": "କାଲି ଶନିବାର ଥିଲା।",
+     "tr": "kali sanibara thila.",
+     "en": "Yesterday was Saturday.",
+     "uses": [
+      "u5-sanibara",
+      "u5-kali"
+     ]
+    },
+    {
+     "od": "ମୁଁ କାଲି ଆସିବି।",
+     "tr": "mun kali asibi.",
+     "en": "I'll come tomorrow.",
+     "uses": [
+      "mun",
+      "u5-kali"
+     ]
+    },
+    {
+     "od": "ମୁଁ କାଲି ଆସିଥିଲି।",
+     "tr": "mun kali asithili.",
+     "en": "I came yesterday.",
+     "uses": [
+      "mun",
+      "u5-kali"
+     ]
+    },
+    {
+     "od": "ପରଶୁ ମୁଁ ପୁରୀ ଯିବି।",
+     "tr": "parasu mun Puri jibi.",
+     "en": "I'll go to Puri the day after tomorrow.",
+     "uses": [
+      "mun",
+      "puri",
+      "u5-paaradina"
+     ]
+    },
+    {
+     "od": "ଆଜି ସଞ୍ଜରେ ଆସନ୍ତୁ।",
+     "tr": "aji sanjare asantu.",
+     "en": "Please come this evening.",
+     "uses": [
+      "asantu",
+      "u5-aji",
+      "u5-sanja"
+     ]
+    }
+   ],
+   "dialogue": {
+    "scene": "Fixing a visit",
+    "lines": [
+     {
+      "who": "Sita",
+      "od": "ପ୍ରକାଶ, ତୁମେ କାଲି କେଉଁଠି ଥିଲ?",
+      "tr": "Prakash, tume kali keunthi thila?",
+      "en": "Prakash, where were you yesterday?"
+     },
+     {
+      "who": "Prakash",
+      "od": "ମୁଁ କଟକରେ ଥିଲି।",
+      "tr": "mun Cuttackre thili.",
+      "en": "I was in Cuttack."
+     },
+     {
+      "who": "Sita",
+      "od": "ଆଜି ସଞ୍ଜରେ ଘରକୁ ଆସିବ?",
+      "tr": "aji sanjare gharaku asiba?",
+      "en": "Will you come over this evening?"
+     },
+     {
+      "who": "Prakash",
+      "od": "ଆଜି ନା, ରାତିରେ ମୋର କାମ ଅଛି।",
+      "tr": "aji na, ratire mora kama achhi.",
+      "en": "Not today, I have work tonight."
+     },
+     {
+      "who": "Sita",
+      "od": "ତେବେ କାଲି ସକାଳେ?",
+      "tr": "tebe kali sakale?",
+      "en": "Then tomorrow morning?"
+     },
+     {
+      "who": "Prakash",
+      "od": "ହଁ, କାଲି ସକାଳେ ଆସିବି।",
+      "tr": "han, kali sakale asibi.",
+      "en": "Yes, I'll come tomorrow morning."
+     }
+    ]
+   },
+   "tip": {
+    "title": "କାଲି: tomorrow or yesterday?",
+    "text": "Odia uses କାଲି for both tomorrow and yesterday. Listen to the verb: ମୁଁ କାଲି ଆସିବି (will come) = tomorrow; ମୁଁ କାଲି ଆସିଥିଲି (came) = yesterday. ପରଶୁ is the day after tomorrow. Add -ଏ or -ରେ for 'in/at': ସକାଳେ, ସଞ୍ଜରେ, ରାତିରେ."
+   }
+  },
+  {
+   "id": "u5-l3",
+   "title": "What time is it?",
+   "odia": "କେତେ ବାଜିଲା?",
+   "goal": "Ask the time, tell the time in hours and half hours, and say you are late.",
+   "context": "You are rushing to catch a bus and need to check the time with someone at home.",
+   "items": [
+    {
+     "id": "u5-kete-bajila",
+     "kind": "phrase",
+     "od": "କେତେ ବାଜିଲା?",
+     "tr": "kete bajila?",
+     "en": "What time is it?",
+     "accept_en": [
+      "what time is it",
+      "what is the time",
+      "whats the time"
+     ],
+     "lit": "how many struck?",
+     "register": "neutral"
+    },
+    {
+     "id": "u5-panchata-bajila",
+     "kind": "phrase",
+     "od": "ପାଞ୍ଚଟା ବାଜିଲା",
+     "tr": "panchata bajila",
+     "en": "It's five o'clock.",
+     "accept_en": [
+      "its five oclock",
+      "it is five oclock",
+      "five oclock",
+      "five o clock"
+     ],
+     "lit": "five struck",
+     "register": "neutral",
+     "note": "Number + ଟା + ବାଜିଲା. One o'clock is usually ଗୋଟାଏ ବାଜିଲା."
+    },
+    {
+     "id": "u5-sarhe",
+     "kind": "word",
+     "od": "ସାଢ଼େ",
+     "tr": "sarhe",
+     "en": "half past (from 3:30 on)",
+     "accept_en": [
+      "half past",
+      "and a half"
+     ],
+     "lit": "plus a half",
+     "register": "neutral",
+     "note": "ସାଢ଼େ ଚାରିଟା = 4:30. But 1:30 is ଦେଢ଼ଟା and 2:30 is ଅଢ଼େଇଟା."
+    },
+    {
+     "id": "u5-pakhapakhi",
+     "kind": "word",
+     "od": "ପାଖାପାଖି",
+     "tr": "pakhapakhi",
+     "en": "about; approximately",
+     "accept_en": [
+      "about",
+      "approximately",
+      "around",
+      "nearly"
+     ],
+     "register": "neutral"
+    },
+    {
+     "id": "u5-deri",
+     "kind": "word",
+     "od": "ଡେରି",
+     "tr": "deri",
+     "en": "late; delay",
+     "accept_en": [
+      "late",
+      "delay"
+     ],
+     "register": "neutral",
+     "note": "ମୋର ଡେରି ହୋଇଗଲା = I'm late."
+    },
+    {
+     "id": "u5-sighra",
+     "kind": "word",
+     "od": "ଶୀଘ୍ର",
+     "tr": "sighra",
+     "en": "quickly; soon; early",
+     "accept_en": [
+      "quickly",
+      "soon",
+      "early",
+      "fast"
+     ],
+     "register": "neutral"
+    },
+    {
+     "id": "u5-ghanta",
+     "kind": "word",
+     "od": "ଘଣ୍ଟା",
+     "tr": "ghanta",
+     "en": "hour",
+     "accept_en": [
+      "hour",
+      "hours"
+     ],
+     "register": "neutral"
+    },
+    {
+     "id": "u5-minit",
+     "kind": "word",
+     "od": "ମିନିଟ୍",
+     "tr": "minute",
+     "en": "minute",
+     "accept_en": [
+      "minute",
+      "minutes"
+     ],
+     "register": "neutral"
+    }
+   ],
+   "examples": [
+    {
+     "od": "ସାଢ଼େ ଚାରିଟା ବାଜିଲା।",
+     "tr": "sarhe charita bajila.",
+     "en": "It's half past four.",
+     "uses": [
+      "u4-chari",
+      "u5-sarhe"
+     ]
+    },
+    {
+     "od": "ପାଖାପାଖି ଦଶଟା ବାଜିଲା।",
+     "tr": "pakhapakhi dasata bajila.",
+     "en": "It's about ten o'clock.",
+     "uses": [
+      "u4-dasa",
+      "u5-pakhapakhi"
+     ]
+    },
+    {
+     "od": "ମୋର ଡେରି ହୋଇଗଲା।",
+     "tr": "mora deri hoigala.",
+     "en": "I'm late.",
+     "uses": [
+      "u5-deri"
+     ]
+    },
+    {
+     "od": "ଶୀଘ୍ର ଆସନ୍ତୁ।",
+     "tr": "sighra asantu.",
+     "en": "Please come quickly.",
+     "uses": [
+      "asantu",
+      "u5-sighra"
+     ]
+    },
+    {
+     "od": "ଦୁଇ ଘଣ୍ଟା ଲାଗିବ।",
+     "tr": "dui ghanta lagiba.",
+     "en": "It will take two hours.",
+     "uses": [
+      "u4-dui",
+      "u5-ghanta"
+     ]
+    },
+    {
+     "od": "ଆଉ ଦଶ ମିନିଟ୍।",
+     "tr": "au dasa minute.",
+     "en": "Ten more minutes.",
+     "uses": [
+      "u4-dasa",
+      "u5-minit"
+     ]
+    }
+   ],
+   "dialogue": {
+    "scene": "Running for the bus",
+    "lines": [
+     {
+      "who": "Lipi",
+      "od": "ବାପି, କେତେ ବାଜିଲା?",
+      "tr": "Bapi, kete bajila?",
+      "en": "Bapi, what time is it?"
+     },
+     {
+      "who": "Bapi",
+      "od": "ପାଖାପାଖି ସାତଟା।",
+      "tr": "pakhapakhi satata.",
+      "en": "About seven o'clock."
+     },
+     {
+      "who": "Lipi",
+      "od": "ସାତଟା? ମୋର ଡେରି ହୋଇଗଲା!",
+      "tr": "satata? mora deri hoigala!",
+      "en": "Seven? I'm late!"
+     },
+     {
+      "who": "Bapi",
+      "od": "ବସ୍ କେତେବେଳେ?",
+      "tr": "bus ketebele?",
+      "en": "When is the bus?"
+     },
+     {
+      "who": "Lipi",
+      "od": "ସାଢ଼େ ସାତଟାରେ।",
+      "tr": "sarhe satatare.",
+      "en": "At half past seven."
+     },
+     {
+      "who": "Bapi",
+      "od": "ତେବେ ଶୀଘ୍ର ଯାଅ, ଆଉ ତିରିଶ ମିନିଟ୍ ଅଛି।",
+      "tr": "tebe sighra jaa, au tirisa minute achhi.",
+      "en": "Then go quickly, there are thirty minutes left."
+     }
+    ]
+   },
+   "tip": {
+    "title": "Telling the time with -ଟା",
+    "text": "For clock time add -ଟା to the number and say ବାଜିଲା ('has struck'): ସାତଟା ବାଜିଲା = it's seven. To say 'at', add -ରେ: ସାତଟାରେ = at seven. Half hours: ଦେଢ଼ଟା (1:30), ଅଢ଼େଇଟା (2:30), then ସାଢ଼େ for the rest: ସାଢ଼େ ସାତଟା (7:30)."
+   }
+  }
+ ]
+}

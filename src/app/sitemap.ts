@@ -7,6 +7,7 @@ import { SITE } from "@/lib/site";
 import { LIBRARY } from "@/data/library";
 import { ADMIN_DISTRICTS, getAdminDistrict, subdistrictSlug } from "@/lib/admin";
 import { FILMS, PEOPLE, YEARS, personIndexable } from "@/lib/cinema";
+import { LESSONS, PHRASEBOOK } from "@/lib/learn/content";
 
 /**
  * XML sitemap. lastModified uses each article's real "updated" date — never "now" —
@@ -28,6 +29,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         { path: "/food", category: "food", priority: 0.9, freq: "weekly" },
         { path: "/people", category: "people", priority: 0.8, freq: "weekly" },
         { path: "/learn", category: "learn", priority: 0.8, freq: "monthly" },
+        { path: "/learn/course", priority: 0.8, freq: "monthly" },
+        { path: "/learn/phrasebook", priority: 0.8, freq: "monthly" },
         { path: "/districts", priority: 0.8, freq: "monthly" },
         { path: "/calendar", priority: 0.9, freq: "daily" },
         { path: "/travel/plan", priority: 0.7, freq: "monthly" },
@@ -123,5 +126,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         ...PEOPLE.filter(personIndexable).map((p) => ({ url: `${base}/cinema/people/${p.id}`, changeFrequency: "yearly" as const, priority: 0.4 })),
     ];
 
-    return [...hubPages, ...cinemaPages, ...libraryPages, ...adminPages, ...articlePages, ...districtPages, ...tehsilPages, ...spotPages];
+    const learnPages: MetadataRoute.Sitemap = [
+        ...LESSONS.map((l) => ({ url: `${base}/learn/course/${l.slug}`, changeFrequency: "monthly" as const, priority: 0.7 })),
+        ...PHRASEBOOK.map((c) => ({ url: `${base}/learn/phrasebook/${c.id}`, changeFrequency: "monthly" as const, priority: 0.7 })),
+    ];
+
+    return [...hubPages, ...learnPages, ...cinemaPages, ...libraryPages, ...adminPages, ...articlePages, ...districtPages, ...tehsilPages, ...spotPages];
 }

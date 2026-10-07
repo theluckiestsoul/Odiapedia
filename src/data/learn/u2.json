@@ -1,0 +1,642 @@
+{
+ "id": "u2",
+ "title": "About me",
+ "odia": "ମୋ ବିଷୟରେ",
+ "summary": "Introduce yourself, say where you are from and where you live, and ask and answer simple questions.",
+ "lessons": [
+  {
+   "id": "u2-l1",
+   "title": "My name is…",
+   "odia": "ମୋ ନାଁ …",
+   "goal": "Say your name, ask someone else's name and say it was nice to meet them.",
+   "context": "At a friend's family function you meet new people, an adult and a young boy, and introduce yourself.",
+   "items": [
+    {
+     "id": "mo-nan",
+     "kind": "phrase",
+     "od": "ମୋ ନାଁ …",
+     "tr": "mo nan …",
+     "en": "my name is …",
+     "accept_en": [
+      "my name is",
+      "my name"
+     ],
+     "lit": "my name …",
+     "register": "neutral",
+     "note": "No word for 'is' is needed: ମୋ ନାଁ ରିନା = My name is Rina."
+    },
+    {
+     "id": "apananka-nan-kana",
+     "kind": "phrase",
+     "od": "ଆପଣଙ୍କ ନାଁ କ'ଣ?",
+     "tr": "apananka nan kana?",
+     "en": "what is your name?",
+     "accept_en": [
+      "what is your name",
+      "whats your name",
+      "your name"
+     ],
+     "lit": "your name what?",
+     "register": "formal"
+    },
+    {
+     "id": "tuma-nan-kana",
+     "kind": "phrase",
+     "od": "ତୁମ ନାଁ କ'ଣ?",
+     "tr": "tuma nan kana?",
+     "en": "what is your name?",
+     "accept_en": [
+      "what is your name",
+      "whats your name",
+      "your name"
+     ],
+     "lit": "your name what?",
+     "register": "familiar",
+     "note": "For children, friends and younger people."
+    },
+    {
+     "id": "mun",
+     "kind": "word",
+     "od": "ମୁଁ",
+     "tr": "mun",
+     "en": "I",
+     "accept_en": [
+      "i",
+      "me"
+     ],
+     "register": "neutral"
+    },
+    {
+     "id": "apana",
+     "kind": "word",
+     "od": "ଆପଣ",
+     "tr": "apana",
+     "en": "you (polite)",
+     "accept_en": [
+      "you"
+     ],
+     "register": "formal",
+     "note": "Default for strangers and elders. 'Your' is ଆପଣଙ୍କ (apananka)."
+    },
+    {
+     "id": "tume",
+     "kind": "word",
+     "od": "ତୁମେ",
+     "tr": "tume",
+     "en": "you (familiar)",
+     "accept_en": [
+      "you"
+     ],
+     "register": "familiar",
+     "note": "For friends, younger people and children. 'Your' is ତୁମ (tuma)."
+    },
+    {
+     "id": "bheti-khusi-lagila",
+     "kind": "phrase",
+     "od": "ଭେଟି ଖୁସି ଲାଗିଲା",
+     "tr": "bheti khusi lagila",
+     "en": "nice to meet you",
+     "accept_en": [
+      "nice to meet you",
+      "pleased to meet you",
+      "glad to meet you"
+     ],
+     "lit": "having met, (I) felt happy",
+     "register": "neutral",
+     "note": "Often with ଆପଣଙ୍କୁ (apananku, 'you'): ଆପଣଙ୍କୁ ଭେଟି ଖୁସି ଲାଗିଲା।",
+     "emoji": "😊"
+    }
+   ],
+   "examples": [
+    {
+     "od": "ମୋ ନାଁ ଅରୁଣ।",
+     "tr": "mo nan Arun.",
+     "en": "My name is Arun.",
+     "uses": [
+      "mo-nan"
+     ]
+    },
+    {
+     "od": "ଆପଣଙ୍କ ନାଁ କ'ଣ?",
+     "tr": "apananka nan kana?",
+     "en": "What is your name?",
+     "uses": [
+      "apananka-nan-kana",
+      "apana"
+     ]
+    },
+    {
+     "od": "ତୁମ ନାଁ କ'ଣ?",
+     "tr": "tuma nan kana?",
+     "en": "What's your name?",
+     "uses": [
+      "tuma-nan-kana"
+     ]
+    },
+    {
+     "od": "ନମସ୍କାର, ମୁଁ ସୀତା।",
+     "tr": "namaskara, mun Sita.",
+     "en": "Hello, I'm Sita.",
+     "uses": [
+      "namaskara",
+      "mun"
+     ]
+    },
+    {
+     "od": "ଆପଣଙ୍କୁ ଭେଟି ଖୁସି ଲାଗିଲା।",
+     "tr": "apananku bheti khusi lagila.",
+     "en": "Nice to meet you.",
+     "uses": [
+      "apana",
+      "bheti-khusi-lagila"
+     ]
+    },
+    {
+     "od": "ନମସ୍କାର, ମୋ ନାଁ ଲିପି।",
+     "tr": "namaskara, mo nan Lipi.",
+     "en": "Hello, my name is Lipi.",
+     "uses": [
+      "namaskara",
+      "mo-nan"
+     ]
+    }
+   ],
+   "dialogue": {
+    "scene": "Meeting at a family function",
+    "lines": [
+     {
+      "who": "Prakash",
+      "od": "ନମସ୍କାର, ମୋ ନାଁ ପ୍ରକାଶ। ଆପଣଙ୍କ ନାଁ କ'ଣ?",
+      "tr": "namaskara, mo nan Prakash. apananka nan kana?",
+      "en": "Hello, my name is Prakash. What's your name?"
+     },
+     {
+      "who": "Rina",
+      "od": "ନମସ୍କାର, ମୁଁ ରିନା।",
+      "tr": "namaskara, mun Rina.",
+      "en": "Hello, I'm Rina."
+     },
+     {
+      "who": "Prakash",
+      "od": "ଆପଣଙ୍କୁ ଭେଟି ଖୁସି ଲାଗିଲା।",
+      "tr": "apananku bheti khusi lagila.",
+      "en": "Nice to meet you."
+     },
+     {
+      "who": "Rina",
+      "od": "ମୋତେ ବି ଖୁସି ଲାଗିଲା।",
+      "tr": "mote bi khusi lagila.",
+      "en": "Me too."
+     },
+     {
+      "who": "Prakash",
+      "od": "ଏ ମୋ ପୁଅ।",
+      "tr": "e mo pua.",
+      "en": "This is my son."
+     },
+     {
+      "who": "Rina",
+      "od": "ନମସ୍କାର! ତୁମ ନାଁ କ'ଣ?",
+      "tr": "namaskara! tuma nan kana?",
+      "en": "Hello! What's your name?"
+     }
+    ]
+   },
+   "tip": {
+    "title": "No 'is' needed",
+    "text": "Odia often leaves out 'is' in simple statements: ମୋ ନାଁ ରିନା (my name Rina), ମୁଁ ସୀତା (I Sita). Notice also the two 'your's: ଆପଣଙ୍କ ନାଁ for an adult stranger, ତୁମ ନାଁ for a child — Rina switches when she talks to Prakash's son."
+   }
+  },
+  {
+   "id": "u2-l2",
+   "title": "Where are you from?",
+   "odia": "ଆପଣ କେଉଁଠୁ ଆସିଛନ୍ତି?",
+   "goal": "Ask where someone is from and say where you are from and where you live.",
+   "context": "On a train to Puri, the passenger next to you starts a conversation.",
+   "items": [
+    {
+     "id": "apana-keunthu-asichhanti",
+     "kind": "phrase",
+     "od": "ଆପଣ କେଉଁଠୁ ଆସିଛନ୍ତି?",
+     "tr": "apana keunthu asichhanti?",
+     "en": "where are you from?",
+     "accept_en": [
+      "where are you from",
+      "where have you come from",
+      "where do you come from"
+     ],
+     "lit": "you from where have come?",
+     "register": "formal",
+     "note": "Familiar: ତୁମେ କେଉଁଠୁ ଆସିଛ? (tume keunthu asichha?)"
+    },
+    {
+     "id": "mun-ru-asichhi",
+     "kind": "phrase",
+     "od": "ମୁଁ …ରୁ ଆସିଛି",
+     "tr": "mun …ru asichhi",
+     "en": "I'm from …",
+     "accept_en": [
+      "i am from",
+      "im from",
+      "i have come from"
+     ],
+     "lit": "I …-from have come",
+     "register": "neutral",
+     "note": "ରୁ (from) joins the place name: କଟକରୁ = from Cuttack."
+    },
+    {
+     "id": "mun-re-rahe",
+     "kind": "phrase",
+     "od": "ମୁଁ …ରେ ରହେ",
+     "tr": "mun …re rahe",
+     "en": "I live in …",
+     "accept_en": [
+      "i live in",
+      "i stay in"
+     ],
+     "lit": "I …-in stay",
+     "register": "neutral",
+     "note": "ରେ (in, at) joins the place name: ପୁରୀରେ = in Puri."
+    },
+    {
+     "id": "orisa",
+     "kind": "word",
+     "od": "ଓଡ଼ିଶା",
+     "tr": "Odisha",
+     "en": "Odisha",
+     "accept_en": [
+      "odisha",
+      "orissa"
+     ],
+     "register": "neutral"
+    },
+    {
+     "id": "bhubaneswara",
+     "kind": "word",
+     "od": "ଭୁବନେଶ୍ୱର",
+     "tr": "Bhubaneswar",
+     "en": "Bhubaneswar",
+     "accept_en": [
+      "bhubaneswar",
+      "bhubaneshwar"
+     ],
+     "register": "neutral",
+     "note": "The capital of Odisha."
+    },
+    {
+     "id": "kataka",
+     "kind": "word",
+     "od": "କଟକ",
+     "tr": "Cuttack",
+     "en": "Cuttack",
+     "accept_en": [
+      "cuttack",
+      "katak"
+     ],
+     "register": "neutral"
+    },
+    {
+     "id": "puri",
+     "kind": "word",
+     "od": "ପୁରୀ",
+     "tr": "Puri",
+     "en": "Puri",
+     "accept_en": [
+      "puri"
+     ],
+     "register": "neutral",
+     "note": "Coastal town, home of the Jagannath Temple.",
+     "emoji": "🏖️"
+    },
+    {
+     "id": "dilli",
+     "kind": "word",
+     "od": "ଦିଲ୍ଲୀ",
+     "tr": "Delhi",
+     "en": "Delhi",
+     "accept_en": [
+      "delhi",
+      "dilli"
+     ],
+     "register": "neutral"
+    }
+   ],
+   "examples": [
+    {
+     "od": "ଆପଣ କେଉଁଠୁ ଆସିଛନ୍ତି?",
+     "tr": "apana keunthu asichhanti?",
+     "en": "Where are you from?",
+     "uses": [
+      "apana",
+      "apana-keunthu-asichhanti"
+     ]
+    },
+    {
+     "od": "ମୁଁ କଟକରୁ ଆସିଛି।",
+     "tr": "mun Cuttackru asichhi.",
+     "en": "I'm from Cuttack.",
+     "uses": [
+      "mun",
+      "mun-ru-asichhi",
+      "kataka"
+     ]
+    },
+    {
+     "od": "ମୁଁ ଭୁବନେଶ୍ୱରରେ ରହେ।",
+     "tr": "mun Bhubaneswarre rahe.",
+     "en": "I live in Bhubaneswar.",
+     "uses": [
+      "mun",
+      "mun-re-rahe",
+      "bhubaneswara"
+     ]
+    },
+    {
+     "od": "ମୁଁ ଦିଲ୍ଲୀରୁ ଆସିଛି।",
+     "tr": "mun Delhiru asichhi.",
+     "en": "I'm from Delhi.",
+     "uses": [
+      "mun",
+      "mun-ru-asichhi",
+      "dilli"
+     ]
+    },
+    {
+     "od": "ପୁରୀ ଓଡ଼ିଶାରେ ଅଛି।",
+     "tr": "Puri Odishare achhi.",
+     "en": "Puri is in Odisha.",
+     "uses": [
+      "orisa",
+      "puri"
+     ]
+    },
+    {
+     "od": "ତୁମେ କେଉଁଠୁ ଆସିଛ?",
+     "tr": "tume keunthu asichha?",
+     "en": "Where are you from?",
+     "uses": [
+      "tume"
+     ]
+    }
+   ],
+   "dialogue": {
+    "scene": "On the train to Puri",
+    "lines": [
+     {
+      "who": "Arun",
+      "od": "ନମସ୍କାର। ଆପଣ କେଉଁଠୁ ଆସିଛନ୍ତି?",
+      "tr": "namaskara. apana keunthu asichhanti?",
+      "en": "Hello. Where are you from?"
+     },
+     {
+      "who": "Sita",
+      "od": "ମୁଁ ଦିଲ୍ଲୀରୁ ଆସିଛି। ଆପଣ?",
+      "tr": "mun Delhiru asichhi. apana?",
+      "en": "I'm from Delhi. And you?"
+     },
+     {
+      "who": "Arun",
+      "od": "ମୁଁ କଟକରୁ। ଏବେ ଭୁବନେଶ୍ୱରରେ ରହେ।",
+      "tr": "mun Cuttackru. ebe Bhubaneswarre rahe.",
+      "en": "I'm from Cuttack. Now I live in Bhubaneswar."
+     },
+     {
+      "who": "Sita",
+      "od": "ମୁଁ ପୁରୀ ଯାଉଛି।",
+      "tr": "mun Puri jauchhi.",
+      "en": "I'm going to Puri."
+     },
+     {
+      "who": "Arun",
+      "od": "ବହୁତ ଭଲ! ଓଡ଼ିଶାକୁ ସ୍ୱାଗତ।",
+      "tr": "bahut bhala! Odishaku swagata.",
+      "en": "Very good! Welcome to Odisha."
+     },
+     {
+      "who": "Sita",
+      "od": "ଧନ୍ଯବାଦ!",
+      "tr": "dhanyabada!",
+      "en": "Thank you!"
+     }
+    ]
+   },
+   "tip": {
+    "title": "Little endings do the work of 'from', 'in', 'to'",
+    "text": "Odia uses endings joined to the noun instead of separate prepositions: କଟକ + ରୁ = କଟକରୁ (from Cuttack), ଭୁବନେଶ୍ୱର + ରେ = ଭୁବନେଶ୍ୱରରେ (in Bhubaneswar), ଓଡ଼ିଶା + କୁ = ଓଡ଼ିଶାକୁ (to Odisha). The verb comes last: ମୁଁ କଟକରୁ ଆସିଛି।"
+   }
+  },
+  {
+   "id": "u2-l3",
+   "title": "Yes, no and simple questions",
+   "odia": "ହଁ, ନା ଓ ପ୍ରଶ୍ନ",
+   "goal": "Answer yes or no, and ask what, who and where.",
+   "context": "You are walking through Puri with a friend, pointing at things and people and asking questions.",
+   "items": [
+    {
+     "id": "han",
+     "kind": "word",
+     "od": "ହଁ",
+     "tr": "han",
+     "en": "yes",
+     "accept_en": [
+      "yes",
+      "yeah"
+     ],
+     "register": "neutral",
+     "emoji": "✅"
+    },
+    {
+     "id": "na",
+     "kind": "word",
+     "od": "ନା",
+     "tr": "na",
+     "en": "no",
+     "accept_en": [
+      "no"
+     ],
+     "register": "neutral",
+     "note": "The quick reply 'no'.",
+     "emoji": "❌"
+    },
+    {
+     "id": "nahin",
+     "kind": "word",
+     "od": "ନାହିଁ",
+     "tr": "nahin",
+     "en": "is not; there isn't; no",
+     "accept_en": [
+      "no",
+      "there isnt",
+      "is not",
+      "not"
+     ],
+     "register": "neutral",
+     "note": "Means something is not there or not so: ପାଣି ନାହିଁ (there's no water). Also a firmer 'no'."
+    },
+    {
+     "id": "kana",
+     "kind": "word",
+     "od": "କ'ଣ",
+     "tr": "kana",
+     "en": "what",
+     "accept_en": [
+      "what"
+     ],
+     "register": "neutral"
+    },
+    {
+     "id": "kie",
+     "kind": "word",
+     "od": "କିଏ",
+     "tr": "kie",
+     "en": "who",
+     "accept_en": [
+      "who"
+     ],
+     "register": "neutral"
+    },
+    {
+     "id": "keunthi",
+     "kind": "word",
+     "od": "କେଉଁଠି",
+     "tr": "keunthi",
+     "en": "where",
+     "accept_en": [
+      "where"
+     ],
+     "register": "neutral",
+     "note": "Compare କେଉଁଠୁ (keunthu), 'from where'."
+    },
+    {
+     "id": "ki",
+     "kind": "word",
+     "od": "କି",
+     "tr": "ki",
+     "en": "(yes/no question marker)",
+     "accept_en": [
+      "question marker",
+      "question particle"
+     ],
+     "register": "neutral",
+     "note": "Put at the end of a statement to make a yes/no question: ଆପଣ ଭଲ ଅଛନ୍ତି କି?"
+    },
+    {
+     "id": "eita",
+     "kind": "word",
+     "od": "ଏଇଟା",
+     "tr": "eita",
+     "en": "this (thing)",
+     "accept_en": [
+      "this",
+      "this one"
+     ],
+     "register": "neutral",
+     "note": "Its partner is ସେଇଟା (seita), 'that (thing)'.",
+     "emoji": "👇"
+    }
+   ],
+   "examples": [
+    {
+     "od": "ଏଇଟା କ'ଣ?",
+     "tr": "eita kana?",
+     "en": "What is this?",
+     "uses": [
+      "kana",
+      "eita"
+     ]
+    },
+    {
+     "od": "ସେ କିଏ?",
+     "tr": "se kie?",
+     "en": "Who is he?",
+     "uses": [
+      "kie"
+     ]
+    },
+    {
+     "od": "ପୁରୀ କେଉଁଠି?",
+     "tr": "Puri keunthi?",
+     "en": "Where is Puri?",
+     "uses": [
+      "puri",
+      "keunthi"
+     ]
+    },
+    {
+     "od": "ଆପଣ ଭଲ ଅଛନ୍ତି କି?",
+     "tr": "apana bhala achhanti ki?",
+     "en": "Are you well?",
+     "uses": [
+      "apana",
+      "ki"
+     ]
+    },
+    {
+     "od": "ହଁ, ମୁଁ ଭଲ ଅଛି।",
+     "tr": "han, mun bhala achhi.",
+     "en": "Yes, I'm fine.",
+     "uses": [
+      "mun-bhala-achhi",
+      "mun",
+      "han"
+     ]
+    },
+    {
+     "od": "ନା, ପାଣି ନାହିଁ।",
+     "tr": "na, pani nahin.",
+     "en": "No, there's no water.",
+     "uses": [
+      "pani",
+      "na",
+      "nahin"
+     ]
+    }
+   ],
+   "dialogue": {
+    "scene": "A walk in Puri",
+    "lines": [
+     {
+      "who": "Lipi",
+      "od": "ବାପି, ସେଇଟା କ'ଣ?",
+      "tr": "Bapi, seita kana?",
+      "en": "Bapi, what's that?"
+     },
+     {
+      "who": "Bapi",
+      "od": "ସେଇଟା ଜଗନ୍ନାଥ ମନ୍ଦିର।",
+      "tr": "seita Jagannath mandira.",
+      "en": "That's the Jagannath Temple."
+     },
+     {
+      "who": "Lipi",
+      "od": "ଆଉ ସେ କିଏ?",
+      "tr": "au se kie?",
+      "en": "And who is he?"
+     },
+     {
+      "who": "Bapi",
+      "od": "ସେ ମୋ ମାମୁଁ।",
+      "tr": "se mo mamun.",
+      "en": "He's my uncle."
+     },
+     {
+      "who": "Lipi",
+      "od": "ସେ ପୁରୀରେ ରହନ୍ତି କି?",
+      "tr": "se Purire rahanti ki?",
+      "en": "Does he live in Puri?"
+     },
+     {
+      "who": "Bapi",
+      "od": "ନା, ସେ କଟକରେ ରହନ୍ତି।",
+      "tr": "na, se Cuttackre rahanti.",
+      "en": "No, he lives in Cuttack."
+     }
+    ]
+   },
+   "tip": {
+    "title": "Asking questions",
+    "text": "For a yes/no question, keep the normal word order and add କି at the end: ସେ ପୁରୀରେ ରହନ୍ତି → ସେ ପୁରୀରେ ରହନ୍ତି କି? For other questions, put the question word where the answer would go: ସେ କିଏ? — ସେ ମୋ ମାମୁଁ।"
+   }
+  }
+ ]
+}

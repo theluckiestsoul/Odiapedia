@@ -1,0 +1,656 @@
+{
+ "id": "u1",
+ "title": "Greetings & courtesy",
+ "odia": "ଅଭିବାଦନ ଓ ଶିଷ୍ଟାଚାର",
+ "summary": "Greet people politely, welcome a guest, say goodbye, thank, apologise and ask how someone is.",
+ "lessons": [
+  {
+   "id": "u1-l1",
+   "title": "Hello and goodbye",
+   "odia": "ନମସ୍କାର",
+   "goal": "Greet someone politely, welcome a guest and say goodbye.",
+   "context": "You are visiting a neighbour's home in Bhubaneswar in the evening. You greet them at the door, sit for a while, and then take your leave.",
+   "items": [
+    {
+     "id": "namaskara",
+     "kind": "word",
+     "od": "ନମସ୍କାର",
+     "tr": "namaskara",
+     "en": "hello; goodbye (polite, any time of day)",
+     "accept_en": [
+      "hello",
+      "greetings",
+      "namaste",
+      "goodbye"
+     ],
+     "register": "neutral",
+     "note": "Odias commonly say ନମସ୍କାର with joined palms. It works for both hello and goodbye.",
+     "emoji": "🙏"
+    },
+    {
+     "id": "asantu",
+     "kind": "word",
+     "od": "ଆସନ୍ତୁ",
+     "tr": "asantu",
+     "en": "come in; welcome",
+     "accept_en": [
+      "come in",
+      "welcome",
+      "please come in",
+      "please come"
+     ],
+     "lit": "please come",
+     "register": "formal",
+     "note": "Hosts often say it twice: ଆସନ୍ତୁ, ଆସନ୍ତୁ! To a friend or child: ଆସ (asa)."
+    },
+    {
+     "id": "basantu",
+     "kind": "word",
+     "od": "ବସନ୍ତୁ",
+     "tr": "basantu",
+     "en": "please sit down",
+     "accept_en": [
+      "please sit",
+      "sit down",
+      "have a seat",
+      "please sit down"
+     ],
+     "lit": "please sit",
+     "register": "formal",
+     "note": "Familiar form: ବସ (basa)."
+    },
+    {
+     "id": "asuchhi",
+     "kind": "word",
+     "od": "ଆସୁଛି",
+     "tr": "asuchhi",
+     "en": "bye, I'll be off",
+     "accept_en": [
+      "bye",
+      "goodbye",
+      "ill be off",
+      "i am leaving"
+     ],
+     "lit": "I am coming",
+     "register": "neutral",
+     "note": "Said when leaving, implying you will come back. ଯାଉଛି (I am going) can sound final, so many people avoid it. Colloquially: ଆସୁଚି."
+    },
+    {
+     "id": "puni-dekha-heba",
+     "kind": "phrase",
+     "od": "ପୁଣି ଦେଖା ହେବ",
+     "tr": "puni dekha heba",
+     "en": "see you again",
+     "accept_en": [
+      "see you again",
+      "see you",
+      "see you later"
+     ],
+     "lit": "again meeting will happen",
+     "register": "neutral"
+    },
+    {
+     "id": "puni-asibe",
+     "kind": "phrase",
+     "od": "ପୁଣି ଆସିବେ",
+     "tr": "puni asibe",
+     "en": "do come again",
+     "accept_en": [
+      "come again",
+      "do come again",
+      "please come again"
+     ],
+     "lit": "(you) will come again",
+     "register": "formal",
+     "note": "What a host says to a departing guest. To a friend: ପୁଣି ଆସିବ (puni asiba)."
+    },
+    {
+     "id": "subha-ratri",
+     "kind": "phrase",
+     "od": "ଶୁଭ ରାତ୍ରି",
+     "tr": "subha ratri",
+     "en": "good night",
+     "accept_en": [
+      "good night",
+      "goodnight"
+     ],
+     "lit": "auspicious night",
+     "register": "neutral",
+     "emoji": "🌙"
+    }
+   ],
+   "examples": [
+    {
+     "od": "ନମସ୍କାର, ଆସନ୍ତୁ।",
+     "tr": "namaskara, asantu.",
+     "en": "Hello, come in.",
+     "uses": [
+      "namaskara",
+      "asantu"
+     ]
+    },
+    {
+     "od": "ଆସନ୍ତୁ, ବସନ୍ତୁ।",
+     "tr": "asantu, basantu.",
+     "en": "Welcome, have a seat.",
+     "uses": [
+      "asantu",
+      "basantu"
+     ]
+    },
+    {
+     "od": "ନମସ୍କାର, ମୁଁ ଆସୁଛି।",
+     "tr": "namaskara, mun asuchhi.",
+     "en": "Goodbye, I'll be off.",
+     "uses": [
+      "namaskara",
+      "asuchhi"
+     ]
+    },
+    {
+     "od": "ଆସୁଛି, ପୁଣି ଦେଖା ହେବ।",
+     "tr": "asuchhi, puni dekha heba.",
+     "en": "Bye, see you again.",
+     "uses": [
+      "asuchhi",
+      "puni-dekha-heba"
+     ]
+    },
+    {
+     "od": "ଶୁଭ ରାତ୍ରି, ପୁଣି ଆସିବେ।",
+     "tr": "subha ratri, puni asibe.",
+     "en": "Good night, do come again.",
+     "uses": [
+      "puni-asibe",
+      "subha-ratri"
+     ]
+    }
+   ],
+   "dialogue": {
+    "scene": "Visiting a neighbour",
+    "lines": [
+     {
+      "who": "Arun",
+      "od": "ନମସ୍କାର! ଆସନ୍ତୁ, ଆସନ୍ତୁ।",
+      "tr": "namaskara! asantu, asantu.",
+      "en": "Hello! Come in, come in."
+     },
+     {
+      "who": "Sita",
+      "od": "ନମସ୍କାର।",
+      "tr": "namaskara.",
+      "en": "Hello."
+     },
+     {
+      "who": "Arun",
+      "od": "ବସନ୍ତୁ।",
+      "tr": "basantu.",
+      "en": "Please, have a seat."
+     },
+     {
+      "who": "Sita",
+      "od": "ଏବେ ମୁଁ ଆସୁଛି।",
+      "tr": "ebe mun asuchhi.",
+      "en": "I'll be off now."
+     },
+     {
+      "who": "Arun",
+      "od": "ପୁଣି ଆସିବେ। ଶୁଭ ରାତ୍ରି।",
+      "tr": "puni asibe. subha ratri.",
+      "en": "Do come again. Good night."
+     },
+     {
+      "who": "Sita",
+      "od": "ପୁଣି ଦେଖା ହେବ। ନମସ୍କାର।",
+      "tr": "puni dekha heba. namaskara.",
+      "en": "See you again. Goodbye."
+     }
+    ]
+   },
+   "tip": {
+    "title": "Polite requests end in -ନ୍ତୁ",
+    "text": "Add -ନ୍ତୁ (-ntu) to a verb to make a polite request to someone you call ଆପଣ: ଆସନ୍ତୁ (please come), ବସନ୍ତୁ (please sit). With friends and children, use the bare verb: ଆସ (asa), ବସ (basa)."
+   }
+  },
+  {
+   "id": "u1-l2",
+   "title": "Thank you, sorry, please",
+   "odia": "ଧନ୍ଯବାଦ",
+   "goal": "Ask for something politely, say thank you and apologise.",
+   "context": "You stop at a roadside tea stall on a hot afternoon and ask the stall owner for some water.",
+   "items": [
+    {
+     "id": "dhanyabada",
+     "kind": "word",
+     "od": "ଧନ୍ଯବାଦ",
+     "tr": "dhanyabada",
+     "en": "thank you",
+     "accept_en": [
+      "thank you",
+      "thanks"
+     ],
+     "register": "neutral",
+     "note": "Common in shops and formal settings. Among close family, saying thanks out loud is less common.",
+     "emoji": "🙏"
+    },
+    {
+     "id": "dayakari",
+     "kind": "word",
+     "od": "ଦୟାକରି",
+     "tr": "dayakari",
+     "en": "please",
+     "accept_en": [
+      "please",
+      "kindly"
+     ],
+     "lit": "doing kindness",
+     "register": "formal",
+     "note": "Adds extra courtesy; in everyday speech the polite -ନ୍ତୁ verb ending often does the job on its own."
+    },
+    {
+     "id": "ksama-karantu",
+     "kind": "phrase",
+     "od": "କ୍ଷମା କରନ୍ତୁ",
+     "tr": "khyama karantu",
+     "en": "sorry; excuse me",
+     "accept_en": [
+      "sorry",
+      "excuse me",
+      "i am sorry",
+      "forgive me"
+     ],
+     "lit": "please forgive",
+     "register": "formal",
+     "note": "କ୍ଷ is pronounced 'khy' here: khyama karantu."
+    },
+    {
+     "id": "maph-karantu",
+     "kind": "phrase",
+     "od": "ମାଫ କରନ୍ତୁ",
+     "tr": "maph karantu",
+     "en": "sorry; excuse me",
+     "accept_en": [
+      "sorry",
+      "excuse me",
+      "pardon me"
+     ],
+     "lit": "please pardon",
+     "register": "neutral",
+     "note": "More everyday than କ୍ଷମା କରନ୍ତୁ. Also spelled ମାଫ୍ କରନ୍ତୁ."
+    },
+    {
+     "id": "thik-achhi",
+     "kind": "phrase",
+     "od": "ଠିକ୍ ଅଛି",
+     "tr": "thik achhi",
+     "en": "okay; all right",
+     "accept_en": [
+      "okay",
+      "ok",
+      "all right",
+      "fine"
+     ],
+     "lit": "(it) is right",
+     "register": "neutral",
+     "emoji": "👌"
+    },
+    {
+     "id": "kichhi-nahin",
+     "kind": "phrase",
+     "od": "କିଛି ନାହିଁ",
+     "tr": "kichhi nahin",
+     "en": "it's nothing; no problem",
+     "accept_en": [
+      "no problem",
+      "its nothing",
+      "never mind",
+      "its okay"
+     ],
+     "lit": "nothing (there) is",
+     "register": "neutral",
+     "note": "A friendly reply to sorry or thank you."
+    },
+    {
+     "id": "diantu",
+     "kind": "word",
+     "od": "ଦିଅନ୍ତୁ",
+     "tr": "diantu",
+     "en": "please give",
+     "accept_en": [
+      "please give",
+      "give",
+      "give me"
+     ],
+     "register": "formal",
+     "note": "Familiar form: ଦିଅ (dia)."
+    },
+    {
+     "id": "pani",
+     "kind": "word",
+     "od": "ପାଣି",
+     "tr": "pani",
+     "en": "water",
+     "accept_en": [
+      "water"
+     ],
+     "register": "neutral",
+     "emoji": "💧"
+    }
+   ],
+   "examples": [
+    {
+     "od": "ଦୟାକରି ପାଣି ଦିଅନ୍ତୁ।",
+     "tr": "dayakari pani diantu.",
+     "en": "Please give me some water.",
+     "uses": [
+      "dayakari",
+      "diantu",
+      "pani"
+     ]
+    },
+    {
+     "od": "କ୍ଷମା କରନ୍ତୁ, ପାଣି ଦିଅନ୍ତୁ।",
+     "tr": "khyama karantu, pani diantu.",
+     "en": "Excuse me, some water please.",
+     "uses": [
+      "ksama-karantu",
+      "diantu",
+      "pani"
+     ]
+    },
+    {
+     "od": "ଠିକ୍ ଅଛି, ଧନ୍ଯବାଦ।",
+     "tr": "thik achhi, dhanyabada.",
+     "en": "Okay, thank you.",
+     "uses": [
+      "dhanyabada",
+      "thik-achhi"
+     ]
+    },
+    {
+     "od": "କିଛି ନାହିଁ, ବସନ୍ତୁ।",
+     "tr": "kichhi nahin, basantu.",
+     "en": "No problem, please sit.",
+     "uses": [
+      "basantu",
+      "kichhi-nahin"
+     ]
+    },
+    {
+     "od": "ମାଫ କରନ୍ତୁ, ମୁଁ ଆସୁଛି।",
+     "tr": "maph karantu, mun asuchhi.",
+     "en": "Excuse me, I'll be off.",
+     "uses": [
+      "asuchhi",
+      "maph-karantu"
+     ]
+    },
+    {
+     "od": "ଦୟାକରି ବସନ୍ତୁ।",
+     "tr": "dayakari basantu.",
+     "en": "Please be seated.",
+     "uses": [
+      "basantu",
+      "dayakari"
+     ]
+    }
+   ],
+   "dialogue": {
+    "scene": "At a tea stall",
+    "lines": [
+     {
+      "who": "Bapi",
+      "od": "କ୍ଷମା କରନ୍ତୁ, ଦୟାକରି ପାଣି ଦିଅନ୍ତୁ।",
+      "tr": "khyama karantu, dayakari pani diantu.",
+      "en": "Excuse me, could I have some water, please?"
+     },
+     {
+      "who": "Prakash",
+      "od": "ଠିକ୍ ଅଛି। ଏଇ ନିଅନ୍ତୁ।",
+      "tr": "thik achhi. ei niantu.",
+      "en": "Sure. Here you are."
+     },
+     {
+      "who": "Bapi",
+      "od": "ଧନ୍ଯବାଦ।",
+      "tr": "dhanyabada.",
+      "en": "Thank you."
+     },
+     {
+      "who": "Prakash",
+      "od": "କିଛି ନାହିଁ।",
+      "tr": "kichhi nahin.",
+      "en": "No problem."
+     },
+     {
+      "who": "Bapi",
+      "od": "ନମସ୍କାର, ଆସୁଛି।",
+      "tr": "namaskara, asuchhi.",
+      "en": "Goodbye, I'll be off."
+     },
+     {
+      "who": "Prakash",
+      "od": "ପୁଣି ଆସିବେ।",
+      "tr": "puni asibe.",
+      "en": "Do come again."
+     }
+    ]
+   },
+   "tip": {
+    "title": "Politeness lives in the verb",
+    "text": "ପାଣି ଦିଅନ୍ତୁ already means 'please give water' because of the polite -ନ୍ତୁ ending. ଦୟାକରି adds extra courtesy and is common in formal speech and on signs, but you will often hear requests without it."
+   }
+  },
+  {
+   "id": "u1-l3",
+   "title": "How are you?",
+   "odia": "କେମିତି ଅଛନ୍ତି?",
+   "goal": "Ask how someone is, formally or casually, and answer.",
+   "context": "On your way to the market you meet an older relative, and later a friend from college.",
+   "items": [
+    {
+     "id": "kemiti",
+     "kind": "word",
+     "od": "କେମିତି",
+     "tr": "kemiti",
+     "en": "how",
+     "accept_en": [
+      "how"
+     ],
+     "register": "neutral"
+    },
+    {
+     "id": "apana-kemiti-achhanti",
+     "kind": "phrase",
+     "od": "ଆପଣ କେମିତି ଅଛନ୍ତି?",
+     "tr": "apana kemiti achhanti?",
+     "en": "how are you?",
+     "accept_en": [
+      "how are you",
+      "how are you doing"
+     ],
+     "lit": "you how are?",
+     "register": "formal",
+     "note": "Use with elders, strangers and anyone you address as ଆପଣ."
+    },
+    {
+     "id": "tume-kemiti-achha",
+     "kind": "phrase",
+     "od": "ତୁମେ କେମିତି ଅଛ?",
+     "tr": "tume kemiti achha?",
+     "en": "how are you?",
+     "accept_en": [
+      "how are you",
+      "how are you doing",
+      "hows it going"
+     ],
+     "lit": "you how are?",
+     "register": "familiar",
+     "note": "For friends, younger people and children."
+    },
+    {
+     "id": "mun-bhala-achhi",
+     "kind": "phrase",
+     "od": "ମୁଁ ଭଲ ଅଛି",
+     "tr": "mun bhala achhi",
+     "en": "I'm fine",
+     "accept_en": [
+      "i am fine",
+      "im fine",
+      "i am well",
+      "im good"
+     ],
+     "lit": "I good am",
+     "register": "neutral",
+     "emoji": "🙂"
+    },
+    {
+     "id": "u1-apana",
+     "kind": "word",
+     "od": "ଆପଣ?",
+     "tr": "apana?",
+     "en": "and you?",
+     "accept_en": [
+      "and you",
+      "you",
+      "how about you"
+     ],
+     "lit": "you?",
+     "register": "formal",
+     "note": "Turns the question back politely. With a friend: ତୁମେ? (tume?)"
+    },
+    {
+     "id": "bahuta-bhala",
+     "kind": "phrase",
+     "od": "ବହୁତ ଭଲ",
+     "tr": "bahut bhala",
+     "en": "very good; very well",
+     "accept_en": [
+      "very good",
+      "very well",
+      "great"
+     ],
+     "register": "neutral",
+     "emoji": "👍"
+    },
+    {
+     "id": "chalijauchhi",
+     "kind": "word",
+     "od": "ଚାଲିଯାଉଛି",
+     "tr": "chalijauchhi",
+     "en": "getting by; not bad",
+     "accept_en": [
+      "getting by",
+      "not bad",
+      "so so",
+      "managing"
+     ],
+     "lit": "(it) is going on",
+     "register": "neutral",
+     "note": "A modest, very common answer. Colloquially: ଚାଲିଯାଉଚି."
+    }
+   ],
+   "examples": [
+    {
+     "od": "ନମସ୍କାର, ଆପଣ କେମିତି ଅଛନ୍ତି?",
+     "tr": "namaskara, apana kemiti achhanti?",
+     "en": "Hello, how are you?",
+     "uses": [
+      "namaskara",
+      "kemiti",
+      "apana-kemiti-achhanti"
+     ]
+    },
+    {
+     "od": "ମୁଁ ଭଲ ଅଛି, ଆପଣ?",
+     "tr": "mun bhala achhi, apana?",
+     "en": "I'm fine, and you?",
+     "uses": [
+      "mun-bhala-achhi",
+      "u1-apana"
+     ]
+    },
+    {
+     "od": "ବହୁତ ଭଲ, ଧନ୍ଯବାଦ।",
+     "tr": "bahut bhala, dhanyabada.",
+     "en": "Very well, thank you.",
+     "uses": [
+      "dhanyabada",
+      "bahuta-bhala"
+     ]
+    },
+    {
+     "od": "ତୁମେ କେମିତି ଅଛ?",
+     "tr": "tume kemiti achha?",
+     "en": "How are you?",
+     "uses": [
+      "kemiti",
+      "tume-kemiti-achha"
+     ]
+    },
+    {
+     "od": "ଚାଲିଯାଉଛି, ଆପଣ?",
+     "tr": "chalijauchhi, apana?",
+     "en": "Getting by, and you?",
+     "uses": [
+      "u1-apana",
+      "chalijauchhi"
+     ]
+    },
+    {
+     "od": "ମୁଁ ବହୁତ ଭଲ ଅଛି।",
+     "tr": "mun bahut bhala achhi.",
+     "en": "I'm very well.",
+     "uses": [
+      "bahuta-bhala"
+     ]
+    }
+   ],
+   "dialogue": {
+    "scene": "Meeting an uncle on the street",
+    "lines": [
+     {
+      "who": "Lipi",
+      "od": "ନମସ୍କାର ମାମୁଁ! ଆପଣ କେମିତି ଅଛନ୍ତି?",
+      "tr": "namaskara mamun! apana kemiti achhanti?",
+      "en": "Hello, uncle! How are you?"
+     },
+     {
+      "who": "Mama",
+      "od": "ମୁଁ ଭଲ ଅଛି। ତୁମେ କେମିତି ଅଛ, ଲିପି?",
+      "tr": "mun bhala achhi. tume kemiti achha, Lipi?",
+      "en": "I'm fine. How are you, Lipi?"
+     },
+     {
+      "who": "Lipi",
+      "od": "ବହୁତ ଭଲ। ଘରେ ସମସ୍ତେ କେମିତି ଅଛନ୍ତି?",
+      "tr": "bahut bhala. ghare samaste kemiti achhanti?",
+      "en": "Very well. How is everyone at home?"
+     },
+     {
+      "who": "Mama",
+      "od": "ଚାଲିଯାଉଛି। ସମସ୍ତେ ଭଲ ଅଛନ୍ତି।",
+      "tr": "chalijauchhi. samaste bhala achhanti.",
+      "en": "Getting by. Everyone is well."
+     },
+     {
+      "who": "Lipi",
+      "od": "ଠିକ୍ ଅଛି ମାମୁଁ, ମୁଁ ଆସୁଛି।",
+      "tr": "thik achhi mamun, mun asuchhi.",
+      "en": "Okay, uncle, I'll be off."
+     },
+     {
+      "who": "Mama",
+      "od": "ହଉ, ପୁଣି ଦେଖା ହେବ।",
+      "tr": "hau, puni dekha heba.",
+      "en": "All right, see you again."
+     }
+    ]
+   },
+   "tip": {
+    "title": "The verb follows 'you'",
+    "text": "The verb 'to be' changes with the person: ମୁଁ … ଅଛି (I am), ତୁମେ … ଅଛ (you are, familiar), ଆପଣ … ଅଛନ୍ତି (you are, polite). Notice Lipi uses ଆପଣ with her uncle, while he uses ତୁମେ with her."
+   }
+  }
+ ]
+}

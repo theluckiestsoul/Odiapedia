@@ -1,0 +1,675 @@
+{
+ "id": "u3",
+ "title": "Family",
+ "odia": "ପରିବାର",
+ "summary": "Name your close family and relatives on both sides, and ask and answer simple questions about someone's family.",
+ "lessons": [
+  {
+   "id": "u3-l1",
+   "title": "Parents and siblings",
+   "odia": "ବାପା, ମାଆ, ଭାଇ, ଭଉଣୀ",
+   "goal": "Introduce your parents and brothers and sisters, including elder and younger ones.",
+   "context": "You are showing a friend a family photo on your phone and pointing out who is who.",
+   "items": [
+    {
+     "id": "u3-bapa",
+     "kind": "word",
+     "od": "ବାପା",
+     "tr": "bapa",
+     "en": "father; dad",
+     "accept_en": [
+      "father",
+      "dad",
+      "papa"
+     ],
+     "register": "neutral",
+     "note": "Used both to talk about and to address your father.",
+     "emoji": "👨"
+    },
+    {
+     "id": "u3-maa",
+     "kind": "word",
+     "od": "ମାଆ",
+     "tr": "maa",
+     "en": "mother; mum",
+     "accept_en": [
+      "mother",
+      "mum",
+      "mom",
+      "mummy"
+     ],
+     "register": "neutral",
+     "note": "Used both to talk about and to address your mother.",
+     "emoji": "👩"
+    },
+    {
+     "id": "u3-bhai",
+     "kind": "word",
+     "od": "ଭାଇ",
+     "tr": "bhai",
+     "en": "brother",
+     "accept_en": [
+      "brother",
+      "bro"
+     ],
+     "register": "neutral",
+     "note": "Also a friendly way to address a man about your age, e.g. a shopkeeper."
+    },
+    {
+     "id": "u3-bhauni",
+     "kind": "word",
+     "od": "ଭଉଣୀ",
+     "tr": "bhauni",
+     "en": "sister",
+     "accept_en": [
+      "sister"
+     ],
+     "register": "neutral"
+    },
+    {
+     "id": "u3-bara-bhai",
+     "kind": "phrase",
+     "od": "ବଡ଼ ଭାଇ",
+     "tr": "bara bhai",
+     "en": "elder brother",
+     "accept_en": [
+      "elder brother",
+      "older brother",
+      "big brother"
+     ],
+     "lit": "big brother",
+     "register": "neutral",
+     "note": "ବଡ଼ = big, elder. Likewise ବଡ଼ ଭଉଣୀ (bara bhauni) = elder sister."
+    },
+    {
+     "id": "u3-bhaina",
+     "kind": "word",
+     "od": "ଭାଇନା",
+     "tr": "bhaina",
+     "en": "elder brother (what you call him)",
+     "accept_en": [
+      "elder brother",
+      "big brother",
+      "older brother"
+     ],
+     "register": "neutral",
+     "note": "Younger siblings call an elder brother ଭାଇନା rather than by his name."
+    },
+    {
+     "id": "u3-sana-bhai",
+     "kind": "phrase",
+     "od": "ସାନ ଭାଇ",
+     "tr": "sana bhai",
+     "en": "younger brother",
+     "accept_en": [
+      "younger brother",
+      "little brother",
+      "small brother"
+     ],
+     "lit": "small brother",
+     "register": "neutral",
+     "note": "ସାନ = small, younger. Likewise ସାନ ଭଉଣୀ (sana bhauni) = younger sister."
+    },
+    {
+     "id": "u3-didi",
+     "kind": "word",
+     "od": "ଦିଦି",
+     "tr": "didi",
+     "en": "elder sister (what you call her)",
+     "accept_en": [
+      "elder sister",
+      "big sister",
+      "older sister"
+     ],
+     "register": "neutral",
+     "note": "ଅପା (apa) and ନାନୀ (nani) are also common for an elder sister; ଅପା is also a polite way to address a woman a bit older than you."
+    }
+   ],
+   "examples": [
+    {
+     "od": "ଏମାନେ ମୋ ବାପା ଓ ମାଆ।",
+     "tr": "emane mo bapa o maa.",
+     "en": "These are my father and mother.",
+     "uses": [
+      "u3-bapa",
+      "u3-maa"
+     ]
+    },
+    {
+     "od": "ଏ ମୋ ସାନ ଭାଇ।",
+     "tr": "e mo sana bhai.",
+     "en": "This is my younger brother.",
+     "uses": [
+      "u3-bhai",
+      "u3-sana-bhai"
+     ]
+    },
+    {
+     "od": "ସେ ମୋ ଭଉଣୀ।",
+     "tr": "se mo bhauni.",
+     "en": "She is my sister.",
+     "uses": [
+      "u3-bhauni"
+     ]
+    },
+    {
+     "od": "ମୋ ଦିଦି କେଉଁଠି?",
+     "tr": "mo didi keunthi?",
+     "en": "Where is my elder sister?",
+     "uses": [
+      "keunthi",
+      "u3-didi"
+     ]
+    },
+    {
+     "od": "ଭାଇନା, ମାଆ କେଉଁଠି?",
+     "tr": "bhaina, maa keunthi?",
+     "en": "Brother, where's Mum?",
+     "uses": [
+      "keunthi",
+      "u3-maa",
+      "u3-bhaina"
+     ]
+    },
+    {
+     "od": "ଆପଣଙ୍କ ବଡ଼ ଭାଇ କେଉଁଠି?",
+     "tr": "apananka bara bhai keunthi?",
+     "en": "Where is your elder brother?",
+     "uses": [
+      "apana",
+      "keunthi",
+      "u3-bhai",
+      "u3-bara-bhai"
+     ]
+    }
+   ],
+   "dialogue": {
+    "scene": "Looking at a family photo",
+    "lines": [
+     {
+      "who": "Arun",
+      "od": "ଏ କିଏ?",
+      "tr": "e kie?",
+      "en": "Who's this?"
+     },
+     {
+      "who": "Rina",
+      "od": "ଏ ମୋ ବାପା, ଆଉ ଏ ମୋ ମାଆ।",
+      "tr": "e mo bapa, au e mo maa.",
+      "en": "This is my dad, and this is my mum."
+     },
+     {
+      "who": "Arun",
+      "od": "ଆଉ ଏ କିଏ? ତୁମ ଭାଇ?",
+      "tr": "au e kie? tuma bhai?",
+      "en": "And who's this? Your brother?"
+     },
+     {
+      "who": "Rina",
+      "od": "ହଁ, ଏ ମୋ ସାନ ଭାଇ ବାପି।",
+      "tr": "han, e mo sana bhai Bapi.",
+      "en": "Yes, this is my younger brother, Bapi."
+     },
+     {
+      "who": "Arun",
+      "od": "ତୁମର ଦିଦି ଅଛନ୍ତି?",
+      "tr": "tumara didi achhanti?",
+      "en": "Do you have an elder sister?"
+     },
+     {
+      "who": "Rina",
+      "od": "ନାହିଁ, ମୋର ଜଣେ ଭାଇନା ଅଛନ୍ତି।",
+      "tr": "nahin, mora jane bhaina achhanti.",
+      "en": "No, I have an elder brother."
+     }
+    ]
+   },
+   "tip": {
+    "title": "Elder and younger",
+    "text": "Odia always marks age: ବଡ଼ (bara) = elder, ସାନ (sana) = younger, so ବଡ଼ ଭାଇ, ସାନ ଭାଇ, ବଡ଼ ଭଉଣୀ, ସାନ ଭଉଣୀ. Elder siblings are not called by name — you say ଭାଇନା or ଦିଦି. For elders, the respectful plural verb is used: ମୋର ଜଣେ ଭାଇନା ଅଛନ୍ତି."
+   }
+  },
+  {
+   "id": "u3-l2",
+   "title": "Grandparents and relatives",
+   "odia": "ଜେଜେ, ଆଈ, ମାମୁଁ, ମାଉସୀ",
+   "goal": "Name your grandparents, aunts and uncles on your father's and mother's side.",
+   "context": "The summer holidays are coming and a friend asks whose house you are visiting and who lives there.",
+   "items": [
+    {
+     "id": "u3-jeje-bapa",
+     "kind": "phrase",
+     "od": "ଜେଜେ ବାପା",
+     "tr": "jeje bapa",
+     "en": "grandfather (father's father)",
+     "accept_en": [
+      "grandfather",
+      "grandpa",
+      "paternal grandfather"
+     ],
+     "register": "neutral",
+     "note": "Father's side only. Your mother's father is ଅଜା.",
+     "emoji": "👴"
+    },
+    {
+     "id": "u3-jeje-maa",
+     "kind": "phrase",
+     "od": "ଜେଜେ ମାଆ",
+     "tr": "jeje maa",
+     "en": "grandmother (father's mother)",
+     "accept_en": [
+      "grandmother",
+      "grandma",
+      "paternal grandmother"
+     ],
+     "register": "neutral",
+     "note": "Father's side only. Your mother's mother is ଆଈ.",
+     "emoji": "👵"
+    },
+    {
+     "id": "u3-aja",
+     "kind": "word",
+     "od": "ଅଜା",
+     "tr": "aja",
+     "en": "grandfather (mother's father)",
+     "accept_en": [
+      "grandfather",
+      "grandpa",
+      "maternal grandfather"
+     ],
+     "register": "neutral",
+     "note": "Mother's side. His wife is ଆଈ."
+    },
+    {
+     "id": "u3-ai",
+     "kind": "word",
+     "od": "ଆଈ",
+     "tr": "ai",
+     "en": "grandmother (mother's mother)",
+     "accept_en": [
+      "grandmother",
+      "grandma",
+      "maternal grandmother"
+     ],
+     "register": "neutral",
+     "note": "Mother's side. Her husband is ଅଜା."
+    },
+    {
+     "id": "u3-mamun",
+     "kind": "word",
+     "od": "ମାମୁଁ",
+     "tr": "mamun",
+     "en": "uncle (mother's brother)",
+     "accept_en": [
+      "uncle",
+      "maternal uncle",
+      "mothers brother"
+     ],
+     "register": "neutral",
+     "note": "His wife is ମାଇଁ (main). ମାମୁଁ ଘର, 'uncle's house', means your mother's family home."
+    },
+    {
+     "id": "u3-mausi",
+     "kind": "word",
+     "od": "ମାଉସୀ",
+     "tr": "mausi",
+     "en": "aunt (mother's sister)",
+     "accept_en": [
+      "aunt",
+      "aunty",
+      "maternal aunt",
+      "mothers sister"
+     ],
+     "register": "neutral",
+     "note": "Her husband is ମଉସା (mausa)."
+    },
+    {
+     "id": "u3-piusi",
+     "kind": "word",
+     "od": "ପିଉସୀ",
+     "tr": "piusi",
+     "en": "aunt (father's sister)",
+     "accept_en": [
+      "aunt",
+      "aunty",
+      "paternal aunt",
+      "fathers sister"
+     ],
+     "register": "neutral",
+     "note": "Her husband is ପିଉସା (piusa)."
+    },
+    {
+     "id": "u3-dada",
+     "kind": "word",
+     "od": "ଦାଦା",
+     "tr": "dada",
+     "en": "uncle (father's younger brother)",
+     "accept_en": [
+      "uncle",
+      "paternal uncle",
+      "fathers brother"
+     ],
+     "register": "neutral",
+     "note": "His wife is ଖୁଡ଼ୀ (khuri). Father's elder brother is ବଡ଼ ବାପା, his wife ବଡ଼ ମାଆ."
+    }
+   ],
+   "examples": [
+    {
+     "od": "ମୋ ଜେଜେ ବାପା ଗାଁରେ ଅଛନ୍ତି।",
+     "tr": "mo jeje bapa ganre achhanti.",
+     "en": "My grandfather is in the village.",
+     "uses": [
+      "u3-jeje-bapa"
+     ]
+    },
+    {
+     "od": "ଜେଜେ ମାଆ କେଉଁଠି?",
+     "tr": "jeje maa keunthi?",
+     "en": "Where is Grandma?",
+     "uses": [
+      "keunthi",
+      "u3-jeje-maa"
+     ]
+    },
+    {
+     "od": "ଆଈ ଓ ଅଜା ଭଲ ଅଛନ୍ତି।",
+     "tr": "ai o aja bhala achhanti.",
+     "en": "Grandma and Grandpa (mother's side) are well.",
+     "uses": [
+      "u3-aja",
+      "u3-ai"
+     ]
+    },
+    {
+     "od": "ମାମୁଁ ମାଆଙ୍କ ଭାଇ।",
+     "tr": "mamun maanka bhai.",
+     "en": "Mamun is Mum's brother.",
+     "uses": [
+      "u3-maa",
+      "u3-bhai",
+      "u3-mamun"
+     ]
+    },
+    {
+     "od": "ପିଉସୀ ବାପାଙ୍କ ଭଉଣୀ।",
+     "tr": "piusi bapanka bhauni.",
+     "en": "Piusi is Dad's sister.",
+     "uses": [
+      "u3-bapa",
+      "u3-bhauni",
+      "u3-piusi"
+     ]
+    },
+    {
+     "od": "ଦାଦା ବାପାଙ୍କ ସାନ ଭାଇ।",
+     "tr": "dada bapanka sana bhai.",
+     "en": "Dada is Dad's younger brother.",
+     "uses": [
+      "u3-bapa",
+      "u3-bhai",
+      "u3-sana-bhai",
+      "u3-dada"
+     ]
+    }
+   ],
+   "dialogue": {
+    "scene": "Plans for the holidays",
+    "lines": [
+     {
+      "who": "Prakash",
+      "od": "ଛୁଟିରେ କେଉଁଠି ଯିବ?",
+      "tr": "chhutire keunthi jiba?",
+      "en": "Where are you going for the holidays?"
+     },
+     {
+      "who": "Lipi",
+      "od": "ମାମୁଁ ଘରକୁ ଯିବି। ସେଠି ଆଈ ଓ ଅଜା ଅଛନ୍ତି।",
+      "tr": "mamun gharaku jibi. sethi ai o aja achhanti.",
+      "en": "To my mother's family home. My grandma and grandpa live there."
+     },
+     {
+      "who": "Prakash",
+      "od": "ତୁମ ମାଉସୀ ବି ଆସିବେ କି?",
+      "tr": "tuma mausi bi asibe ki?",
+      "en": "Will your aunt come too?"
+     },
+     {
+      "who": "Lipi",
+      "od": "ହଁ, ମାଉସୀ ବି ଆସିବେ।",
+      "tr": "han, mausi bi asibe.",
+      "en": "Yes, my aunt is coming too."
+     },
+     {
+      "who": "Prakash",
+      "od": "ଆଉ ଜେଜେ ବାପା, ଜେଜେ ମାଆ?",
+      "tr": "au jeje bapa, jeje maa?",
+      "en": "And your father's parents?"
+     },
+     {
+      "who": "Lipi",
+      "od": "ସେମାନେ ଆମ ସହିତ ରହନ୍ତି।",
+      "tr": "semane ama sahita rahanti.",
+      "en": "They live with us."
+     }
+    ]
+   },
+   "tip": {
+    "title": "Father's side or mother's side?",
+    "text": "Odia has a different word for each side. Father's side: ଜେଜେ ବାପା, ଜେଜେ ମାଆ, ଦାଦା (father's younger brother), ବଡ଼ ବାପା (father's elder brother), ପିଉସୀ. Mother's side: ଅଜା, ଆଈ, ମାମୁଁ, ମାଉସୀ. So 'uncle' or 'grandma' alone is never enough — choose the side."
+   }
+  },
+  {
+   "id": "u3-l3",
+   "title": "Talking about family",
+   "odia": "ମୋ ପରିବାର",
+   "goal": "Say who is in your family, whether you are married and have children, and ask someone politely about theirs.",
+   "context": "A new colleague, older than you, chats with you over tea and asks about your family.",
+   "items": [
+    {
+     "id": "u3-mo-paribara",
+     "kind": "phrase",
+     "od": "ମୋ ପରିବାର",
+     "tr": "mo paribara",
+     "en": "my family",
+     "accept_en": [
+      "my family"
+     ],
+     "lit": "my family",
+     "register": "neutral"
+    },
+    {
+     "id": "u3-mora-achhanti",
+     "kind": "phrase",
+     "od": "ମୋର … ଅଛନ୍ତି",
+     "tr": "mora … achhanti",
+     "en": "I have … (people)",
+     "accept_en": [
+      "i have"
+     ],
+     "lit": "of me … are (there)",
+     "register": "neutral",
+     "note": "Use ଅଛନ୍ତି for people you respect or more than one person; ଅଛି for one child or thing."
+    },
+    {
+     "id": "u3-ghare-kie-kie",
+     "kind": "phrase",
+     "od": "ଆପଣଙ୍କ ଘରେ କିଏ କିଏ ଅଛନ୍ତି?",
+     "tr": "apananka ghare kie kie achhanti?",
+     "en": "Who is in your family?",
+     "accept_en": [
+      "who is in your family",
+      "who are in your family",
+      "who lives in your house"
+     ],
+     "lit": "in your house who who are?",
+     "register": "formal",
+     "note": "Repeating କିଏ asks for a list. Familiar: ତୁମ ଘରେ କିଏ କିଏ ଅଛନ୍ତି?"
+    },
+    {
+     "id": "u3-bibahita",
+     "kind": "word",
+     "od": "ବିବାହିତ",
+     "tr": "bibahita",
+     "en": "married",
+     "accept_en": [
+      "married"
+     ],
+     "register": "neutral",
+     "note": "Everyday speech also says ବାହା ହୋଇଛି (baha hoichhi), 'has got married'."
+    },
+    {
+     "id": "u3-pila",
+     "kind": "word",
+     "od": "ପିଲା",
+     "tr": "pila",
+     "en": "child; children",
+     "accept_en": [
+      "child",
+      "children",
+      "kid",
+      "kids"
+     ],
+     "register": "neutral",
+     "note": "Same form for one or many; ପିଲାମାନେ (pilamane) stresses 'the children'."
+    },
+    {
+     "id": "u3-ghara",
+     "kind": "word",
+     "od": "ଘର",
+     "tr": "ghara",
+     "en": "house; home",
+     "accept_en": [
+      "house",
+      "home"
+     ],
+     "register": "neutral",
+     "note": "ଘରେ (ghare) = at home. ଘର also stands for the household or family.",
+     "emoji": "🏠"
+    },
+    {
+     "id": "u3-pua",
+     "kind": "word",
+     "od": "ପୁଅ",
+     "tr": "pua",
+     "en": "son; boy",
+     "accept_en": [
+      "son",
+      "boy"
+     ],
+     "register": "neutral",
+     "emoji": "👦"
+    },
+    {
+     "id": "u3-jhia",
+     "kind": "word",
+     "od": "ଝିଅ",
+     "tr": "jhia",
+     "en": "daughter; girl",
+     "accept_en": [
+      "daughter",
+      "girl"
+     ],
+     "register": "neutral",
+     "emoji": "👧"
+    }
+   ],
+   "examples": [
+    {
+     "od": "ମୋ ପରିବାର ଛୋଟ।",
+     "tr": "mo paribara chhota.",
+     "en": "My family is small.",
+     "uses": [
+      "u3-mo-paribara"
+     ]
+    },
+    {
+     "od": "ମୋର ଦୁଇ ଭାଇ ଅଛନ୍ତି।",
+     "tr": "mora dui bhai achhanti.",
+     "en": "I have two brothers.",
+     "uses": [
+      "u3-bhai",
+      "u3-mora-achhanti"
+     ]
+    },
+    {
+     "od": "ମୋର ଗୋଟିଏ ପୁଅ ଓ ଗୋଟିଏ ଝିଅ ଅଛନ୍ତି।",
+     "tr": "mora gotie pua o gotie jhia achhanti.",
+     "en": "I have a son and a daughter.",
+     "uses": [
+      "u3-mora-achhanti",
+      "u3-pua",
+      "u3-jhia"
+     ]
+    },
+    {
+     "od": "ଆପଣଙ୍କ ଘରେ କିଏ କିଏ ଅଛନ୍ତି?",
+     "tr": "apananka ghare kie kie achhanti?",
+     "en": "Who is in your family?",
+     "uses": [
+      "apana",
+      "kie",
+      "u3-ghare-kie-kie",
+      "u3-ghara"
+     ]
+    },
+    {
+     "od": "ମୁଁ ବିବାହିତ।",
+     "tr": "mun bibahita.",
+     "en": "I am married.",
+     "uses": [
+      "mun",
+      "u3-bibahita"
+     ]
+    },
+    {
+     "od": "ମୋ ଝିଅ ଘରେ ଅଛି।",
+     "tr": "mo jhia ghare achhi.",
+     "en": "My daughter is at home.",
+     "uses": [
+      "u3-ghara",
+      "u3-jhia"
+     ]
+    }
+   ],
+   "dialogue": {
+    "scene": "Tea with a new colleague",
+    "lines": [
+     {
+      "who": "Sita",
+      "od": "ଆପଣ ବିବାହିତ କି?",
+      "tr": "apana bibahita ki?",
+      "en": "Are you married?"
+     },
+     {
+      "who": "Prakash",
+      "od": "ହଁ। ମୋର ଜଣେ ଝିଅ ବି ଅଛି।",
+      "tr": "han. mora jane jhia bi achhi.",
+      "en": "Yes. I have a daughter too."
+     },
+     {
+      "who": "Sita",
+      "od": "ଆପଣଙ୍କ ଘରେ ଆଉ କିଏ କିଏ ଅଛନ୍ତି?",
+      "tr": "apananka ghare au kie kie achhanti?",
+      "en": "Who else is in your family?"
+     },
+     {
+      "who": "Prakash",
+      "od": "ମୋ ବାପା ଓ ମାଆ। ଆପଣଙ୍କର ପିଲା ଅଛନ୍ତି?",
+      "tr": "mo bapa o maa. apanankara pila achhanti?",
+      "en": "My father and mother. Do you have children?"
+     },
+     {
+      "who": "Sita",
+      "od": "ହଁ, ମୋର ଦୁଇ ପୁଅ ଅଛନ୍ତି।",
+      "tr": "han, mora dui pua achhanti.",
+      "en": "Yes, I have two sons."
+     }
+    ]
+   },
+   "tip": {
+    "title": "Saying 'I have'",
+    "text": "Odia has no verb 'to have'. You say 'of me … is/are': ମୋର ଦୁଇ ଭାଇ ଅଛନ୍ତି = I have two brothers. Use ଅଛନ୍ତି for people you respect or several people, ଅଛି for one child or thing. For 'I don't have', use ନାହିଁ: ମୋର ଭାଇ ନାହିଁ."
+   }
+  }
+ ]
+}
