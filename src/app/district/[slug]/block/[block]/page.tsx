@@ -9,6 +9,7 @@ import { ADMIN_DISTRICTS, ADMIN_SOURCE, getAdminDistrict, subdistrictSlug, villa
 import { getDistrictById } from "@/data/districts";
 import { districtName } from "@/lib/districts";
 import { SITE } from "@/lib/site";
+import { CENSUS_SOURCE, getDistrictPopulations } from "@/lib/census";
 
 type Props = { params: Promise<{ slug: string; block: string }> };
 
@@ -58,6 +59,10 @@ export default async function BlockPage({ params }: Props) {
     const subdistricts = admin.subdistricts.filter((s) => block.subdistricts.includes(s.code));
     const uninhabited = villages.filter((v) => v.u).length;
     const others = admin.blocks.filter((b) => b.code !== "0" && b.code !== block.code);
+    const pops = await getDistrictPopulations(slug);
+    const counted = villages.filter((v) => pops.has(v.c));
+    const ruralPop = counted.reduce((t, v) => t + (pops.get(v.c) || 0), 0);
+    const largest = [...counted].sort((a, b) => (pops.get(b.c) || 0) - (pops.get(a.c) || 0)).slice(0, 10);
 
     return (
         <div>
@@ -82,10 +87,11 @@ export default async function BlockPage({ params }: Props) {
                         {block.name} is a community development block of {dName} district, Odisha, with {gps.length} gram panchayats and {block.villages.toLocaleString("en-IN")} villages
                         {uninhabited ? ` (${uninhabited} of them uninhabited)` : ""}, as listed in the Government of India&apos;s Local Government Directory.
                     </p>
-                    <dl className="mt-8 grid max-w-3xl grid-cols-2 gap-3 md:grid-cols-4">
+                    <dl className="mt-8 grid max-w-4xl grid-cols-2 gap-3 md:grid-cols-5">
                         {[
                             ["Gram panchayats", gps.length.toLocaleString("en-IN")],
                             ["Villages", block.villages.toLocaleString("en-IN")],
+                            ...(ruralPop > 0 ? [["Village population (2011)", ruralPop.toLocaleString("en-IN")]] : []),
                             ["Sub-districts covered", String(subdistricts.length)],
                             ["LGD block code", block.code],
                         ].map(([k, v]) => (
@@ -104,6 +110,22 @@ export default async function BlockPage({ params }: Props) {
                     )}
                 </div>
             </header>
+
+            {largest.length > 0 && (
+                <section className="container-page pt-10">
+                    <h2 className="font-display text-2xl font-semibold">Largest villages in {block.name} by population</h2>
+                    <ol className="mt-4 grid gap-x-8 gap-y-1 sm:grid-cols-2">
+                        {largest.map((v, i) => (
+                            <li key={v.c} className="flex items-baseline gap-3 border-b border-sand-100 py-1.5 text-sm">
+                                <span className="w-5 text-right tabular-nums text-ink-500">{i + 1}</span>
+                                <Link prefetch={false} href={`/district/${slug}/village/${villageId(v)}`} className="font-semibold text-laterite-600 hover:underline">{v.n}</Link>
+                                <span className="ml-auto tabular-nums text-ink-800">{(pops.get(v.c) || 0).toLocaleString("en-IN")}</span>
+                            </li>
+                        ))}
+                    </ol>
+                    <p className="mt-2 text-xs text-ink-500">Source: {CENSUS_SOURCE}. Village population only; towns in the block are counted separately by the census.</p>
+                </section>
+            )}
 
             <section className="container-page py-10">
                 <h2 className="mb-6 font-display text-3xl font-semibold">Gram panchayats and villages of {block.name}</h2>

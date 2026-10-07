@@ -1,3 +1,4 @@
+import { festivalYears } from "@/data/festival-dates";
 import { MetadataRoute } from "next";
 import { getAllArticlesMetadata, type ArticleMeta } from "@/lib/mdx";
 import { getAllDistrictSlugs } from "@/lib/districts";
@@ -131,5 +132,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         ...PHRASEBOOK.map((c) => ({ url: `${base}/learn/phrasebook/${c.id}`, changeFrequency: "monthly" as const, priority: 0.7 })),
     ];
 
-    return [...hubPages, ...learnPages, ...cinemaPages, ...libraryPages, ...adminPages, ...articlePages, ...districtPages, ...tehsilPages, ...spotPages];
+    const festivalPages: MetadataRoute.Sitemap = festivalYears().map((y) => ({ url: `${base}/festivals/${y}`, changeFrequency: "monthly" as const, priority: 0.8 }));
+
+    return [...hubPages, ...festivalPages, ...learnPages, ...cinemaPages, ...libraryPages, ...adminPages, ...articlePages, ...districtPages, ...tehsilPages, ...spotPages];
 }

@@ -3,6 +3,7 @@ import Image from "next/image";
 import { type Article, type ArticleMeta, extractToc, getRelatedArticles } from "@/lib/mdx";
 import { articleJsonLd } from "@/lib/seo";
 import { SITE, categoryInfo, formatDate } from "@/lib/site";
+import { datesFor, longDate } from "@/data/festival-dates";
 import ShareButtons from "./ShareButtons";
 import JsonLd from "./JsonLd";
 import RecipeCard from "./RecipeCard";
@@ -32,6 +33,22 @@ export default function ArticleLayout({ meta, children }: ArticleLayoutProps) {
     const isTravel = meta.category === "travel";
     const isAbout = meta.category === "about";
     const url = `${SITE.url}/${meta.category}/${meta.slug}`;
+    const festivalDates = datesFor(`/${meta.category}/${meta.slug}`).slice(0, 3);
+    const datesBox = festivalDates.length > 0 && (
+        <section aria-labelledby="dates-h" className="rounded-2xl border border-laterite-200 bg-laterite-50/60 p-5">
+            <h2 id="dates-h" className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-laterite-700"><Icon name="calendar" className="h-4 w-4" />Next dates</h2>
+            <ul className="mt-3 space-y-2">
+                {festivalDates.map((f) => (
+                    <li key={f.start + f.name}>
+                        <time dateTime={f.start} className="block font-semibold text-ink-900">{longDate(f.start)}{f.end ? ` – ${longDate(f.end)}` : ""}</time>
+                        <span className="block text-xs text-ink-600">{f.name}{f.note ? ` · ${f.note}` : ""}</span>
+                        <span className="block text-[11px] text-ink-500">Source: {f.source}</span>
+                    </li>
+                ))}
+            </ul>
+            <Link href={`/festivals/${festivalDates[0].start.slice(0, 4)}`} className="mt-3 inline-block text-sm font-semibold text-laterite-600 hover:underline">All Odisha festival dates →</Link>
+        </section>
+    );
     const reportHref = `mailto:${SITE.correctionsEmail}?subject=${encodeURIComponent(`Correction: ${meta.title}`)}&body=${encodeURIComponent(`Page: ${url}\n\nWhat is incorrect or missing?\n\nSource (link or book):\n`)}`;
 
     return (
@@ -102,6 +119,8 @@ export default function ArticleLayout({ meta, children }: ArticleLayoutProps) {
                             <figcaption className="mt-2 text-xs text-ink-500">{meta.imageCredit || "Illustration, not a photograph"}</figcaption>
                         </figure>
                     )}
+
+                    {datesBox && <div className="mb-8 lg:hidden">{datesBox}</div>}
 
                     {/* Facts box (mobile: above the text) */}
                     {meta.facts.length > 0 && (
@@ -196,6 +215,7 @@ export default function ArticleLayout({ meta, children }: ArticleLayoutProps) {
                 {/* Sidebar */}
                 <aside className="hidden lg:block">
                     <div className="sticky top-28 space-y-6">
+                        {datesBox}
                         {meta.facts.length > 0 && <FactBox meta={meta} />}
                         {toc.length > 2 && (
                             <nav aria-label="On this page" className="rounded-2xl border border-sand-200 bg-white p-5">

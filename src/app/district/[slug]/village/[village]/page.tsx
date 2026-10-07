@@ -8,6 +8,8 @@ import { ADMIN_SOURCE, getAdminDistrict, subdistrictSlug, villageId } from "@/li
 import { districtName } from "@/lib/districts";
 import { SITE } from "@/lib/site";
 import { villageGeo } from "@/lib/village-geo";
+import { getVillageCensus } from "@/lib/census";
+import VillageCensus, { censusSentence } from "@/components/VillageCensus";
 
 type Props = { params: Promise<{ slug: string; village: string }> };
 
@@ -24,7 +26,8 @@ async function load(slug: string, id: string) {
     const block = admin.blocks.find((b) => b.code === v.b);
     const gp = block?.gps.find((g) => g.code === v.g);
     const sd = admin.subdistricts.find((s) => s.code === v.s);
-    return { admin, v, block, gp, sd };
+    const census = await getVillageCensus(slug, v.c);
+    return { admin, v, block, gp, sd, census };
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -34,7 +37,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const d = districtName(slug) || r.admin.lgdName;
     return {
         title: `${r.v.n} village, ${r.block && r.block.code !== "0" ? `${r.block.name} block, ` : ""}${d}`,
-        description: `${r.v.n} is a village in ${r.gp && r.gp.code !== "0" ? `${r.gp.name} gram panchayat, ` : ""}${r.block && r.block.code !== "0" ? `${r.block.name} block, ` : ""}${d} district, Odisha. Location in the administrative hierarchy and official codes.`,
+        description: `${r.v.n} is a village in ${r.gp && r.gp.code !== "0" ? `${r.gp.name} gram panchayat, ` : ""}${r.block && r.block.code !== "0" ? `${r.block.name} block, ` : ""}${d} district, Odisha. ${r.census ? censusSentence(r.v.n, r.census.village) : "Location in the administrative hierarchy and official codes."}`,
         alternates: { canonical: `/district/${slug}/village/${villageId(r.v)}` },
     };
 }
@@ -43,7 +46,7 @@ export default async function VillagePage({ params }: Props) {
     const { slug, village } = await params;
     const r = await load(slug, village);
     if (!r) notFound();
-    const { admin, v, block, gp, sd } = r;
+    const { admin, v, block, gp, sd, census } = r;
     const dName = districtName(slug) || admin.lgdName;
     const siblings = admin.villages.filter((x) => x.g === v.g && x.b === v.b && x.c !== v.c);
     const hasBlock = block && block.code !== "0";
@@ -88,6 +91,8 @@ export default async function VillagePage({ params }: Props) {
 
             <div className="container-page grid gap-10 py-10 lg:grid-cols-[minmax(0,1fr)_340px]">
                 <div>
+                    {census && <VillageCensus name={v.n} census={census.village} districtRural={census.districtRural} districtName={dName} />}
+
                     {g && (
                         <section className="mb-10">
                             <h2 className="font-display text-2xl font-semibold">Map of {v.n}</h2>
@@ -164,6 +169,7 @@ export default async function VillagePage({ params }: Props) {
                         {[
                             ["LGD village code", v.c],
                             ["Status", v.u ? "Uninhabited" : "Inhabited"],
+                            ...(census && census.village.population > 0 ? [["Population (2011)", census.village.population.toLocaleString("en-IN")]] : []),
                             ["Gram panchayat", hasGp ? gp!.name : "Not mapped"],
                             ["Block", hasBlock ? block!.name : "Not mapped"],
                             ["Sub-district", sd?.name || ""],

@@ -4,16 +4,16 @@ import CalendarToday from "@/components/CalendarToday";
 import Icon from "@/components/Icon";
 import JsonLd from "@/components/JsonLd";
 import { odiaMonths, nakshatras, varas } from "@/lib/panchanga";
-import { FESTIVAL_DATES } from "@/data/festival-dates";
+import { festivalYears, upcomingFestivals } from "@/data/festival-dates";
 import { hubMetadata } from "@/lib/seo";
 import { formatDate, SITE } from "@/lib/site";
 
 export const metadata = hubMetadata({
     title: "Odia Calendar 2026 – Today's Panjika, Tithi & Festival Dates",
     description:
-        "Today's Odia panjika for Bhubaneswar and other Odisha cities — tithi, nakshatra, yoga, karana, Odia month and sunrise — plus Odisha festival dates for 2026–27 and the 12 Odia months explained.",
+        "Today's Odia panjika for Bhubaneswar and other Odisha cities — tithi, nakshatra, yoga, karana, Odia month and sunrise — plus upcoming Odisha festival dates and the 12 Odia months explained.",
     path: "/calendar",
-    keywords: ["odia calendar", "odia calendar 2026", "odia panjika", "odia panji 2026", "today tithi odisha", "odia festival list 2026", "odisha festival dates 2026", "panjika today"],
+    keywords: ["odia calendar", "odia calendar 2026", "odia panjika", "odia panji 2026", "today tithi odisha", "odia festival list 2026", "odisha festival dates 2027", "panjika today"],
 });
 
 // Festival data for each month
@@ -92,7 +92,7 @@ const FAQ = [
 ];
 
 export default function CalendarPage() {
-    const year = FESTIVAL_DATES;
+    const year = upcomingFestivals(12);
     return (
         <div>
             <JsonLd data={{ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: FAQ.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) }} />
@@ -113,7 +113,7 @@ export default function CalendarPage() {
                 <div className="flex flex-col justify-between gap-3 md:flex-row md:items-end">
                     <div>
                         <p className="eyebrow">Festival dates</p>
-                        <h2 className="mt-2 font-display text-3xl font-semibold md:text-4xl">Odisha festival dates, 2026–27</h2>
+                        <h2 className="mt-2 font-display text-3xl font-semibold md:text-4xl">Coming up: Odisha festival dates</h2>
                     </div>
                     <p className="max-w-md text-sm text-ink-600">Only dates confirmed by an official holiday list or a reliable panchang are listed. Source shown for each.</p>
                 </div>
@@ -137,6 +137,10 @@ export default function CalendarPage() {
                         </tbody>
                     </table>
                 </div>
+                <p className="mt-4 flex flex-wrap gap-3 text-sm">
+                    {festivalYears().map((y) => <Link key={y} href={`/festivals/${y}`} className="chip !bg-white !px-3.5 !py-1.5 hover:border-laterite-300">All festivals {y}</Link>)}
+                    <a href="/festivals.ics" className="chip !bg-white !px-3.5 !py-1.5 hover:border-laterite-300">Subscribe (iCal)</a>
+                </p>
             </section>
 
             <section className="bg-sand-100 py-14">
