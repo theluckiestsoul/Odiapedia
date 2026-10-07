@@ -48,7 +48,7 @@ export default function robots(): MetadataRoute.Robots {
                 disallow: ["/api/", "/search"],
             },
         ],
-        sitemap: `${SITE.url}/sitemap.xml`,
+        sitemap: [`${SITE.url}/sitemap.xml`, `${SITE.url}/sitemaps/articles.xml`, `${SITE.url}/sitemaps/cinema.xml`, `${SITE.url}/sitemaps/places.xml`],
         host: SITE.url,
     };
 }

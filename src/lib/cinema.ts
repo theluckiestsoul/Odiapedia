@@ -83,6 +83,7 @@ export interface Person {
     /** Set for people known only from Wikipedia's film lists (no Wikidata item yet) */
     src?: "wl";
     auto?: string[];
+    unverified?: boolean;
 }
 
 export const FILMS = filmsData as Film[];
@@ -155,3 +156,13 @@ export function credits(f: Film, role: Role): { person?: Person; name: string }[
     const text = (f[`${role}Text` as keyof Film] as string[] | undefined) ?? [];
     return [...linked, ...text.map((name) => ({ name }))];
 }
+
+/** Distinct films a person is credited on. */
+export const filmCount = (p: Person) => new Set(FILMS.filter((f) => ROLES.some(({ id }) => f[id]?.includes(p.q))).map((f) => f.id)).size;
+
+/**
+ * Whether a person's page should be in search: it has a written biography, a Wikipedia article,
+ * or enough films for the filmography to be useful. Used by the page's robots tag AND the sitemap,
+ * so the sitemap never lists a page that says "noindex".
+ */
+export const personIndexable = (p: Person) => !p.unverified && (!!ABOUT[p.q] || !!p.wp || filmCount(p) >= (isWikidata(p.q) ? 2 : 3));

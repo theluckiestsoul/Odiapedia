@@ -6,7 +6,7 @@ import Icon from "@/components/Icon";
 import JsonLd from "@/components/JsonLd";
 import AboutBlock from "@/components/cinema/AboutBlock";
 import Gallery from "@/components/cinema/Gallery";
-import { FILMS, PEOPLE, ROLES, filmography, getPerson, primaryRole, roleNoun, aboutPerson, collaborators, credits, isWikidata, type Film } from "@/lib/cinema";
+import { FILMS, PEOPLE, ROLES, filmography, getPerson, primaryRole, roleNoun, aboutPerson, collaborators, personIndexable, credits, isWikidata, type Film } from "@/lib/cinema";
 import { SITE } from "@/lib/site";
 
 /* eslint-disable @next/next/no-img-element -- Wikimedia Commons photos are hot-linked with attribution */
@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         description: (lead ? `${lead} ` : `${p.name}: ${n} Odia film${n === 1 ? "" : "s"} as ${role}. `).slice(0, 240) + " Filmography, photos and frequent co-stars.",
         alternates: { canonical: `/cinema/people/${p.id}` },
         // Keep thin pages (one credit, nothing written) out of search until they have more content
-        robots: n < 2 && !about && !p.wp ? { index: false, follow: true } : undefined,
+        robots: personIndexable(p) ? undefined : { index: false, follow: true },
         openGraph: p.img ? { images: [{ url: p.img.src, alt: p.name }] } : undefined,
     };
 }
