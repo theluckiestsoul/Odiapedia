@@ -120,7 +120,7 @@ jobs:
           TRIP_LEAD_WEBHOOK_URL: ${{ secrets.TRIP_LEAD_WEBHOOK_URL }}
           TRIP_LEAD_WEBHOOK_SECRET: ${{ secrets.TRIP_LEAD_WEBHOOK_SECRET }}
         run: |
-          kc() { ssh "deploy@$HOST" "KUBECONFIG=/etc/rancher/k3s/k3s.yaml kubectl $*"; }
+          kc() { ssh "deploy@$HOST" "kubectl $*"; }   # uses ~/.kube/config of the deploy user
 
           kubectl create namespace odiapedia --dry-run=client -o yaml | kc apply -f -
 
@@ -141,7 +141,7 @@ jobs:
 
       - name: Wait for the rollout (roll back automatically if it fails)
         run: |
-          kc() { ssh "deploy@$HOST" "KUBECONFIG=/etc/rancher/k3s/k3s.yaml kubectl $*"; }
+          kc() { ssh "deploy@$HOST" "kubectl $*"; }   # uses ~/.kube/config of the deploy user
           if ! kc -n odiapedia rollout status deployment/odiapedia --timeout=10m; then
             echo "::error::New version did not become healthy; rolling back to the previous one."
             kc -n odiapedia rollout undo deployment/odiapedia

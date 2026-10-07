@@ -1,0 +1,19 @@
+# Helm values for Traefik on a single node without a cloud load balancer.
+# helm install traefik traefik/traefik -n traefik --create-namespace -f k8s/addons/traefik-values.yaml
+deployment:
+  kind: DaemonSet          # exactly one Traefik pod per node
+updateStrategy:
+  type: RollingUpdate
+  rollingUpdate:
+    maxUnavailable: 1      # the old pod must free ports 80/443 before the new one starts
+    maxSurge: 0
+ports:
+  web:
+    hostPort: 80
+  websecure:
+    hostPort: 443
+service:
+  type: ClusterIP          # no cloud load balancer
+ingressClass:
+  enabled: true
+  isDefaultClass: true     # named "traefik", as k8s/overlays/production expects

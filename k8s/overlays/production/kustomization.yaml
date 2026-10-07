@@ -1,4 +1,4 @@
-# Production on the k3s cluster created by infra/terraform/digitalocean.
+# Production on the kubeadm cluster (docs/deploy/KUBERNETES-SETUP.md).
 # On another cluster (e.g. GKE), copy this overlay and change the ingress class.
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
@@ -14,4 +14,4 @@ patches:
     patch: |-
       - op: add
         path: /spec/ingressClassName
-        value: traefik            # k3s ships with the Traefik ingress controller
+        value: traefik            # Traefik, installed with Helm (k8s/addons/traefik-values.yaml)

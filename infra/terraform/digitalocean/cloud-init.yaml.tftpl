@@ -1,9 +1,9 @@
 #cloud-config
-# Runs once, on the server's first boot.
+# Runs once, on the server's first boot. It only prepares a safe, plain Ubuntu server:
+# Kubernetes itself is installed by hand (see docs/deploy/KUBERNETES-SETUP.md).
 package_update: true
 package_upgrade: true
 packages:
-  - curl
   - unattended-upgrades   # automatic security updates
   - fail2ban              # blocks repeated failed SSH logins
 
@@ -25,33 +25,6 @@ write_files:
     content: |
       PermitRootLogin no
       PasswordAuthentication no
-  # k3s settings: make the kubeconfig readable so the deploy user can run kubectl.
-  - path: /etc/rancher/k3s/config.yaml
-    content: |
-      write-kubeconfig-mode: "0644"
-  # Anything in this folder is applied automatically by k3s. This installs cert-manager
-  # (automatic Let's Encrypt HTTPS certificates) through k3s's built-in Helm controller.
-  - path: /var/lib/rancher/k3s/server/manifests/cert-manager.yaml
-    content: |
-      apiVersion: helm.cattle.io/v1
-      kind: HelmChart
-      metadata:
-        name: cert-manager
-        namespace: kube-system
-      spec:
-        repo: https://charts.jetstack.io
-        chart: cert-manager
-        targetNamespace: cert-manager
-        createNamespace: true
-        valuesContent: |-
-          crds:
-            enabled: true
 
 runcmd:
   - systemctl restart ssh
-  # 2 GB swap file: a safety net on small servers.
-  - fallocate -l 2G /swapfile && chmod 600 /swapfile && mkswap /swapfile && swapon /swapfile
-  - echo '/swapfile none swap sw 0 0' >> /etc/fstab
-  # Install k3s (Kubernetes) from the stable channel; it includes Traefik as the ingress controller.
-  - curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=stable sh -
-  - echo 'export KUBECONFIG=/etc/rancher/k3s/k3s.yaml' > /etc/profile.d/kubeconfig.sh

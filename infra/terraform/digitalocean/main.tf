@@ -1,6 +1,6 @@
-# One DigitalOcean droplet running k3s (a small, complete Kubernetes distribution).
-# Everything app-specific lives in /k8s and is the same on any Kubernetes cluster;
-# this folder is the only part tied to DigitalOcean.
+# One plain Ubuntu droplet. Kubernetes is installed on it by hand with kubeadm
+# (docs/deploy/KUBERNETES-SETUP.md). Everything app-specific lives in /k8s and is the same
+# on any Kubernetes cluster; this folder is the only part tied to DigitalOcean.
 
 resource "digitalocean_ssh_key" "deploy" {
   count      = length(var.ssh_public_keys)
@@ -15,9 +15,9 @@ resource "digitalocean_droplet" "node" {
   image      = "ubuntu-24-04-x64"
   monitoring = true
   ssh_keys   = digitalocean_ssh_key.deploy[*].fingerprint
-  tags       = ["odiapedia", "k3s"]
+  tags       = ["odiapedia", "kubernetes"]
 
-  # First-boot setup: deploy user, SSH hardening, swap, k3s and cert-manager.
+  # First-boot setup: deploy user, SSH hardening, automatic security updates.
   user_data = templatefile("${path.module}/cloud-init.yaml.tftpl", {
     ssh_public_keys = var.ssh_public_keys
   })

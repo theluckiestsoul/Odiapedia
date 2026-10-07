@@ -1,7 +1,7 @@
 variable "name" {
   description = "Name used for the server and related resources."
   type        = string
-  default     = "odiapedia-k3s"
+  default     = "odiapedia-k8s"
 }
 
 variable "region" {
@@ -11,9 +11,9 @@ variable "region" {
 }
 
 variable "size" {
-  description = "Droplet size. s-1vcpu-2gb ($12/mo) is enough for k3s + the site; s-2vcpu-4gb ($24/mo) gives more headroom."
+  description = "Droplet size. kubeadm needs at least 2 CPUs and 2 GB RAM: s-2vcpu-4gb ($24/mo)."
   type        = string
-  default     = "s-1vcpu-2gb"
+  default     = "s-2vcpu-4gb"
 }
 
 variable "ssh_public_keys" {
