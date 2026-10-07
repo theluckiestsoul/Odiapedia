@@ -8,6 +8,7 @@ import { LanguageProvider } from "@/contexts/LanguageContext";
 import { getSearchIndex } from "@/lib/mdx";
 import { SITE } from "@/lib/site";
 import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const fraunces = Fraunces({
   variable: "--font-fraunces",
@@ -174,6 +175,7 @@ export default function RootLayout({
           <Footer />
         </LanguageProvider>
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
