@@ -1,0 +1,17 @@
+# Production on the k3s cluster created by infra/terraform/digitalocean.
+# On another cluster (e.g. GKE), copy this overlay and change the ingress class.
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../cluster
+  - ../../base
+images:
+  - name: odiapedia
+    newName: ghcr.io/theluckiestsoul/odiapedia
+    newTag: latest                # the deploy workflow sets the exact version (sha-xxxxxxx)
+patches:
+  - target: { kind: Ingress, name: odiapedia }
+    patch: |-
+      - op: add
+        path: /spec/ingressClassName
+        value: traefik            # k3s ships with the Traefik ingress controller

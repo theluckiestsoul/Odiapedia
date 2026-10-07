@@ -1,0 +1,5 @@
+# Cluster-wide objects (not namespaced), shared by every app on the cluster.
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - cluster-issuer.yaml

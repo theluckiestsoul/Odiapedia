@@ -1,0 +1,9 @@
+# Provider-neutral app manifests. Anything specific to one cluster lives in overlays/.
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: odiapedia
+resources:
+  - namespace.yaml
+  - deployment.yaml
+  - service.yaml
+  - ingress.yaml

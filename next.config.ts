@@ -4,6 +4,10 @@ import createMDX from "@next/mdx";
 const nextConfig: NextConfig = {
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
 
+  // The Docker image (see Dockerfile) sets NEXT_OUTPUT=standalone: Next.js then writes a self-contained
+  // server (.next/standalone/server.js + only the node_modules it needs). Vercel builds leave it unset.
+  ...(process.env.NEXT_OUTPUT === "standalone" ? { output: "standalone" as const } : {}),
+
   // Files read with fs at request time (on-demand village pages and share images) must ship with the server functions.
   outputFileTracingIncludes: {
     "/district/**": ["./public/data/map/*-villages.json"],

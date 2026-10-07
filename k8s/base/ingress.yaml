@@ -1,0 +1,27 @@
+# Routes https://odiapedia.com to the Service. cert-manager sees the annotation and
+# gets a free Let's Encrypt certificate into the "odiapedia-tls" secret.
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: odiapedia
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+spec:
+  tls:
+    - hosts: [odiapedia.com, www.odiapedia.com]
+      secretName: odiapedia-tls
+  rules:
+    - host: odiapedia.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service: { name: odiapedia, port: { name: http } }
+    - host: www.odiapedia.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service: { name: odiapedia, port: { name: http } }

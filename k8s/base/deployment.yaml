@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: odiapedia
+  labels:
+    app: odiapedia
+spec:
+  replicas: 1
+  revisionHistoryLimit: 5          # `kubectl rollout undo` can go back up to 5 versions
+  selector:
+    matchLabels:
+      app: odiapedia
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1                  # start the new version first...
+      maxUnavailable: 0            # ...and only then stop the old one: no downtime
+  template:
+    metadata:
+      labels:
+        app: odiapedia
+    spec:
+      # Only needed while the GHCR package is private; ignored if the secret does not exist.
+      imagePullSecrets:
+        - name: ghcr-pull
+      containers:
+        - name: web
+          image: odiapedia          # replaced by kustomize with ghcr.io/<owner>/odiapedia:<tag>
+          ports:
+            - name: http
+              containerPort: 3000
+          envFrom:
+            - secretRef:
+                name: odiapedia-env   # runtime secrets (e.g. TRIP_LEAD_WEBHOOK_URL), created by the deploy workflow
+                optional: true
+          resources:
+            requests:
+              cpu: 200m
+              memory: 384Mi
+            limits:
+              memory: 1Gi
+          startupProbe:              # give a cold start up to 2 minutes
+            httpGet: { path: /robots.txt, port: http }
+            periodSeconds: 5
+            failureThreshold: 24
+          readinessProbe:            # receive traffic only when healthy
+            httpGet: { path: /robots.txt, port: http }
+            periodSeconds: 10
+          livenessProbe:             # restart the container if it hangs
+            httpGet: { path: /robots.txt, port: http }
+            periodSeconds: 30
+            failureThreshold: 3
+          securityContext:
+            runAsNonRoot: true
+            allowPrivilegeEscalation: false

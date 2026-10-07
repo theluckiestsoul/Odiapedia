@@ -1,0 +1,163 @@
+# Build the Docker image, store it in GitHub Container Registry (GHCR), deploy it to Kubernetes.
+#
+#   push to main            -> build image  ghcr.io/<owner>/odiapedia:sha-<commit>  and deploy it
+#   Run workflow (manual)   -> leave "image_tag" empty to build+deploy the chosen branch, or
+#                              enter an existing tag (e.g. sha-1a2b3c4) to roll back without rebuilding
+#
+# Deploying is switched off until the repository variable K8S_DEPLOY is set to "true"
+# (Settings -> Secrets and variables -> Actions -> Variables). Images are built either way.
+# Needed secrets: DEPLOY_HOST, DEPLOY_SSH_KEY. Optional: GHCR_PULL_TOKEN, TRIP_LEAD_WEBHOOK_URL,
+# TRIP_LEAD_WEBHOOK_SECRET. See docs/deploy/README.md.
+name: Build and deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      image_tag:
+        description: "Existing image tag to deploy (e.g. sha-1a2b3c4). Leave empty to build."
+        required: false
+        type: string
+
+permissions:
+  contents: read
+  packages: write
+
+concurrency:
+  group: production
+  cancel-in-progress: false
+
+jobs:
+  build:
+    if: ${{ !inputs.image_tag }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    outputs:
+      tag: ${{ steps.meta.outputs.tag }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - id: meta
+        name: Image name and tag
+        run: |
+          owner="${GITHUB_REPOSITORY_OWNER,,}"
+          echo "image=ghcr.io/${owner}/odiapedia" >> "$GITHUB_OUTPUT"
+          echo "tag=sha-${GITHUB_SHA::7}" >> "$GITHUB_OUTPUT"
+
+      - uses: docker/setup-buildx-action@v3
+
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          provenance: false
+          tags: |
+            ${{ steps.meta.outputs.image }}:${{ steps.meta.outputs.tag }}
+            ${{ steps.meta.outputs.image }}:latest
+          labels: |
+            org.opencontainers.image.source=${{ github.server_url }}/${{ github.repository }}
+            org.opencontainers.image.revision=${{ github.sha }}
+          build-args: |
+            NEXT_PUBLIC_GA_ID=${{ vars.NEXT_PUBLIC_GA_ID }}
+            NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION=${{ vars.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION }}
+            NEXT_PUBLIC_BING_SITE_VERIFICATION=${{ vars.NEXT_PUBLIC_BING_SITE_VERIFICATION }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Summary
+        run: echo "Built \`${{ steps.meta.outputs.image }}:${{ steps.meta.outputs.tag }}\`" >> "$GITHUB_STEP_SUMMARY"
+
+  deploy:
+    needs: build
+    if: ${{ always() && (needs.build.result == 'success' || needs.build.result == 'skipped') && vars.K8S_DEPLOY == 'true' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment: production
+    env:
+      HOST: ${{ secrets.DEPLOY_HOST }}
+      TAG: ${{ inputs.image_tag || needs.build.outputs.tag }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Image name
+        run: echo "IMAGE=ghcr.io/${GITHUB_REPOSITORY_OWNER,,}/odiapedia" >> "$GITHUB_ENV"
+
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Check the image exists
+        run: docker buildx imagetools inspect "$IMAGE:$TAG" > /dev/null
+
+      - name: SSH setup
+        env:
+          SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/id_ed25519 && chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -H "$HOST" >> ~/.ssh/known_hosts 2>/dev/null
+
+      - name: Render manifests
+        working-directory: k8s/overlays/production
+        run: |
+          kustomize edit set image "odiapedia=$IMAGE:$TAG"
+          kustomize build . > "$RUNNER_TEMP/app.yaml"
+          grep -n "image:" "$RUNNER_TEMP/app.yaml"
+
+      - name: Apply secrets and manifests
+        env:
+          GHCR_PULL_TOKEN: ${{ secrets.GHCR_PULL_TOKEN }}
+          TRIP_LEAD_WEBHOOK_URL: ${{ secrets.TRIP_LEAD_WEBHOOK_URL }}
+          TRIP_LEAD_WEBHOOK_SECRET: ${{ secrets.TRIP_LEAD_WEBHOOK_SECRET }}
+        run: |
+          kc() { ssh "deploy@$HOST" "KUBECONFIG=/etc/rancher/k3s/k3s.yaml kubectl $*"; }
+
+          kubectl create namespace odiapedia --dry-run=client -o yaml | kc apply -f -
+
+          # Secrets are rendered here and piped over SSH, so their values never appear in a command line on the server.
+          if [ -n "$GHCR_PULL_TOKEN" ]; then
+            kubectl -n odiapedia create secret docker-registry ghcr-pull --docker-server=ghcr.io \
+              --docker-username="$GITHUB_REPOSITORY_OWNER" --docker-password="$GHCR_PULL_TOKEN" \
+              --dry-run=client -o yaml | kc apply -f -
+          fi
+          args=()
+          [ -n "$TRIP_LEAD_WEBHOOK_URL" ] && args+=(--from-literal=TRIP_LEAD_WEBHOOK_URL="$TRIP_LEAD_WEBHOOK_URL")
+          [ -n "$TRIP_LEAD_WEBHOOK_SECRET" ] && args+=(--from-literal=TRIP_LEAD_WEBHOOK_SECRET="$TRIP_LEAD_WEBHOOK_SECRET")
+          if [ ${#args[@]} -gt 0 ]; then
+            kubectl -n odiapedia create secret generic odiapedia-env "${args[@]}" --dry-run=client -o yaml | kc apply -f -
+          fi
+
+          kc apply -f - < "$RUNNER_TEMP/app.yaml"
+
+      - name: Wait for the rollout (roll back automatically if it fails)
+        run: |
+          kc() { ssh "deploy@$HOST" "KUBECONFIG=/etc/rancher/k3s/k3s.yaml kubectl $*"; }
+          if ! kc -n odiapedia rollout status deployment/odiapedia --timeout=10m; then
+            echo "::error::New version did not become healthy; rolling back to the previous one."
+            kc -n odiapedia rollout undo deployment/odiapedia
+            exit 1
+          fi
+          kc -n odiapedia get pods -o wide
+          echo "Deployed \`$IMAGE:$TAG\`" >> "$GITHUB_STEP_SUMMARY"
+
+  cleanup:
+    needs: build
+    if: ${{ needs.build.result == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Keep the 20 newest images in GHCR
+        uses: actions/delete-package-versions@v5
+        with:
+          package-name: odiapedia
+          package-type: container
+          min-versions-to-keep: 20

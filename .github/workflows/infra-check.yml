@@ -1,0 +1,37 @@
+# Checks Terraform and Kubernetes files on every change to them. Nothing is created or deployed.
+name: Infra check
+
+on:
+  pull_request:
+    paths: ["infra/**", "k8s/**", "Dockerfile", ".github/workflows/**"]
+  push:
+    branches: [main]
+    paths: ["infra/**", "k8s/**", "Dockerfile", ".github/workflows/**"]
+
+permissions:
+  contents: read
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: infra/terraform/digitalocean
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+      - run: terraform fmt -check -recursive
+      - run: terraform init -backend=false
+      - run: terraform validate
+
+  kubernetes:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install kubeconform
+        run: |
+          curl -sSL https://github.com/yannh/kubeconform/releases/latest/download/kubeconform-linux-amd64.tar.gz | tar xz
+      - name: Render and validate manifests
+        run: |
+          kustomize build k8s/overlays/production > app.yaml
+          ./kubeconform -strict -summary -ignore-missing-schemas app.yaml

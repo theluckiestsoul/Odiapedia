@@ -1,0 +1,20 @@
+# Keep the build context small: only what `next build` needs.
+.git
+.github
+.next
+node_modules
+**/node_modules
+.vercel
+.env*
+Claude outputs
+infra
+k8s
+mobile
+dagger
+tests
+test-results
+playwright-report
+coverage
+*.tsbuildinfo
+Dockerfile
+.dockerignore

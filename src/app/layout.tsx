@@ -164,7 +164,8 @@ export default function RootLayout({
           </main>
           <Footer />
         </LanguageProvider>
-        <Analytics />
+        {/* Vercel Analytics only works when hosted on Vercel (it posts to /_vercel/insights). */}
+        {process.env.VERCEL && <Analytics />}
       </body>
     </html>
   );

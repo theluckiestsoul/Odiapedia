@@ -1,0 +1,7 @@
+# Copy to terraform.tfvars (git-ignored) and fill in.
+ssh_public_keys = [
+  "ssh-ed25519 AAAA... your-laptop",
+  "ssh-ed25519 AAAA... github-actions-deploy",
+]
+# size   = "s-2vcpu-4gb"   # uncomment for more headroom ($24/mo)
+# region = "blr1"
