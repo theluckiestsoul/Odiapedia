@@ -161,8 +161,7 @@ export function credits(f: Film, role: Role): { person?: Person; name: string }[
 export const filmCount = (p: Person) => new Set(FILMS.filter((f) => ROLES.some(({ id }) => f[id]?.includes(p.q))).map((f) => f.id)).size;
 
 /**
- * Whether a person's page should be in search: it has a written biography, a Wikipedia article,
- * or enough films for the filmography to be useful. Used by the page's robots tag AND the sitemap,
- * so the sitemap never lists a page that says "noindex".
+ * Whether a person's page should be in search: every person whose identity is verified.
+ * Used by the page's robots tag AND the sitemap, so the sitemap never lists a page that says "noindex".
  */
-export const personIndexable = (p: Person) => !p.unverified && (!!ABOUT[p.q] || !!p.wp || filmCount(p) >= (isWikidata(p.q) ? 2 : 3));
+export const personIndexable = (p: Person) => !p.unverified;

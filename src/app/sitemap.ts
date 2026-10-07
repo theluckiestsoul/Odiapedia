@@ -111,7 +111,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.6,
     }));
 
-    // Block and tahasil directory pages (village pages are generated on demand and not indexed)
+    // Block and tahasil directory pages (village pages are in /sitemaps/villages-<district>.xml)
     const adminPages: MetadataRoute.Sitemap = [];
     for (const d of ADMIN_DISTRICTS) {
         const a = await getAdminDistrict(d);

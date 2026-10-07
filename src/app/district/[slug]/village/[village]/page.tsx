@@ -11,11 +11,10 @@ import { villageGeo } from "@/lib/village-geo";
 
 type Props = { params: Promise<{ slug: string; village: string }> };
 
-// ~52,000 village pages: generated on first request and then cached, instead of at build time.
-export const dynamicParams = true;
-export async function generateStaticParams() {
-    return [];
-}
+// ~52,000 village pages, rendered per request. They are not built ahead or stored as ISR pages:
+// with every village crawlable, storing them would re-write ~52,000 cache entries after each deploy
+// (Vercel "ISR writes"). Rendering one is cheap — the district data stays in memory between requests.
+export const dynamic = "force-dynamic";
 
 async function load(slug: string, id: string) {
     const admin = await getAdminDistrict(slug);
@@ -37,8 +36,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         title: `${r.v.n} village, ${r.block && r.block.code !== "0" ? `${r.block.name} block, ` : ""}${d}`,
         description: `${r.v.n} is a village in ${r.gp && r.gp.code !== "0" ? `${r.gp.name} gram panchayat, ` : ""}${r.block && r.block.code !== "0" ? `${r.block.name} block, ` : ""}${d} district, Odisha. Location in the administrative hierarchy and official codes.`,
         alternates: { canonical: `/district/${slug}/village/${villageId(r.v)}` },
-        // Pages with only directory data are kept out of search results until they have real content.
-        robots: { index: false, follow: true },
     };
 }
 
