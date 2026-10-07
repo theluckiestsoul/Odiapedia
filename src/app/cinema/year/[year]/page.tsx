@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import PageHero from "@/components/PageHero";
 import JsonLd from "@/components/JsonLd";
-import { YEARS, filmsOfYear, personByQ } from "@/lib/cinema";
+import { YEARS, filmsOfYear, credits } from "@/lib/cinema";
 import { CINEMA_TIMELINE } from "@/data/cinema-timeline";
 import { SITE } from "@/lib/site";
 
@@ -32,7 +32,6 @@ export default async function YearPage({ params }: Props) {
     const i = YEARS.indexOf(y);
     const prev = YEARS[i - 1], next = YEARS[i + 1];
     const milestones = CINEMA_TIMELINE.filter((e) => e.year === year);
-    const name = (q: string) => personByQ(q);
 
     return (
         <div>
@@ -73,7 +72,7 @@ export default async function YearPage({ params }: Props) {
                                     <td className="px-4 py-3"><Link href={`/cinema/film/${f.id}`} className="font-semibold text-ink-900 hover:text-laterite-600">{f.title}</Link>{f.odia && <span lang="or" className="block font-odia text-ink-500">{f.odia}</span>}</td>
                                     {(["director", "cast", "music"] as const).map((r) => (
                                         <td key={r} className="px-4 py-3 text-ink-700">
-                                            {(f[r] ?? []).slice(0, r === "cast" ? 3 : 2).map((q, k) => { const p = name(q); return p ? <span key={q}>{k > 0 && ", "}<Link href={`/cinema/people/${p.id}`} className="hover:text-laterite-600 hover:underline">{p.name}</Link></span> : null; })}
+                                            {credits(f, r).slice(0, r === "cast" ? 3 : 2).map((c, k) => <span key={c.name}>{k > 0 && ", "}{c.person ? <Link href={`/cinema/people/${c.person.id}`} className="hover:text-laterite-600 hover:underline">{c.name}</Link> : c.name}</span>)}
                                         </td>
                                     ))}
                                 </tr>

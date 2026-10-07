@@ -4,8 +4,12 @@ import { notFound } from "next/navigation";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Icon from "@/components/Icon";
 import JsonLd from "@/components/JsonLd";
-import { FILMS, ROLES, getFilm, personByQ, formatFilmDate, CINEMA_SOURCE, type Film } from "@/lib/cinema";
+import AboutBlock from "@/components/cinema/AboutBlock";
+import Gallery from "@/components/cinema/Gallery";
+import { FILMS, ROLES, getFilm, personByQ, formatFilmDate, aboutFilm, credits, isWikidata, type Film } from "@/lib/cinema";
 import { SITE } from "@/lib/site";
+
+/* eslint-disable @next/next/no-img-element -- Wikimedia Commons photos are hot-linked with attribution */
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -16,8 +20,8 @@ export async function generateStaticParams() {
 const names = (qs?: string[]) => (qs ?? []).map((q) => personByQ(q)).filter(Boolean);
 
 function summary(f: Film) {
-    const dir = names(f.director).map((p) => p!.name);
-    const cast = names(f.cast).slice(0, 3).map((p) => p!.name);
+    const dir = credits(f, "director").map((p) => p.name);
+    const cast = credits(f, "cast").slice(0, 3).map((p) => p.name);
     const bits = [`${f.title} is ${f.year ? `a ${f.year}` : "an"} Odia-language film`];
     if (dir.length) bits.push(`directed by ${dir.join(" and ")}`);
     let s = bits.join(" ");
@@ -40,7 +44,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const title = options.find((t) => t.length <= 58) ?? options[options.length - 1];
     return {
         title,
-        description: `${summary(f)} Cast, crew, music, release date and related Odia films.`.slice(0, 300),
+        description: `${aboutFilm(f)?.lead ?? summary(f)} Cast, crew, music, release date and related Odia films.`.slice(0, 300),
         alternates: { canonical: `/cinema/film/${f.id}` },
     };
 }
@@ -54,6 +58,8 @@ export default async function FilmPage({ params }: Props) {
     const lead = names(f.cast).slice(0, 2).map((p) => p!.q);
     const withLeads = lead.length ? FILMS.filter((x) => x.id !== f.id && x.cast?.some((c) => lead.includes(c)) && !byDirector.includes(x)).sort((a, b) => (b.year ?? 0) - (a.year ?? 0)).slice(0, 8) : [];
     const url = `${SITE.url}/cinema/film/${f.id}`;
+    const about = aboutFilm(f);
+    const cast = credits(f, "cast");
 
     return (
         <div>
@@ -61,11 +67,12 @@ export default async function FilmPage({ params }: Props) {
                 "@context": "https://schema.org", "@type": "Movie", name: f.title, alternateName: f.odia, url, inLanguage: "or",
                 datePublished: f.date ?? (f.year ? String(f.year) : undefined),
                 director: names(f.director).map((p) => ({ "@type": "Person", name: p!.name, url: `${SITE.url}/cinema/people/${p!.id}` })),
-                actor: names(f.cast).map((p) => ({ "@type": "Person", name: p!.name, url: `${SITE.url}/cinema/people/${p!.id}` })),
+                actor: cast.map((c) => ({ "@type": "Person", name: c.name, url: c.person ? `${SITE.url}/cinema/people/${c.person.id}` : undefined })),
                 musicBy: names(f.music).map((p) => ({ "@type": "Person", name: p!.name })),
                 producer: names(f.producer).map((p) => ({ "@type": "Person", name: p!.name })),
                 genre: f.genre, duration: f.min ? `PT${f.min}M` : undefined, countryOfOrigin: { "@type": "Country", name: "India" },
-                sameAs: [`https://www.wikidata.org/wiki/${f.q}`, ...(f.wp ? [`https://en.wikipedia.org/wiki/${f.wp}`] : [])],
+                description: about?.lead, image: f.gallery?.map((g) => g.src),
+                sameAs: [...(isWikidata(f.q) ? [`https://www.wikidata.org/wiki/${f.q}`] : []), ...(f.wp ? [`https://en.wikipedia.org/wiki/${f.wp}`] : []), ...(f.orwiki ? [`https://or.wikipedia.org/wiki/${encodeURIComponent(f.orwiki)}`] : [])],
             }} />
             <header className="relative overflow-hidden bg-ink-950 text-white">
                 <div className="absolute inset-0 bg-ikat-light opacity-50" aria-hidden />
@@ -76,6 +83,7 @@ export default async function FilmPage({ params }: Props) {
                         <h1 className="mt-3 font-display text-4xl font-semibold !text-white md:text-6xl">{f.title}</h1>
                         {f.odia && <p lang="or" className="mt-2 font-odia-serif text-2xl text-saffron-200">{f.odia}</p>}
                         <p className="mt-5 max-w-2xl text-lg leading-relaxed text-sand-100/85">{summary(f)}</p>
+                        {f.note && <p className="mt-3 max-w-2xl text-sm text-saffron-200">{f.note}</p>}
                         <div className="mt-6 flex flex-wrap gap-2 text-sm">
                             {f.genre?.map((g) => <span key={g} className="rounded-full bg-white/10 px-3 py-1 capitalize ring-1 ring-white/15">{g}</span>)}
                             {f.language?.map((l) => <span key={l} className="rounded-full bg-white/10 px-3 py-1 ring-1 ring-white/15">Also in {l}</span>)}
@@ -95,22 +103,52 @@ export default async function FilmPage({ params }: Props) {
             </header>
 
             <div className="container-page grid gap-12 py-12 lg:grid-cols-[minmax(0,1fr)_320px]">
-                <div>
-                    <h2 className="font-display text-2xl font-semibold">Cast &amp; crew</h2>
+                <div className="min-w-0">
+                    <AboutBlock about={about} auto={f.auto} title={about ? "About the film" : "At a glance"} />
+
+                    {cast.length > 0 && (
+                        <section className="mt-12">
+                            <h2 className="font-display text-2xl font-semibold">Cast</h2>
+                            <ul className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
+                                {cast.map((c) => {
+                                    const inner = (
+                                        <>
+                                            {c.person?.img ? <img src={c.person.img.src} alt="" loading="lazy" className="h-14 w-14 shrink-0 rounded-full object-cover object-top" /> : <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-sand-200 font-display text-xl text-ink-600">{c.name[0]}</span>}
+                                            <span className="min-w-0 text-sm font-medium leading-snug text-ink-900">{c.name}</span>
+                                        </>
+                                    );
+                                    return (
+                                        <li key={c.name}>
+                                            {c.person ? <Link href={`/cinema/people/${c.person.id}`} className="flex items-center gap-3 rounded-2xl border border-sand-200 bg-white p-3 hover:border-laterite-300">{inner}</Link>
+                                                : <div className="flex items-center gap-3 rounded-2xl border border-sand-200 bg-white p-3">{inner}</div>}
+                                        </li>
+                                    );
+                                })}
+                            </ul>
+                        </section>
+                    )}
+
+                    <h2 className="mt-12 font-display text-2xl font-semibold">Crew</h2>
                     <dl className="mt-5 divide-y divide-sand-200 rounded-2xl border border-sand-200 bg-white">
-                        {ROLES.map(({ id, plural }) => {
-                            const ps = names(f[id]);
+                        {ROLES.filter((r) => r.id !== "cast").map(({ id, plural }) => {
+                            const ps = credits(f, id);
                             if (!ps.length) return null;
                             return (
                                 <div key={id} className="grid gap-2 px-5 py-4 sm:grid-cols-[10rem_1fr]">
                                     <dt className="text-sm font-semibold text-ink-500">{plural}</dt>
                                     <dd className="flex flex-wrap gap-x-3 gap-y-1">
-                                        {ps.map((p) => <Link key={p!.q} href={`/cinema/people/${p!.id}`} className="font-medium text-laterite-600 hover:underline">{p!.name}</Link>)}
+                                        {ps.map((p) => p.person ? <Link key={p.name} href={`/cinema/people/${p.person.id}`} className="font-medium text-laterite-600 hover:underline">{p.name}</Link> : <span key={p.name} className="font-medium text-ink-800">{p.name}</span>)}
                                     </dd>
                                 </div>
                             );
                         })}
-                        {!f.cast && !f.director && <p className="px-5 py-4 text-sm text-ink-500">Credits for this film have not been recorded yet.</p>}
+                        {([["Lyrics", f.lyrics], ["Playback singers", f.singers]] as const).map(([k, v]) => v?.length ? (
+                            <div key={k} className="grid gap-2 px-5 py-4 sm:grid-cols-[10rem_1fr]">
+                                <dt className="text-sm font-semibold text-ink-500">{k}</dt>
+                                <dd className="font-medium text-ink-800">{v.join(", ")}</dd>
+                            </div>
+                        ) : null)}
+                        {!credits(f, "director").length && !credits(f, "music").length && <p className="px-5 py-4 text-sm text-ink-500">Crew details for this film have not been recorded yet.</p>}
                     </dl>
 
                     {f.basedOn?.length ? <p className="mt-6 text-ink-700"><strong>Based on:</strong> {f.basedOn.join(", ")}</p> : null}
@@ -120,6 +158,8 @@ export default async function FilmPage({ params }: Props) {
                             <ul className="mt-3 list-disc space-y-1 pl-5 text-ink-700">{f.awards.map((a) => <li key={a}>{a}</li>)}</ul>
                         </section>
                     ) : null}
+
+                    {f.gallery?.length ? <div className="mt-12"><Gallery photos={f.gallery} title="Photos" alt={f.title} /></div> : null}
 
                     {byDirector.length > 0 && <FilmRow title={`More from ${names(f.director)[0]!.name}`} films={byDirector} />}
                     {withLeads.length > 0 && <FilmRow title={`More with ${names(f.cast)[0]!.name}`} films={withLeads} />}
@@ -149,10 +189,13 @@ export default async function FilmPage({ params }: Props) {
                     <div className="rounded-2xl border border-sand-200 bg-white p-5 text-sm">
                         <p className="font-semibold text-ink-900">Sources</p>
                         <ul className="mt-2 space-y-1 text-ink-600">
-                            <li><a className="text-laterite-600 hover:underline" href={`https://www.wikidata.org/wiki/${f.q}`} target="_blank" rel="noopener noreferrer">Wikidata {f.q}</a></li>
-                            {f.wp && <li><a className="text-laterite-600 hover:underline" href={`https://en.wikipedia.org/wiki/${f.wp}`} target="_blank" rel="noopener noreferrer">Wikipedia: {decodeURIComponent(f.wp).replace(/_/g, " ")}</a></li>}
+                            {about?.src?.map((x) => <li key={x.url}><a className="text-laterite-600 hover:underline" href={x.url} target="_blank" rel="noopener noreferrer">{x.label}</a></li>)}
+                            {f.wp && !about?.src?.some((x) => x.url.includes("en.wikipedia")) && <li><a className="text-laterite-600 hover:underline" href={`https://en.wikipedia.org/wiki/${f.wp}`} target="_blank" rel="noopener noreferrer">Wikipedia: {decodeURIComponent(f.wp).replace(/_/g, " ")}</a></li>}
+                            {f.orwiki && !about?.src?.some((x) => x.url.includes("or.wikipedia")) && <li><a className="text-laterite-600 hover:underline" href={`https://or.wikipedia.org/wiki/${encodeURIComponent(f.orwiki)}`} target="_blank" rel="noopener noreferrer" lang="or">ଓଡ଼ିଆ ଉଇକିପିଡ଼ିଆ</a></li>}
+                            {f.wl && <li><a className="text-laterite-600 hover:underline" href={`https://en.wikipedia.org/wiki/${encodeURIComponent(f.wl.replace(/ /g, "_"))}`} target="_blank" rel="noopener noreferrer">Wikipedia: {f.wl}</a></li>}
+                            {isWikidata(f.q) && <li><a className="text-laterite-600 hover:underline" href={`https://www.wikidata.org/wiki/${f.q}`} target="_blank" rel="noopener noreferrer">Wikidata {f.q}</a></li>}
                         </ul>
-                        <p className="mt-3 text-xs text-ink-500">Data: {CINEMA_SOURCE}. Records can be incomplete — corrections welcome.</p>
+                        <p className="mt-3 text-xs text-ink-500">{about ? "The description is written by Odiapedia from the sources above. " : ""}Credits from Wikidata and Wikipedia; records can be incomplete — corrections welcome.</p>
                     </div>
                     <Link href="/cinema" className="btn-ghost w-full">Browse all Odia films</Link>
                 </aside>
