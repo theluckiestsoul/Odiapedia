@@ -9,6 +9,7 @@ import ArticleCard from "@/components/ArticleCard";
 import TodayInOdisha from "@/components/TodayInOdisha";
 import OnThisDay from "@/components/OnThisDay";
 import { ChariotWheel, OrnamentDivider } from "@/components/Motifs";
+import { FILMS, PEOPLE, YEARS } from "@/lib/cinema";
 
 export const metadata: Metadata = {
   title: { absolute: "Odiapedia – Encyclopedia of Odisha, Odia Language, Culture & Travel" },
@@ -73,6 +74,9 @@ export default function Home() {
     .sort((x, y) => y.updated.localeCompare(x.updated) || y.date.localeCompare(x.date))) {
     byCat.set(a.category, [...(byCat.get(a.category) || []), a]);
   }
+  const stars = PEOPLE.filter((p) => p.img && (p.roles.cast ?? 0) >= 5)
+    .sort((a, b) => (b.roles.cast ?? 0) - (a.roles.cast ?? 0)).slice(0, 8);
+  const latestYear = YEARS[YEARS.length - 1];
   const recent: ArticleMeta[] = [];
   while (recent.length < 6 && [...byCat.values()].some((l) => l.length)) {
     for (const l of byCat.values()) if (l.length && recent.length < 6) recent.push(l.shift()!);
@@ -250,6 +254,37 @@ export default function Home() {
               <ArticleCard key={`${a.category}/${a.slug}`} article={a} compact />
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ───────────── Odia cinema ───────────── */}
+      <section className="relative overflow-hidden bg-ink-950 py-16 text-white md:py-24">
+        <div className="container-page grid items-center gap-12 lg:grid-cols-2">
+          <div>
+            <p className="eyebrow !text-saffron-300"><Icon name="star" className="h-4 w-4" />Odia cinema · Ollywood</p>
+            <h2 className="mt-3 font-display text-4xl font-semibold !text-white md:text-5xl">Every Odia film, from {YEARS[0]} to today</h2>
+            <p className="mt-4 max-w-xl text-lg leading-relaxed text-ink-200">
+              {FILMS.length.toLocaleString("en-IN")} films with their directors, cast and music, plus filmographies of {PEOPLE.length} actors and film-makers. Browse by year, search by title or start with the first Odia talkie.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link href="/cinema" className="btn-primary">Browse all films <Icon name="arrow" className="h-4 w-4" /></Link>
+              <Link href="/cinema/people" className="btn-ghost !border-white/20 !bg-white/5 !text-white hover:!bg-white/10">Actors &amp; directors</Link>
+              <Link href={`/cinema/year/${latestYear}`} className="btn-ghost !border-white/20 !bg-white/5 !text-white hover:!bg-white/10">Films of {latestYear}</Link>
+            </div>
+          </div>
+          {stars.length > 0 && (
+            <ul className="grid grid-cols-4 gap-4">
+              {stars.map((p) => (
+                <li key={p.id}>
+                  <Link href={`/cinema/people/${p.id}`} className="group block text-center">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={p.img!.src} alt="" loading="lazy" className="mx-auto aspect-square w-full rounded-full border-2 border-white/10 bg-ink-800 object-cover object-top transition-colors group-hover:border-saffron-300" />
+                    <span className="mt-2 block text-xs font-medium leading-tight text-ink-100 group-hover:text-white">{p.name}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       </section>
 

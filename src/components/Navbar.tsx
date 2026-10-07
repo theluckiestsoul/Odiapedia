@@ -55,6 +55,7 @@ const menuItems: MenuItem[] = [
             { href: "/travel/plan", label: "Plan a Trip", odia: "ଯାତ୍ରା ଯୋଜନା", icon: "suitcase", hint: "Free custom itinerary" },
         ],
     },
+    { href: "/cinema", label: "Cinema", odia: "ସିନେମା" },
     { href: "/calendar", label: "Calendar", odia: "ପଞ୍ଜିକା" },
     { href: "/shop", label: "Shop", odia: "ଦୋକାନ" },
     { href: "/about", label: "About", odia: "ବିଷୟରେ" },
