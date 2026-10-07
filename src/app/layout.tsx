@@ -2,10 +2,8 @@ import type { Metadata, Viewport } from "next";
 import { Fraunces, Geist, Noto_Sans_Oriya, Noto_Serif_Oriya } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
-import { getLanguagePairs } from "@/lib/lang-map";
 import Footer from "@/components/Footer";
 import { LanguageProvider } from "@/contexts/LanguageContext";
-import { getSearchIndex } from "@/lib/mdx";
 import { SITE } from "@/lib/site";
 import { Analytics } from '@vercel/analytics/next';
 
@@ -135,8 +133,6 @@ export default function RootLayout({
     ],
   };
 
-  const searchIndex = getSearchIndex();
-
   return (
     <html lang="en" className={`${fraunces.variable} ${geistSans.variable} ${notoSansOriya.variable} ${notoSerifOriya.variable}`}>
       <head>
@@ -167,7 +163,7 @@ export default function RootLayout({
           Skip to content
         </a>
         <LanguageProvider>
-          <Navbar searchIndex={searchIndex} languagePairs={getLanguagePairs()} />
+          <Navbar />
           <main id="main" className="flex-1">
             {children}
           </main>

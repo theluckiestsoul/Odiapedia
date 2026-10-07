@@ -9,7 +9,6 @@ import LanguageToggle from "./LanguageToggle";
 import Icon from "./Icon";
 import { useLanguage } from "@/contexts/LanguageContext";
 import type { IconName } from "@/lib/site";
-import type { SearchEntry } from "@/lib/mdx";
 
 interface MenuChild {
     href: string;
@@ -130,7 +129,7 @@ function DropdownMenu({ item, language, active }: { item: MenuItem; language: st
     );
 }
 
-export default function Navbar({ searchIndex = [], languagePairs = {} }: { searchIndex?: SearchEntry[]; languagePairs?: Record<string, string> }) {
+export default function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
@@ -194,7 +193,7 @@ export default function Navbar({ searchIndex = [], languagePairs = {} }: { searc
                                 <kbd className="ml-2 rounded border border-sand-200 bg-sand-50 px-1.5 text-[10px] font-medium text-ink-400">⌘K</kbd>
                             </button>
                             <div className="hidden lg:block">
-                                <LanguageToggle pairs={languagePairs} />
+                                <LanguageToggle />
                             </div>
                             <Link href="/travel/plan" className="btn-primary hidden !px-4 !py-2 xl:inline-flex">
                                 Plan a trip
@@ -247,7 +246,7 @@ export default function Navbar({ searchIndex = [], languagePairs = {} }: { searc
                             </div>
                             <div className="flex items-center justify-between border-t border-sand-200 pt-5">
                                 <span className="text-sm text-ink-500">{language === "od" ? "ଭାଷା" : "Language"}</span>
-                                <LanguageToggle pairs={languagePairs} />
+                                <LanguageToggle />
                             </div>
                             <Link href="/travel/plan" className="btn-primary w-full">Plan a trip to Odisha</Link>
                         </nav>
@@ -255,7 +254,7 @@ export default function Navbar({ searchIndex = [], languagePairs = {} }: { searc
                 )}
             </header>
 
-            <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} articles={searchIndex} />
+            <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
         </>
     );
 }

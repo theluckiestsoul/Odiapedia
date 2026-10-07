@@ -210,7 +210,7 @@ export default function AdminExplorer({ summary }: { summary: Summary }) {
                                 <ul className="mt-3 grid max-h-[28rem] grid-cols-1 gap-1 overflow-y-auto sm:grid-cols-2">
                                     {villages.slice(0, 600).map((v) => (
                                         <li key={v.c}>
-                                            <Link href={villageHref(summary.district, v)} className="flex items-baseline justify-between gap-2 rounded-lg px-2.5 py-1.5 text-sm hover:bg-sand-100">
+                                            <Link href={villageHref(summary.district, v)} prefetch={false} className="flex items-baseline justify-between gap-2 rounded-lg px-2.5 py-1.5 text-sm hover:bg-sand-100">
                                                 <span className="truncate text-ink-800">{v.n}{v.u ? <span className="ml-1 text-xs text-ink-400">(uninhabited)</span> : null}</span>
                                                 {v.o && <span lang="or" className="shrink-0 font-odia text-xs text-ink-400">{v.o}</span>}
                                             </Link>

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { loadJson, useLazyJson } from "@/lib/site-data";
 
 const LANGS = [
     { code: "en" as const, name: "English", native: "English" },
@@ -15,12 +16,13 @@ const LANGS = [
  * `pairs` map); otherwise it switches the site's menus to the chosen language, stays on the page and
  * says plainly that this page has no translation yet — never a 404.
  */
-export default function LanguageToggle({ pairs = {} }: { pairs?: Record<string, string> }) {
+export default function LanguageToggle() {
     const { language, setLanguage } = useLanguage();
     const router = useRouter();
     const pathname = usePathname() || "/";
     const [open, setOpen] = useState(false);
     const [notice, setNotice] = useState<null | "od" | "en">(null);
+    const pairs = useLazyJson<Record<string, string>>("/lang-pairs.json", open) ?? {};
     const box = useRef<HTMLDivElement>(null);
 
     const isOdiaPage = /-od$/.test(pathname);
@@ -40,10 +42,11 @@ export default function LanguageToggle({ pairs = {} }: { pairs?: Record<string, 
         return () => document.removeEventListener("click", close);
     }, [open]);
 
-    const choose = (code: "en" | "od") => {
+    const choose = async (code: "en" | "od") => {
         setOpen(false);
         setLanguage(code);
-        const alt = pairs[pathname];
+        const all = await loadJson<Record<string, string>>("/lang-pairs.json").catch(() => ({} as Record<string, string>));
+        const alt = all[pathname];
         const wantOdia = code === "od";
         if (alt && wantOdia !== isOdiaPage) {
             router.push(alt);

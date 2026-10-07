@@ -6,11 +6,13 @@ import { useRouter } from "next/navigation";
 import Icon from "./Icon";
 import { rankSearch, type SearchableEntry } from "@/lib/search";
 import { categoryInfo } from "@/lib/site";
+import { useLazyJson } from "@/lib/site-data";
 
 interface SearchModalProps {
     isOpen: boolean;
     onClose: () => void;
-    articles: SearchableEntry[];
+    /** Optional: entries to search; when omitted the site index is fetched on first open. */
+    articles?: SearchableEntry[];
 }
 
 const QUICK = [
@@ -22,7 +24,9 @@ const QUICK = [
     { href: "/history/odisha-at-a-glance", label: "Odisha at a glance" },
 ];
 
-export default function SearchModal({ isOpen, onClose, articles }: SearchModalProps) {
+export default function SearchModal({ isOpen, onClose, articles: given }: SearchModalProps) {
+    const fetched = useLazyJson<SearchableEntry[]>("/search-index.json", isOpen && !given);
+    const articles = useMemo(() => given ?? fetched ?? [], [given, fetched]);
     const [query, setQuery] = useState("");
     const [active, setActive] = useState(0);
     const inputRef = useRef<HTMLInputElement>(null);

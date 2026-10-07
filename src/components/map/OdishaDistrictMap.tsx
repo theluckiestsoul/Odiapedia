@@ -716,7 +716,7 @@ export default function OdishaDistrictMap({ districts }: { districts: MapDistric
                             ["LGD code", village[0] || "—"],
                         ]} />
                         <div className="flex flex-col gap-2 p-5">
-                            {village[0] && <Link href={`/district/${view.d}/village/${village[0]}-${slugify(village[1])}`} className="btn-primary justify-center">Village details <Icon name="arrow" className="h-4 w-4" /></Link>}
+                            {village[0] && <Link href={`/district/${view.d}/village/${village[0]}-${slugify(village[1])}`} prefetch={false} className="btn-primary justify-center">Village details <Icon name="arrow" className="h-4 w-4" /></Link>}
                             {dl?.blocks.find((b) => b.c === village[3]) && (
                                 <Link href={`/district/${view.d}/block/${dl.blocks.find((b) => b.c === village[3])!.s}`} className="btn-ghost justify-center"><Icon name="list" className="h-4 w-4" /> All villages in the block</Link>
                             )}

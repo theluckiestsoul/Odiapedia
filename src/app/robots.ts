@@ -7,6 +7,9 @@ import { SITE } from "@/lib/site";
  * - Search engines and AI assistants are explicitly welcome: Odiapedia wants to be found and cited.
  *   Review this list quarterly — crawler names change. To opt out of AI *training* while staying in
  *   AI *search*, move GPTBot, ClaudeBot, Google-Extended, Applebot-Extended and CCBot to a disallow rule.
+ * - The ~52,000 village directory pages are noindex and generated on demand; crawling them only cost
+ *   server time (each new deployment empties their cache), so crawlers are asked to skip them.
+ *   Visitors can still open every village page.
  */
 const AI_AND_SEARCH_AGENTS = [
     "Googlebot",
@@ -40,12 +43,12 @@ export default function robots(): MetadataRoute.Robots {
             {
                 userAgent: AI_AND_SEARCH_AGENTS,
                 allow: "/",
-                disallow: ["/api/", "/search"],
+                disallow: ["/api/", "/search", "/district/*/village/"],
             },
             {
                 userAgent: "*",
                 allow: "/",
-                disallow: ["/api/", "/search"],
+                disallow: ["/api/", "/search", "/district/*/village/"],
             },
         ],
         sitemap: [`${SITE.url}/sitemap.xml`, `${SITE.url}/sitemaps/articles.xml`, `${SITE.url}/sitemaps/cinema.xml`, `${SITE.url}/sitemaps/places.xml`],

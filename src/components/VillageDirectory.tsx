@@ -66,7 +66,7 @@ export default function VillageDirectory({ groups, groupLabel }: { groups: DirGr
                             <ul className="mt-3 grid grid-cols-2 gap-x-4 gap-y-1 sm:grid-cols-3 xl:grid-cols-4">
                                 {g.villages.map((v) => (
                                     <li key={v.c}>
-                                        <Link href={v.href} className="block truncate rounded px-1 py-0.5 text-sm text-ink-800 hover:bg-sand-100 hover:text-laterite-700">
+                                        <Link href={v.href} prefetch={false} className="block truncate rounded px-1 py-0.5 text-sm text-ink-800 hover:bg-sand-100 hover:text-laterite-700">
                                             {v.n}{v.u ? <span className="text-xs text-ink-400"> (uninhabited)</span> : null}
                                         </Link>
                                     </li>
