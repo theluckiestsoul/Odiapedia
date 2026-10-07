@@ -17,6 +17,7 @@
 | Guide | What you do |
 |---|---|
 | [TERRAFORM-BY-HAND.md](TERRAFORM-BY-HAND.md) | Write the Terraform yourself, resource by resource, and create the server |
+| [WHY-THESE-TOOLS.md](WHY-THESE-TOOLS.md) | Why each tool was picked, with the alternatives' pros and cons |
 | [KUBERNETES-SETUP.md](KUBERNETES-SETUP.md) | Install Kubernetes on that server with kubeadm, add Calico, Traefik and cert-manager, deploy the site, switch DNS, and look after the cluster |
 
 ## What lives where
