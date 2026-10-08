@@ -128,3 +128,8 @@ export function subdistrictSlug(sd: Pick<AdminSubdistrict, "code" | "name">): st
 export function ulbTypeLabel(t: string): string {
     return t || "Urban local body";
 }
+
+/** URL segment for a gram panchayat: "<LGD code>-<name>". */
+export function gpId(g: Pick<AdminGp, "code" | "name">): string {
+    return `${g.code}-${slugify(g.name)}`;
+}

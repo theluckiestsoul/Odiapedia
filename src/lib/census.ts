@@ -97,3 +97,24 @@ export async function getDistrictPopulations(district: string): Promise<Map<stri
     const raw = await load(district);
     return new Map(Object.entries(raw?.villages ?? {}).map(([c, r]) => [c, r[1]]));
 }
+
+/** Census figures for every village of a district, as raw rows (field order: `FIELDS` in scripts/build-census.py). */
+export async function getVillageRows(district: string): Promise<Record<string, number[]>> {
+    return (await load(district))?.villages ?? {};
+}
+
+/** District rural totals (for comparisons on block and panchayat pages). */
+export async function getDistrictRural(district: string): Promise<VillageCensus | null> {
+    const raw = await load(district);
+    return raw?.districtRural ? shape(raw.districtRural) : null;
+}
+
+/** Add up village rows (for block and gram panchayat totals). Returns null when no village has figures. */
+export function sumVillages(rows: (number[] | undefined)[]): VillageCensus | null {
+    const have = rows.filter((r): r is number[] => !!r);
+    if (!have.length) return null;
+    const t = have[0].map((_, i) => have.reduce((s, r) => s + r[i], 0));
+    return shape(t);
+}
+
+export { shape as shapeCensusRow };

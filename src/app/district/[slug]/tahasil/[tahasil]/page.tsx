@@ -6,6 +6,8 @@ import Icon from "@/components/Icon";
 import VillageDirectory, { type DirGroup } from "@/components/VillageDirectory";
 import { ADMIN_DISTRICTS, ADMIN_SOURCE, getAdminDistrict, subdistrictSlug, villageId } from "@/lib/admin";
 import { districtName } from "@/lib/districts";
+import AreaProfile from "@/components/AreaProfile";
+import { AREA_CENSUS_SOURCE, AREA_CENSUS_SOURCE_URL, getDistrictAreas } from "@/lib/census-areas";
 
 type Props = { params: Promise<{ slug: string; tahasil: string }> };
 
@@ -30,8 +32,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     if (!r) return { title: "Not found", robots: { index: false } };
     const d = districtName(slug) || r.admin.lgdName;
     return {
-        title: `${r.sd.name} Sub-district, ${d} – Villages List`,
-        description: `${r.sd.name} census sub-district of ${d} district, Odisha: ${r.sd.villages} villages grouped by block and gram panchayat, from the Local Government Directory.`,
+        title: [`${r.sd.name} Sub-district, ${d}: Population & Villages`, `${r.sd.name} Sub-district, ${d}`, `${r.sd.name}, ${d}`].find((t) => t.length <= 58) || `${r.sd.name}, ${d}`,
+        description: `${r.sd.name} census sub-district of ${d} district, Odisha: Census 2011 population, literacy and work, its towns, and ${r.sd.villages} villages grouped by block and gram panchayat.`,
         alternates: { canonical: `/district/${slug}/tahasil/${tahasil}` },
     };
 }
@@ -44,6 +46,9 @@ export default async function TahasilPage({ params }: Props) {
     const dName = districtName(slug) || admin.lgdName;
     const villages = admin.villages.filter((v) => v.s === sd.code);
     const blocks = admin.blocks.filter((b) => villages.some((v) => v.b === b.code));
+    const areas = getDistrictAreas(slug);
+    const ac = areas?.subdistricts.find((x) => x.code === sd.code);
+    const towns = (areas?.towns ?? []).filter((t) => t.subdistrict === sd.code);
     const groups: DirGroup[] = [];
     for (const b of blocks) {
         for (const g of b.gps) {
@@ -68,6 +73,29 @@ export default async function TahasilPage({ params }: Props) {
                     </div>
                 </div>
             </header>
+            {ac?.total && ac.total.population > 0 && (
+                <section className="container-page pt-10">
+                    <h2 className="font-display text-3xl font-semibold">People of {sd.name}</h2>
+                    <p className="mt-2 max-w-3xl text-ink-700">
+                        Census 2011 counted {ac.total.population.toLocaleString("en-IN")} people in {sd.name}
+                        {ac.urban && ac.urban.population > 0 ? `, ${ac.urban.population.toLocaleString("en-IN")} of them in towns` : ", all in villages"}.
+                    </p>
+                    <div className="mt-5">
+                        <AreaProfile
+                            census={ac.total}
+                            rural={ac.rural}
+                            urban={ac.urban}
+                            compare={areas?.total ? { label: `${dName} district`, census: areas.total } : undefined}
+                            source={<>Source: <a href={AREA_CENSUS_SOURCE_URL} className="underline" target="_blank" rel="noopener noreferrer">{AREA_CENSUS_SOURCE}</a>.</>}
+                        />
+                    </div>
+                    {towns.length > 0 && (
+                        <p className="mt-5 text-sm text-ink-700">
+                            Towns: {towns.map((t, i) => <span key={t.code}>{i ? ", " : ""}<Link href={`/district/${slug}/town/${t.slug}`} className="font-semibold text-laterite-600 hover:underline">{t.name}</Link> ({t.kind.toLowerCase()}, {t.census.population.toLocaleString("en-IN")})</span>)}.
+                        </p>
+                    )}
+                </section>
+            )}
             <section className="container-page py-10">
                 <h2 className="mb-6 font-display text-3xl font-semibold">Villages of {sd.name}</h2>
                 <VillageDirectory groups={groups} groupLabel="Gram panchayat" />

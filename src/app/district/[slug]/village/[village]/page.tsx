@@ -4,7 +4,9 @@ import { notFound } from "next/navigation";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Icon from "@/components/Icon";
 import JsonLd from "@/components/JsonLd";
-import { ADMIN_SOURCE, getAdminDistrict, subdistrictSlug, villageId } from "@/lib/admin";
+import { ADMIN_SOURCE, getAdminDistrict, subdistrictSlug, villageId, gpId } from "@/lib/admin";
+import { getVillageAmenities } from "@/lib/amenities";
+import { VillageAmenitiesView } from "@/components/Amenities";
 import { districtName } from "@/lib/districts";
 import { SITE } from "@/lib/site";
 import { villageGeo } from "@/lib/village-geo";
@@ -27,7 +29,8 @@ async function load(slug: string, id: string) {
     const gp = block?.gps.find((g) => g.code === v.g);
     const sd = admin.subdistricts.find((s) => s.code === v.s);
     const census = await getVillageCensus(slug, v.c);
-    return { admin, v, block, gp, sd, census };
+    const amenities = await getVillageAmenities(slug, v.c);
+    return { admin, v, block, gp, sd, census, amenities };
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -46,7 +49,7 @@ export default async function VillagePage({ params }: Props) {
     const { slug, village } = await params;
     const r = await load(slug, village);
     if (!r) notFound();
-    const { admin, v, block, gp, sd, census } = r;
+    const { admin, v, block, gp, sd, census, amenities } = r;
     const dName = districtName(slug) || admin.lgdName;
     const siblings = admin.villages.filter((x) => x.g === v.g && x.b === v.b && x.c !== v.c);
     const hasBlock = block && block.code !== "0";
@@ -93,6 +96,8 @@ export default async function VillagePage({ params }: Props) {
                 <div>
                     {census && <VillageCensus name={v.n} census={census.village} districtRural={census.districtRural} districtName={dName} />}
 
+                    {amenities && <VillageAmenitiesView a={amenities} name={v.n} />}
+
                     {g && (
                         <section className="mb-10">
                             <h2 className="font-display text-2xl font-semibold">Map of {v.n}</h2>
@@ -133,7 +138,7 @@ export default async function VillagePage({ params }: Props) {
                             ["District", dName, `/district/${slug}`],
                             ...(sd ? [["Sub-district", sd.name, `/district/${slug}/tahasil/${subdistrictSlug(sd)}`]] : []),
                             ...(hasBlock ? [["Block", block!.name, `/district/${slug}/block/${block!.slug}`]] : []),
-                            ...(hasGp ? [["Gram panchayat", gp!.name + (gp!.odia ? ` (${gp!.odia})` : ""), hasBlock ? `/district/${slug}/block/${block!.slug}` : ""]] : []),
+                            ...(hasGp ? [["Gram panchayat", gp!.name + (gp!.odia ? ` (${gp!.odia})` : ""), `/district/${slug}/gp/${gpId(gp!)}`]] : []),
                             ["Village", v.n, ""],
                         ].map(([k, name, href], i) => (
                             <li key={k} className="flex items-center gap-3" style={{ paddingLeft: `${i * 14}px` }}>
@@ -146,7 +151,7 @@ export default async function VillagePage({ params }: Props) {
 
                     {siblings.length > 0 && (
                         <section className="mt-10">
-                            <h2 className="font-display text-2xl font-semibold">Other villages in {hasGp ? `${gp!.name} gram panchayat` : "the same area"}</h2>
+                            <h2 className="font-display text-2xl font-semibold">Other villages in {hasGp ? <Link href={`/district/${slug}/gp/${gpId(gp!)}`} className="hover:text-laterite-700 hover:underline">{gp!.name} gram panchayat</Link> : "the same area"}</h2>
                             <ul className="mt-4 grid grid-cols-2 gap-x-4 gap-y-1 sm:grid-cols-3">
                                 {siblings.map((s) => (
                                     <li key={s.c}><Link href={`/district/${slug}/village/${villageId(s)}`} className="text-sm text-ink-800 hover:text-laterite-700 hover:underline">{s.n}</Link></li>
@@ -171,6 +176,9 @@ export default async function VillagePage({ params }: Props) {
                             ["Hierarchy as of", "LGD, December 2022"],
                             ["Status", v.u ? "Uninhabited" : "Inhabited"],
                             ...(census && census.village.population > 0 ? [["Population (2011)", census.village.population.toLocaleString("en-IN")]] : []),
+                            ...(amenities && Number(amenities.area) > 0 ? [["Area", `${Number(amenities.area).toLocaleString("en-IN")} hectares`]] : []),
+                            ...(amenities?.pin ? [["PIN code", String(amenities.pin)]] : []),
+                            ...(amenities?.town ? [["Nearest town", `${amenities.town}, ${amenities.townKm} km`]] : []),
                             ["Gram panchayat", hasGp ? gp!.name : "Not mapped"],
                             ["Block", hasBlock ? block!.name : "Not mapped"],
                             ["Sub-district", sd?.name || ""],

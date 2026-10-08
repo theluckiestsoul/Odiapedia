@@ -7,6 +7,11 @@ import { getDistrictBySlug, getAllDistrictSlugs } from "@/lib/districts";
 import { getDistrictById } from "@/data/districts";
 import { getAllTehsilsForDistrict } from "@/lib/tehsils";
 import { getAdminDistrict, ADMIN_SOURCE, subdistrictSlug } from "@/lib/admin";
+import { getDistrictAreas, AREA_CENSUS_SOURCE, AREA_CENSUS_SOURCE_URL } from "@/lib/census-areas";
+import { getVillageRows, sumVillages, CENSUS_SOURCE, CENSUS_SOURCE_URL } from "@/lib/census";
+import AreaProfile from "@/components/AreaProfile";
+import { AreaAmenitiesView } from "@/components/Amenities";
+import { getAmenitiesFor, summariseAmenities } from "@/lib/amenities";
 import { useMDXComponents } from "../../../../mdx-components";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Icon from "@/components/Icon";
@@ -73,6 +78,67 @@ const TAB_GROUPS: { id: string; label: string; icon: IconName; headings: string[
     { id: "land", label: "Land & economy", icon: "leaf", headings: ["geography and climate", "economy"] },
     { id: "people", label: "People", icon: "people", headings: ["notable people"] },
 ];
+
+const DIST_EN = {
+    tab: "People & towns",
+    source: "Source",
+    sourceNote: "Figures are from 2011, the most recent census with published district, town and village figures.",
+    peopleH: (d: string) => `People of ${d} district`,
+    peopleLead: (d: string, pop: string, hh: string, urb: string, lit: string, towns: number) =>
+        `Census 2011 counted ${pop} people in ${hh} households in ${d} district. ${urb} lived in towns, and the literacy rate (age 7 and over) was ${lit}. The census recognised ${towns} towns in the district.`,
+    townsH: (d: string) => `Towns of ${d}`,
+    townsLead: (s: number, c: number) => `${s} statutory town${s === 1 ? "" : "s"} (municipal corporation, municipality, notified area council or industrial township) and ${c} census town${c === 1 ? "" : "s"} — places the census counted as urban but which are governed by gram panchayats.`,
+    town: "Town",
+    type: "Type",
+    pop: "Population",
+    lit: "Literacy",
+    wards: "Wards",
+    kind: (k: string) => k,
+    townsNote: "Population of the town itself; for towns with outgrowths, the town page also gives the figure including them. Ward counts are the census wards of 2011.",
+    sdH: "Census sub-districts: town and country",
+    sd: "Sub-district",
+    rural: "Rural",
+    urban: "Urban",
+    sdNote: "Odisha's census sub-districts are police-station areas, not revenue tahasils.",
+    blocksH: (d: string) => `All blocks in ${d}`,
+    block: "Block",
+    gps: "GPs",
+    villages: "Villages",
+    villagePop: "Village pop.",
+    stShare: "ST share",
+    blocksNote: "GPs and villages: Local Government Directory (Dec 2022). Village population, literacy and Scheduled Tribe share: sum of the block's villages in",
+    notIn2011: "no matching Census 2011 town",
+};
+const DIST_OR: typeof DIST_EN = {
+    tab: "ଲୋକ ଓ ସହର",
+    source: "ଉତ୍ସ",
+    sourceNote: "ତଥ୍ୟ ୨୦୧୧ ଜନଗଣନାର — ଜିଲ୍ଲା, ସହର ଓ ଗ୍ରାମ ସ୍ତରର ପ୍ରକାଶିତ ସର୍ବଶେଷ ଜନଗଣନା।",
+    peopleH: (d: string) => `${d} ଜିଲ୍ଲାର ଲୋକ`,
+    peopleLead: (d: string, pop: string, hh: string, urb: string, lit: string, towns: number) =>
+        `୨୦୧୧ ଜନଗଣନାରେ ${d} ଜିଲ୍ଲାରେ ${hh} ପରିବାରରେ ${pop} ଜଣ ଲୋକ ଗଣାଯାଇଥିଲେ। ${urb} ଲୋକ ସହରରେ ରହୁଥିଲେ ଏବଂ ସାକ୍ଷରତା ହାର (୭ ବର୍ଷରୁ ଅଧିକ) ${lit} ଥିଲା। ଜିଲ୍ଲାରେ ${towns}ଟି ସହର ଥିଲା।`,
+    townsH: (d: string) => `${d}ର ସହର`,
+    townsLead: (s: number, c: number) => `${s}ଟି ବିଧିବଦ୍ଧ ସହର (ମହାନଗର ନିଗମ, ପୌରପାଳିକା, ବିଜ୍ଞାପିତ ଅଞ୍ଚଳ ପରିଷଦ ବା ଶିଳ୍ପ ଟାଉନସିପ୍) ଓ ${c}ଟି ଜନଗଣନା ସହର — ଯାହାକୁ ଜନଗଣନା ସହର ଭାବେ ଗଣିଥିଲା କିନ୍ତୁ ଗ୍ରାମ ପଞ୍ଚାୟତ ଶାସନ କରେ।`,
+    town: "ସହର",
+    type: "ପ୍ରକାର",
+    pop: "ଜନସଂଖ୍ୟା",
+    lit: "ସାକ୍ଷରତା",
+    wards: "ୱାର୍ଡ",
+    kind: (k: string) => ({ "Census town": "ଜନଗଣନା ସହର", "Notified Area Council": "ବିଜ୍ଞାପିତ ଅଞ୍ଚଳ ପରିଷଦ", Municipality: "ପୌରପାଳିକା", "Municipal Corporation": "ମହାନଗର ନିଗମ", "Industrial township": "ଶିଳ୍ପ ଟାଉନସିପ୍" } as Record<string, string>)[k] || k,
+    townsNote: "ସହରର ନିଜ ଜନସଂଖ୍ୟା; ବହିର୍ବୃଦ୍ଧି (outgrowth) ଥିବା ସହର ପାଇଁ ସହର ପୃଷ୍ଠାରେ ତାହା ସହିତ ସଂଖ୍ୟା ମଧ୍ୟ ଅଛି। ୱାର୍ଡ ସଂଖ୍ୟା ୨୦୧୧ର।",
+    sdH: "ଜନଗଣନା ଉପ-ଜିଲ୍ଲା: ସହର ଓ ଗାଁ",
+    sd: "ଉପ-ଜିଲ୍ଲା",
+    rural: "ଗ୍ରାମାଞ୍ଚଳ",
+    urban: "ସହରାଞ୍ଚଳ",
+    sdNote: "ଓଡ଼ିଶାର ଜନଗଣନା ଉପ-ଜିଲ୍ଲାଗୁଡ଼ିକ ଥାନା ଅଞ୍ଚଳ, ରାଜସ୍ୱ ତହସିଲ ନୁହେଁ।",
+    blocksH: (d: string) => `${d}ର ସମସ୍ତ ବ୍ଲକ`,
+    block: "ବ୍ଲକ",
+    gps: "ପଞ୍ଚାୟତ",
+    villages: "ଗ୍ରାମ",
+    villagePop: "ଗ୍ରାମ ଜନସଂଖ୍ୟା",
+    stShare: "ଅ.ଜ.ଜା. ଅଂଶ",
+    blocksNote: "ପଞ୍ଚାୟତ ଓ ଗ୍ରାମ: ସ୍ଥାନୀୟ ସରକାର ନିର୍ଦ୍ଦେଶିକା (ଡିସେମ୍ବର ୨୦୨୨)। ଗ୍ରାମ ଜନସଂଖ୍ୟା, ସାକ୍ଷରତା ଓ ଅନୁସୂଚିତ ଜନଜାତି ଅଂଶ: ବ୍ଲକର ଗ୍ରାମଗୁଡ଼ିକର ସମଷ୍ଟି —",
+    notIn2011: "୨୦୧୧ ଜନଗଣନାରେ ମେଳ ଖାଉଥିବା ସହର ନାହିଁ",
+};
 
 interface Section {
     heading: string;
@@ -178,6 +244,93 @@ export default async function DistrictPage({ params }: PageProps) {
         );
     });
 
+    const areas = getDistrictAreas(baseSlug);
+    const localName = isOdia ? districtData?.name_od || nameEn : nameEn;
+    const T = isOdia ? DIST_OR : DIST_EN;
+    const fmt = (n: number) => n.toLocaleString("en-IN");
+    const pc = (a: number, b: number) => (b > 0 ? `${((a / b) * 100).toFixed(1)}%` : "–");
+    const sourceLine = (
+        <>
+            {T.source}: <a href={AREA_CENSUS_SOURCE_URL} className="underline" target="_blank" rel="noopener noreferrer">{AREA_CENSUS_SOURCE}</a>. {T.sourceNote}
+        </>
+    );
+    const vrowsAll = await getVillageRows(baseSlug);
+    const districtAmen = admin ? summariseAmenities(await getAmenitiesFor(baseSlug, admin.villages.map((v) => v.c).filter(Boolean)), (a) => !!vrowsAll[String(a.code)] && vrowsAll[String(a.code)][1] > 0) : null;
+    if (areas?.total) {
+        const c = areas.total;
+        const statutory = areas.towns.filter((t) => t.kind !== "Census town");
+        const censusTowns = areas.towns.filter((t) => t.kind === "Census town");
+        tabs.splice(1, 0, { id: "population", label: T.tab, icon: "people" });
+        panels.splice(
+            1,
+            0,
+            <div className="space-y-12">
+                <section>
+                    <h2 className="font-display text-3xl font-semibold">{T.peopleH(localName)}</h2>
+                    <p className="mt-3 max-w-3xl text-ink-700">
+                        {T.peopleLead(localName, fmt(c.population), fmt(c.households), areas.urban ? pc(areas.urban.population, c.population) : "–", c.literacyRate != null ? `${c.literacyRate.toFixed(1)}%` : "–", areas.towns.length)}
+                    </p>
+                    <div className="mt-6">
+                        <AreaProfile census={c} rural={areas.rural} urban={areas.urban} areaKm2={districtData?.area_sq_km} lang={isOdia ? "or" : "en"} source={sourceLine} />
+                    </div>
+                </section>
+                {districtAmen && districtAmen.villages > 0 && !isOdia && <AreaAmenitiesView s={districtAmen} name={nameEn} unit="district" />}
+                {areas.towns.length > 0 && (
+                    <section>
+                        <h2 className="font-display text-2xl font-semibold">{T.townsH(localName)}</h2>
+                        <p className="mt-2 max-w-3xl text-sm text-ink-600">{T.townsLead(statutory.length, censusTowns.length)}</p>
+                        <div className="mt-4 overflow-x-auto rounded-2xl border border-sand-200 bg-white">
+                            <table className="w-full min-w-[36rem] text-sm">
+                                <thead className="bg-sand-100 text-left text-xs uppercase tracking-wider text-ink-500">
+                                    <tr><th className="px-4 py-2.5">{T.town}</th><th className="px-4 py-2.5">{T.type}</th><th className="px-4 py-2.5 text-right">{T.pop}</th><th className="px-4 py-2.5 text-right">{T.lit}</th><th className="px-4 py-2.5 text-right">{T.wards}</th></tr>
+                                </thead>
+                                <tbody className="divide-y divide-sand-100">
+                                    {areas.towns.map((t) => (
+                                        <tr key={t.code}>
+                                            <td className="px-4 py-2"><Link href={`/district/${baseSlug}/town/${t.slug}`} className="font-semibold text-laterite-600 hover:underline">{t.name}</Link></td>
+                                            <td className="px-4 py-2 text-ink-600">{T.kind(t.kind)}</td>
+                                            <td className="px-4 py-2 text-right tabular-nums">{fmt(t.census.population)}</td>
+                                            <td className="px-4 py-2 text-right tabular-nums">{t.census.literacyRate != null ? `${t.census.literacyRate.toFixed(1)}%` : "–"}</td>
+                                            <td className="px-4 py-2 text-right tabular-nums text-ink-600">{t.wards ?? "–"}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                        <p className="mt-2 text-xs text-ink-500">{T.townsNote}</p>
+                    </section>
+                )}
+                {areas.subdistricts.length > 0 && admin && (
+                    <section>
+                        <h2 className="font-display text-2xl font-semibold">{T.sdH}</h2>
+                        <div className="mt-4 overflow-x-auto rounded-2xl border border-sand-200 bg-white">
+                            <table className="w-full min-w-[34rem] text-sm">
+                                <thead className="bg-sand-100 text-left text-xs uppercase tracking-wider text-ink-500">
+                                    <tr><th className="px-4 py-2.5">{T.sd}</th><th className="px-4 py-2.5 text-right">{T.pop}</th><th className="px-4 py-2.5 text-right">{T.rural}</th><th className="px-4 py-2.5 text-right">{T.urban}</th><th className="px-4 py-2.5 text-right">{T.lit}</th></tr>
+                                </thead>
+                                <tbody className="divide-y divide-sand-100">
+                                    {areas.subdistricts.map((s) => {
+                                        const sd = admin.subdistricts.find((x) => x.code === s.code);
+                                        return (
+                                            <tr key={s.code}>
+                                                <td className="px-4 py-2">{sd ? <Link href={`/district/${baseSlug}/tahasil/${subdistrictSlug(sd)}`} className="font-semibold text-laterite-600 hover:underline">{s.name}</Link> : s.name}</td>
+                                                <td className="px-4 py-2 text-right tabular-nums">{s.total ? fmt(s.total.population) : "–"}</td>
+                                                <td className="px-4 py-2 text-right tabular-nums text-ink-600">{s.rural ? fmt(s.rural.population) : "–"}</td>
+                                                <td className="px-4 py-2 text-right tabular-nums text-ink-600">{s.urban ? fmt(s.urban.population) : "–"}</td>
+                                                <td className="px-4 py-2 text-right tabular-nums">{s.total?.literacyRate != null ? `${s.total.literacyRate.toFixed(1)}%` : "–"}</td>
+                                            </tr>
+                                        );
+                                    })}
+                                </tbody>
+                            </table>
+                        </div>
+                        <p className="mt-2 text-xs text-ink-500">{T.sdNote}</p>
+                    </section>
+                )}
+            </div>
+        );
+    }
+
     // Administration tab (Government data)
     if (admin) {
         const summary = {
@@ -188,8 +341,10 @@ export default async function DistrictPage({ params }: PageProps) {
             ulbs: admin.ulbs.map((u) => ({ code: u.code, name: u.name, type: u.type })),
         };
         const realBlocks = admin.blocks.filter((b) => b.code !== "0");
+        const vrows = vrowsAll;
+        const blockStats = realBlocks.map((b) => ({ b, c: sumVillages(admin.villages.filter((v) => v.b === b.code).map((v) => vrows[v.c])) }));
         const gpCount = realBlocks.reduce((n, b) => n + b.gps.filter((g) => g.code !== "0").length, 0);
-        tabs.push({ id: "administration", label: "Blocks & villages", icon: "list" });
+        tabs.push({ id: "administration", label: isOdia ? "ବ୍ଲକ ଓ ଗ୍ରାମ" : "Blocks & villages", icon: "list" });
         panels.push(
             <div>
                 <div className="mb-6 flex flex-col justify-between gap-4 md:flex-row md:items-end">
@@ -218,13 +373,28 @@ export default async function DistrictPage({ params }: PageProps) {
 
                 {/* Crawlable index of blocks and tahasils */}
                 <div className="mt-10 grid gap-8 md:grid-cols-2">
-                    <div>
-                        <h3 className="font-display text-xl font-semibold">All blocks in {nameEn}</h3>
-                        <ul className="mt-3 grid grid-cols-2 gap-x-4 gap-y-1.5 text-sm">
-                            {realBlocks.map((b) => (
-                                <li key={b.code}><Link href={`/district/${baseSlug}/block/${b.slug}`} className="text-laterite-600 hover:underline">{b.name}</Link> <span className="text-ink-400">({b.villages})</span></li>
-                            ))}
-                        </ul>
+                    <div className="md:col-span-2">
+                        <h3 className="font-display text-xl font-semibold">{T.blocksH(localName)}</h3>
+                        <div className="mt-3 overflow-x-auto rounded-2xl border border-sand-200 bg-white">
+                            <table className="w-full min-w-[40rem] text-sm">
+                                <thead className="bg-sand-100 text-left text-xs uppercase tracking-wider text-ink-500">
+                                    <tr><th className="px-4 py-2.5">{T.block}</th><th className="px-4 py-2.5 text-right">{T.gps}</th><th className="px-4 py-2.5 text-right">{T.villages}</th><th className="px-4 py-2.5 text-right">{T.villagePop}</th><th className="px-4 py-2.5 text-right">{T.lit}</th><th className="px-4 py-2.5 text-right">{T.stShare}</th></tr>
+                                </thead>
+                                <tbody className="divide-y divide-sand-100">
+                                    {blockStats.map(({ b, c }) => (
+                                        <tr key={b.code}>
+                                            <td className="px-4 py-2"><Link href={`/district/${baseSlug}/block/${b.slug}`} className="font-semibold text-laterite-600 hover:underline">{b.name}</Link></td>
+                                            <td className="px-4 py-2 text-right tabular-nums">{b.gps.filter((g) => g.code !== "0").length}</td>
+                                            <td className="px-4 py-2 text-right tabular-nums">{fmt(b.villages)}</td>
+                                            <td className="px-4 py-2 text-right tabular-nums">{c ? fmt(c.population) : "–"}</td>
+                                            <td className="px-4 py-2 text-right tabular-nums">{c?.literacyRate != null ? `${c.literacyRate.toFixed(1)}%` : "–"}</td>
+                                            <td className="px-4 py-2 text-right tabular-nums text-ink-600">{c ? pc(c.st, c.population) : "–"}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                        <p className="mt-2 text-xs text-ink-500">{T.blocksNote} <a href={CENSUS_SOURCE_URL} className="underline" target="_blank" rel="noopener noreferrer">{CENSUS_SOURCE}</a>.</p>
                     </div>
                     <div>
                         <h3 className="font-display text-xl font-semibold">All census sub-districts</h3>
@@ -237,7 +407,10 @@ export default async function DistrictPage({ params }: PageProps) {
                             <>
                                 <h3 className="mt-6 font-display text-xl font-semibold">Towns (urban local bodies)</h3>
                                 <ul className="mt-3 space-y-1 text-sm text-ink-700">
-                                    {admin.ulbs.map((u) => <li key={u.code}>{u.name} <span className="text-ink-400">· {u.type || "Urban local body"}</span></li>)}
+                                    {admin.ulbs.map((u) => {
+                                        const t = areas?.towns.find((x) => x.code === u.census2011);
+                                        return <li key={u.code}>{t ? <Link href={`/district/${baseSlug}/town/${t.slug}`} className="text-laterite-600 hover:underline">{u.name}</Link> : u.name} <span className="text-ink-400">· {u.type || "Urban local body"}{t ? "" : ` · ${T.notIn2011}`}</span></li>;
+                                    })}
                                 </ul>
                             </>
                         )}
@@ -273,6 +446,8 @@ export default async function DistrictPage({ params }: PageProps) {
         { k: "Population (2011)", v: districtContent.population || (districtData ? districtData.population.toLocaleString("en-IN") : undefined) },
         { k: "Area", v: districtContent.area || (districtData ? `${districtData.area_sq_km.toLocaleString("en-IN")} sq km` : undefined) },
         { k: "Villages", v: admin ? admin.villages.length.toLocaleString("en-IN") : undefined },
+        { k: "Literacy (2011)", v: getDistrictAreas(baseSlug)?.total?.literacyRate?.toFixed(1)?.concat("%") },
+        { k: "Towns (2011)", v: getDistrictAreas(baseSlug)?.towns.length ? String(getDistrictAreas(baseSlug)!.towns.length) : undefined },
     ].filter((x) => x.v);
 
     const jsonLd = {
@@ -317,7 +492,7 @@ export default async function DistrictPage({ params }: PageProps) {
                     {districtData && !isOdia && <p lang="or" className="mt-2 font-odia-serif text-2xl text-laterite-600">{districtData.name_od} ଜିଲ୍ଲା</p>}
                     <p className="mt-5 max-w-3xl text-lg leading-relaxed text-ink-600 md:text-xl" lang={isOdia ? "or" : "en"}>{districtContent.description}</p>
                     {stats.length > 0 && (
-                        <dl className="mt-8 grid max-w-3xl grid-cols-2 gap-3 md:grid-cols-4">
+                        <dl className="mt-8 grid max-w-5xl grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-6">
                             {stats.map((x) => (
                                 <div key={x.k} className="rounded-2xl border border-sand-200 bg-white/80 p-4">
                                     <dt className="text-xs uppercase tracking-wider text-ink-500">{x.k}</dt>

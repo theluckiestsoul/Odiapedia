@@ -1,3 +1,4 @@
+import { getDistrictAreas } from "@/lib/census-areas";
 import { festivalYears } from "@/data/festival-dates";
 import { MetadataRoute } from "next";
 import { getAllArticlesMetadata, type ArticleMeta } from "@/lib/mdx";
@@ -112,13 +113,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.6,
     }));
 
-    // Block and tahasil directory pages (village pages are in /sitemaps/villages-<district>.xml)
+    // Block, sub-district and town pages (village and gram panchayat pages are in /sitemaps/villages-<district>.xml)
     const adminPages: MetadataRoute.Sitemap = [];
     for (const d of ADMIN_DISTRICTS) {
         const a = await getAdminDistrict(d);
         if (!a) continue;
         for (const b of a.blocks) if (b.code !== "0") adminPages.push({ url: `${base}/district/${d}/block/${b.slug}`, changeFrequency: "yearly", priority: 0.5 });
         for (const s of a.subdistricts) adminPages.push({ url: `${base}/district/${d}/tahasil/${subdistrictSlug(s)}`, changeFrequency: "yearly", priority: 0.4 });
+        for (const t of getDistrictAreas(d)?.towns ?? []) adminPages.push({ url: `${base}/district/${d}/town/${t.slug}`, changeFrequency: "yearly", priority: 0.5 });
     }
 
     const cinemaPages: MetadataRoute.Sitemap = [

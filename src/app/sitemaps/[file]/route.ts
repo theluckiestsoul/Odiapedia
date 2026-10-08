@@ -1,6 +1,6 @@
 import sitemap from "@/app/sitemap";
 import { SITE } from "@/lib/site";
-import { ADMIN_DISTRICTS, getAdminDistrict, villageId } from "@/lib/admin";
+import { ADMIN_DISTRICTS, getAdminDistrict, villageId, gpId } from "@/lib/admin";
 
 /**
  * Section sitemaps (/sitemaps/articles.xml, /sitemaps/cinema.xml, /sitemaps/places.xml).
@@ -8,7 +8,8 @@ import { ADMIN_DISTRICTS, getAdminDistrict, villageId } from "@/lib/admin";
  * Pages report can be filtered per sitemap to see which part of the site is (not) indexed.
  *
  * Village pages (~52,000) are too many for one sitemap (limit 50,000 URLs), so /sitemaps/villages.xml
- * is a sitemap index pointing to one sitemap per district: /sitemaps/villages-<district>.xml.
+ * is a sitemap index pointing to one sitemap per district: /sitemaps/villages-<district>.xml
+ * (which also lists the district's gram panchayat pages).
  */
 const SECTIONS: Record<string, (path: string) => boolean> = {
     "cinema.xml": (p) => p.startsWith("/cinema"),
@@ -44,7 +45,8 @@ export async function GET(_req: Request, { params }: { params: Promise<{ file: s
         const body = [
             '<?xml version="1.0" encoding="UTF-8"?>',
             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
-            ...a.villages.map((v) => `<url><loc>${SITE.url}/district/${vm[1]}/village/${esc(villageId(v))}</loc></url>`),
+            ...a.blocks.filter((b) => b.code !== "0").flatMap((b) => b.gps.filter((g) => g.code !== "0").map((g) => `<url><loc>${SITE.url}/district/${vm[1]}/gp/${esc(gpId(g))}</loc></url>`)),
+            ...a.villages.filter((v) => v.c).map((v) => `<url><loc>${SITE.url}/district/${vm[1]}/village/${esc(villageId(v))}</loc></url>`),
             "</urlset>",
         ].join("\n");
         return new Response(body, { headers: XML_HEADERS });

@@ -5,11 +5,15 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import Icon from "@/components/Icon";
 import JsonLd from "@/components/JsonLd";
 import VillageDirectory, { type DirGroup } from "@/components/VillageDirectory";
-import { ADMIN_DISTRICTS, ADMIN_SOURCE, getAdminDistrict, subdistrictSlug, villageId } from "@/lib/admin";
+import { ADMIN_DISTRICTS, ADMIN_SOURCE, getAdminDistrict, subdistrictSlug, villageId, gpId } from "@/lib/admin";
+import AreaProfile from "@/components/AreaProfile";
+import { AreaAmenitiesView } from "@/components/Amenities";
+import { getAmenitiesFor, summariseAmenities, getTownDirectory } from "@/lib/amenities";
+import { getDistrictAreas } from "@/lib/census-areas";
 import { getDistrictById } from "@/data/districts";
 import { districtName } from "@/lib/districts";
 import { SITE } from "@/lib/site";
-import { CENSUS_SOURCE, getDistrictPopulations } from "@/lib/census";
+import { CENSUS_SOURCE, CENSUS_SOURCE_URL, getDistrictPopulations, getVillageRows, getDistrictRural, sumVillages } from "@/lib/census";
 
 type Props = { params: Promise<{ slug: string; block: string }> };
 
@@ -35,8 +39,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const d = districtName(slug) || r.admin.lgdName;
     const gps = r.block.gps.filter((g) => g.code !== "0").length;
     return {
-        title: `${r.block.name} Block, ${d}: Villages & Panchayats`,
-        description: `${r.block.name} community development block in ${d} district, Odisha: ${gps} gram panchayats and ${r.block.villages} villages, with the full list of panchayats and villages from the Local Government Directory.`,
+        title: [`${r.block.name} Block, ${d}: Panchayats, Villages & Population`, `${r.block.name} Block, ${d}: Villages & Population`, `${r.block.name} Block, ${d}`].find((t) => t.length <= 58),
+        description: `${r.block.name} block in ${d} district, Odisha: ${gps} gram panchayats and ${r.block.villages} villages — population, literacy, schools, health centres and the full list of panchayats and villages.`,
         alternates: { canonical: `/district/${slug}/block/${block}` },
     };
 }
@@ -62,6 +66,16 @@ export default async function BlockPage({ params }: Props) {
     const pops = await getDistrictPopulations(slug);
     const counted = villages.filter((v) => pops.has(v.c));
     const ruralPop = counted.reduce((t, v) => t + (pops.get(v.c) || 0), 0);
+    const rows = await getVillageRows(slug);
+    const census = sumVillages(villages.map((v) => rows[v.c]));
+    const districtRural = await getDistrictRural(slug);
+    const amen = summariseAmenities(await getAmenitiesFor(slug, villages.map((v) => v.c)), (a) => !!rows[String(a.code)] && rows[String(a.code)][1] > 0);
+    const gpStats = gps.map((g) => {
+        const vs = villages.filter((v) => v.g === g.code);
+        return { g, n: vs.length, c: sumVillages(vs.map((v) => rows[v.c])) };
+    });
+    const norm = (x: string) => x.toLowerCase().replace(/[^a-z]/g, "");
+    const towns = (getDistrictAreas(slug)?.towns ?? []).filter((t) => norm(getTownDirectory(t.code)?.block || "") === norm(block.name));
     const largest = [...counted].sort((a, b) => (pops.get(b.c) || 0) - (pops.get(a.c) || 0)).slice(0, 10);
 
     return (
@@ -110,6 +124,57 @@ export default async function BlockPage({ params }: Props) {
                     )}
                 </div>
             </header>
+
+            {census && census.population > 0 && (
+                <section className="container-page pt-10">
+                    <h2 className="font-display text-3xl font-semibold">People and work in {block.name} block</h2>
+                    <p className="mt-2 max-w-3xl text-sm text-ink-600">The block&apos;s villages added together (towns are counted separately by the census).</p>
+                    <div className="mt-5">
+                        <AreaProfile
+                            census={census}
+                            compare={districtRural ? { label: `rural ${dName}`, census: districtRural } : undefined}
+                            source={<>Source: <a href={CENSUS_SOURCE_URL} className="underline" target="_blank" rel="noopener noreferrer">{CENSUS_SOURCE}</a>, summed over the block&apos;s villages (2011).</>}
+                        />
+                    </div>
+                </section>
+            )}
+
+            <section className="container-page pt-12">
+                <h2 className="font-display text-3xl font-semibold">Gram panchayats of {block.name}</h2>
+                <div className="mt-4 overflow-x-auto rounded-2xl border border-sand-200 bg-white">
+                    <table className="w-full min-w-[34rem] text-sm">
+                        <thead className="bg-sand-100 text-left text-xs uppercase tracking-wider text-ink-500">
+                            <tr><th className="px-4 py-2.5">Gram panchayat</th><th className="px-4 py-2.5 text-right">Villages</th><th className="px-4 py-2.5 text-right">Population (2011)</th><th className="px-4 py-2.5 text-right">Literacy</th></tr>
+                        </thead>
+                        <tbody className="divide-y divide-sand-100">
+                            {gpStats.map(({ g, n, c }) => (
+                                <tr key={g.code}>
+                                    <td className="px-4 py-2"><Link prefetch={false} href={`/district/${slug}/gp/${gpId(g)}`} className="font-semibold text-laterite-600 hover:underline">{g.name}</Link>{g.odia && <span lang="or" className="ml-2 font-odia text-ink-500">{g.odia}</span>}</td>
+                                    <td className="px-4 py-2 text-right tabular-nums">{n}</td>
+                                    <td className="px-4 py-2 text-right tabular-nums">{c ? c.population.toLocaleString("en-IN") : "–"}</td>
+                                    <td className="px-4 py-2 text-right tabular-nums">{c?.literacyRate != null ? `${c.literacyRate.toFixed(1)}%` : "–"}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            {towns.length > 0 && (
+                <section className="container-page pt-12">
+                    <h2 className="font-display text-2xl font-semibold">Towns in {block.name} block</h2>
+                    <ul className="mt-4 flex flex-wrap gap-2">
+                        {towns.map((t) => <li key={t.code}><Link href={`/district/${slug}/town/${t.slug}`} className="chip !bg-white !px-3.5 !py-1.5 !text-sm hover:border-laterite-300">{t.name} <span className="text-ink-400">· {t.kind} · {t.census.population.toLocaleString("en-IN")}</span></Link></li>)}
+                    </ul>
+                    <p className="mt-2 text-xs text-ink-500">Towns placed in this block by the Census 2011 Town Directory.</p>
+                </section>
+            )}
+
+            {amen.villages > 0 && (
+                <div className="container-page pt-12">
+                    <AreaAmenitiesView s={amen} name={block.name} unit="block" />
+                </div>
+            )}
 
             {largest.length > 0 && (
                 <section className="container-page pt-10">
