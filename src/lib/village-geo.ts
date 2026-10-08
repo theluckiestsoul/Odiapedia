@@ -50,6 +50,14 @@ export function bbox(d: string): [number, number, number, number] {
     return [x0, y0, x1, y1];
 }
 
+const G = geo as { bounds: number[]; lat0: number; scale: number; pad: number };
+/** Map units → [lat, lng] (inverse of proj() in scripts/build-map-drilldown.py). */
+export function toLatLng(x: number, y: number): [number, number] {
+    const [minx, , , maxy] = G.bounds;
+    const kx = Math.cos((G.lat0 * Math.PI) / 180);
+    return [maxy - (y / 100 - G.pad) / G.scale, (x / 100 - G.pad) / (kx * G.scale) + minx];
+}
+
 export function villageGeo(district: string, code: string) {
     const rows = districtVillages(district);
     const row = rows?.find((r) => r[0] === code);
@@ -65,5 +73,6 @@ export function villageGeo(district: string, code: string) {
     const around = rows.filter((r) => r !== row && r[8] > view[0] - 400 && r[8] < view[0] + view[2] + 400 && r[9] > view[1] - 400 && r[9] < view[1] + view[3] + 400);
     const dist = (r: VillageRow) => Math.hypot(r[8] - row[8], r[9] - row[9]);
     const nearest = [...around].sort((a, b) => dist(a) - dist(b)).slice(0, 8);
-    return { row, view, around, nearest, area: areaKm2(row[7]), kmPerUnit: M_PER_UNIT / 1000 };
+    const [lat, lng] = toLatLng(row[8], row[9]);
+    return { row, view, around, nearest, area: areaKm2(row[7]), kmPerUnit: M_PER_UNIT / 1000, lat, lng };
 }

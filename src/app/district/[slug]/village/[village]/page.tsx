@@ -77,6 +77,7 @@ export default async function VillagePage({ params }: Props) {
                     alternateName: [v.o, v.on].filter(Boolean),
                     containedInPlace: { "@type": "AdministrativeArea", name: hasBlock ? `${block!.name} block` : `${dName} district` },
                     identifier: { "@type": "PropertyValue", propertyID: "LGD village code", value: v.c },
+                    ...(g ? { geo: { "@type": "GeoCoordinates", latitude: Number(g.lat.toFixed(5)), longitude: Number(g.lng.toFixed(5)) } } : {}),
                 }}
             />
             <header className="relative overflow-hidden border-b border-sand-200 bg-sand-100">
@@ -99,7 +100,7 @@ export default async function VillagePage({ params }: Props) {
                 <div>
                     {census && <VillageCensus name={v.n} census={census.village} districtRural={census.districtRural} districtName={dName} />}
 
-                    {amenities && <VillageAmenitiesView a={amenities} name={v.n} />}
+                    {amenities && <VillageAmenitiesView a={amenities} name={v.n} district={dName} lat={g?.lat} lng={g?.lng} />}
 
                     {g && (
                         <section className="mb-10">
@@ -194,7 +195,9 @@ export default async function VillagePage({ params }: Props) {
                             </div>
                         ))}
                     </dl>
+                    {g && <a href={`https://www.google.com/maps/search/?api=1&query=${g.lat.toFixed(5)},${g.lng.toFixed(5)}`} target="_blank" rel="noopener noreferrer" className="btn-primary w-full"><Icon name="map" className="h-4 w-4" />Open in Google Maps <Icon name="external" className="h-3.5 w-3.5" /></a>}
                     <a href={osm} target="_blank" rel="noopener noreferrer" className="btn-ghost w-full"><Icon name="map" className="h-4 w-4" />Find on OpenStreetMap <Icon name="external" className="h-3.5 w-3.5" /></a>
+                    {g && <p className="text-xs text-ink-500">Map pin: centre of the village&apos;s Census 2011 boundary ({g.lat.toFixed(4)}°N, {g.lng.toFixed(4)}°E), approximate.</p>}
                     <p className="text-xs leading-relaxed text-ink-500">Source: {ADMIN_SOURCE}. Names follow the official English spelling; local spellings may differ.</p>
                 </aside>
             </div>

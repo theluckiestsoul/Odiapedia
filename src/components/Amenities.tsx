@@ -48,23 +48,44 @@ function SourceNote({ extra }: { extra?: string }) {
     );
 }
 
+/** Google Maps search for a kind of place around the village (no API key; opens Google Maps). */
+export function mapsSearch(what: string, place: { name: string; district: string; lat?: number; lng?: number }): string {
+    if (place.lat != null && place.lng != null) return `https://www.google.com/maps/search/${encodeURIComponent(what)}/@${place.lat.toFixed(5)},${place.lng.toFixed(5)},14z`;
+    return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${what} near ${place.name}, ${place.district}, Odisha`)}`;
+}
+
+function Find({ href, label }: { href: string; label: string }) {
+    return (
+        <a href={href} target="_blank" rel="noopener noreferrer nofollow" className="ml-2 inline-flex items-center gap-0.5 whitespace-nowrap text-xs font-semibold text-laterite-600 hover:underline" aria-label={label}>
+            Map ↗
+        </a>
+    );
+}
+
 /** Facilities of one village from the Census 2011 Village Directory. */
-export function VillageAmenitiesView({ a, name }: { a: VillageAmenities; name: string }) {
+export function VillageAmenitiesView({ a, name, district, lat, lng }: { a: VillageAmenities; name: string; district: string; lat?: number; lng?: number }) {
+    const place = { name, district, lat, lng };
+    const clean = (x: unknown) => String(x || "").replace(/\d+$/, "").trim();
+    const find = (what: string, at?: unknown) => (
+        <Find href={at && clean(at) ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${what} ${clean(at)}, ${district}, Odisha`)}` : mapsSearch(what, place)} label={`Find ${what} near ${name} on Google Maps`} />
+    );
     const r = (k: string) => {
         const x = reach(a[k]);
         return x ? <Status ok={x.ok}>{x.text}</Status> : null;
     };
     const school = (label: string, g: string, p: string, near: string, at?: string): [string, ReactNode] => {
         const n = Number(a[g]) + Number(a[p]);
-        if (n > 0) return [label, <Status key={label} ok>{n} in the village ({Number(a[g])} government, {Number(a[p])} private)</Status>];
+        const what = label.toLowerCase().replace("senior secondary", "higher secondary school");
+        if (n > 0) return [label, <span key={label}><Status ok>{n} in the village ({Number(a[g])} government, {Number(a[p])} private)</Status>{find(what)}</span>];
         const x = typeof a[near] === "string" && REACH[a[near] as string];
-        return [label, x ? <Status key={label} ok={false}>Nearest {x}{at && a[at] ? ` (${a[at]})` : ""}</Status> : null];
+        return [label, x ? <span key={label}><Status ok={false}>Nearest {x}{at && clean(a[at]) ? ` (${clean(a[at])})` : ""}</Status>{find(what, at ? a[at] : undefined)}</span> : null];
     };
     const count = (label: string, k: string, near?: string): [string, ReactNode] => {
         const n = Number(a[k]);
-        if (n > 0) return [label, <Status key={label} ok>{n} in the village</Status>];
+        const what = label.toLowerCase();
+        if (n > 0) return [label, <span key={label}><Status ok>{n} in the village</Status>{find(what)}</span>];
         const x = near && typeof a[near] === "string" ? REACH[a[near] as string] : "";
-        return [label, x ? <Status key={label} ok={false}>Nearest {x}</Status> : null];
+        return [label, x ? <span key={label}><Status ok={false}>Nearest {x}</Status>{find(what)}</span> : null];
     };
     const water = [
         ["tapTreated", "treated tap water"],
@@ -115,7 +136,7 @@ export function VillageAmenitiesView({ a, name }: { a: VillageAmenities; name: s
                         school("Senior secondary", "seniorG", "seniorP", "seniorNear", "seniorAt"),
                         [
                             "Degree college",
-                            Number(a.college) > 0 ? <Status key="c" ok>{Number(a.college)} in the village</Status> : a.collegeNear && REACH[a.collegeNear as string] ? <Status key="c" ok={false}>Nearest {REACH[a.collegeNear as string]}{a.collegeAt ? ` (${a.collegeAt})` : ""}</Status> : null,
+                            Number(a.college) > 0 ? <span key="c"><Status ok>{Number(a.college)} in the village</Status>{find("degree college")}</span> : a.collegeNear && REACH[a.collegeNear as string] ? <span key="c"><Status ok={false}>Nearest {REACH[a.collegeNear as string]}{clean(a.collegeAt) ? ` (${clean(a.collegeAt)})` : ""}</Status>{find("degree college", a.collegeAt)}</span> : null,
                         ],
                         ["ITI / vocational", Number(a.iti) > 0 ? <Status key="i" ok>{Number(a.iti)} in the village</Status> : null],
                     ]}
@@ -227,6 +248,9 @@ export function VillageAmenitiesView({ a, name }: { a: VillageAmenities; name: s
                     )}
                 </div>
             )}
+            <p className="mt-4 text-xs text-ink-500">
+                The census lists how many schools and health centres a village has, not their names. &ldquo;Map ↗&rdquo; opens a Google Maps search around {name} so you can see the actual institutions, with their names and addresses as listed on Google.
+            </p>
             <SourceNote />
         </section>
     );
