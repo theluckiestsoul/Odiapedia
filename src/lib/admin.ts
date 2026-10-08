@@ -14,6 +14,8 @@ export interface AdminVillage {
     n: string;
     /** Odia name, when LGD has one */
     o?: string;
+    /** Official (LGD / Census 2011) spelling, when the name was corrected via src/data/name-corrections.json */
+    on?: string;
     /** sub-district code, block code, gram panchayat code ("0" = not mapped) */
     s: string;
     b: string;

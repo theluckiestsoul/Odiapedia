@@ -1,0 +1,6 @@
+{
+    "_about": "Spelling corrections to official village names, applied by scripts/apply-name-corrections.py to the admin and map data. 'official' keeps the Local Government Directory / Census 2011 spelling, which pages still show.",
+    "villages": {
+        "393842": { "district": "balasore", "official": "Dardia", "name": "Daradia", "note": "Local spelling reported by the Odiapedia editor, October 2026" }
+    }
+}

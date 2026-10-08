@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Icon from "@/components/Icon";
 import JsonLd from "@/components/JsonLd";
@@ -50,6 +50,8 @@ export default async function VillagePage({ params }: Props) {
     const r = await load(slug, village);
     if (!r) notFound();
     const { admin, v, block, gp, sd, census, amenities } = r;
+    // Old or misspelt URLs (e.g. after a name correction) go to the current one
+    if (village !== villageId(v)) permanentRedirect(`/district/${slug}/village/${villageId(v)}`);
     const dName = districtName(slug) || admin.lgdName;
     const siblings = admin.villages.filter((x) => x.g === v.g && x.b === v.b && x.c !== v.c);
     const hasBlock = block && block.code !== "0";
@@ -72,7 +74,7 @@ export default async function VillagePage({ params }: Props) {
                     "@context": "https://schema.org",
                     "@type": "Place",
                     name: v.n,
-                    alternateName: v.o,
+                    alternateName: [v.o, v.on].filter(Boolean),
                     containedInPlace: { "@type": "AdministrativeArea", name: hasBlock ? `${block!.name} block` : `${dName} district` },
                     identifier: { "@type": "PropertyValue", propertyID: "LGD village code", value: v.c },
                 }}
@@ -84,6 +86,7 @@ export default async function VillagePage({ params }: Props) {
                     <p className="eyebrow mt-6"><Icon name="pin" className="h-4 w-4" />Village{v.u ? " · uninhabited" : ""}</p>
                     <h1 className="mt-3 font-display text-4xl font-semibold md:text-5xl">{v.n}</h1>
                     {v.o && <p lang="or" className="mt-2 font-odia-serif text-2xl text-laterite-600">{v.o}</p>}
+                    {v.on && <p className="mt-2 text-sm text-ink-500">Spelt &ldquo;{v.on}&rdquo; in the Local Government Directory and Census 2011 records.</p>}
                     <p className="mt-4 max-w-3xl text-lg text-ink-600">
                         {v.n} is {v.u ? "an uninhabited (revenue) village" : "a village"}
                         {hasGp ? ` in ${gp!.name} gram panchayat` : ""}
@@ -173,6 +176,7 @@ export default async function VillagePage({ params }: Props) {
                     <dl className="overflow-hidden rounded-2xl border border-sand-200 bg-white text-sm">
                         {[
                             ["LGD village code", v.c],
+                            ...(v.on ? [["Official spelling", v.on]] : []),
                             ["Hierarchy as of", "LGD, December 2022"],
                             ["Status", v.u ? "Uninhabited" : "Inhabited"],
                             ...(census && census.village.population > 0 ? [["Population (2011)", census.village.population.toLocaleString("en-IN")]] : []),
