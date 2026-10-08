@@ -129,8 +129,11 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className={`${fraunces.variable} ${geistSans.variable} ${notoSansOriya.variable} ${notoSerifOriya.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`${fraunces.variable} ${geistSans.variable} ${notoSansOriya.variable} ${notoSerifOriya.variable}`}>
       <head>
+        {/* Odia (-od, /odia) and Hindi (-hi) pages: set the document language before first paint (the root
+            layout is shared, so the server HTML says "en"; page content also carries its own lang attribute). */}
+        <script dangerouslySetInnerHTML={{ __html: "(function(){var p=location.pathname.replace(/\\/$/,'');var l=/-od$/.test(p)||p==='/odia'||p.indexOf('/odia/')===0?'or':/-hi$/.test(p)?'hi':'';if(l)document.documentElement.lang=l})()" }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

@@ -69,7 +69,7 @@ export async function generateMetadata({
     }
 
     return {
-        title: `${lesson.meta.title} – Learn Odia Lesson ${lesson.meta.lesson}`,
+        title: lesson.meta.title.length > 45 ? lesson.meta.title : `${lesson.meta.title} – Odia Quick Reference`,
         description: lesson.meta.description,
         alternates: {
             canonical: `/learn/${slug}`,
@@ -106,7 +106,7 @@ export default async function LessonPage({
                     inLanguage: "en",
                     teaches: "Odia language",
                     educationalLevel: "Beginner",
-                    learningResourceType: "Lesson",
+                    learningResourceType: "Reference",
                     isAccessibleForFree: true,
                     isPartOf: { "@type": "Course", name: "Learn Odia", url: `${SITE.url}/learn`, provider: { "@id": `${SITE.url}/#organization` } },
                 }}
@@ -115,11 +115,20 @@ export default async function LessonPage({
                 title={lesson.meta.title}
                 description={lesson.meta.description}
                 icon="pen"
-                eyebrow={`Lesson ${lesson.meta.lesson}`}
-                crumbs={[{ name: "Learn Odia", href: "/learn" }, { name: `Lesson ${lesson.meta.lesson}`, href: `/learn/${slug}` }]}
+                eyebrow="Quick reference"
+                crumbs={[{ name: "Learn Odia", href: "/learn" }, { name: lesson.meta.title, href: `/learn/${slug}` }]}
             />
 
             <article className="container-page py-12">
+                <aside className="mx-auto mb-8 max-w-[46rem] space-y-3 rounded-2xl border border-sand-200 bg-sand-50 p-5 text-sm text-ink-700">
+                    <p>
+                        This is a <strong>quick-reference page</strong>, not part of the step-by-step course. To practise with exercises and saved progress, take the{" "}
+                        <Link href="/learn/course" className="font-semibold text-laterite-600 underline">interactive Odia course</Link>.
+                    </p>
+                    <p>
+                        <strong>Spelling key.</strong> Reference pages spell Odia in scholarly transliteration: ā ī ū are long vowels, ṭ ḍ ṇ are retroflex (tongue curled back), c is ଚ (as in &ldquo;church&rdquo;), ch is ଛ (the same sound with a puff of air), ś and ṣ are &ldquo;sh&rdquo;, and ṁ marks a nasal vowel. The interactive course uses a simpler spelling without accents: ଚ = ch, ଛ = chh, ଆ = a.
+                    </p>
+                </aside>
                 <div className="article-body mx-auto max-w-[46rem]">
                     <MDXRemote
                         source={content}
@@ -152,14 +161,14 @@ export default async function LessonPage({
             <nav aria-label="Lessons" className="border-t border-sand-200 bg-sand-50 py-8">
                 <div className="mx-auto flex max-w-[46rem] items-center justify-between px-4">
                     {lesson.meta.prevLesson ? (
-                        <Link href={`/learn/${lesson.meta.prevLesson}`} className="btn-ghost"><Icon name="arrowLeft" className="h-4 w-4" />Previous lesson</Link>
+                        <Link href={`/learn/${lesson.meta.prevLesson}`} className="btn-ghost"><Icon name="arrowLeft" className="h-4 w-4" />Previous reference</Link>
                     ) : (
-                        <Link href="/learn" className="btn-ghost"><Icon name="arrowLeft" className="h-4 w-4" />All lessons</Link>
+                        <Link href="/learn" className="btn-ghost"><Icon name="arrowLeft" className="h-4 w-4" />Learn Odia</Link>
                     )}
                     {lesson.meta.nextLesson ? (
-                        <Link href={`/learn/${lesson.meta.nextLesson}`} className="btn-primary">Next lesson<Icon name="arrow" className="h-4 w-4" /></Link>
+                        <Link href={`/learn/${lesson.meta.nextLesson}`} className="btn-primary">Next reference<Icon name="arrow" className="h-4 w-4" /></Link>
                     ) : (
-                        <Link href="/language/odia-language" className="btn-primary">About the Odia language<Icon name="arrow" className="h-4 w-4" /></Link>
+                        <Link href="/learn/course" className="btn-primary">Start the interactive course<Icon name="arrow" className="h-4 w-4" /></Link>
                     )}
                 </div>
             </nav>

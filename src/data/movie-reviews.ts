@@ -4,7 +4,9 @@ export interface MovieReview {
     title: string;
     titleOdia: string;
     poster: string;
-    rating: number; // 0 to 5
+    rating: number; // 0 to 5: the reviewer's overall judgement
+    /** Date the review was published on Odiapedia. */
+    published: string;
     releaseYear: string;
     director: string;
     genres: string[];
@@ -24,6 +26,7 @@ export const movieReviews: MovieReview[] = [
         title: "Daman",
         titleOdia: "ଦମନ",
         poster: "/images/cinema/daman.png",
+        published: "16 February 2026",
         rating: 5,
         releaseYear: "2022",
         director: "Vishal Mourya & Debi Prasad Lenka",
@@ -42,6 +45,7 @@ export const movieReviews: MovieReview[] = [
         title: "Pratikshya",
         titleOdia: "ପ୍ରତୀକ୍ଷା",
         poster: "/images/cinema/pratikshya.png",
+        published: "16 February 2026",
         rating: 4.5,
         releaseYear: "2022",
         director: "Anupam Patnaik",
@@ -60,6 +64,7 @@ export const movieReviews: MovieReview[] = [
         title: "Pushkara",
         titleOdia: "ପୁଷ୍କର",
         poster: "/images/cinema/pushkara.png",
+        published: "16 February 2026",
         rating: 4,
         releaseYear: "2023",
         director: "Subhransu Das",

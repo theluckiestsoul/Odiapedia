@@ -1,13 +1,14 @@
 
 import { Metadata } from "next";
 import Link from "next/link";
+import { FILMS } from "@/lib/cinema";
 import ReviewCard from "@/components/cinema/ReviewCard";
 import { movieReviews } from "@/data/movie-reviews";
 
 export const metadata: Metadata = {
     alternates: { canonical: "/culture/cinema/reviews" },
-    title: "Latest Odia Movie Reviews - Ollywood",
-    description: "Read the latest reviews of Odia movies in English and Odia. Honest ratings and verdicts for Ollywood's newest releases.",
+    title: "Selected Odia Film Reviews",
+    description: "Odiapedia's reviews of selected Odia films (2022–2023) in English and Odia, with the reviewer, date and rating scale.",
 };
 
 export default function MovieReviewsPage() {
@@ -20,13 +21,13 @@ export default function MovieReviewsPage() {
 
                 <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
                     <h1 className="text-4xl md:text-6xl font-bold font-display mb-4 tracking-tight">
-                        Latest Movie Reviews
+                        Selected Film Reviews
                     </h1>
                     <p className="text-2xl text-laterite-300 odia-text mb-6">
-                        ନୂଆ ଓଡ଼ିଆ ସିନେମା ସମୀକ୍ଷା
+                        ବଛା ଓଡ଼ିଆ ସିନେମା ସମୀକ୍ଷା
                     </p>
                     <p className="text-slate-300 max-w-2xl mx-auto text-lg">
-                        Discover the best of Ollywood. Unbiased reviews, bilingual content, and honest verdicts.
+                        Reviews are the opinion of the Odiapedia editorial team, published in February 2026. Each rating is the reviewer&apos;s overall judgement out of five. This is a small selection, not a list of the newest releases.
                     </p>
                 </div>
             </section>
@@ -36,7 +37,7 @@ export default function MovieReviewsPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {movieReviews.map((review) => (
                         <div key={review.id} className="h-full">
-                            <ReviewCard review={review} />
+                            <ReviewCard review={review} filmHref={FILMS.some((f) => f.id === `${review.id}-${review.releaseYear}`) ? `/cinema/film/${review.id}-${review.releaseYear}` : undefined} />
                         </div>
                     ))}
                 </div>

@@ -63,7 +63,7 @@ export const odishaDistricts: District[] = [
     {
         id: 'jagatsinghpur',
         name_en: 'Jagatsinghpur',
-        name_od: 'ଯାଜପୁର',
+        name_od: 'ଜଗତସିଂହପୁର',
         headquarters: 'Jagatsinghpur',
         population: 1136971,
         area_sq_km: 1668,
@@ -135,7 +135,7 @@ export const odishaDistricts: District[] = [
     {
         id: 'angul',
         name_en: 'Angul',
-        name_od: 'ଆନ୍ଗୁଳ',
+        name_od: 'ଅନୁଗୋଳ',
         headquarters: 'Angul',
         population: 1273821,
         area_sq_km: 6375,
@@ -149,7 +149,7 @@ export const odishaDistricts: District[] = [
     {
         id: 'bolangir',
         name_en: 'Bolangir',
-        name_od: 'ବଲାଙ୍ଗିର',
+        name_od: 'ବଲାଙ୍ଗୀର',
         headquarters: 'Bolangir',
         population: 1648997,
         area_sq_km: 6575,
@@ -177,7 +177,7 @@ export const odishaDistricts: District[] = [
     {
         id: 'deogarh',
         name_en: 'Deogarh',
-        name_od: 'ଦେଓଗଡ଼',
+        name_od: 'ଦେବଗଡ଼',
         headquarters: 'Deogarh',
         population: 312520,
         area_sq_km: 2940,
@@ -219,7 +219,7 @@ export const odishaDistricts: District[] = [
     {
         id: 'sonepur',
         name_en: 'Sonepur',
-        name_od: 'ସୋନପୁର',
+        name_od: 'ସୁବର୍ଣ୍ଣପୁର',
         headquarters: 'Sonepur',
         population: 610183,
         area_sq_km: 2337,
@@ -263,7 +263,7 @@ export const odishaDistricts: District[] = [
     {
         id: 'keonjhar',
         name_en: 'Keonjhar',
-        name_od: 'କେଉଁଝର',
+        name_od: 'କେନ୍ଦୁଝର',
         headquarters: 'Keonjhar',
         population: 1802777,
         area_sq_km: 8303,
@@ -349,7 +349,7 @@ export const odishaDistricts: District[] = [
     {
         id: 'kalahandi',
         name_en: 'Kalahandi',
-        name_od: 'କାଳାହାଣ୍ଡି',
+        name_od: 'କଳାହାଣ୍ଡି',
         headquarters: 'Bhawanipatna',
         population: 1576869,
         area_sq_km: 7920,
@@ -419,7 +419,7 @@ export const odishaDistricts: District[] = [
     {
         id: 'nuapada',
         name_en: 'Nuapada',
-        name_od: 'ନୁଆପଡ଼ା',
+        name_od: 'ନୂଆପଡ଼ା',
         headquarters: 'Nuapada',
         population: 610382,
         area_sq_km: 3852,

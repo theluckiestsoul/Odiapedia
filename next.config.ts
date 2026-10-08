@@ -1,5 +1,9 @@
 import type { NextConfig } from "next";
 import createMDX from "@next/mdx";
+import { readFileSync } from "node:fs";
+
+// Old cinema URLs from a mis-parsed 2022–2023 film table (people imported as film titles), kept alive as redirects.
+const cinemaRedirects: { source: string; destination: string }[] = JSON.parse(readFileSync("./src/data/cinema/redirects.json", "utf8"));
 
 const nextConfig: NextConfig = {
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
@@ -26,6 +30,7 @@ const nextConfig: NextConfig = {
       { source: "/learning", destination: "/learn", permanent: true },
       { source: "/learning/:slug", destination: "/learn/:slug", permanent: true },
       { source: "/panjika/today", destination: "/calendar", permanent: true },
+      ...cinemaRedirects.map((r) => ({ ...r, permanent: true })),
     ];
   },
 

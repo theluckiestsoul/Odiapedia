@@ -1,4 +1,4 @@
-import { FESTIVAL_DATES } from "@/data/festival-dates";
+import { FESTIVAL_DATES, STATUS_LABEL } from "@/data/festival-dates";
 import { SITE } from "@/lib/site";
 
 /** iCalendar feed of Odia festival dates: subscribe once in Google, Apple or Outlook Calendar. */
@@ -34,7 +34,7 @@ export function GET() {
             `DTSTART;VALUE=DATE:${day(f.start)}`,
             `DTEND;VALUE=DATE:${next(f.end || f.start)}`,
             `SUMMARY:${esc(`${f.name} (${f.odia})`)}`,
-            `DESCRIPTION:${esc(`${f.note ? f.note + ". " : ""}Source: ${f.source}.${f.href ? ` ${SITE.url}${f.href}` : ""}`)}`,
+            `DESCRIPTION:${esc(`${f.note ? f.note + ". " : ""}${f.status ? STATUS_LABEL[f.status] + ". " : ""}Source: ${f.source}${f.url ? ` (${f.url})` : ""}.${f.href ? ` ${SITE.url}${f.href}` : ""}`)}`,
             ...(f.href ? [`URL:${SITE.url}${f.href}`] : []),
             "TRANSP:TRANSPARENT",
             "END:VEVENT",

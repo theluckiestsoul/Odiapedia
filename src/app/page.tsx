@@ -105,6 +105,11 @@ export default function Home() {
               <input id="home-q" name="q" type="search" placeholder="Search Rath Yatra, pakhala, Konark, Odia alphabet…" className="min-w-0 flex-1 bg-transparent py-2 text-base text-ink-900 outline-none placeholder:text-ink-400" />
               <button type="submit" className="btn-primary !px-5">Search</button>
             </form>
+            <div className="mt-5 flex flex-wrap gap-3">
+              <Link href="/learn/course" className="btn-primary"><Icon name="pen" className="h-4 w-4" />Start learning Odia</Link>
+              <Link href="/districts" className="btn-ghost"><Icon name="pin" className="h-4 w-4" />Explore the 30 districts</Link>
+              <Link href="/travel/plan" className="btn-ghost"><Icon name="suitcase" className="h-4 w-4" />Plan a trip</Link>
+            </div>
             <div className="mt-4 flex flex-wrap items-center gap-2 text-sm">
               <span className="text-ink-500">Popular:</span>
               {[
@@ -262,7 +267,7 @@ export default function Home() {
         <div className="container-page grid items-center gap-12 lg:grid-cols-2">
           <div>
             <p className="eyebrow !text-saffron-300"><Icon name="star" className="h-4 w-4" />Odia cinema · Ollywood</p>
-            <h2 className="mt-3 font-display text-4xl font-semibold !text-white md:text-5xl">Every Odia film, from {YEARS[0]} to today</h2>
+            <h2 className="mt-3 font-display text-4xl font-semibold !text-white md:text-5xl">Odia films from {YEARS[0]} to today</h2>
             <p className="mt-4 max-w-xl text-lg leading-relaxed text-ink-200">
               {FILMS.length.toLocaleString("en-IN")} films with their directors, cast and music, plus filmographies of {PEOPLE.length} actors and film-makers. Browse by year, search by title or start with the first Odia talkie.
             </p>
@@ -293,13 +298,14 @@ export default function Home() {
         <div className="container-page grid items-center gap-12 lg:grid-cols-2">
           <div>
             <p className="eyebrow"><Icon name="pen" className="h-4 w-4" />Learn Odia</p>
-            <h2 className="mt-3 font-display text-4xl font-semibold md:text-5xl">Read your first Odia letters today.</h2>
+            <h2 className="mt-3 font-display text-4xl font-semibold md:text-5xl">Speak your first Odia today.</h2>
             <p className="mt-4 max-w-lg text-lg text-ink-600">
-              Odia is one of India&apos;s classical languages, with a rounded script shaped by centuries of writing on palm leaves. Our free lessons start from the alphabet and work up to everyday phrases.
+              Odia is one of India&apos;s classical languages, with a rounded script shaped by centuries of writing on palm leaves. Our free interactive course starts with greetings and builds up to everyday conversation, with practice, review and a phrasebook. No sign-up needed.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/learn/alphabet" className="btn-primary">Start with the alphabet <Icon name="arrow" className="h-4 w-4" /></Link>
-              <Link href="/language/odia-language" className="btn-ghost">About the Odia language</Link>
+              <Link href="/learn/course" className="btn-primary">Start the course <Icon name="arrow" className="h-4 w-4" /></Link>
+              <Link href="/learn/alphabet" className="btn-ghost">Alphabet reference</Link>
+              <Link href="/language/dictionary" className="btn-ghost">Dictionary</Link>
               <Link href="/library" className="btn-ghost"><Icon name="book" className="h-4 w-4" />Free Odia books (PDF)</Link>
             </div>
           </div>

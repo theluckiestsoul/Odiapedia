@@ -109,7 +109,7 @@ export function ReviewHub() {
                 </ul>
             </section>
             <div className="flex flex-wrap gap-3 text-xs text-ink-500">
-                <span>Progress is saved in this browser only.</span>
+                <span>Progress is saved in this browser only: it stays on this device and is lost if you clear site data. <a href="/about/privacy-policy" className="underline">Privacy</a></span>
                 <button type="button" onClick={() => { const b = new Blob([progress.export()], { type: "application/json" }); const a = document.createElement("a"); a.href = URL.createObjectURL(b); a.download = "odiapedia-learn-progress.json"; a.click(); }} className="underline hover:text-laterite-600">Download a backup</button>
                 <button type="button" onClick={() => { if (window.confirm("Reset all learning progress in this browser?")) progress.reset(); }} className="underline hover:text-rose-600">Reset progress</button>
             </div>

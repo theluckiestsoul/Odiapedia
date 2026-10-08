@@ -1,0 +1,346 @@
+[
+{
+"source": "/cinema/film/abhishek-swain-2022",
+"destination": "/cinema/people/abhishek-swain"
+},
+{
+"source": "/cinema/film/anand-kumar-2022",
+"destination": "/cinema/people/anand-kumar"
+},
+{
+"source": "/cinema/film/anupam-patnaik-2022",
+"destination": "/cinema/people/anupam-patnaik"
+},
+{
+"source": "/cinema/film/appu-kanungo-2023",
+"destination": "/cinema/people/appu-kanungo"
+},
+{
+"source": "/cinema/film/ashok-pati-2022",
+"destination": "/cinema/people/ashok-pati"
+},
+{
+"source": "/cinema/film/ashok-pati-2023",
+"destination": "/cinema/people/ashok-pati"
+},
+{
+"source": "/cinema/film/ashwini-gadanayak-2022",
+"destination": "/cinema/people/ashwini-gadanayak"
+},
+{
+"source": "/cinema/film/ashwini-tripathy-2023",
+"destination": "/cinema/year/2023"
+},
+{
+"source": "/cinema/film/asit-pati-2022",
+"destination": "/cinema/people/asit-pati"
+},
+{
+"source": "/cinema/film/aswin-tripathy-2022",
+"destination": "/cinema/year/2022"
+},
+{
+"source": "/cinema/film/bobbili-kiran-2022",
+"destination": "/cinema/people/bobbili-kiran"
+},
+{
+"source": "/cinema/film/chandan-jena-2022",
+"destination": "/cinema/year/2022"
+},
+{
+"source": "/cinema/film/chinmay-mishra-2022",
+"destination": "/cinema/people/chinmay-mishra"
+},
+{
+"source": "/cinema/film/debajyoti-patra-2022",
+"destination": "/cinema/people/debajyoti-patra"
+},
+{
+"source": "/cinema/film/debi-prasad-lenka-vishal-mourya-2022",
+"destination": "/cinema/year/2022"
+},
+{
+"source": "/cinema/film/dilip-panda-2022",
+"destination": "/cinema/people/dilip-panda"
+},
+{
+"source": "/cinema/film/gopal-patnaik-2022",
+"destination": "/cinema/people/gopal-patnaik"
+},
+{
+"source": "/cinema/film/himanshu-chandi-parija-2022",
+"destination": "/cinema/year/2022"
+},
+{
+"source": "/cinema/film/jyotee-dass-2022",
+"destination": "/cinema/year/2022"
+},
+{
+"source": "/cinema/film/lubun-tubun-2022",
+"destination": "/cinema/year/2022"
+},
+{
+"source": "/cinema/film/manmohan-mohapatra-2022",
+"destination": "/cinema/people/manmohan-mohapatra"
+},
+{
+"source": "/cinema/film/mrityunjaya-sahoo-2022",
+"destination": "/cinema/people/mrityunjaya-sahoo"
+},
+{
+"source": "/cinema/film/murali-krishna-2022",
+"destination": "/cinema/people/murali-krishna"
+},
+{
+"source": "/cinema/film/narayan-pati-2022",
+"destination": "/cinema/people/narayan-pati"
+},
+{
+"source": "/cinema/film/niranjana-behera-2022",
+"destination": "/cinema/year/2022"
+},
+{
+"source": "/cinema/film/pinaki-srichandan-2023",
+"destination": "/cinema/people/pinaki-srichandan"
+},
+{
+"source": "/cinema/film/pinu-nayak-2022",
+"destination": "/cinema/people/pinu-nayak"
+},
+{
+"source": "/cinema/film/pinu-nayak-2023",
+"destination": "/cinema/people/pinu-nayak"
+},
+{
+"source": "/cinema/film/prithvi-raj-pattnaik-2022",
+"destination": "/cinema/people/prithvi-raj-pattnaik"
+},
+{
+"source": "/cinema/film/prithvi-raj-pattnaik-2023",
+"destination": "/cinema/people/prithvi-raj-pattnaik"
+},
+{
+"source": "/cinema/film/rajeeb-mohanty-2022",
+"destination": "/cinema/year/2022"
+},
+{
+"source": "/cinema/film/rajendra-mohanta-2022",
+"destination": "/cinema/people/rajendra-mohanta"
+},
+{
+"source": "/cinema/film/ramesh-rout-2022",
+"destination": "/cinema/people/ramesh-rout"
+},
+{
+"source": "/cinema/film/rasesh-mohanty-2023",
+"destination": "/cinema/people/rasesh-mohanty"
+},
+{
+"source": "/cinema/film/samraj-2022",
+"destination": "/cinema/year/2022"
+},
+{
+"source": "/cinema/film/sanjay-nayak-2022",
+"destination": "/cinema/people/sanjay-nayak"
+},
+{
+"source": "/cinema/film/sudhanshu-mohan-sahoo-2022",
+"destination": "/cinema/year/2022"
+},
+{
+"source": "/cinema/film/sudhanshu-mohan-sahoo-2023",
+"destination": "/cinema/year/2023"
+},
+{
+"source": "/cinema/film/susant-mani-2022",
+"destination": "/cinema/year/2022"
+},
+{
+"source": "/cinema/film/tapas-sargharia-2022",
+"destination": "/cinema/people/tapas-sargharia"
+},
+{
+"source": "/cinema/film/tapas-sargharia-2023",
+"destination": "/cinema/people/tapas-sargharia"
+},
+{
+"source": "/cinema/film/tripati-sahoo-2022",
+"destination": "/cinema/people/tripati-sahoo"
+},
+{
+"source": "/cinema/people/aao-nxt",
+"destination": "/cinema/people"
+},
+{
+"source": "/cinema/people/akshaya-das",
+"destination": "/cinema/people"
+},
+{
+"source": "/cinema/people/amara-muzik-odia",
+"destination": "/cinema/people"
+},
+{
+"source": "/cinema/people/ananda-kumar",
+"destination": "/cinema/people"
+},
+{
+"source": "/cinema/people/ashwini-ray-mahapatra",
+"destination": "/cinema/people"
+},
+{
+"source": "/cinema/people/aswini-gadanayak",
+"destination": "/cinema/people"
+},
+{
+"source": "/cinema/people/aurosikha-mishra",
+"destination": "/cinema/people"
+},
+{
+"source": "/cinema/people/avisekh-rath",
+"destination": "/cinema/people"
+},
+{
+"source": "/cinema/people/bijayanee-mishra",
+"destination": "/cinema/people"
+},
+{
+"source": "/cinema/people/bulu-das",
+"destination": "/cinema/people"
+},
+{
+"source": "/cinema/people/chinku-samal",
+"destination": "/cinema/people"
+},
+{
+"source": "/cinema/people/chinmaya-mishra",
+"destination": "/cinema/people"
+},
+{
+"source": "/cinema/people/diana-sahu",
+"destination": "/cinema/people"
+},
+{
+"source": "/cinema/people/disco-ready",
+"destination": "/cinema/people"
+},
+{
+"source": "/cinema/people/disney-hotstar",
+"destination": "/cinema/people"
+},
+{
+"source": "/cinema/people/gopal-pattnaik",
+"destination": "/cinema/people"
+},
+{
+"source": "/cinema/people/gupteswar-creatives",
+"destination": "/cinema/people"
+},
+{
+"source": "/cinema/people/jharana-samal",
+"destination": "/cinema/people"
+},
+{
+"source": "/cinema/people/kalki-krishna",
+"destination": "/cinema/people"
+},
+{
+"source": "/cinema/people/kanccha-lannka",
+"destination": "/cinema/people"
+},
+{
+"source": "/cinema/people/kaustubh-dreamworks",
+"destination": "/cinema/people"
+},
+{
+"source": "/cinema/people/kshirod-pattanayak",
+"destination": "/cinema/people"
+},
+{
+"source": "/cinema/people/lal-bahadur-mallik",
+"destination": "/cinema/people"
+},
+{
+"source": "/cinema/people/lubun-sen",
+"destination": "/cinema/people"
+},
+{
+"source": "/cinema/people/mrityunjay-sahoo",
+"destination": "/cinema/people"
+},
+{
+"source": "/cinema/people/nilamani-saho",
+"destination": "/cinema/people"
+},
+{
+"source": "/cinema/people/pravati-sahoo",
+"destination": "/cinema/people"
+},
+{
+"source": "/cinema/people/prithviraj-pattnaik",
+"destination": "/cinema/people"
+},
+{
+"source": "/cinema/people/rajveer-shankar-deo",
+"destination": "/cinema/people"
+},
+{
+"source": "/cinema/people/range-royal-cinelabs",
+"destination": "/cinema/people"
+},
+{
+"source": "/cinema/people/rhea-resham-bari",
+"destination": "/cinema/people"
+},
+{
+"source": "/cinema/people/rr-events",
+"destination": "/cinema/people"
+},
+{
+"source": "/cinema/people/sabita-satapathy",
+"destination": "/cinema/people"
+},
+{
+"source": "/cinema/people/satwik-mishra",
+"destination": "/cinema/people"
+},
+{
+"source": "/cinema/people/shaki-baral",
+"destination": "/cinema/people"
+},
+{
+"source": "/cinema/people/shona-dwivedi",
+"destination": "/cinema/people"
+},
+{
+"source": "/cinema/people/shuvendu-padhy",
+"destination": "/cinema/people"
+},
+{
+"source": "/cinema/people/suryamayee-mishra",
+"destination": "/cinema/people"
+},
+{
+"source": "/cinema/people/tathya-realestate",
+"destination": "/cinema/people"
+},
+{
+"source": "/cinema/people/tribhuvan-panda",
+"destination": "/cinema/people"
+},
+{
+"source": "/cinema/people/tripati-sahu",
+"destination": "/cinema/people"
+},
+{
+"source": "/cinema/people/udit-bhanu",
+"destination": "/cinema/people"
+},
+{
+"source": "/cinema/people/vaibhav-gohil",
+"destination": "/cinema/people"
+},
+{
+"source": "/cinema/people/white-motion-picturez",
+"destination": "/cinema/people"
+}
+]

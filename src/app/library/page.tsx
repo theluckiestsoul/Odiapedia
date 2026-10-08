@@ -43,7 +43,7 @@ export default function LibraryPage() {
             >
                 <p className="flex max-w-xl items-start gap-2 text-sm text-ink-600">
                     <Icon name="shield" className="mt-0.5 h-4 w-4 shrink-0 text-chilika-600" />
-                    Every work is public domain in India, an open government publication or openly licensed. We link to the original digital copy and never host pirated books.
+                    Every work listed is in the public domain in India, with the reason shown on each entry (the author’s death year, or a government work more than 60 years old). We link to the original digital copy and never host pirated books.
                 </p>
             </PageHero>
 
@@ -56,9 +56,9 @@ export default function LibraryPage() {
                     <div>
                         <h2 className="font-display text-2xl font-semibold">Suggest a book</h2>
                         <p className="mt-2 text-ink-600">
-                            Know a public-domain Odia book or an official Odisha publication we should add? Send us the link. We only list works that are legally free to share — for example, authors who died more than 60 years ago, or government publications.
+                            Know a public-domain Odia book or an official Odisha publication we should add? Send us the link. We only list works with a verifiable rights basis: the author died more than 60 years ago, a government work was first published more than 60 years ago (Copyright Act, 1957, section 28), the work carries an open licence, or the rights-holder has given written permission. Being a government publication is not enough on its own — recent official publications are still under copyright.
                         </p>
-                        <a href={`mailto:${SITE.email}?subject=${encodeURIComponent("Library suggestion")}&body=${encodeURIComponent("Title:\nAuthor:\nLink to the PDF:\nWhy it is free to share (public domain / government / licence):\n")}`} className="btn-primary mt-5"><Icon name="mail" className="h-4 w-4" />Suggest a book</a>
+                        <a href={`mailto:${SITE.email}?subject=${encodeURIComponent("Library suggestion")}&body=${encodeURIComponent("Title:\nAuthor:\nLink to the PDF:\nRights basis (author death year / government work over 60 years old / open licence / permission):\n")}`} className="btn-primary mt-5"><Icon name="mail" className="h-4 w-4" />Suggest a book</a>
                     </div>
                     <div>
                         <h2 className="font-display text-2xl font-semibold">About copyright</h2>

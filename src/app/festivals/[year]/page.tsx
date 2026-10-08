@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Icon from "@/components/Icon";
 import JsonLd from "@/components/JsonLd";
-import { festivalYears, festivalsInYear, longDate, monthName } from "@/data/festival-dates";
+import { festivalYears, festivalsInYear, longDate, monthName, STATUS_LABEL } from "@/data/festival-dates";
 import { SITE } from "@/lib/site";
 
 type Props = { params: Promise<{ year: string }> };
@@ -63,7 +63,7 @@ export default async function FestivalYearPage({ params }: Props) {
                     <h1 className="mt-3 font-display text-4xl font-semibold md:text-5xl">Odisha festivals {year}</h1>
                     <p lang="or" className="mt-2 font-odia-serif text-2xl text-laterite-600">ଓଡ଼ିଶାର ପର୍ବପର୍ବାଣି {year}</p>
                     <p className="mt-4 max-w-3xl text-lg text-ink-600">
-                        Dates of {list.length} Odia festivals and holy days in {year}. Every date shows where it comes from; festival dates follow the lunar calendar and can differ by a day between panjikas, so check locally for temple timings.
+                        Dates of {list.length} Odia festivals and holy days in {year}. Each date is marked confirmed (official holiday list or published panjika for Odisha), reported (news or a local notice) or usual schedule (not yet announced), and links to its source where one is online. Lunar dates can differ by a day between panjikas; check locally for temple timings.
                     </p>
                     <div className="mt-6 flex flex-wrap gap-3">
                         <a href={`https://calendar.google.com/calendar/r?cid=${encodeURIComponent(`webcal://${SITE.url.replace(/^https?:\/\//, "")}/festivals.ics`)}`} target="_blank" rel="noopener noreferrer" className="btn-primary"><Icon name="calendar" className="h-4 w-4" />Add to Google Calendar</a>
@@ -90,7 +90,10 @@ export default async function FestivalYearPage({ params }: Props) {
                                             <span lang="or" className="ml-2 font-odia text-base font-normal text-ink-600">{f.odia}</span>
                                         </p>
                                         {f.note && <p className="text-sm text-ink-600">{f.note}</p>}
-                                        <p className="mt-1 text-xs text-ink-500">Source: {f.source}</p>
+                                        <p className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-ink-500">
+                                            {f.status && <span className={`rounded-full px-2 py-0.5 font-semibold ${f.status === "confirmed" || f.status === "fixed" ? "bg-sand-100 text-chilika-700" : "bg-saffron-100 text-ink-700"}`}>{STATUS_LABEL[f.status]}</span>}
+                                            <span>Source: {f.url ? <a href={f.url} target="_blank" rel="noopener noreferrer" className="underline hover:text-laterite-600">{f.source}</a> : f.source}</span>
+                                        </p>
                                     </div>
                                 </li>
                             ))}

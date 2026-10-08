@@ -122,7 +122,7 @@ export default async function VillagePage({ params }: Props) {
                                     ))}
                                 </p>
                             )}
-                            <p className="mt-2 text-xs text-ink-500">Boundaries: DataMeet, Indian Village Boundaries (Census 2011), © DataMeet contributors, ODbL 1.0 — simplified and indicative.</p>
+                            <p className="mt-2 text-xs text-ink-500">Boundaries: DataMeet, Indian Village Boundaries (Census 2011), © DataMeet contributors, ODbL 1.0 — simplified and indicative only; not a land or revenue record.</p>
                         </section>
                     )}
 
@@ -158,7 +158,7 @@ export default async function VillagePage({ params }: Props) {
                     <section className="mt-10 rounded-3xl border border-sand-200 bg-sand-100 p-6">
                         <h2 className="font-display text-xl font-semibold">Help write {v.n}&apos;s page</h2>
                         <p className="mt-2 text-sm text-ink-700">
-                            Every village has a story — its temple and festivals, its history, crafts, notable people and how to get there. If you know {v.n}, send us what you know (with a source or a photo you took) and we&apos;ll add it, labelled as community knowledge where needed.
+                            Every village has a story — its temple and festivals, its history, crafts, notable people and how to get there. If you know {v.n}, send us what you know (with a source or a photo you took). We review every submission before adding it, record where it came from, and label it as community knowledge where needed. Spotted a wrong name, panchayat or boundary? Tell us too.
                         </p>
                         <a href={`mailto:${SITE.email}?subject=${encodeURIComponent(`Village information: ${v.n}, ${dName}`)}&body=${encodeURIComponent(`Village: ${v.n} (LGD ${v.c})\nBlock: ${hasBlock ? block!.name : ""}\nDistrict: ${dName}\n\nWhat you know (history, temples, festivals, people, how to reach):\n\nSource or how you know it:\n`)}`} className="btn-primary mt-4"><Icon name="mail" className="h-4 w-4" />Share local knowledge</a>
                     </section>
@@ -168,6 +168,7 @@ export default async function VillagePage({ params }: Props) {
                     <dl className="overflow-hidden rounded-2xl border border-sand-200 bg-white text-sm">
                         {[
                             ["LGD village code", v.c],
+                            ["Hierarchy as of", "LGD, December 2022"],
                             ["Status", v.u ? "Uninhabited" : "Inhabited"],
                             ...(census && census.village.population > 0 ? [["Population (2011)", census.village.population.toLocaleString("en-IN")]] : []),
                             ["Gram panchayat", hasGp ? gp!.name : "Not mapped"],

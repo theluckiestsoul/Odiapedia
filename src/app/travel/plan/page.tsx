@@ -31,8 +31,9 @@ export default function PlanTripPage() {
                         <ol className="mt-4 space-y-4 text-sm text-ink-700">
                             {[
                                 "You tell us what you'd like — dates, pace, interests and budget.",
-                                "With your consent, we pass the request to up to two vetted Odisha operators.",
+                                "With your consent, we pass the request to up to two Odisha operators that meet our published partner standards.",
                                 "They send you an itinerary and a transparent quote. You decide — no pressure.",
+                                "We aim to reply within two working days. Without your consent we reply ourselves and share nothing.",
                             ].map((t, i) => (
                                 <li key={i} className="flex gap-3">
                                     <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-laterite-500 text-xs font-bold text-white">{i + 1}</span>

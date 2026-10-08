@@ -16,7 +16,7 @@ export const metadata = hubMetadata({
 });
 
 const lessons: { slug: string; number: number; title: string; odia: string; description: string; icon: IconName }[] = [
-    { slug: "alphabet", number: 1, title: "The Odia alphabet", odia: "ଓଡ଼ିଆ ବର୍ଣ୍ଣମାଳା", description: "Vowels and consonants, with pronunciation.", icon: "pen" },
+    { slug: "alphabet", number: 1, title: "The Odia alphabet", odia: "ଓଡ଼ିଆ ବର୍ଣ୍ଣମାଳା", description: "Vowels, consonants and the vowel signs (matras).", icon: "pen" },
     { slug: "numbers", number: 2, title: "Odia numbers", odia: "ଓଡ଼ିଆ ସଂଖ୍ୟା", description: "Odia digits, counting to a hundred, and lakh and crore.", icon: "list" },
     { slug: "greetings", number: 3, title: "Essential greetings", odia: "ଅଭିବାଦନ", description: "Say hello, thank you and goodbye politely.", icon: "people" },
     { slug: "phrases", number: 4, title: "Everyday phrases", odia: "ଦୈନନ୍ଦିନ ବାକ୍ୟ", description: "Practical expressions for travel and daily life.", icon: "language" },
@@ -69,21 +69,22 @@ export default function LearnPage() {
 
             <section className="container-page py-14">
                 <h2 className="font-display text-3xl font-semibold">Quick reference</h2>
-                <ol className="mt-8 grid gap-5 md:grid-cols-2">
+                <p className="mt-2 max-w-2xl text-ink-600">Look-up pages, separate from the course: no exercises or progress tracking.</p>
+                <ul className="mt-8 grid gap-5 md:grid-cols-2">
                     {lessons.map((l) => (
                         <li key={l.slug}>
                             <Link href={`/learn/${l.slug}`} className="group card-link flex items-start gap-5 p-6">
-                                <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-laterite-500 font-display text-2xl font-semibold text-white">{l.number}</span>
+                                <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-laterite-50 text-laterite-600"><Icon name={l.icon} className="h-6 w-6" /></span>
                                 <span>
                                     <span className="block font-display text-2xl font-semibold group-hover:text-laterite-700">{l.title}</span>
                                     <span lang="or" className="block font-odia text-laterite-600">{l.odia}</span>
                                     <span className="mt-2 block text-sm text-ink-600">{l.description}</span>
-                                    <span className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-laterite-600">Start <Icon name="arrow" className="h-4 w-4" /></span>
+                                    <span className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-laterite-600">Open <Icon name="arrow" className="h-4 w-4" /></span>
                                 </span>
                             </Link>
                         </li>
                     ))}
-                </ol>
+                </ul>
             </section>
 
             <section className="container-page pb-14">

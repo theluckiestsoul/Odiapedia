@@ -31,8 +31,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {
         title: PEOPLE.some((x) => x.id !== p.id && x.name === p.name)
             ? `${p.name} (${role}${p.birth ? `, b. ${p.birth.slice(0, 4)}` : ""}) – Odia Films`
-            : [`${p.name} – Odia ${role[0].toUpperCase() + role.slice(1)}: Biography & Films`, `${p.name} – Odia ${role[0].toUpperCase() + role.slice(1)}, Films`, `${p.name} – Odia Films`].find((t) => t.length <= 58) ?? p.name,
-        description: (lead ? `${lead} ` : `${p.name}: ${n} Odia film${n === 1 ? "" : "s"} as ${role}. `).slice(0, 240) + " Filmography, photos and frequent co-stars.",
+            : [...(about ? [`${p.name} – Odia ${role[0].toUpperCase() + role.slice(1)}: Biography & Films`] : []), `${p.name} – Odia ${role[0].toUpperCase() + role.slice(1)}, Films`, `${p.name} – Odia Films`].find((t) => t.length <= 58) ?? p.name,
+        description: (lead ? `${lead} ` : `${p.name}: ${n} Odia film${n === 1 ? "" : "s"} as ${role}. `).slice(0, 240) + (p.img ? " Film credits, photos and frequent co-stars." : " Film credits and frequent co-stars."),
         alternates: { canonical: `/cinema/people/${p.id}` },
         // Keep thin pages (one credit, nothing written) out of search until they have more content
         robots: personIndexable(p) ? undefined : { index: false, follow: true },

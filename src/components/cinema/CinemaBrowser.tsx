@@ -6,7 +6,8 @@ import Icon from "@/components/Icon";
 
 type Row = [string, string, number, string[], string[], string[], string[], number];
 
-export default function CinemaBrowser({ decades }: { decades: string[] }) {
+export default function CinemaBrowser({ decades, initial = [] }: { decades: string[]; initial?: Row[] }) {
+    // `initial` (the newest films) is rendered on the server, so the list is readable before the full index loads.
     const [rows, setRows] = useState<Row[] | null>(null);
     const [q, setQ] = useState("");
     const [dec, setDec] = useState<string>("all");
@@ -19,7 +20,7 @@ export default function CinemaBrowser({ decades }: { decades: string[] }) {
     useEffect(() => setLimit(60), [q, dec, awarded]);
 
     const shown = useMemo(() => {
-        if (!rows) return [];
+        if (!rows) return initial;
         const s = q.trim().toLowerCase();
         return rows.filter((r) =>
             (dec === "all" || (dec === "Undated" ? !r[2] : r[2] && `${Math.floor(r[2] / 10) * 10}s` === dec)) &&
@@ -43,7 +44,7 @@ export default function CinemaBrowser({ decades }: { decades: string[] }) {
                     <button type="button" onClick={() => setAwarded((x) => !x)} className={`shrink-0 rounded-full px-3 py-1.5 text-sm font-semibold ${awarded ? "bg-saffron-400 text-ink-950" : "bg-sand-100 text-ink-700 hover:bg-sand-200"}`}>Award winners</button>
                 </div>
             </div>
-            <p className="mt-3 text-sm text-ink-500">{rows ? `${shown.length.toLocaleString("en-IN")} films` : "Loading films…"}</p>
+            <p className="mt-3 text-sm text-ink-500">{rows ? `${shown.length.toLocaleString("en-IN")} films` : `Newest films · loading the full list…`}</p>
             <ul className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                 {shown.slice(0, limit).map((r) => (
                     <li key={r[0]}>
@@ -58,7 +59,7 @@ export default function CinemaBrowser({ decades }: { decades: string[] }) {
                     </li>
                 ))}
             </ul>
-            {shown.length > limit && <div className="mt-6 text-center"><button type="button" onClick={() => setLimit((l) => l + 120)} className="btn-ghost">Show more</button></div>}
+            {rows && shown.length > limit && <div className="mt-6 text-center"><button type="button" onClick={() => setLimit((l) => l + 120)} className="btn-ghost">Show more</button></div>}
         </div>
     );
 }

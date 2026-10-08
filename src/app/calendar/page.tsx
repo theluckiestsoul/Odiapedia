@@ -4,7 +4,7 @@ import CalendarToday from "@/components/CalendarToday";
 import Icon from "@/components/Icon";
 import JsonLd from "@/components/JsonLd";
 import { odiaMonths, nakshatras, varas } from "@/lib/panchanga";
-import { festivalYears, upcomingFestivals } from "@/data/festival-dates";
+import { festivalYears, upcomingFestivals, STATUS_LABEL } from "@/data/festival-dates";
 import { hubMetadata } from "@/lib/seo";
 import { formatDate, SITE } from "@/lib/site";
 
@@ -115,7 +115,7 @@ export default function CalendarPage() {
                         <p className="eyebrow">Festival dates</p>
                         <h2 className="mt-2 font-display text-3xl font-semibold md:text-4xl">Coming up: Odisha festival dates</h2>
                     </div>
-                    <p className="max-w-md text-sm text-ink-600">Only dates confirmed by an official holiday list or a reliable panchang are listed. Source shown for each.</p>
+                    <p className="max-w-md text-sm text-ink-600">Each date shows its status (confirmed, reported or usual schedule) and its source, linked where the source is online.</p>
                 </div>
                 <div className="table-wrap mt-6 overflow-x-auto rounded-2xl border border-sand-200 bg-white">
                     <table className="w-full text-left text-sm">
@@ -131,7 +131,7 @@ export default function CalendarPage() {
                                         <span lang="or" className="ml-2 font-odia text-ink-500">{f.odia}</span>
                                         {f.note && <span className="block text-xs text-ink-500">{f.note}</span>}
                                     </td>
-                                    <td className="px-4 py-3 text-xs text-ink-500">{f.source}</td>
+                                    <td className="px-4 py-3 text-xs text-ink-500">{f.status && <span className="mb-1 block font-semibold text-ink-700">{STATUS_LABEL[f.status]}</span>}{f.url ? <a href={f.url} target="_blank" rel="noopener noreferrer" className="underline hover:text-laterite-600">{f.source}</a> : f.source}</td>
                                 </tr>
                             ))}
                         </tbody>

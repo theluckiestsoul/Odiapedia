@@ -1,21 +1,15 @@
 
-import Image from "next/image";
+import Link from "next/link";
 import { MovieReview } from "@/data/movie-reviews";
 
-export default function ReviewCard({ review }: { review: MovieReview }) {
+export default function ReviewCard({ review, filmHref }: { review: MovieReview; filmHref?: string }) {
     return (
         <div className="group bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col md:flex-row h-full">
-            {/* Poster Section */}
-            <div className="md:w-2/5 lg:w-1/3 relative h-64 md:h-auto overflow-hidden shrink-0">
-                <Image
-                    src={review.poster}
-                    alt={review.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-slate-900 border border-slate-200 shadow-sm">
-                    {review.releaseYear}
-                </div>
+            {/* Title panel (no poster: posters are copyrighted, and we do not use made-up artwork) */}
+            <div className="md:w-2/5 lg:w-1/3 relative flex min-h-40 shrink-0 flex-col justify-end bg-ink-900 bg-ikat p-6 text-white">
+                <span className="text-xs font-bold uppercase tracking-wider text-laterite-300">{review.releaseYear}</span>
+                <span className="font-display text-3xl font-semibold">{review.title}</span>
+                <span lang="or" className="odia-text text-lg text-sand-100">{review.titleOdia}</span>
             </div>
 
             {/* Content Section */}
@@ -67,6 +61,10 @@ export default function ReviewCard({ review }: { review: MovieReview }) {
                         <p className="font-medium text-slate-900">{review.verdict.en}</p>
                         <p className="text-sm text-slate-600 odia-text">{review.verdict.od}</p>
                     </div>
+                    <p className="mt-3 text-xs text-slate-500">
+                        Reviewed by the Odiapedia editorial team · published {review.published} · directed by {review.director}
+                        {filmHref && <> · <Link href={filmHref} className="font-semibold text-laterite-600 underline">Full credits</Link></>}
+                    </p>
                 </div>
             </div>
         </div>

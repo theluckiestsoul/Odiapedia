@@ -637,10 +637,11 @@ export default function OdishaDistrictMap({ districts }: { districts: MapDistric
                             <p className="mt-1 text-sm text-ink-600">Click a district to zoom in to its blocks and villages.</p>
                             <dl className="mt-4 grid grid-cols-2 gap-3 text-sm">
                                 <div><dt className="text-xs uppercase tracking-wide text-ink-500">Population</dt><dd className="font-semibold text-ink-900">{fmtShort(totals.population)}</dd></div>
-                                <div><dt className="text-xs uppercase tracking-wide text-ink-500">Area</dt><dd className="font-semibold text-ink-900">{fmt(totals.area)} km²</dd></div>
+                                <div><dt className="text-xs uppercase tracking-wide text-ink-500">Area (sum of districts)</dt><dd className="font-semibold text-ink-900" title="Sum of the published district areas. The state's official area is 155,707 km².">{fmt(totals.area)} km²</dd></div>
                                 {totals.blocks > 0 && <div><dt className="text-xs uppercase tracking-wide text-ink-500">Blocks</dt><dd className="font-semibold text-ink-900">{totals.blocks}</dd></div>}
                                 {totals.villages > 0 && <div><dt className="text-xs uppercase tracking-wide text-ink-500">Villages</dt><dd className="font-semibold text-ink-900">{fmt(totals.villages)}</dd></div>}
                             </dl>
+                            <p className="mt-2 text-xs text-ink-500">Area adds up the published district figures; Odisha&apos;s official area is 155,707 km². Villages are LGD villages (December 2022).</p>
                             <SearchBox value={query} onChange={setQuery} placeholder="Find a district…" />
                         </div>
                         <ul className="max-h-[26rem] overflow-y-auto p-2">

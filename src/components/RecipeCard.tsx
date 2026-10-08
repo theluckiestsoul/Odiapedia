@@ -60,7 +60,7 @@ export default function RecipeCard({ recipe, title, odia }: { recipe: ArticleRec
                 </div>
             )}
             <p className="border-t border-sand-200 px-6 py-3 text-xs text-ink-500 sm:px-8">
-                {recipe.diet?.includes("Vegetarian") ? "Vegetarian · " : ""}{recipe.course ? `${recipe.course} · ` : ""}Odia cuisine. Quantities are typical home amounts; recipe written by Odiapedia from the sources listed below.
+                {recipe.diet?.includes("Vegetarian") ? "Vegetarian · " : ""}{recipe.course ? `${recipe.course} · ` : ""}Odia cuisine. A home recipe written by Odiapedia from the sources listed below; quantities and times have not yet been kitchen-tested by a named cook, so adjust to taste and use clean, food-safe practice.
             </p>
         </section>
     );

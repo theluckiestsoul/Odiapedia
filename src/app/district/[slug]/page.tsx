@@ -198,13 +198,14 @@ export default async function DistrictPage({ params }: PageProps) {
                         <p className="mt-2 max-w-2xl text-ink-600">
                             Choose a block, sub-district or town to see its details and its gram panchayats and villages. Open any village for its own page.
                         </p>
+                        <p className="mt-1 text-xs text-ink-500">Counts below: Local Government Directory, December 2022 snapshot (LGD villages, which can differ from the district administration&apos;s revenue-village count).</p>
                     </div>
                     <dl className="grid grid-cols-4 gap-2 text-center">
                         {[
                             ["Blocks", realBlocks.length],
                             ["Sub-districts", admin.subdistricts.length],
                             ["GPs", gpCount],
-                            ["Villages", admin.villages.length],
+                            ["LGD villages", admin.villages.length],
                         ].map(([k, v]) => (
                             <div key={k} className="rounded-xl border border-sand-200 bg-white px-3 py-2">
                                 <dt className="text-[11px] uppercase tracking-wider text-ink-500">{k}</dt>
@@ -295,7 +296,7 @@ export default async function DistrictPage({ params }: PageProps) {
     const reportHref = `mailto:${SITE.correctionsEmail}?subject=${encodeURIComponent(`Correction: ${nameEn} district`)}&body=${encodeURIComponent(`Page: ${SITE.url}/district/${slug}\n\nWhat is incorrect or missing?\n\nSource:\n`)}`;
 
     return (
-        <>
+        <div lang={isOdia ? "or" : undefined}>
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
             <header className="relative overflow-hidden border-b border-sand-200 bg-sand-100">
                 <div className="absolute inset-0 bg-ikat opacity-60" aria-hidden="true" />
@@ -381,6 +382,6 @@ export default async function DistrictPage({ params }: PageProps) {
                     </div>
                 </section>
             )}
-        </>
+        </div>
     );
 }

@@ -4,8 +4,10 @@
  *
  * RULES FOR ADDING ITEMS
  * - Only list a work if it is in the public domain in India (author died more than 60 years ago,
- *   counted from 1 January of the following year), is an open government publication, carries an
- *   open licence (e.g. CC BY-SA), or the rights-holder has given permission.
+ *   counted from 1 January of the following year; for a government work, more than 60 years since first
+ *   publication — Copyright Act 1957, s. 28), carries an open licence (e.g. CC BY-SA), or the
+ *   rights-holder has given written permission. A recent government publication is NOT free to share
+ *   just because it is official. Record the basis in `rights`.
  * - Link to the PDF at its legitimate host (Internet Archive, Wikisource, a government site…).
  *   Only self-host a file under /public/library/ when it is public domain or you have permission.
  * - Verify that every URL works before adding it.

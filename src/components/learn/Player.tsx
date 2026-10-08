@@ -125,6 +125,7 @@ function OdiaText({ item, showTr, voice, big }: { item: { od: string; tr: string
                 {voice && <button type="button" onClick={() => speak(item.od)} className="rounded-full bg-laterite-50 p-2 text-laterite-600 hover:bg-laterite-100" aria-label="Play pronunciation"><Icon name="wave" className="h-5 w-5" /></button>}
             </span>
             {showTr && <span className={`${big ? "text-lg" : "text-sm"} text-ink-500`}>{item.tr}</span>}
+            {big && !voice && <span className="mt-1 text-xs text-ink-400">No Odia voice on this device, so there is no audio yet. Recorded native-speaker audio is planned.</span>}
         </span>
     );
 }

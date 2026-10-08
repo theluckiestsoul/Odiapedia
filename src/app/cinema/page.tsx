@@ -3,6 +3,7 @@ import PageHero from "@/components/PageHero";
 import Icon from "@/components/Icon";
 import JsonLd from "@/components/JsonLd";
 import CinemaBrowser from "@/components/cinema/CinemaBrowser";
+import cinemaIndex from "@/../public/data/cinema/index.json";
 import { FILMS, PEOPLE, YEARS, decade, CINEMA_SOURCE } from "@/lib/cinema";
 import { CINEMA_TIMELINE } from "@/data/cinema-timeline";
 import { hubMetadata } from "@/lib/seo";
@@ -10,7 +11,7 @@ import { SITE } from "@/lib/site";
 
 export const metadata = hubMetadata({
     title: "Odia Cinema (Ollywood) – Every Odia Film Since 1936",
-    description: "The complete database of Odia films: every Ollywood movie from Sita Bibaha (1936) to today, with cast, directors, music directors, release years and award winners.",
+    description: "A database of Odia films from Sita Bibaha (1936) to today, with cast, directors, music directors, release years and award winners, compiled from Wikidata and Wikipedia film lists.",
     path: "/cinema",
     keywords: ["odia cinema", "ollywood", "odia movies list", "odia films", "odia movie", "first odia film", "odia film actors", "odia movies by year", "ଓଡ଼ିଆ ଚଳଚ୍ଚିତ୍ର"],
 });
@@ -71,7 +72,7 @@ export default function CinemaHub() {
             {/* Browser */}
             <section className="container-page pb-14">
                 <h2 className="mb-5 font-display text-3xl font-semibold text-ink-900">Find a film</h2>
-                <CinemaBrowser decades={decades} />
+                <CinemaBrowser decades={decades} initial={[...(cinemaIndex as unknown as { films: [string, string, number, string[], string[], string[], string[], number][] }).films].sort((a, b) => (b[2] || 0) - (a[2] || 0)).slice(0, 60)} />
             </section>
 
             {/* Years index (crawlable) */}

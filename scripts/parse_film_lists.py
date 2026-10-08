@@ -114,7 +114,9 @@ def parse_table(tbl):
     if not header: return []
     grid, pending = [], {}
     for r in body:
-        cells = [c for c in r if c[0] == 'd']
+        # Row headers ("! rowspan=6 | J A N ...", the month column) are cells too: dropping them shifts
+        # every later column left and turns directors into titles (fixed Oct 2026, audit F01).
+        cells = [c for c in r if c[0] in ('d', 'h')]
         if not cells: continue
         row, ci, it = [], 0, iter(cells)
         width = len(header)

@@ -7,7 +7,7 @@ import { hubMetadata } from "@/lib/seo";
 
 export const metadata = hubMetadata({
     title: "Odia Film Actors, Actresses, Directors & Music Directors",
-    description: "Who's who of Odia cinema: actors, actresses, directors and music directors of Ollywood with their complete filmographies.",
+    description: "Who's who of Odia cinema: actors, actresses, directors and music directors of Ollywood with the films they are credited on.",
     path: "/cinema/people",
     keywords: ["odia actors", "odia actress", "ollywood actors list", "odia film directors", "odia music directors", "odia film heroes"],
 });
@@ -41,7 +41,7 @@ export default function PeopleIndex() {
     const all = [...PEOPLE].filter((p) => Object.values(p.roles).reduce((a, b) => a + (b ?? 0), 0) >= 2).sort((a, b) => a.name.localeCompare(b.name));
     return (
         <div>
-            <PageHero title="People of Odia cinema" odia="ଓଡ଼ିଆ ଚଳଚ୍ଚିତ୍ରର କଳାକାର" description={`Actors, actresses, directors and music directors across ${FILMS.length.toLocaleString("en-IN")} Odia films — each with a complete filmography.`} icon="people" eyebrow="Odia cinema" crumbs={[{ name: "Odia cinema", href: "/cinema" }, { name: "People", href: "/cinema/people" }]} />
+            <PageHero title="People of Odia cinema" odia="ଓଡ଼ିଆ ଚଳଚ୍ଚିତ୍ରର କଳାକାର" description={`Actors, actresses, directors and music directors across ${FILMS.length.toLocaleString("en-IN")} Odia films — each with the film credits we have recorded.`} icon="people" eyebrow="Odia cinema" crumbs={[{ name: "Odia cinema", href: "/cinema" }, { name: "People", href: "/cinema/people" }]} />
             <div className="container-page space-y-14 py-12">
                 <Grid title="Actors" role="cast" people={top("cast", (p) => p.g !== "f")} />
                 <Grid title="Actresses" role="cast" people={top("cast", (p) => p.g === "f")} />

@@ -94,10 +94,13 @@ export default function TripPlannerForm() {
                     </label>
                     <label className="flex items-end gap-2 pb-3 text-sm text-ink-700"><input name="flexibleDates" type="checkbox" className="h-4 w-4 accent-laterite-500" /> My dates are flexible</label>
                 </div>
-                <div className="grid grid-cols-3 gap-5">
-                    <label className="block"><span className={label}>Adults</span><input name="adults" type="number" min={1} max={50} defaultValue={2} className={field} /></label>
-                    <label className="block"><span className={label}>Children</span><input name="children" type="number" min={0} max={30} defaultValue={0} className={field} /></label>
-                    <label className="block"><span className={label}>Seniors (60+)</span><input name="seniors" type="number" min={0} max={30} defaultValue={0} className={field} /></label>
+                <div>
+                    <div className="grid grid-cols-3 gap-5">
+                        <label className="block"><span className={label}>Adults (18–59)</span><input name="adults" type="number" min={0} max={50} defaultValue={2} className={field} /></label>
+                        <label className="block"><span className={label}>Children (under 18)</span><input name="children" type="number" min={0} max={30} defaultValue={0} className={field} /></label>
+                        <label className="block"><span className={label}>Seniors (60+)</span><input name="seniors" type="number" min={0} max={30} defaultValue={0} className={field} /></label>
+                    </div>
+                    <p className="mt-2 text-xs text-ink-500">Count each traveller once: seniors are not included in adults. If children are travelling, add their ages in the notes so the quote is accurate.</p>
                 </div>
                 <div className="grid gap-5 md:grid-cols-2">
                     <label className="block"><span className={label}>Budget per person (excluding flights)</span>
@@ -137,7 +140,7 @@ export default function TripPlannerForm() {
                 <legend className="sr-only">Consent</legend>
                 <label className="flex items-start gap-3 text-sm text-ink-700">
                     <input name="consentToShare" type="checkbox" className="mt-0.5 h-4 w-4 shrink-0 accent-laterite-500" />
-                    <span>I agree that Odiapedia may share this request with up to two vetted Odisha travel partners so they can send me an itinerary and quote. <Link href="/about/privacy-policy" className="underline">Privacy policy</Link></span>
+                    <span>I agree that Odiapedia may share this request with up to two Odisha travel partners that meet our <Link href="/partners" className="underline">partner standards</Link> (valid registration, transparent pricing, written refund policy) so they can send me an itinerary and quote. Without this consent, only Odiapedia replies, with general advice, and nothing is shared. <Link href="/about/privacy-policy" className="underline">Privacy policy</Link></span>
                 </label>
                 <label className="flex items-center gap-3 text-sm text-ink-700">
                     <span>Preferred contact:</span>

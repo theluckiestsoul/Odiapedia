@@ -1,9 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
-import { type Article, type ArticleMeta, extractToc, getRelatedArticles } from "@/lib/mdx";
+import { type Article, type ArticleMeta, extractToc, getRelatedArticles, getAllArticlesMetadata } from "@/lib/mdx";
+import { articleStrings, noteIn, FACT_CHECK_NOTE, type UiLang } from "@/lib/article-i18n";
 import { articleJsonLd } from "@/lib/seo";
 import { SITE, categoryInfo, formatDate } from "@/lib/site";
-import { datesFor, longDate } from "@/data/festival-dates";
+import { datesFor, longDate, STATUS_LABEL } from "@/data/festival-dates";
 import ShareButtons from "./ShareButtons";
 import JsonLd from "./JsonLd";
 import RecipeCard from "./RecipeCard";
@@ -33,26 +34,34 @@ export default function ArticleLayout({ meta, children }: ArticleLayoutProps) {
     const isTravel = meta.category === "travel";
     const isAbout = meta.category === "about";
     const url = `${SITE.url}/${meta.category}/${meta.slug}`;
+    const uiLang: UiLang = meta.lang === "od" ? "or" : meta.lang === "hi" ? "hi" : "en";
+    const T = articleStrings(uiLang);
+    // A translation shows the sources of the English article it translates (audit F03).
+    const originalHref = uiLang !== "en" ? meta.alternates?.en : undefined;
+    const original = originalHref ? getAllArticlesMetadata().find((a) => `/${a.category}/${a.slug}` === originalHref) : undefined;
+    const shownSources = meta.sources.length > 0 ? meta.sources : original?.sources ?? [];
+    const factChecked = meta.changelog.some((c) => c.note === FACT_CHECK_NOTE || /ଯାଞ୍ଚ|Fact-checked/.test(c.note));
     const festivalDates = datesFor(`/${meta.category}/${meta.slug}`).slice(0, 3);
     const datesBox = festivalDates.length > 0 && (
         <section aria-labelledby="dates-h" className="rounded-2xl border border-laterite-200 bg-laterite-50/60 p-5">
-            <h2 id="dates-h" className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-laterite-700"><Icon name="calendar" className="h-4 w-4" />Next dates</h2>
+            <h2 id="dates-h" className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-laterite-700"><Icon name="calendar" className="h-4 w-4" />{T.nextDates}</h2>
             <ul className="mt-3 space-y-2">
                 {festivalDates.map((f) => (
                     <li key={f.start + f.name}>
                         <time dateTime={f.start} className="block font-semibold text-ink-900">{longDate(f.start)}{f.end ? ` – ${longDate(f.end)}` : ""}</time>
                         <span className="block text-xs text-ink-600">{f.name}{f.note ? ` · ${f.note}` : ""}</span>
-                        <span className="block text-[11px] text-ink-500">Source: {f.source}</span>
+                        <span className="block text-[11px] text-ink-500" lang="en">{f.status && f.status !== "confirmed" ? `${STATUS_LABEL[f.status]} · ` : ""}{T.source} {f.url ? <a href={f.url} target="_blank" rel="noopener noreferrer" className="underline">{f.source}</a> : f.source}</span>
                     </li>
                 ))}
             </ul>
-            <Link href={`/festivals/${festivalDates[0].start.slice(0, 4)}`} className="mt-3 inline-block text-sm font-semibold text-laterite-600 hover:underline">All Odisha festival dates →</Link>
+            <Link href={`/festivals/${festivalDates[0].start.slice(0, 4)}`} className="mt-3 inline-block text-sm font-semibold text-laterite-600 hover:underline">{T.allFestivals} →</Link>
         </section>
     );
     const reportHref = `mailto:${SITE.correctionsEmail}?subject=${encodeURIComponent(`Correction: ${meta.title}`)}&body=${encodeURIComponent(`Page: ${url}\n\nWhat is incorrect or missing?\n\nSource (link or book):\n`)}`;
 
+    const docLang = uiLang === "en" ? undefined : uiLang;
     return (
-        <div className="bg-background">
+        <div className="bg-background" lang={docLang}>
             {"content" in meta && <JsonLd data={articleJsonLd(article)} />}
 
             {/* Header */}
@@ -74,22 +83,22 @@ export default function ArticleLayout({ meta, children }: ArticleLayoutProps) {
                         <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-ink-500">
                             <span className="inline-flex items-center gap-1.5">
                                 <Icon name="clock" className="h-4 w-4" />
-                                {meta.readingMinutes} min read
+                                {T.minRead(meta.readingMinutes)}
                             </span>
                             <span className="inline-flex items-center gap-1.5">
                                 <Icon name="check" className="h-4 w-4 text-chilika-600" />
-                                Updated <time dateTime={meta.updated}>{formatDate(meta.updated)}</time>
+                                {T.updated} <time dateTime={meta.updated}>{formatDate(meta.updated)}</time>
                             </span>
-                            {meta.sources.length > 0 && (
+                            {shownSources.length > 0 && (
                                 <a href="#sources" className="inline-flex items-center gap-1.5 hover:text-laterite-600">
                                     <Icon name="shield" className="h-4 w-4 text-chilika-600" />
-                                    {meta.sources.length} cited sources
+                                    {T.citedSources(shownSources.length)}
                                 </a>
                             )}
-                            <span>By {meta.author}</span>
+                            <span>{T.by} {meta.author}</span>
                             {meta.recipe && (
                                 <a href="#recipe" className="inline-flex items-center gap-1.5 rounded-full bg-laterite-500 px-3 py-1 font-semibold text-white hover:bg-laterite-600">
-                                    <Icon name="bowl" className="h-4 w-4" />Jump to recipe
+                                    <Icon name="bowl" className="h-4 w-4" />{T.jumpRecipe}
                                 </a>
                             )}
                         </div>
@@ -125,7 +134,7 @@ export default function ArticleLayout({ meta, children }: ArticleLayoutProps) {
                     {/* Facts box (mobile: above the text) */}
                     {meta.facts.length > 0 && (
                         <div className="mb-10 lg:hidden">
-                            <FactBox meta={meta} />
+                            <FactBox meta={meta} label={T.quickFacts} />
                         </div>
                     )}
 
@@ -135,7 +144,7 @@ export default function ArticleLayout({ meta, children }: ArticleLayoutProps) {
 
                     {meta.faq.length > 0 && (
                         <section aria-labelledby="faq-heading" className="mt-16 max-w-[46rem]">
-                            <h2 id="faq-heading" className="font-display text-[1.75rem] font-semibold">Frequently asked questions</h2>
+                            <h2 id="faq-heading" className="font-display text-[1.75rem] font-semibold">{T.faq}</h2>
                             <div className="mt-6 divide-y divide-sand-200 rounded-2xl border border-sand-200 bg-white">
                                 {meta.faq.map((f, i) => (
                                     <details key={i} className="group p-5 [&_summary::-webkit-details-marker]:hidden" open={i === 0}>
@@ -156,9 +165,9 @@ export default function ArticleLayout({ meta, children }: ArticleLayoutProps) {
                             <ChariotWheel className="absolute -bottom-16 -right-16 h-56 w-56 text-white/10" />
                             <div className="relative">
                                 <p className="eyebrow !text-saffron-300"><Icon name="suitcase" className="h-4 w-4" />Plan with Odiapedia</p>
-                                <h2 className="mt-3 font-display text-3xl font-semibold !text-white">Want a trip like this, planned for you?</h2>
-                                <p className="mt-3 max-w-xl text-sand-100/85">Tell us your dates, budget and interests. We share your request only with vetted Odisha travel partners, and only with your consent.</p>
-                                <Link href="/travel/plan" className="btn-primary mt-6">Request a free itinerary <Icon name="arrow" className="h-4 w-4" /></Link>
+                                <h2 className="mt-3 font-display text-3xl font-semibold !text-white">{T.tripH}</h2>
+                                <p className="mt-3 max-w-xl text-sand-100/85">{T.tripP}</p>
+                                <Link href="/travel/plan" className="btn-primary mt-6">{T.tripBtn} <Icon name="arrow" className="h-4 w-4" /></Link>
                             </div>
                         </aside>
                     )}
@@ -166,10 +175,19 @@ export default function ArticleLayout({ meta, children }: ArticleLayoutProps) {
                     {/* Sources */}
                     {!isAbout && (
                         <section id="sources" aria-labelledby="sources-heading" className="mt-16 max-w-[46rem] scroll-mt-28">
-                            <h2 id="sources-heading" className="font-display text-[1.75rem] font-semibold">Sources &amp; references</h2>
-                            {meta.sources.length > 0 ? (
-                                <ol className="mt-5 space-y-3">
-                                    {meta.sources.map((s, i) => (
+                            <h2 id="sources-heading" className="font-display text-[1.75rem] font-semibold">{T.sources}</h2>
+                            {original && (
+                                <p className="mt-4 rounded-xl border border-sand-200 bg-sand-50 p-4 text-sm text-ink-700">
+                                    {T.translationOf} <Link href={originalHref!} className="font-semibold text-laterite-600 underline" lang="en">{T.theEnglishArticle}</Link>{" "}
+                                    {factChecked ? T.factsChecked : T.factsNotChecked} {T.languageNotReviewed}
+                                    {original.readingMinutes >= 2 * meta.readingMinutes && <> {T.abridged}</>}
+                                </p>
+                            )}
+                            {shownSources.length > 0 ? (
+                                <>
+                                {meta.sources.length === 0 && <p className="mt-5 text-sm text-ink-600">{T.originalSources}</p>}
+                                <ol className="mt-5 space-y-3" lang={meta.sources.length === 0 ? "en" : undefined}>
+                                    {shownSources.map((s, i) => (
                                         <li key={s.url} className="flex gap-3 text-sm leading-relaxed">
                                             <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-sand-100 text-xs font-semibold text-ink-600">{i + 1}</span>
                                             <span>
@@ -181,9 +199,10 @@ export default function ArticleLayout({ meta, children }: ArticleLayoutProps) {
                                         </li>
                                     ))}
                                 </ol>
+                                </>
                             ) : (
                                 <p className="mt-4 rounded-xl border border-saffron-200 bg-saffron-100/50 p-4 text-sm text-ink-700">
-                                    This article has not yet been through our source review. Know a reliable source? <a className="font-semibold text-laterite-600 underline" href={reportHref}>Send it to us</a>.
+                                    {T.noSources} <a className="font-semibold text-laterite-600 underline" href={reportHref}>{T.sendIt}</a>.
                                 </p>
                             )}
                         </section>
@@ -191,10 +210,10 @@ export default function ArticleLayout({ meta, children }: ArticleLayoutProps) {
 
                     {meta.changelog.length > 0 && (
                         <section aria-labelledby="changes-heading" className="mt-10 max-w-[46rem]">
-                            <h2 id="changes-heading" className="text-xs font-semibold uppercase tracking-[0.16em] text-ink-500">Corrections &amp; updates</h2>
+                            <h2 id="changes-heading" className="text-xs font-semibold uppercase tracking-[0.16em] text-ink-500">{T.changes}</h2>
                             <ul className="mt-3 space-y-2 text-sm text-ink-700">
                                 {meta.changelog.map((c, i) => (
-                                    <li key={i}><time dateTime={c.date} className="font-medium">{formatDate(c.date)}</time> — {c.note}</li>
+                                    <li key={i}><time dateTime={c.date} className="font-medium">{formatDate(c.date)}</time> — {noteIn(uiLang, c.note)}</li>
                                 ))}
                             </ul>
                         </section>
@@ -203,11 +222,11 @@ export default function ArticleLayout({ meta, children }: ArticleLayoutProps) {
                     {/* Review & corrections */}
                     <div className="mt-10 flex max-w-[46rem] flex-col gap-4 rounded-2xl border border-sand-200 bg-sand-50 p-5 text-sm text-ink-600 sm:flex-row sm:items-center sm:justify-between">
                         <p>
-                            First published <time dateTime={meta.date}>{formatDate(meta.date)}</time> · Last reviewed <time dateTime={meta.updated}>{formatDate(meta.updated)}</time>.{" "}
-                            <Link href="/about/editorial-policy" className="underline underline-offset-4 hover:text-laterite-600">How we write and check articles</Link>
+                            {T.firstPublished} <time dateTime={meta.date}>{formatDate(meta.date)}</time> · {T.lastUpdated} <time dateTime={meta.updated}>{formatDate(meta.updated)}</time>.{" "}
+                            <Link href="/about/editorial-policy" className="underline underline-offset-4 hover:text-laterite-600">{T.howWe}</Link>
                         </p>
                         <a href={reportHref} className="btn-ghost shrink-0 !py-2">
-                            <Icon name="flag" className="h-4 w-4" />Report an error
+                            <Icon name="flag" className="h-4 w-4" />{T.report}
                         </a>
                     </div>
                 </article>
@@ -216,10 +235,10 @@ export default function ArticleLayout({ meta, children }: ArticleLayoutProps) {
                 <aside className="hidden lg:block">
                     <div className="sticky top-28 space-y-6">
                         {datesBox}
-                        {meta.facts.length > 0 && <FactBox meta={meta} />}
+                        {meta.facts.length > 0 && <FactBox meta={meta} label={T.quickFacts} />}
                         {toc.length > 2 && (
-                            <nav aria-label="On this page" className="rounded-2xl border border-sand-200 bg-white p-5">
-                                <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-ink-500">On this page</p>
+                            <nav aria-label={T.onThisPage} className="rounded-2xl border border-sand-200 bg-white p-5">
+                                <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-ink-500">{T.onThisPage}</p>
                                 <ol className="space-y-1.5 text-sm">
                                     {toc.map((t) => (
                                         <li key={t.id}>
@@ -231,9 +250,9 @@ export default function ArticleLayout({ meta, children }: ArticleLayoutProps) {
                         )}
                         {isTravel && (
                             <Link href="/travel/plan" className="group block rounded-2xl bg-laterite-500 p-5 text-white transition-colors hover:bg-laterite-600">
-                                <p className="font-display text-lg font-semibold">Plan a custom Odisha trip</p>
-                                <p className="mt-1 text-sm text-laterite-50/90">Free itinerary request · consent-based</p>
-                                <span className="mt-3 inline-flex items-center gap-1 text-sm font-semibold">Start <Icon name="arrow" className="h-4 w-4 transition-transform group-hover:translate-x-1" /></span>
+                                <p className="font-display text-lg font-semibold">{T.planCustom}</p>
+                                <p className="mt-1 text-sm text-laterite-50/90">{T.freeReq}</p>
+                                <span className="mt-3 inline-flex items-center gap-1 text-sm font-semibold">{T.start} <Icon name="arrow" className="h-4 w-4 transition-transform group-hover:translate-x-1" /></span>
                             </Link>
                         )}
                     </div>
@@ -259,12 +278,12 @@ export default function ArticleLayout({ meta, children }: ArticleLayoutProps) {
     );
 }
 
-function FactBox({ meta }: { meta: ArticleMeta }) {
+function FactBox({ meta, label }: { meta: ArticleMeta; label: string }) {
     return (
         <div className="overflow-hidden rounded-2xl border border-sand-200 bg-white">
             <div className="flex items-center gap-2 border-b border-sand-200 bg-sand-100 px-5 py-3">
                 <Icon name="info" className="h-4 w-4 text-laterite-600" />
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-ink-600">Quick facts</p>
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-ink-600">{label}</p>
             </div>
             <dl className="divide-y divide-sand-100">
                 {meta.facts.map((f) => (
