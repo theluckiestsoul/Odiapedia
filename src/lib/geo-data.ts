@@ -11,7 +11,7 @@ export function km(lat1: number, lon1: number, lat2: number, lon2: number): numb
 export type Station = { name: string; code: string; lat: number; lon: number; halt: boolean; odia: string; district: string };
 export const STATION_SOURCE = "Railway stations and halts mapped on OpenStreetMap (© OpenStreetMap contributors, ODbL)";
 
-const STATIONS: Station[] = (stationsData as { stations: [string, string, number, number, number, string, string][] }).stations.map(
+const STATIONS: Station[] = (stationsData as unknown as { stations: [string, string, number, number, number, string, string][] }).stations.map(
     ([name, code, lat, lon, halt, odia, district]) => ({ name, code, lat, lon, halt: !!halt, odia, district }),
 );
 

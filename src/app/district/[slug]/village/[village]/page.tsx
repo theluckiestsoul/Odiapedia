@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound, permanentRedirect } from "next/navigation";
@@ -206,7 +207,7 @@ export default async function VillagePage({ params }: Props) {
 
                 <aside className="space-y-5">
                     <dl className="overflow-hidden rounded-2xl border border-sand-200 bg-white text-sm">
-                        {[
+                        {([
                             ["LGD village code", v.c],
                             ...(v.on ? [["Official spelling", v.on]] : []),
                             ["Hierarchy as of", "LGD, December 2022"],
@@ -220,7 +221,7 @@ export default async function VillagePage({ params }: Props) {
                             ["Sub-district", sd?.name || ""],
                             ...((() => { const ac = hasGp && hasBlock ? acForGp(slug, block!.code, gp!.code) : undefined; const pc = ac ? pcOf(ac) : undefined; return ac ? [["Assembly seat", <Link key="ac" href={`/elections/assembly/${ac.slug}`} className="text-laterite-600 hover:underline">{ac.name} ({ac.no})</Link>], ...(pc ? [["Lok Sabha seat", <Link key="pc" href={`/elections/lok-sabha/${pc.slug}`} className="text-laterite-600 hover:underline">{pc.name}</Link>]] : [])] : []; })()),
                             ["District", dName],
-                        ].filter(([, x]) => x).map(([k, x]) => (
+                        ] as [string, ReactNode][]).filter(([, x]) => x).map(([k, x]) => (
                             <div key={k} className="grid grid-cols-[8rem_1fr] gap-3 border-b border-sand-100 px-5 py-3 last:border-0">
                                 <dt className="text-ink-500">{k}</dt>
                                 <dd className="text-ink-900">{x}</dd>

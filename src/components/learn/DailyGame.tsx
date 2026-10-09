@@ -71,7 +71,7 @@ export default function DailyGame({ words }: { words: W[] }) {
                 const y = new Date(Date.parse(day!) - 86400_000).toISOString().slice(0, 10);
                 const final = qs.reduce((s, q, k) => s + (q.options[next[k]!] === q.w ? 1 : 0), 0);
                 const streak = prev.last === y ? prev.streak + 1 : 1;
-                const s = { played: prev.played + 1, streak, best: Math.max(prev.best, streak), last: day, total: prev.total + final };
+                const s = { played: prev.played + 1, streak, best: Math.max(prev.best, streak), last: day!, total: prev.total + final };
                 store.set("odiapedia-daily-stats", s);
                 setStats(s);
             }
