@@ -7,6 +7,8 @@ import JsonLd from "@/components/JsonLd";
 import { ADMIN_SOURCE, getAdminDistrict, subdistrictSlug, villageId, gpId } from "@/lib/admin";
 import { getVillageAmenities } from "@/lib/amenities";
 import { VillageAmenitiesView } from "@/components/Amenities";
+import { nearestStations, monumentsNear, monumentTitle } from "@/lib/geo-data";
+import { acForGp, pcOf } from "@/lib/elections";
 import { districtName } from "@/lib/districts";
 import { SITE } from "@/lib/site";
 import { villageGeo } from "@/lib/village-geo";
@@ -135,6 +137,35 @@ export default async function VillagePage({ params }: Props) {
                         </section>
                     )}
 
+                    {g && (() => {
+                        const st = nearestStations(g.lat, g.lng, 3);
+                        const mons = monumentsNear(g.lat, g.lng, 25).slice(0, 5);
+                        return (
+                            <section className="mb-10">
+                                <h2 className="font-display text-2xl font-semibold">Getting to {v.n}</h2>
+                                <h3 className="mt-4 text-sm font-semibold uppercase tracking-wider text-ink-600">Nearest railway stations</h3>
+                                <ul className="mt-2 space-y-1.5 text-sm">
+                                    {st.map((s) => (
+                                        <li key={`${s.name}${s.lat}`} className="flex flex-wrap items-baseline gap-x-3">
+                                            <span className="font-semibold text-ink-900">{s.name}{s.code ? ` (${s.code})` : ""}</span>
+                                            <span className="text-ink-600">{s.halt ? "halt" : "station"} · about {s.km < 10 ? s.km.toFixed(1) : s.km.toFixed(0)} km in a straight line</span>
+                                            <a className="text-xs font-semibold text-laterite-600 hover:underline" target="_blank" rel="noopener noreferrer nofollow" href={`https://www.google.com/maps/dir/?api=1&origin=${s.lat},${s.lon}&destination=${g.lat.toFixed(5)},${g.lng.toFixed(5)}`}>Directions ↗</a>
+                                        </li>
+                                    ))}
+                                </ul>
+                                {mons.length > 0 && (
+                                    <>
+                                        <h3 className="mt-5 text-sm font-semibold uppercase tracking-wider text-ink-600">Protected monuments within 25 km</h3>
+                                        <ul className="mt-2 space-y-1.5 text-sm">
+                                            {mons.map((m) => <li key={m.id}><Link href={`/monuments/${m.id}`} className="font-semibold text-laterite-600 hover:underline">{monumentTitle(m)}</Link> <span className="text-ink-500">· {m.km.toFixed(0)} km</span></li>)}
+                                        </ul>
+                                    </>
+                                )}
+                                <p className="mt-2 text-xs text-ink-500">Distances are straight-line from the centre of the village boundary; by road they are longer. Stations: OpenStreetMap contributors (some on new lines may not yet have regular trains).</p>
+                            </section>
+                        );
+                    })()}
+
                     <h2 className="font-display text-2xl font-semibold">Where {v.n} sits</h2>
                     <ol className="mt-5 space-y-2">
                         {[
@@ -187,6 +218,7 @@ export default async function VillagePage({ params }: Props) {
                             ["Gram panchayat", hasGp ? gp!.name : "Not mapped"],
                             ["Block", hasBlock ? block!.name : "Not mapped"],
                             ["Sub-district", sd?.name || ""],
+                            ...((() => { const ac = hasGp && hasBlock ? acForGp(slug, block!.code, gp!.code) : undefined; const pc = ac ? pcOf(ac) : undefined; return ac ? [["Assembly seat", <Link key="ac" href={`/elections/assembly/${ac.slug}`} className="text-laterite-600 hover:underline">{ac.name} ({ac.no})</Link>], ...(pc ? [["Lok Sabha seat", <Link key="pc" href={`/elections/lok-sabha/${pc.slug}`} className="text-laterite-600 hover:underline">{pc.name}</Link>]] : [])] : []; })()),
                             ["District", dName],
                         ].filter(([, x]) => x).map(([k, x]) => (
                             <div key={k} className="grid grid-cols-[8rem_1fr] gap-3 border-b border-sand-100 px-5 py-3 last:border-0">

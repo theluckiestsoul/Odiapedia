@@ -50,6 +50,8 @@ const menuItems: MenuItem[] = [
         children: [
             { href: "/districts", label: "30 Districts", odia: "ଜିଲ୍ଲା", icon: "pin", hint: "Every district of Odisha" },
             { href: "/map", label: "Interactive Map", odia: "ମାନଚିତ୍ର", icon: "map", hint: "Explore Odisha visually" },
+            { href: "/monuments", label: "Monuments", odia: "ସ୍ମାରକୀ", icon: "temple", hint: "ASI-protected heritage sites" },
+            { href: "/elections", label: "Elections", odia: "ନିର୍ବାଚନ", icon: "people", hint: "MLAs, MPs and results by seat" },
             { href: "/travel", label: "Travel Guides", odia: "ଭ୍ରମଣ", icon: "compass", hint: "Destinations & itineraries" },
             { href: "/travel/plan", label: "Plan a Trip", odia: "ଯାତ୍ରା ଯୋଜନା", icon: "suitcase", hint: "Free custom itinerary" },
         ],

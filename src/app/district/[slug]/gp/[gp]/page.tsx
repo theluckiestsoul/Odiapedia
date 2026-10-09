@@ -11,6 +11,7 @@ import { districtName } from "@/lib/districts";
 import { SITE } from "@/lib/site";
 import { CENSUS_SOURCE, CENSUS_SOURCE_URL, getDistrictRural, getVillageRows, shapeCensusRow, sumVillages } from "@/lib/census";
 import { getAmenitiesFor, summariseAmenities } from "@/lib/amenities";
+import { acForGp, pcOf } from "@/lib/elections";
 
 type Props = { params: Promise<{ slug: string; gp: string }> };
 
@@ -60,6 +61,8 @@ export default async function GpPage({ params }: Props) {
     const others = block.gps.filter((g) => g.code !== "0" && g.code !== gp.code);
     const sorted = [...villages].filter((v) => v.c).sort((a, b) => (rows[b.c]?.[1] ?? -1) - (rows[a.c]?.[1] ?? -1));
     const url = `/district/${slug}/gp/${gpId(gp)}`;
+    const ac = acForGp(slug, block.code, gp.code);
+    const pc = ac ? pcOf(ac) : undefined;
 
     return (
         <div>
@@ -84,6 +87,7 @@ export default async function GpPage({ params }: Props) {
                     <p className="mt-4 max-w-3xl text-lg text-ink-600">
                         {gp.name} is a gram panchayat (village council) in {block.name} block of {dName} district, Odisha, covering {villages.length} village{villages.length === 1 ? "" : "s"}
                         {census ? `, home to ${fmt(census.population)} people in ${fmt(census.households)} households at the 2011 census` : ""}.
+                        {ac && <> It votes in the <Link href={`/elections/assembly/${ac.slug}`} className="text-laterite-600 hover:underline">{ac.name} assembly constituency</Link>{pc && <> and the <Link href={`/elections/lok-sabha/${pc.slug}`} className="text-laterite-600 hover:underline">{pc.name} Lok Sabha constituency</Link></>}.</>}
                     </p>
                     <dl className="mt-8 grid max-w-4xl grid-cols-2 gap-3 md:grid-cols-4">
                         {[

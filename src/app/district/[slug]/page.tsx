@@ -10,6 +10,9 @@ import { getAdminDistrict, ADMIN_SOURCE, subdistrictSlug } from "@/lib/admin";
 import { getDistrictAreas, AREA_CENSUS_SOURCE, AREA_CENSUS_SOURCE_URL } from "@/lib/census-areas";
 import { getVillageRows, sumVillages, CENSUS_SOURCE, CENSUS_SOURCE_URL } from "@/lib/census";
 import AreaProfile from "@/components/AreaProfile";
+import ClimateTable, { getClimate } from "@/components/ClimateTable";
+import { MONUMENTS, monumentTitle, districtStations } from "@/lib/geo-data";
+import { acsOfDistrict, latest, winner, partyColor, partyAbbr } from "@/lib/elections";
 import { AreaAmenitiesView } from "@/components/Amenities";
 import { getAmenitiesFor, summariseAmenities } from "@/lib/amenities";
 import { useMDXComponents } from "../../../../mdx-components";
@@ -244,6 +247,49 @@ export default async function DistrictPage({ params }: PageProps) {
         );
     });
 
+    // Heritage, railways and climate (appended to the matching tabs, or a tab of their own)
+    {
+        const mons = MONUMENTS.filter((m) => m.district === baseSlug);
+        const stns = districtStations(baseSlug).filter((x) => !x.halt);
+        const halts = districtStations(baseSlug).filter((x) => x.halt);
+        const travel = (mons.length > 0 || stns.length > 0) && (
+            <div className="mt-12 grid gap-8 md:grid-cols-2">
+                {mons.length > 0 && (
+                    <section>
+                        <h2 className="font-display text-2xl font-semibold">Protected monuments ({mons.length})</h2>
+                        <ul className="mt-3 space-y-1.5 text-sm">
+                            {mons.map((m) => <li key={m.id}><Link href={`/monuments/${m.id}`} className="font-semibold text-laterite-600 hover:underline">{monumentTitle(m)}</Link> <span className="text-xs text-ink-400">{m.number}</span></li>)}
+                        </ul>
+                        <p className="mt-2 text-xs text-ink-500">Monuments of National Importance protected by the Archaeological Survey of India. <Link href="/monuments" className="underline">All of Odisha</Link>.</p>
+                    </section>
+                )}
+                <section>
+                    <h2 className="font-display text-2xl font-semibold">Railway stations</h2>
+                    {stns.length + halts.length > 0 ? (
+                        <>
+                            <ul className="mt-3 flex flex-wrap gap-2 text-sm">
+                                {[...stns, ...halts].map((x) => <li key={`${x.name}${x.lat}`}><a href={`https://www.google.com/maps/search/?api=1&query=${x.lat},${x.lon}`} target="_blank" rel="noopener noreferrer nofollow" className="chip !bg-white !px-3 !py-1 hover:border-laterite-300">{x.name}{x.code ? ` · ${x.code}` : ""}{x.halt ? " (halt)" : ""}</a></li>)}
+                            </ul>
+                            <p className="mt-2 text-xs text-ink-500">{stns.length} stations and {halts.length} halts inside the district, as mapped on OpenStreetMap; some on new lines may not yet have regular trains.</p>
+                        </>
+                    ) : (
+                        <p className="mt-3 text-sm text-ink-700">No railway station is mapped inside the district. Village pages list the nearest stations outside it.</p>
+                    )}
+                </section>
+            </div>
+        );
+        const clim = getClimate(baseSlug) ? <div className="mt-12"><ClimateTable district={baseSlug} name={nameEn} /></div> : null;
+        const iPlaces = tabs.findIndex((t) => t.id === "places");
+        const iLand = tabs.findIndex((t) => t.id === "land");
+        if (iPlaces >= 0 && travel) panels[iPlaces] = <div>{panels[iPlaces]}{travel}</div>;
+        if (iLand >= 0 && clim) panels[iLand] = <div>{panels[iLand]}{clim}</div>;
+        const leftover = [iPlaces < 0 ? travel : null, iLand < 0 ? clim : null].filter(Boolean);
+        if (leftover.length) {
+            tabs.push({ id: "heritage", label: isOdia ? "ଜଳବାୟୁ ଓ ଐତିହ୍ୟ" : "Climate & heritage", icon: "compass" });
+            panels.push(<div>{leftover}</div>);
+        }
+    }
+
     const areas = getDistrictAreas(baseSlug);
     const localName = isOdia ? districtData?.name_od || nameEn : nameEn;
     const T = isOdia ? DIST_OR : DIST_EN;
@@ -424,6 +470,16 @@ export default async function DistrictPage({ params }: PageProps) {
                         )}
                     </div>
                 </div>
+                {acsOfDistrict(baseSlug).length > 0 && (
+                    <div className="mt-10">
+                        <h3 className="font-display text-xl font-semibold">{isOdia ? "ବିଧାନସଭା ନିର୍ବାଚନମଣ୍ଡଳୀ" : `Assembly constituencies in ${nameEn}`}</h3>
+                        <ul className="mt-3 grid gap-x-6 gap-y-1.5 text-sm sm:grid-cols-2 lg:grid-cols-3">
+                            {acsOfDistrict(baseSlug).map((a) => { const w = winner(latest(a.results)); return (
+                                <li key={a.no} className="flex items-baseline gap-2"><span className="w-7 text-right text-xs text-ink-400">{a.no}</span><Link href={`/elections/assembly/${a.slug}`} className="font-semibold text-laterite-600 hover:underline">{a.name}</Link>{a.reservation !== "None" && <span className="text-xs text-ink-500">{a.reservation}</span>}{w && <span className="ml-auto inline-flex items-center gap-1 text-xs text-ink-600"><span className="h-2 w-2 rounded-full" style={{ background: partyColor(w.party) }} />{w.name} · {partyAbbr(w.party)}</span>}</li>
+                            ); })}
+                        </ul>
+                    </div>
+                )}
                 <p className="mt-8 text-xs text-ink-500">
                     Source: {ADMIN_SOURCE}. Sub-districts follow the Local Government Directory, which for Odisha uses the Census sub-districts (police-station areas) — these are not the same as revenue tahasils. Boundaries and names change over time; check the district administration for current status.
                 </p>

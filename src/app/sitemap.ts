@@ -1,4 +1,6 @@
 import { getDistrictAreas } from "@/lib/census-areas";
+import { ASSEMBLY, LOKSABHA } from "@/lib/elections";
+import { MONUMENTS } from "@/lib/geo-data";
 import { festivalYears } from "@/data/festival-dates";
 import { MetadataRoute } from "next";
 import { getAllArticlesMetadata, type ArticleMeta } from "@/lib/mdx";
@@ -122,6 +124,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         for (const s of a.subdistricts) adminPages.push({ url: `${base}/district/${d}/tahasil/${subdistrictSlug(s)}`, changeFrequency: "yearly", priority: 0.4 });
         for (const t of getDistrictAreas(d)?.towns ?? []) adminPages.push({ url: `${base}/district/${d}/town/${t.slug}`, changeFrequency: "yearly", priority: 0.5 });
     }
+    adminPages.push({ url: `${base}/elections`, changeFrequency: "monthly", priority: 0.7 }, { url: `${base}/monuments`, changeFrequency: "yearly", priority: 0.7 });
+    for (const a of ASSEMBLY) adminPages.push({ url: `${base}/elections/assembly/${a.slug}`, changeFrequency: "yearly", priority: 0.6 });
+    for (const p of LOKSABHA) adminPages.push({ url: `${base}/elections/lok-sabha/${p.slug}`, changeFrequency: "yearly", priority: 0.6 });
+    for (const m of MONUMENTS) adminPages.push({ url: `${base}/monuments/${m.id}`, changeFrequency: "yearly", priority: 0.6 });
 
     const cinemaPages: MetadataRoute.Sitemap = [
         ...YEARS.map((y) => ({ url: `${base}/cinema/year/${y}`, changeFrequency: "yearly" as const, priority: 0.5 })),

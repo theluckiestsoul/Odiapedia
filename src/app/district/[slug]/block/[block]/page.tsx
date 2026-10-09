@@ -10,6 +10,7 @@ import AreaProfile from "@/components/AreaProfile";
 import { AreaAmenitiesView } from "@/components/Amenities";
 import { getAmenitiesFor, summariseAmenities, getTownDirectory } from "@/lib/amenities";
 import { getDistrictAreas } from "@/lib/census-areas";
+import { acForGp } from "@/lib/elections";
 import { getDistrictById } from "@/data/districts";
 import { districtName } from "@/lib/districts";
 import { SITE } from "@/lib/site";
@@ -74,6 +75,7 @@ export default async function BlockPage({ params }: Props) {
         const vs = villages.filter((v) => v.g === g.code);
         return { g, n: vs.length, c: sumVillages(vs.map((v) => rows[v.c])) };
     });
+    const blockAcs = [...new Map(gps.map((g) => acForGp(slug, block.code, g.code)).filter((x) => !!x).map((x) => [x!.no, x!])).values()];
     const norm = (x: string) => x.toLowerCase().replace(/[^a-z]/g, "");
     const towns = (getDistrictAreas(slug)?.towns ?? []).filter((t) => norm(getTownDirectory(t.code)?.block || "") === norm(block.name));
     const largest = [...counted].sort((a, b) => (pops.get(b.c) || 0) - (pops.get(a.c) || 0)).slice(0, 10);
@@ -115,8 +117,13 @@ export default async function BlockPage({ params }: Props) {
                             </div>
                         ))}
                     </dl>
-                    {subdistricts.length > 0 && (
+                    {blockAcs.length > 0 && (
                         <p className="mt-5 text-sm text-ink-600">
+                            Assembly constituenc{blockAcs.length > 1 ? "ies" : "y"}: {blockAcs.map((a, i) => <span key={a.no}>{i ? ", " : ""}<Link href={`/elections/assembly/${a.slug}`} className="text-laterite-600 hover:underline">{a.name}</Link></span>)}
+                        </p>
+                    )}
+                    {subdistricts.length > 0 && (
+                        <p className="mt-2 text-sm text-ink-600">
                             Sub-districts: {subdistricts.map((s, i) => (
                                 <span key={s.code}>{i ? ", " : ""}<Link href={`/district/${slug}/tahasil/${subdistrictSlug(s)}`} className="text-laterite-600 hover:underline">{s.name}</Link></span>
                             ))}
