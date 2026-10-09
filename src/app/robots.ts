@@ -16,6 +16,13 @@ const AI_AND_SEARCH_AGENTS = [
     "DuckDuckBot",
     "Applebot",
     "YandexBot",
+    // Yahoo (uses Bing's index), Naver, Seznam, Qwant, Mojeek, Baidu
+    "Slurp",
+    "Yeti",
+    "SeznamBot",
+    "Qwantbot",
+    "MojeekBot",
+    "Baiduspider",
     // OpenAI (ChatGPT search, user-initiated browsing, training)
     "OAI-SearchBot",
     "ChatGPT-User",
@@ -50,7 +57,7 @@ export default function robots(): MetadataRoute.Robots {
                 disallow: ["/api/", "/search"],
             },
         ],
-        sitemap: [`${SITE.url}/sitemap.xml`, `${SITE.url}/sitemaps/articles.xml`, `${SITE.url}/sitemaps/cinema.xml`, `${SITE.url}/sitemaps/places.xml`, `${SITE.url}/sitemaps/villages.xml`],
+        sitemap: [`${SITE.url}/sitemap.xml`, `${SITE.url}/feed.xml`, `${SITE.url}/sitemaps/articles.xml`, `${SITE.url}/sitemaps/cinema.xml`, `${SITE.url}/sitemaps/places.xml`, `${SITE.url}/sitemaps/villages.xml`],
         host: SITE.url,
     };
 }

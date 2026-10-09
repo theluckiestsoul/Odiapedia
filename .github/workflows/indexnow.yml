@@ -1,0 +1,22 @@
+name: IndexNow (Bing, Yandex & others)
+
+# Run by hand from the Actions tab after a deploy with new or changed pages.
+on:
+  workflow_dispatch:
+    inputs:
+      scope:
+        description: "main = main sitemap (~8,000 URLs); all = also villages and panchayats (~59,000)"
+        required: true
+        default: main
+        type: choice
+        options: [main, all]
+
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/indexnow.mjs ${{ inputs.scope == 'all' && '--all' || '' }}

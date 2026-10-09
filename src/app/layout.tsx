@@ -89,9 +89,11 @@ export const metadata: Metadata = {
   // Add verification tokens via env vars once Search Console / Bing Webmaster Tools are set up.
   verification: {
     google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined,
-    other: process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION
-      ? { "msvalidate.01": process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION }
-      : undefined,
+    yandex: process.env.NEXT_PUBLIC_YANDEX_VERIFICATION || undefined,
+    other: {
+      ...(process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION ? { "msvalidate.01": process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION } : {}),
+      ...(process.env.NEXT_PUBLIC_NAVER_VERIFICATION ? { "naver-site-verification": process.env.NEXT_PUBLIC_NAVER_VERIFICATION } : {}),
+    },
   },
 };
 
@@ -131,6 +133,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className={`${fraunces.variable} ${geistSans.variable} ${notoSansOriya.variable} ${notoSerifOriya.variable}`}>
       <head>
+        <link rel="alternate" type="application/rss+xml" title="Odiapedia – new and updated articles" href="/feed.xml" />
         {/* Odia (-od, /odia) and Hindi (-hi) pages: set the document language before first paint (the root
             layout is shared, so the server HTML says "en"; page content also carries its own lang attribute). */}
         <script dangerouslySetInnerHTML={{ __html: "(function(){var p=location.pathname.replace(/\\/$/,'');var l=/-od$/.test(p)||p==='/odia'||p.indexOf('/odia/')===0?'or':/-hi$/.test(p)?'hi':'';if(l)document.documentElement.lang=l})()" }} />
