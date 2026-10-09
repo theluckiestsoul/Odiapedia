@@ -1,6 +1,7 @@
 import { getDistrictAreas } from "@/lib/census-areas";
 import { ASSEMBLY, LOKSABHA } from "@/lib/elections";
 import { MONUMENTS } from "@/lib/geo-data";
+import { PIN_CODES } from "@/lib/pins";
 import { festivalYears } from "@/data/festival-dates";
 import { MetadataRoute } from "next";
 import { getAllArticlesMetadata, type ArticleMeta } from "@/lib/mdx";
@@ -127,6 +128,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     adminPages.push({ url: `${base}/elections`, changeFrequency: "monthly", priority: 0.7 }, { url: `${base}/monuments`, changeFrequency: "yearly", priority: 0.7 });
     for (const a of ASSEMBLY) adminPages.push({ url: `${base}/elections/assembly/${a.slug}`, changeFrequency: "yearly", priority: 0.6 });
     for (const p of LOKSABHA) adminPages.push({ url: `${base}/elections/lok-sabha/${p.slug}`, changeFrequency: "yearly", priority: 0.6 });
+    adminPages.push({ url: `${base}/schemes`, changeFrequency: "monthly", priority: 0.7 });
+    adminPages.push({ url: `${base}/data`, changeFrequency: "monthly", priority: 0.5 });
+    adminPages.push({ url: `${base}/language/font-converter`, changeFrequency: "yearly", priority: 0.7 });
+    adminPages.push({ url: `${base}/learn/daily`, changeFrequency: "daily", priority: 0.6 });
+    adminPages.push({ url: `${base}/language/literary-awards`, changeFrequency: "yearly", priority: 0.6 });
+    adminPages.push({ url: `${base}/pin`, changeFrequency: "yearly", priority: 0.6 });
+    for (const p of PIN_CODES) adminPages.push({ url: `${base}/pin/${p}`, changeFrequency: "yearly", priority: 0.4 });
     for (const m of MONUMENTS) adminPages.push({ url: `${base}/monuments/${m.id}`, changeFrequency: "yearly", priority: 0.6 });
 
     const cinemaPages: MetadataRoute.Sitemap = [

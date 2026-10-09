@@ -42,7 +42,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const d = districtName(slug) || r.admin.lgdName;
     return {
         title: `${r.v.n} village, ${r.block && r.block.code !== "0" ? `${r.block.name} block, ` : ""}${d}`,
-        description: `${r.v.n} is a village in ${r.gp && r.gp.code !== "0" ? `${r.gp.name} gram panchayat, ` : ""}${r.block && r.block.code !== "0" ? `${r.block.name} block, ` : ""}${d} district, Odisha. ${r.census ? censusSentence(r.v.n, r.census.village) : "Location in the administrative hierarchy and official codes."}`,
+        description: `${r.v.n} is a village in ${r.gp && r.gp.code !== "0" ? `${r.gp.name} gram panchayat, ` : ""}${r.block && r.block.code !== "0" ? `${r.block.name} block, ` : ""}${d} district, Odisha. ${r.census ? censusSentence(r.v.n, r.census.village) : "Location in the administrative hierarchy and official codes."}${r.amenities?.pin ? ` PIN code ${r.amenities.pin}.` : ""}`,
         alternates: { canonical: `/district/${slug}/village/${villageId(r.v)}` },
     };
 }
@@ -213,7 +213,7 @@ export default async function VillagePage({ params }: Props) {
                             ["Status", v.u ? "Uninhabited" : "Inhabited"],
                             ...(census && census.village.population > 0 ? [["Population (2011)", census.village.population.toLocaleString("en-IN")]] : []),
                             ...(amenities && Number(amenities.area) > 0 ? [["Area", `${Number(amenities.area).toLocaleString("en-IN")} hectares`]] : []),
-                            ...(amenities?.pin ? [["PIN code", String(amenities.pin)]] : []),
+                            ...(amenities?.pin ? [["PIN code", <Link key="pin" href={`/pin/${amenities.pin}`} className="text-laterite-600 hover:underline">{String(amenities.pin)}</Link>]] : []),
                             ...(amenities?.town ? [["Nearest town", `${amenities.town}, ${amenities.townKm} km`]] : []),
                             ["Gram panchayat", hasGp ? gp!.name : "Not mapped"],
                             ["Block", hasBlock ? block!.name : "Not mapped"],

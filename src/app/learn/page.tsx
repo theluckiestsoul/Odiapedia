@@ -34,6 +34,7 @@ export default function LearnPage() {
                 crumbs={[{ name: "Learn Odia", href: "/learn" }]}
             >
                 <Link href="/learn/course" className="btn-primary">Start the free course <Icon name="arrow" className="h-4 w-4" /></Link>
+                <Link href="/learn/daily" className="btn-ghost">Daily Odia quiz</Link>
                 <Link href="/learn/phrasebook" className="btn-ghost">Phrasebook</Link>
             </PageHero>
 

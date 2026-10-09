@@ -1,0 +1,224 @@
+census_2011_code,name,type,district,wards,households,population,males,females,literacy_rate,sc,st,area_km2,class
+801805,Bargarh,Municipality,bargarh,19,18131,80625,41418,39207,88.39,14465,4341,20.8,II
+801804,Barapali,Notified Area Council,bargarh,11,4776,20850,10570,10280,83.69,5077,963,14.2,III
+801803,Padmapur,Notified Area Council,bargarh,11,3830,17625,8988,8637,83.26,2596,1929,20.8,IV
+380419,Bijepur,Census town,bargarh,,1743,6922,3437,3485,85.45,1227,403,5.67,V
+380309,Sohela,Census town,bargarh,,1624,6917,3584,3333,83.48,1373,611,681.9,V
+380613,Khaliapali,Census town,bargarh,,1658,6865,3487,3378,82.78,2345,779,3.22,V
+380612,Bardol,Census town,bargarh,,1327,5441,2678,2763,78.79,1435,750,6.83,V
+380737,Bhatli,Census town,bargarh,,1089,4865,2396,2469,78.2,866,363,370,VI
+801808,Jharsuguda,Municipality,jharsuguda,24,21916,97730,50932,46798,84.91,13870,16948,70.47,II
+801807,Brajarajnagar,Municipality,jharsuguda,23,17631,80403,41836,38567,82.48,15083,8731,41.4,II
+801806,Belpahar,Municipality,jharsuguda,16,8821,38993,20299,18694,82.77,4673,8719,41.65,III
+381073,Bandhbahal,Census town,jharsuguda,,2433,9735,5192,4543,90.57,1171,1642,5,V
+381107,Bundia,Census town,jharsuguda,,973,4304,2269,2035,83.71,1083,601,2.3,VI
+801813,Sambalpur,Municipality,sambalpur,31,41553,184000,94722,89278,85.53,28570,17375,46.5,I
+801811,Burla,Notified Area Council,sambalpur,16,10419,46698,23669,23029,85.68,12960,4719,25.42,III
+801810,Hirakud,Notified Area Council,sambalpur,17,6963,30207,15698,14509,84.0,8071,3986,17.6,III
+801809,Kochinda,Notified Area Council,sambalpur,11,3927,15576,7837,7739,81.89,2023,4278,16.84,IV
+801812,Redhakhol,Notified Area Council,sambalpur,18,3557,15379,7938,7441,82.38,3085,2337,37.4,IV
+381702,Rengali,Census town,sambalpur,,2529,10867,5583,5284,78.98,1308,3409,1254,IV
+801814,Debagarh,Municipality,deogarh,11,5394,22390,11564,10826,83.41,3866,5444,24.1,III
+801819,Raurkela,Municipality,sundargarh,41,61717,272721,144466,128255,86.98,21783,33277,32.6,I
+801820,Raurkela,Industrial township,sundargarh,20,47970,210317,109333,100984,85.47,30315,39028,99,I
+801816,Rajagangapur,Municipality,sundargarh,20,10866,51362,26259,25103,84.32,4256,12313,26.99,II
+801815,Sundargarh,Municipality,sundargarh,19,10127,45036,22754,22282,88.88,4274,9974,23.83,III
+801818,Biramitrapur,Municipality,sundargarh,11,7146,33442,16854,16588,78.12,5599,12382,21.8,III
+384612,Jalda,Census town,sundargarh,,3482,15789,7933,7856,75.92,1614,8370,1095.5,IV
+384265,Panposh,Census town,sundargarh,,2236,9923,5032,4891,78.95,749,5992,5.4,V
+384373,Kuanrmunda,Census town,sundargarh,,2060,9043,4612,4431,79.59,836,3673,1399,V
+384613,Hatibandha,Census town,sundargarh,,2015,8938,4625,4313,81.71,634,3773,3.29,V
+384647,Lathikata,Census town,sundargarh,,1734,7405,3913,3492,86.65,544,1895,5.3,V
+385209,Banaigarh,Census town,sundargarh,,1686,7080,3696,3384,87.32,743,1730,22,V
+384803,Koida,Census town,sundargarh,,1796,6763,3720,3043,73.51,643,2783,10.83,V
+384964,Tensa,Census town,sundargarh,,1125,4469,2378,2091,81.94,833,1535,1.9,VI
+801817,O.C.L.,Industrial township,sundargarh,,695,2397,1311,1086,96.48,22,31,6,VI
+801821,Barbil,Municipality,kendujhar,15,15094,66540,34938,31602,72.18,8500,16291,41.44,II
+801823,Kendujhar,Municipality,kendujhar,21,13627,60590,31481,29109,87.23,8031,14217,26.65,II
+801822,Joda,Municipality,kendujhar,14,10643,46631,23951,22680,72.16,8082,12904,7020,III
+801824,Anandpur,Municipality,kendujhar,16,8601,39585,20462,19123,84.55,7367,4056,72.87,III
+385278,Balagoda (Bolani),Census town,kendujhar,,2707,11708,6152,5556,71.92,1638,3345,11.42,IV
+385509,Champua,Census town,kendujhar,,1966,10394,5543,4851,87.0,591,1593,4.9,IV
+385392,Jajanga,Census town,kendujhar,,1820,7482,3978,3504,60.77,977,4081,20,V
+385564,Jhumpura,Census town,kendujhar,,1323,6064,3153,2911,82.73,565,1018,3.27,V
+386860,Daitari,Census town,kendujhar,,1043,4065,2162,1903,82.81,693,1436,0,VI
+801828,Baripada,Municipality,mayurbhanj,31,24718,109743,56676,53067,88.52,12478,16663,29.65,I
+801825,Rairangpur,Notified Area Council,mayurbhanj,27,5654,25516,12622,12894,86.54,2258,4757,14.38,III
+801826,Karanjia,Notified Area Council,mayurbhanj,15,5060,22865,11334,11531,83.35,3468,6661,18.48,III
+801827,Udala,Notified Area Council,mayurbhanj,12,3052,13152,6701,6451,87.79,985,3302,7.89,IV
+388645,Jashipur,Census town,mayurbhanj,,1265,5101,2581,2520,74.54,914,2060,10.2,V
+801833,Baleshwar,Municipality,balasore,52,25713,118162,60219,57943,88.09,12056,5897,19.4,I
+801830,Remuna,Notified Area Council,balasore,32,7646,33378,17052,16326,78.44,5674,3636,30.5,III
+801832,Soro,Notified Area Council,balasore,19,6811,32531,16628,15903,84.57,4739,902,23.6,III
+801829,Jaleshwar,Notified Area Council,balasore,17,5513,25747,13095,12652,81.46,1925,2461,17.9,III
+801831,Nilagiri,Notified Area Council,balasore,13,3912,17264,8825,8439,77.46,2500,4290,20.45,IV
+801835,Bhadrak,Municipality,bhadrak,35,20121,107463,55090,52373,79.49,7863,3148,30.72,I
+801836,Basudebpur,Notified Area Council,bhadrak,23,6599,33690,16927,16763,81.28,5626,103,74.78,III
+801834,Dhamanagar,Notified Area Council,bhadrak,5,4221,22920,11758,11162,74.08,2584,197,18.45,III
+394886,Erei,Census town,bhadrak,,1539,7890,3985,3905,79.79,419,1221,9.5,V
+801838,Kendrapara,Municipality,kendrapara,21,8892,47006,24212,22794,89.32,4890,605,10.8,III
+801837,Pattamundai,Notified Area Council,kendrapara,20,7174,36528,18549,17979,86.93,11199,17,2.5,III
+801839,Paradip,Municipality,jagatsinghpur,18,17485,68585,37300,31285,85.93,7167,2924,23.4,II
+801840,Jagatsinghapur,Municipality,jagatsinghpur,21,7010,33631,17239,16392,89.32,6783,366,17.7,III
+397783,Krushnanandapur,Census town,jagatsinghpur,,2180,8974,4088,4886,90.65,705,0,3.95,V
+397173,Paradipgarh,Census town,jagatsinghpur,,1006,4790,2425,2365,86.56,1807,48,2.4,VI
+801844,Cuttack,Municipal Corporation,cuttack,54,123034,610189,316242,293947,91.0,70629,9238,149.2,I
+801843,Choudwar,Municipality,cuttack,30,9176,42784,22462,20322,90.05,5205,948,31.01,II
+801841,Banki,Notified Area Council,cuttack,17,3698,17521,9204,8317,91.02,3644,25,6.22,IV
+801842,Athagad,Notified Area Council,cuttack,18,3497,17304,8930,8374,89.71,3664,460,10.4,IV
+399027,Nuapatna,Census town,cuttack,,1689,8057,4208,3849,83.53,349,165,2.7,V
+398818,Badamba (Nizigarh),Census town,cuttack,,1494,6284,3296,2988,89.68,1453,16,3.77,V
+399154,Belagachhia,Census town,cuttack,,1115,5516,2771,2745,88.83,1058,2,5.1,V
+399153,Dadhapatna,Census town,cuttack,,1050,5005,2589,2416,88.82,1357,256,1.07,V
+399421,Kanheipur,Census town,cuttack,,917,4611,2387,2224,81.55,676,304,3,VI
+399422,Ramgarh,Census town,cuttack,,941,4545,2283,2262,87.72,1036,13,51,VI
+399315,Charibatia,Census town,cuttack,,1000,4016,2269,1747,97.64,582,228,,
+801845,Byasanagar,Municipality,jajpur,29,10570,48911,25365,23546,87.33,6514,4907,42.78,II
+801846,Jajapur,Municipality,jajpur,17,8198,37458,19216,18242,89.12,6363,565,11.65,III
+401372,Brahmabarada,Census town,jajpur,,2260,10721,5433,5288,86.74,453,1,4.17,IV
+402000,Sayadpur,Census town,jajpur,,2055,8798,4403,4395,86.77,1016,3,1.62,V
+401470,Anjira,Census town,jajpur,,1218,6561,3320,3241,76.21,760,1110,9.58,V
+400546,Kalarangiata,Census town,jajpur,,1256,5505,2882,2623,75.24,153,2068,10.05,V
+400547,Kaliapani,Census town,jajpur,,1142,5028,2666,2362,72.87,351,2005,10.73,V
+401469,Kabatabandha,Census town,jajpur,,806,4080,2077,2003,87.01,469,42,1.34,VI
+801849,Dhenkanal,Municipality,dhenkanal,23,14908,67414,34864,32550,90.83,11105,4095,30.56,II
+801848,Bhuban,Notified Area Council,dhenkanal,15,4802,22200,11545,10655,83.56,3016,280,18.04,III
+801847,Kamakshyanagar,Notified Area Council,dhenkanal,12,3980,16810,8833,7977,89.63,3439,279,11.15,IV
+402315,Saranga,Census town,dhenkanal,,1126,6426,3573,2853,92.14,1028,449,9.92,V
+403392,Indipur,Census town,dhenkanal,,1102,4656,2452,2204,88.11,313,282,10,VI
+801851,Anugul,Municipality,angul,23,9778,43795,23474,20321,91.35,5039,1473,21.71,III
+801850,Talcher,Municipality,angul,21,9114,40841,21774,19067,85.18,7658,1703,25.46,III
+404118,Nalco,Census town,angul,,5104,19644,10124,9520,88.5,2125,8016,1.15,IV
+404089,Dera Colliery Township,Census town,angul,,3716,15787,8352,7435,89.66,2636,787,7.81,IV
+404090,Ghantapada,Census town,angul,,3564,15169,8079,7090,83.8,2044,1723,9.58,IV
+801852,Athmallik,Notified Area Council,angul,11,2899,12298,6290,6008,78.57,3506,916,29.01,IV
+404193,Gotamara,Census town,angul,,1627,7420,3894,3526,83.86,2098,244,11.01,V
+404119,Kandasar (Part),Census town,angul,,1479,6668,3534,3134,88.88,747,33,6.54,V
+403727,Rengali Damproject Township,Census town,angul,,1487,6345,3342,3003,87.18,856,630,6.25,V
+404192,Budhapanka,Census town,angul,,1265,6129,3162,2967,79.35,1225,615,12.19,V
+404194,Nuahata,Census town,angul,,1301,5920,3146,2774,82.39,1516,76,8.48,V
+403538,Palalahada,Census town,angul,,1384,5749,2992,2757,86.06,1290,270,8.22,V
+404105,Jorada (Bada),Census town,angul,,973,4428,2423,2005,85.62,945,313,6.75,VI
+404120,Kulad (Part),Census town,angul,,885,4256,2235,2021,86.37,1134,50,6.6,VI
+404088,Danara,Census town,angul,,806,4144,2197,1947,80.43,733,104,8.47,VI
+404091,T.T.P.S. Township,Census town,angul,,917,3613,2001,1612,97.17,393,130,2,VI
+403904,Tipo,Census town,angul,,748,2981,1576,1405,85.65,422,393,2.06,VI
+404106,F.C.I. Township,Census town,angul,,270,1359,738,621,97.62,181,79,3.59,VI
+801854,Nayagarh,Notified Area Council,nayagarh,13,3859,17030,9000,8030,93.33,1566,208,16,IV
+406325,Itamati,Census town,nayagarh,,2212,10317,5396,4921,85.85,1042,0,3.86,IV
+406977,Ranapurgada,Census town,nayagarh,,2162,10001,5152,4849,84.48,1058,31,1.95,IV
+406078,Kantilo,Census town,nayagarh,,2118,9181,4734,4447,85.18,2381,2,6,V
+801853,Khandapada,Notified Area Council,nayagarh,13,1877,9038,4703,4335,88.74,1469,462,20,V
+405611,Kunjabangarh,Census town,nayagarh,,1593,6906,3691,3215,86.31,596,218,5.09,V
+406976,Rajasunakhala,Census town,nayagarh,,1280,6299,3253,3046,88.5,609,230,2.38,V
+406975,Chandapur,Census town,nayagarh,,1124,5565,2867,2698,83.44,1343,1,2.75,V
+406632,Odagaon,Census town,nayagarh,,1240,5401,2821,2580,87.91,403,8,3.1,V
+801859,Bhubaneswar,Municipal Corporation,khordha,81,196988,843402,446204,397198,91.87,70230,42389,135,I
+801856,Jatani,Municipality,khordha,26,11781,55925,28590,27335,89.76,7889,881,18.3,II
+801855,Khordha,Municipality,khordha,22,9328,46205,23937,22268,92.19,5716,1313,25.84,III
+801857,Balugaon,Notified Area Council,khordha,11,3735,17645,9150,8495,81.73,4543,68,6.12,IV
+801858,Banapur,Notified Area Council,khordha,15,3425,17278,8707,8571,85.76,1719,247,24.34,IV
+407607,Pratapsasan,Census town,khordha,,2576,12830,6634,6196,86.62,1928,149,6.65,IV
+407708,Bhakarsahi,Census town,khordha,,1606,7110,3643,3467,86.51,1427,4,341.02,V
+408170,Balipatapur,Census town,khordha,,1398,6898,3566,3332,68.96,4200,6,0.19,V
+407709,Bhapur,Census town,khordha,,1289,6438,3273,3165,86.0,656,3,251,V
+408299,Dungamal,Census town,khordha,,1051,6271,4289,1982,92.91,424,139,1.8,V
+407707,Majhihara,Census town,khordha,,1275,5598,2916,2682,86.53,884,0,187,V
+407456,Kaipadar,Census town,khordha,,877,4512,2326,2186,85.15,218,218,1004,VI
+408169,Tangi,Census town,khordha,,909,4471,2287,2184,87.39,602,3,3.52,VI
+801863,Puri,Municipality,puri,32,41140,200564,104086,96478,88.03,15627,1022,16.8,I
+801861,Nimapada,Notified Area Council,puri,11,3898,19289,9917,9372,91.44,3982,98,14.6,IV
+801860,Pipili,Notified Area Council,puri,16,3552,17623,9036,8587,86.23,2866,153,8.8,IV
+801862,Konark,Notified Area Council,puri,13,3368,16779,8654,8125,75.97,3468,470,35.1,IV
+408665,Godiputamatiapara,Census town,puri,,1165,5967,3053,2914,89.61,1306,6,779,V
+409802,Birapratappur,Census town,puri,,958,4708,2421,2287,84.54,1003,1,4.78,VI
+801881,Brahmapur,Municipal Corporation,ganjam,37,74720,356598,185754,170844,89.26,35137,3070,79.8,I
+801877,Hinjilicut,Notified Area Council,ganjam,21,5189,24671,12678,11993,81.61,5078,90,11.81,III
+801870,Polasara,Notified Area Council,ganjam,19,4806,23119,11876,11243,78.63,3236,176,36.26,III
+801874,Chhatrapur,Notified Area Council,ganjam,14,4841,22027,11100,10927,89.84,2846,298,4.4,III
+801868,Asika,Notified Area Council,ganjam,17,4581,21428,10961,10467,85.76,3794,175,5.31,III
+801865,Bhanjanagar,Notified Area Council,ganjam,15,4546,20482,10308,10174,89.25,3786,261,6.06,III
+801869,Kabisurjyanagar,Notified Area Council,ganjam,18,3562,17430,9005,8425,80.74,2825,57,18.13,IV
+412607,Lochapada,Census town,ganjam,,3644,16377,8502,7875,89.5,1200,462,1.74,IV
+801876,Purusottampur,Notified Area Council,ganjam,14,3224,15366,7894,7472,78.22,4214,16,34.9,IV
+801864,Buguda,Notified Area Council,ganjam,13,3179,15176,7781,7395,83.3,1884,238,7.54,IV
+801867,Surada,Notified Area Council,ganjam,11,3152,14867,7505,7362,77.69,4546,174,3661,IV
+801871,Kodala,Notified Area Council,ganjam,13,2802,13965,7234,6731,70.76,1222,17,12.94,IV
+801879,Digapahandi,Notified Area Council,ganjam,11,2955,13190,6679,6511,78.36,2287,136,10.22,IV
+801872,Khalikote,Notified Area Council,ganjam,12,2769,13022,6734,6288,82.85,1854,567,61,IV
+801873,Rambha,Notified Area Council,ganjam,13,2495,12111,6113,5998,75.47,3960,12,7.77,IV
+801875,Ganjam,Notified Area Council,ganjam,12,2523,11747,6071,5676,85.3,2938,4,90,IV
+801880,Chikiti,Notified Area Council,ganjam,12,2465,11645,5934,5711,75.67,2713,60,6.48,IV
+801866,Bellaguntha,Notified Area Council,ganjam,13,2317,11297,5664,5633,80.83,1597,307,2.5,IV
+412606,Bhabinipur,Census town,ganjam,,2224,10411,5325,5086,85.42,1464,56,5.58,IV
+412726,Surala,Census town,ganjam,,1719,8258,4182,4076,61.7,5761,3,2.55,V
+412160,Arjyapalli,Census town,ganjam,,1721,8001,3997,4004,40.3,505,5,4.13,V
+412725,Suvani,Census town,ganjam,,1624,7993,4020,3973,53.71,4435,0,25,V
+412604,Kukudakhandi,Census town,ganjam,,1594,7361,3666,3695,72.79,1994,43,7.3,V
+801878,Gopalpur,Notified Area Council,ganjam,11,1480,7221,3622,3599,61.77,681,22,2.56,V
+410674,Lalsingi,Census town,ganjam,,1627,7078,3581,3497,87.47,1017,131,3.99,V
+411193,Badagada,Census town,ganjam,,1521,6982,3575,3407,70.33,1524,21,5.25,V
+412551,Sheragada,Census town,ganjam,,1362,6653,3426,3227,79.83,1524,16,4.8,V
+412128,Agastinuagan,Census town,ganjam,,1291,6411,3128,3283,37.14,476,11,39,V
+412634,Golabandha,Census town,ganjam,,1392,6232,3776,2456,82.11,416,75,5.68,V
+411948,Pathar,Census town,ganjam,,1229,6072,3064,3008,74.17,5258,42,0.27,V
+413350,Patrapur,Census town,ganjam,,1294,6059,3061,2998,72.95,1481,9,2,V
+410351,Kullada,Census town,ganjam,,1220,5645,2830,2815,78.48,1698,5,3.48,V
+410673,Badakodanda,Census town,ganjam,,1122,5137,2618,2519,72.26,888,4,5.08,V
+412057,Palurgada,Census town,ganjam,,1052,5019,2493,2526,74.32,3481,0,2.36,V
+411296,Makundapur,Census town,ganjam,,1079,4983,2527,2456,84.85,429,3,1.3,VI
+412605,Borigam,Census town,ganjam,,974,4855,2477,2378,70.43,1250,0,8.02,VI
+412347,Pitala,Census town,ganjam,,907,4458,2265,2193,75.18,902,0,3.11,VI
+412633,Venkatraipur,Census town,ganjam,,1098,4401,2092,2309,53.9,292,8,2.57,VI
+411360,Mundamarai,Census town,ganjam,,905,4253,2064,2189,74.77,719,16,2.18,VI
+801883,Paralakhemundi,Municipality,gajapati,17,10264,44469,22252,22217,81.15,7180,1584,3.6,III
+801882,Kashinagar,Notified Area Council,gajapati,13,2428,9684,4591,5093,56.7,1928,196,10.36,V
+413958,Mohana,Census town,gajapati,,1121,5197,2687,2510,88.55,259,558,2.51,V
+414260,R. Udayagiri,Census town,gajapati,,1060,4851,2428,2423,73.41,130,741,8.4,VI
+414848,Rayagada,Census town,gajapati,,885,4662,2336,2326,77.87,82,1596,10.13,VI
+801884,Phulabani,Municipality,kandhamal,13,8652,37371,19337,18034,89.03,9157,4376,16,III
+416820,Baliguda,Census town,kandhamal,,3926,16611,8389,8222,84.05,3220,2025,16.64,IV
+801885,G. Udayagiri,Notified Area Council,kandhamal,13,2697,11302,5357,5945,87.01,1473,3019,13.24,IV
+417521,Daringbadi,Census town,kandhamal,,1491,6995,3339,3656,80.98,1125,2798,5.86,V
+801886,Baudhgarh,Notified Area Council,boudh,17,4559,20424,10492,9932,86.8,5496,497,20.7,III
+801888,Sonapur,Municipality,subarnapur,15,4845,20770,10709,10061,88.49,5435,542,15.13,III
+801887,Binika,Notified Area Council,subarnapur,12,3785,15765,8110,7655,75.82,5213,1247,21.42,IV
+801889,Tarbha,Notified Area Council,subarnapur,12,1931,8334,4221,4113,82.71,1183,82,13,V
+419524,Subalaya,Census town,subarnapur,,1229,5072,2638,2434,83.18,1007,65,3.29,V
+801890,Balangir,Municipality,balangir,21,21980,98238,50582,47656,86.27,14346,4864,31.08,II
+801893,Titlagarh,Notified Area Council,balangir,17,7358,31258,15988,15270,82.14,5020,1253,15.34,III
+801892,Kantabanji,Notified Area Council,balangir,16,4887,21819,11258,10561,78.53,3969,707,7.77,III
+801891,Patnagarh,Notified Area Council,balangir,15,5035,21024,10694,10330,79.7,2857,2354,18.26,III
+419976,Loisinga,Census town,balangir,,1555,6220,3098,3122,80.79,1136,1258,6.16,V
+421343,Bangomunda,Census town,balangir,,1387,5759,2802,2957,68.88,1318,481,11.02,V
+421195,Badmal,Census town,balangir,,1352,5431,3013,2418,95.68,1071,894,,
+420513,Tushura,Census town,balangir,,1200,4823,2475,2348,85.54,1238,456,4.06,VI
+801894,Khariar Road,Notified Area Council,nuapada,17,4322,18967,9526,9441,78.41,3587,1155,29.53,IV
+801895,Khariar,Notified Area Council,nuapada,13,3589,15087,7644,7443,79.71,3226,1051,23.83,IV
+801897,Bhawanipatna,Municipality,kalahandi,20,15599,69045,35506,33539,85.0,12889,4016,15.4,II
+801898,Junagarh,Notified Area Council,kalahandi,12,4541,19656,9835,9821,74.27,2835,1091,15.54,IV
+801896,Kesinga,Notified Area Council,kalahandi,12,4271,19239,9844,9395,77.12,3662,2341,14.5,IV
+422708,Madanpur Rampur,Census town,kalahandi,,1995,7892,4034,3858,82.4,1111,526,7.01,V
+424227,Mukhiguda,Census town,kalahandi,,1541,6155,3236,2919,79.14,1109,707,2.24,V
+801899,Rayagada,Municipality,rayagada,24,16362,71208,36036,35172,78.62,9106,10845,18.7,II
+801900,Gunupur,Notified Area Council,rayagada,19,5561,24162,11962,12200,76.47,4929,2322,11.7,III
+426511,Chandili,Census town,rayagada,,4591,18552,9467,9085,76.39,2992,2002,5.17,IV
+425462,Bishamakatak,Census town,rayagada,,1958,8399,4280,4119,85.51,1572,441,4.6,V
+425011,Tikarpada,Census town,rayagada,,2072,8346,4224,4122,78.36,1621,697,2.7,V
+801901,Gudari,Notified Area Council,rayagada,11,1696,6931,3479,3452,81.18,1502,719,6.47,V
+425727,Kalyanasingpur,Census town,rayagada,,1197,4660,2318,2342,64.18,975,1301,8.52,VI
+801903,Nabarangapur,Municipality,nabarangpur,20,7113,29960,14943,15017,85.17,4091,3306,21.0,III
+801902,Umarkote,Notified Area Council,nabarangpur,14,6556,28993,14640,14353,75.08,10367,3097,25.9,III
+427776,Papadahandi,Census town,nabarangpur,,2085,9390,4522,4868,63.08,1275,3857,9.62,V
+428090,Khatiguda,Census town,nabarangpur,,1494,6361,3288,3073,85.11,1207,327,259,V
+427270,Raighar,Census town,nabarangpur,,1364,5936,3108,2828,77.89,1811,776,2,V
+801906,Jeypur,Municipality,koraput,28,19973,84830,42602,42228,82.38,9898,9069,25,II
+801907,Sunabeda (NAC).,,koraput,23,12444,50394,26016,24378,84.01,11412,7119,34.41,II
+801905,Koraput,Notified Area Council,koraput,15,11379,47468,24553,22915,82.04,8245,9690,61.1,III
+801904,Kotpad,Notified Area Council,koraput,13,3878,16326,7945,8381,76.24,2110,3986,13,IV
+428283,Boriguma,Census town,koraput,,2461,9785,4917,4868,72.76,921,2381,9.31,V
+429994,Damanjodi,Census town,koraput,,2519,8862,4633,4229,93.23,1309,1194,12.3,V
+429995,Kurumuli,Census town,koraput,,2240,8504,4372,4132,69.91,1948,1425,1276,V
+801908,Malkangiri,Notified Area Council,malkangiri,19,7150,31007,16358,14649,76.47,8747,6013,18.06,III
+801909,Balimela,Notified Area Council,malkangiri,12,2758,11796,6023,5773,71.73,3939,1052,4.85,IV
+430673,Chitrakonda,Census town,malkangiri,,1466,6725,3342,3383,70.44,2812,1084,1.77,V

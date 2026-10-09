@@ -14,6 +14,8 @@ const columns = [
             { href: "/food", label: "Food" },
             { href: "/people", label: "People" },
             { href: "/library", label: "Library (free PDFs)" },
+            { href: "/language/font-converter", label: "Akruti/Sreelipi converter" },
+            { href: "/learn/daily", label: "Daily Odia quiz" },
         ],
     },
     {
@@ -21,6 +23,9 @@ const columns = [
         links: [
             { href: "/districts", label: "30 districts" },
             { href: "/map", label: "Interactive map" },
+            { href: "/monuments", label: "Protected monuments" },
+            { href: "/elections", label: "Elections & MLAs" },
+            { href: "/pin", label: "PIN codes" },
             { href: "/travel", label: "Travel guides" },
             { href: "/travel/odisha-3-day-itinerary", label: "3-day itinerary" },
             { href: "/travel/best-time-to-visit-odisha", label: "Best time to visit" },
@@ -38,6 +43,7 @@ const columns = [
             { href: "/shop", label: "Shop authentic Odisha" },
             { href: "/partners", label: "Partner with us" },
             { href: "/latest", label: "Latest updates" },
+            { href: "/data", label: "Open data (CSV)" },
         ],
     },
 ];

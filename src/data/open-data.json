@@ -1,0 +1,36 @@
+{
+ "files": {
+  "villages.csv": {
+   "rows": 52134,
+   "bytes": 5112044
+  },
+  "towns.csv": {
+   "rows": 223,
+   "bytes": 19605
+  },
+  "districts.csv": {
+   "rows": 30,
+   "bytes": 2363
+  },
+  "assembly-constituencies.csv": {
+   "rows": 147,
+   "bytes": 13879
+  },
+  "monuments.csv": {
+   "rows": 78,
+   "bytes": 9009
+  },
+  "railway-stations.csv": {
+   "rows": 621,
+   "bytes": 28312
+  },
+  "pin-codes.csv": {
+   "rows": 47596,
+   "bytes": 1145536
+  },
+  "climate.csv": {
+   "rows": 360,
+   "bytes": 16400
+  }
+ }
+}
